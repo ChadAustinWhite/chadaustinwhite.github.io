@@ -14,8 +14,22 @@ function handleSmoothScroll(e: React.MouseEvent<HTMLAnchorElement>) {
   }
 }
 
-export function SiteNav() {
+interface SiteNavProps {
+  /** When set, logo and in-page links (Work, Experience) navigate back to home instead of using hash. */
+  onNavigateHome?: () => void;
+}
+
+export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
   const scrolled = useScrollBorder(20);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onNavigateHome) {
+      e.preventDefault();
+      onNavigateHome();
+    } else {
+      handleSmoothScroll(e);
+    }
+  };
 
   return (
     <nav
@@ -28,8 +42,8 @@ export function SiteNav() {
     >
       <div className="flex items-center gap-3.5">
         <a
-          href="#about"
-          onClick={handleSmoothScroll}
+          href={onNavigateHome ? '#work' : '#about'}
+          onClick={handleNavClick}
           className="whitespace-nowrap text-sm font-bold tracking-[0.03em] text-[var(--ink)]"
         >
           Chad Austin White
@@ -38,12 +52,12 @@ export function SiteNav() {
       <div className="flex items-center gap-7 md:gap-6">
         <ul className="flex items-center gap-4 md:gap-6">
           <li>
-            <a href="#work" onClick={handleSmoothScroll} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
+            <a href="#work" onClick={handleNavClick} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
               Work
             </a>
           </li>
           <li>
-            <a href="#experience" onClick={handleSmoothScroll} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
+            <a href="#experience" onClick={handleNavClick} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
               Experience
             </a>
           </li>

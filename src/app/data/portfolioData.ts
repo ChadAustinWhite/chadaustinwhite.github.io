@@ -4,11 +4,10 @@ import payrixOnboardingImage from '../../assets/d37a1587dc67bf7c157730c623efab0a
 import galileoImage from '../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
 
 export type CaseStudyRoute =
-  | 'case-study-modern-architecture'
-  | 'case-study-creative-space'
-  | 'case-study-luxury-goods'
-  | 'case-study-fashion-forward'
-  | 'case-study-tech-innovation';
+  | 'case-study-expedia-accelerator'
+  | 'case-study-expedia-ad-portal'
+  | 'case-study-worldpay-merchant-onboarding'
+  | 'case-study-worldpay-sso';
 
 export interface ProjectItem {
   title: string;
@@ -26,7 +25,7 @@ export const projects: ProjectItem[] = [
     period: '2023–2025',
     image: expediaAcceleratorImage,
     imageAlt: 'Expedia Group Accelerator — campaign creation and performance dashboard',
-    caseStudyRoute: 'case-study-modern-architecture',
+    caseStudyRoute: 'case-study-expedia-accelerator',
   },
   {
     title: 'Expedia Group Ad Portal',
@@ -34,7 +33,7 @@ export const projects: ProjectItem[] = [
     period: '2025',
     image: expediaAdPortalImage,
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
-    caseStudyRoute: 'case-study-luxury-goods',
+    caseStudyRoute: 'case-study-expedia-ad-portal',
   },
   {
     title: 'Worldpay Merchant Onboarding',
@@ -42,7 +41,7 @@ export const projects: ProjectItem[] = [
     period: '2024–2025',
     image: payrixOnboardingImage,
     imageAlt: 'Worldpay Merchant Onboarding — access control and security compliance',
-    caseStudyRoute: 'case-study-creative-space',
+    caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
   },
   {
     title: 'Worldpay SSO Management',
@@ -50,7 +49,7 @@ export const projects: ProjectItem[] = [
     period: '2025',
     image: galileoImage,
     imageAlt: 'Worldpay SSO Management — identity access and security',
-    caseStudyRoute: 'case-study-tech-innovation',
+    caseStudyRoute: 'case-study-worldpay-sso',
   },
 ];
 

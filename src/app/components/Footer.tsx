@@ -13,13 +13,27 @@ function handleSmoothScroll(e: React.MouseEvent<HTMLAnchorElement>) {
   }
 }
 
-export function Footer() {
+interface FooterProps {
+  /** When set, "All work" / Work link navigates back to home instead of using hash. */
+  onNavigateHome?: () => void;
+}
+
+export function Footer({ onNavigateHome }: FooterProps = {}) {
+  const handleWorkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onNavigateHome) {
+      e.preventDefault();
+      onNavigateHome();
+    } else {
+      handleSmoothScroll(e);
+    }
+  };
+
   return (
     <footer className="flex flex-col items-start gap-4 border-t border-[var(--border)] px-5 py-7 md:flex-row md:items-center md:justify-between md:px-10 md:py-9">
       <span className="text-[13px] text-[var(--ink-muted)]">© 2026 Chad Austin White</span>
       <div className="flex gap-6">
-        <a href="#work" onClick={handleSmoothScroll} className="text-[13px] text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)]">
-          Work
+        <a href="#work" onClick={handleWorkClick} className="text-[13px] text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)]">
+          All work
         </a>
         <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)]">
           LinkedIn

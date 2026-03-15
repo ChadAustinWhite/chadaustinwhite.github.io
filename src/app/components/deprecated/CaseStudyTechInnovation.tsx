@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 interface CaseStudyTechInnovationProps {
   onBack: () => void;
