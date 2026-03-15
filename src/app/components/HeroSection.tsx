@@ -14,7 +14,7 @@ export function HeroSection() {
         <br />
         A product designer crafting
         <br />
-        <em className="font-normal italic text-[var(--ink-muted)]">human-centered experiences.</em>
+        <p className="font-normal text-[var(--ink-muted)]">human-centered experiences.</p>
       </h1>
       <p className="max-w-[560px] text-[15px] leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
         I'm mission-driven and passionate about delivering accessible, intuitive solutions that
