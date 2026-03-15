@@ -1,11 +1,11 @@
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { ArrowUpRight } from 'lucide-react';
-import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
-import expediaAdPortalImage from '../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
-import payrixOnboardingImage from '../../assets/d37a1587dc67bf7c157730c623efab0af7f1c1e7.png';
-import galileoImage from '../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
+import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
+import expediaAdPortalImage from '../../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
+import payrixOnboardingImage from '../../../assets/d37a1587dc67bf7c157730c623efab0af7f1c1e7.png';
+import galileoImage from '../../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
 
 interface Project {
   title: string;
@@ -85,7 +85,7 @@ function ProjectCard({ project, index, onClick }: ProjectCardProps) {
         </div>
         <span className="text-gray-400 text-sm">{project.year}</span>
       </div>
-      
+
       <motion.button
         onClick={(e) => {
           e.stopPropagation();

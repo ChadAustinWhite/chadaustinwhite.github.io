@@ -12,8 +12,7 @@ export function Navigation({ onNavigate }: NavigationProps) {
   const handleNavigation = (page: 'home', hash?: string) => {
     setIsOpen(false);
     onNavigate(page);
-    
-    // Scroll to top or specific section after a brief delay
+
     setTimeout(() => {
       if (hash) {
         const element = document.querySelector(hash);
@@ -37,8 +36,8 @@ export function Navigation({ onNavigate }: NavigationProps) {
         className="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12"
       >
         <div className="flex items-center justify-between">
-          <a 
-            href="#" 
+          <a
+            href="#"
             onClick={(e) => {
               e.preventDefault();
               handleNavigation('home');

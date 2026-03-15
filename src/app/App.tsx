@@ -1,39 +1,22 @@
-import { useState } from 'react';
-import { Navigation } from './components/Navigation';
-import { Hero } from './components/Hero';
-import { FeaturedWork } from './components/FeaturedWork';
-import { Clients } from './components/Clients';
-import { Contact } from './components/Contact';
+import React, { useState } from 'react';
+import { HomeLayout } from './components/HomeLayout';
 import { CaseStudy } from './components/CaseStudy';
 import { CaseStudyCreativeSpace } from './components/CaseStudyCreativeSpace';
 import { CaseStudyLuxuryGoods } from './components/CaseStudyLuxuryGoods';
 import { CaseStudyFashionForward } from './components/CaseStudyFashionForward';
 import { CaseStudyTechInnovation } from './components/CaseStudyTechInnovation';
+import type { CaseStudyRoute } from './data/portfolioData';
 
-type PageType = 
-  | 'home' 
-  | 'case-study-modern-architecture'
-  | 'case-study-creative-space'
-  | 'case-study-luxury-goods'
-  | 'case-study-fashion-forward'
-  | 'case-study-tech-innovation';
+type PageType =
+  | 'home'
+  | CaseStudyRoute;
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
 
-  const handleProjectClick = (projectTitle: string) => {
-    const pageMap: Record<string, PageType> = {
-      'Expedia Group Accelerator': 'case-study-modern-architecture',
-      'Worldpay API Key Management': 'case-study-creative-space',
-      'Expedia Group Ad Portal': 'case-study-luxury-goods',
-      'First American Title Galileo': 'case-study-fashion-forward',
-    };
-
-    const page = pageMap[projectTitle];
-    if (page) {
-      setCurrentPage(page);
-      window.scrollTo(0, 0);
-    }
+  const handleViewCaseStudy = (route: CaseStudyRoute) => {
+    setCurrentPage(route);
+    window.scrollTo(0, 0);
   };
 
   const handleBackFromCaseStudy = () => {
@@ -41,34 +24,61 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  const handleNavigate = (page: 'home') => {
-    setCurrentPage(page);
+  const handleNavigate = (_page: 'home' | 'services' | 'about') => {
+    setCurrentPage('home');
   };
 
   const handleNavigateToProject = (projectTitle: string) => {
-    handleProjectClick(projectTitle);
+    const routeMap: Record<string, CaseStudyRoute> = {
+      'Expedia Group Accelerator': 'case-study-modern-architecture',
+      'Expedia Group Ad Portal': 'case-study-luxury-goods',
+      'Worldpay Merchant Onboarding': 'case-study-creative-space',
+      'Worldpay SSO Management': 'case-study-tech-innovation',
+    };
+    const route = routeMap[projectTitle];
+    if (route) handleViewCaseStudy(route);
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
-      <Navigation onNavigate={handleNavigate} />
+    <div className="min-h-screen">
       {currentPage === 'home' ? (
-        <>
-          <Hero />
-          <FeaturedWork onProjectClick={handleProjectClick} />
-          <Clients />
-          <Contact />
-        </>
+        <HomeLayout onViewCaseStudy={handleViewCaseStudy} />
       ) : currentPage === 'case-study-modern-architecture' ? (
-        <CaseStudy onBack={handleBackFromCaseStudy} onNavigate={handleNavigate} onNavigateToProject={handleNavigateToProject} />
+        <div className="bg-black text-white min-h-screen">
+          <CaseStudy
+            onBack={handleBackFromCaseStudy}
+            onNavigate={handleNavigate}
+            onNavigateToProject={handleNavigateToProject}
+          />
+        </div>
       ) : currentPage === 'case-study-creative-space' ? (
-        <CaseStudyCreativeSpace onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
+        <div className="bg-black text-white min-h-screen">
+          <CaseStudyCreativeSpace
+            onBack={handleBackFromCaseStudy}
+            onNavigateToProject={handleNavigateToProject}
+          />
+        </div>
       ) : currentPage === 'case-study-luxury-goods' ? (
-        <CaseStudyLuxuryGoods onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
+        <div className="bg-black text-white min-h-screen">
+          <CaseStudyLuxuryGoods
+            onBack={handleBackFromCaseStudy}
+            onNavigateToProject={handleNavigateToProject}
+          />
+        </div>
       ) : currentPage === 'case-study-fashion-forward' ? (
-        <CaseStudyFashionForward onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
+        <div className="bg-black text-white min-h-screen">
+          <CaseStudyFashionForward
+            onBack={handleBackFromCaseStudy}
+            onNavigateToProject={handleNavigateToProject}
+          />
+        </div>
       ) : currentPage === 'case-study-tech-innovation' ? (
-        <CaseStudyTechInnovation onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
+        <div className="bg-black text-white min-h-screen">
+          <CaseStudyTechInnovation
+            onBack={handleBackFromCaseStudy}
+            onNavigateToProject={handleNavigateToProject}
+          />
+        </div>
       ) : null}
     </div>
   );

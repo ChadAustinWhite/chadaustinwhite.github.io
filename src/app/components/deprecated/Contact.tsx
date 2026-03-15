@@ -76,8 +76,6 @@ export function Contact() {
                   </a>
                 </div>
               </div>
-
-              {/* Remove Legal section */}
             </div>
 
             <div className="mt-24 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">

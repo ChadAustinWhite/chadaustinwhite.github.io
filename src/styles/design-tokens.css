@@ -1,0 +1,30 @@
+/**
+ * Portfolio design tokens (from HTML prototype).
+ * Theme is controlled by data-theme on <html> (e.g. next-themes with attribute="data-theme").
+ */
+:root {
+  --bg: #f2f2f0;
+  --ink: #1c1c1a;
+  --ink-muted: #6b6b65;
+  --border: #d8d8d2;
+  --card-bg: #ffffff;
+  --accent: #1c1c1a;
+  --logo-filter: invert(0);
+  --nav-bg: #f2f2f0;
+}
+
+[data-theme="dark"] {
+  --bg: #111110;
+  --ink: #f0f0ee;
+  --ink-muted: #8a8a82;
+  --border: #2a2a28;
+  --card-bg: #1c1c1a;
+  --accent: #f0f0ee;
+  --logo-filter: invert(1);
+  --nav-bg: #111110;
+}
+
+/* Section anchor scroll offset for fixed nav */
+section[id] {
+  scroll-margin-top: 80px;
+}
