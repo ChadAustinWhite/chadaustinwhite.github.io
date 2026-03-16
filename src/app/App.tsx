@@ -1,39 +1,29 @@
-import { useState } from 'react';
-import { Navigation } from './components/Navigation';
-import { Hero } from './components/Hero';
-import { FeaturedWork } from './components/FeaturedWork';
-import { Clients } from './components/Clients';
-import { Contact } from './components/Contact';
-import { CaseStudy } from './components/CaseStudy';
-import { CaseStudyCreativeSpace } from './components/CaseStudyCreativeSpace';
-import { CaseStudyLuxuryGoods } from './components/CaseStudyLuxuryGoods';
-import { CaseStudyFashionForward } from './components/CaseStudyFashionForward';
-import { CaseStudyTechInnovation } from './components/CaseStudyTechInnovation';
+import React, { useState } from 'react';
+import { HomeLayout } from './components/HomeLayout';
+import { CaseStudyLayout } from './components/case-study/CaseStudyLayout';
+import { CaseStudyPage } from './components/case-study/CaseStudyPage';
+import { CaseStudyPlaceholder } from './components/case-study/CaseStudyPlaceholder';
+import {
+  expediaAcceleratorContent,
+  expediaAdPortalContent,
+  worldpayMerchantOnboardingContent,
+} from './data/caseStudies';
+import type { CaseStudyRoute } from './data/portfolioData';
 
-type PageType = 
-  | 'home' 
-  | 'case-study-modern-architecture'
-  | 'case-study-creative-space'
-  | 'case-study-luxury-goods'
-  | 'case-study-fashion-forward'
-  | 'case-study-tech-innovation';
+const COMING_SOON_ROUTES: CaseStudyRoute[] = [
+  'case-study-worldpay-merchant-onboarding',
+  'case-study-worldpay-sso',
+];
+
+type PageType = 'home' | CaseStudyRoute;
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
 
-  const handleProjectClick = (projectTitle: string) => {
-    const pageMap: Record<string, PageType> = {
-      'Expedia Group Accelerator': 'case-study-modern-architecture',
-      'Worldpay API Key Management': 'case-study-creative-space',
-      'Expedia Group Ad Portal': 'case-study-luxury-goods',
-      'First American Title Galileo': 'case-study-fashion-forward',
-    };
-
-    const page = pageMap[projectTitle];
-    if (page) {
-      setCurrentPage(page);
-      window.scrollTo(0, 0);
-    }
+  const handleViewCaseStudy = (route: CaseStudyRoute) => {
+    if (COMING_SOON_ROUTES.includes(route)) return;
+    setCurrentPage(route);
+    window.scrollTo(0, 0);
   };
 
   const handleBackFromCaseStudy = () => {
@@ -41,34 +31,45 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  const handleNavigate = (page: 'home') => {
-    setCurrentPage(page);
-  };
-
-  const handleNavigateToProject = (projectTitle: string) => {
-    handleProjectClick(projectTitle);
-  };
-
   return (
-    <div className="bg-black text-white min-h-screen">
-      <Navigation onNavigate={handleNavigate} />
+    <div className="min-h-screen">
       {currentPage === 'home' ? (
-        <>
-          <Hero />
-          <FeaturedWork onProjectClick={handleProjectClick} />
-          <Clients />
-          <Contact />
-        </>
-      ) : currentPage === 'case-study-modern-architecture' ? (
-        <CaseStudy onBack={handleBackFromCaseStudy} onNavigate={handleNavigate} onNavigateToProject={handleNavigateToProject} />
-      ) : currentPage === 'case-study-creative-space' ? (
-        <CaseStudyCreativeSpace onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
-      ) : currentPage === 'case-study-luxury-goods' ? (
-        <CaseStudyLuxuryGoods onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
-      ) : currentPage === 'case-study-fashion-forward' ? (
-        <CaseStudyFashionForward onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
-      ) : currentPage === 'case-study-tech-innovation' ? (
-        <CaseStudyTechInnovation onBack={handleBackFromCaseStudy} onNavigateToProject={handleNavigateToProject} />
+        <HomeLayout onViewCaseStudy={handleViewCaseStudy} />
+      ) : currentPage === 'case-study-expedia-accelerator' ? (
+        <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+          <CaseStudyPage
+            content={expediaAcceleratorContent}
+            onBack={handleBackFromCaseStudy}
+            currentRoute="case-study-expedia-accelerator"
+            onViewCaseStudy={handleViewCaseStudy}
+          />
+        </CaseStudyLayout>
+      ) : currentPage === 'case-study-expedia-ad-portal' ? (
+        <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+          <CaseStudyPage
+            content={expediaAdPortalContent}
+            onBack={handleBackFromCaseStudy}
+            currentRoute="case-study-expedia-ad-portal"
+            onViewCaseStudy={handleViewCaseStudy}
+          />
+        </CaseStudyLayout>
+      ) : currentPage === 'case-study-worldpay-merchant-onboarding' ? (
+        <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+          <CaseStudyPage
+            content={worldpayMerchantOnboardingContent}
+            onBack={handleBackFromCaseStudy}
+            currentRoute="case-study-worldpay-merchant-onboarding"
+            onViewCaseStudy={handleViewCaseStudy}
+          />
+        </CaseStudyLayout>
+      ) : currentPage === 'case-study-worldpay-sso' ? (
+        <CaseStudyPlaceholder
+          title="Worldpay SSO Management"
+          onBack={handleBackFromCaseStudy}
+          onNavigateHome={handleBackFromCaseStudy}
+          currentRoute="case-study-worldpay-sso"
+          onViewCaseStudy={handleViewCaseStudy}
+        />
       ) : null}
     </div>
   );

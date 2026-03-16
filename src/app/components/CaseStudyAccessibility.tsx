@@ -153,7 +153,7 @@ export function CaseStudyAccessibility({ onBack, onNavigateToProject }: CaseStud
             >
               <h3 className="text-2xl tracking-tight mb-4">Legal Compliance</h3>
               <p className="text-gray-600 leading-relaxed">
-                ADA, Section 508, and global accessibility laws require digital products to be accessible to people with disabilities.
+                ADA, Section 508, and global accessibility laws require digital products to be accessible to people that experience impairments.
               </p>
             </motion.div>
 

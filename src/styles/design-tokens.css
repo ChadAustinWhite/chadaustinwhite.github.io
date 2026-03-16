@@ -1,0 +1,62 @@
+/**
+ * Portfolio design tokens (from HTML prototype).
+ * Theme is controlled by data-theme on <html> (e.g. next-themes with attribute="data-theme").
+ */
+:root {
+  --bg: #f2f2f0;
+  --ink: #1c1c1a;
+  --ink-muted: #6b6b65;
+  --border: #d8d8d2;
+  --card-bg: #ffffff;
+  --accent: #1c1c1a;
+  --logo-filter: invert(0);
+  --nav-bg: #f2f2f0;
+}
+
+[data-theme="dark"] {
+  --bg: #111110;
+  --ink: #f0f0ee;
+  --ink-muted: #8a8a82;
+  --border: #2a2a28;
+  --card-bg: #1c1c1a;
+  --accent: #f0f0ee;
+  --logo-filter: invert(1);
+  --nav-bg: #111110;
+}
+
+/* Typography scale (rem-based, WCAG AA–friendly) */
+:root {
+  --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-base: 1rem;    /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.25rem;   /* 20px */
+  --leading-body: 1.6;
+  --leading-tight: 1.35;
+}
+
+/* Section anchor scroll offset for fixed nav */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Case study pages: Hoodzpah-inspired warm editorial palette */
+[data-case-study] {
+  --bg: #f5f3ef;
+  --ink: #1c1b19;
+  --ink-muted: #6b6760;
+  --border: #e0ddd6;
+  --card-bg: #faf8f5;
+  --nav-bg: #f5f3ef;
+  --cs-hero-bg: #1a1917;
+}
+
+html[data-theme="dark"] [data-case-study] {
+  --bg: #1a1917;
+  --ink: #f2f0ec;
+  --ink-muted: #9c9890;
+  --border: #2e2c29;
+  --card-bg: #22201d;
+  --nav-bg: #1a1917;
+  --cs-hero-bg: #1a1917;
+}
