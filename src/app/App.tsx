@@ -10,12 +10,18 @@ import {
 } from './data/caseStudies';
 import type { CaseStudyRoute } from './data/portfolioData';
 
+const COMING_SOON_ROUTES: CaseStudyRoute[] = [
+  'case-study-worldpay-merchant-onboarding',
+  'case-study-worldpay-sso',
+];
+
 type PageType = 'home' | CaseStudyRoute;
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
 
   const handleViewCaseStudy = (route: CaseStudyRoute) => {
+    if (COMING_SOON_ROUTES.includes(route)) return;
     setCurrentPage(route);
     window.scrollTo(0, 0);
   };
@@ -34,6 +40,8 @@ export default function App() {
           <CaseStudyPage
             content={expediaAcceleratorContent}
             onBack={handleBackFromCaseStudy}
+            currentRoute="case-study-expedia-accelerator"
+            onViewCaseStudy={handleViewCaseStudy}
           />
         </CaseStudyLayout>
       ) : currentPage === 'case-study-expedia-ad-portal' ? (
@@ -41,6 +49,8 @@ export default function App() {
           <CaseStudyPage
             content={expediaAdPortalContent}
             onBack={handleBackFromCaseStudy}
+            currentRoute="case-study-expedia-ad-portal"
+            onViewCaseStudy={handleViewCaseStudy}
           />
         </CaseStudyLayout>
       ) : currentPage === 'case-study-worldpay-merchant-onboarding' ? (
@@ -48,6 +58,8 @@ export default function App() {
           <CaseStudyPage
             content={worldpayMerchantOnboardingContent}
             onBack={handleBackFromCaseStudy}
+            currentRoute="case-study-worldpay-merchant-onboarding"
+            onViewCaseStudy={handleViewCaseStudy}
           />
         </CaseStudyLayout>
       ) : currentPage === 'case-study-worldpay-sso' ? (
@@ -55,6 +67,8 @@ export default function App() {
           title="Worldpay SSO Management"
           onBack={handleBackFromCaseStudy}
           onNavigateHome={handleBackFromCaseStudy}
+          currentRoute="case-study-worldpay-sso"
+          onViewCaseStudy={handleViewCaseStudy}
         />
       ) : null}
     </div>

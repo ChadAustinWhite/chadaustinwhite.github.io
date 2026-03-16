@@ -11,12 +11,62 @@ export const worldpayMerchantOnboardingContent: CaseStudyContent = {
   },
   tagline:
     'Redesigning the merchant onboarding experience to reduce time-to-activation, enforce security compliance, and give partners confidence from day one.',
+  projectFocus: ['Fintech', 'B2B', 'Compliance'],
+  uxEfforts: [
+    {
+      title: 'Onboarding journey mapping',
+      description:
+        'Mapped end-to-end onboarding from sign-up through verification to identify drop-off points and reframe compliance steps as a guided narrative.',
+      tags: ['Journey Mapping', 'UX Research', 'Compliance'],
+    },
+    {
+      title: 'Guided flows & verification',
+      description:
+        'Redesigned verification and document capture so merchants see clear progress and get actionable feedback without exposing sensitive system logic.',
+      tags: ['Interaction Design', 'Forms', 'Accessibility'],
+      quote: 'Clear, guided flows that make compliance feel straightforward.',
+    },
+  ],
+  statement:
+    'Worldpay Merchant Onboarding — A guided onboarding experience that feels clear, secure, and fast while enforcing security compliance.',
+  heroIntro:
+    'We rebuilt Worldpay’s merchant onboarding journey from the ground up, turning a fragmented, compliance-heavy process into a guided experience that feels clear, secure, and fast.',
   images: payrixOnboardingImage,
-  situation: {
-    heading: 'Situation',
+  challenge: {
+    heading: 'The Challenge',
     paragraphs: [
-      'Merchants onboarding to Worldpay faced a fragmented, high-friction experience that lacked clear guidance on access control, identity verification, and security compliance requirements.',
-      'The existing flow resulted in significant drop-off and a high volume of support escalations, delaying merchant activation and creating compliance risk for the platform.',
+      'New merchants encountered a maze of forms, document requests, and unclear requirements — all in the name of compliance, but at the expense of clarity.',
+      'The result was avoidable drop-off, delayed activations, and a heavy support burden as teams stepped in to explain what the product itself should have made obvious.',
+    ],
+  },
+  narrativeSections: [
+    {
+      heading: 'Centering merchants in a compliance-first world',
+      body: [
+        'We started by mapping the end-to-end onboarding journey, from initial sign-up through verification and first transaction, to understand where friction and confusion spiked.',
+        'By reframing compliance steps as part of a guided narrative — not just a checklist — we gave merchants a clearer sense of progress and purpose at every stage.',
+      ],
+    },
+    {
+      heading: 'Designing intuitive access control',
+      body: [
+        'Role-based access can quickly become abstract for non-technical users. We translated complex permission structures into approachable language and patterns.',
+        'Merchants now configure who can do what through flows that mirror how they think about their own teams, reducing errors and helping security feel like a feature, not a hurdle.',
+      ],
+    },
+    {
+      heading: 'Working within legacy constraints',
+      body: [
+        'The experience had to sit on top of existing infrastructure. Rather than fight those constraints, we used them to prioritize what would deliver the most value fastest.',
+        'We layered clearer messaging, resilient error states, and thoughtful orchestration over legacy systems, proving impact while paving the way for deeper technical investment.',
+      ],
+    },
+  ],
+  rallyingCry: {
+    heading: 'Onboarding as a promise, not a formality',
+    paragraphs: [
+      'Worldpay’s onboarding is now a statement about the kind of partner merchants can expect — one that values clarity, security, and momentum equally.',
+      'The redesigned journey sets a new bar for how regulated products can welcome new customers: by making compliance feel like confidence, not compromise.',
     ],
   },
   whyItMatters: {
@@ -90,6 +140,25 @@ export const worldpayMerchantOnboardingContent: CaseStudyContent = {
       { value: '—', label: 'Metric Coming Soon' },
       { value: '—', label: 'Metric Coming Soon' },
       { value: '—', label: 'Metric Coming Soon' },
+    ],
+  },
+  roles: {
+    design: [
+      'End-to-end journey mapping and service design',
+      'Interaction and flow design for onboarding and verification',
+      'Error state and recovery experience design',
+    ],
+    strategy: [
+      'Alignment across product, compliance, and operations',
+      'Prioritization of high-impact improvements within technical constraints',
+    ],
+    content: [
+      'UX writing for requirements, guidance, and error messaging',
+      'Framing complex compliance steps in approachable language',
+    ],
+    development: [
+      'Partnering with engineering on orchestration and technical limitations',
+      'Design QA across environments and edge cases',
     ],
   },
   reflections: {

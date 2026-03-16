@@ -3,6 +3,7 @@ import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778e
 
 export const expediaAcceleratorContent: CaseStudyContent = {
   title: 'Expedia Group Accelerator',
+  heroTitleLines: ['Expedia Group', 'Accelerator'],
   meta: {
     organization: 'Expedia Group',
     role: 'Lead UX Designer',
@@ -11,12 +12,76 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   },
   tagline:
     'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
-  images: expediaAcceleratorImage,
-  situation: {
-    heading: 'Situation',
+  projectFocus: ['Travel', 'B2B', 'Partner Tools'],
+  testimonial: {
+    quote:
+      'The design team brought clarity and structure to a complex product. Partner feedback has been overwhelmingly positive, and we are seeing stronger engagement with the tool.',
+    name: 'Product Lead, Expedia Group',
+    role: 'Partner Solutions',
+  },
+  uxEfforts: [
+    {
+      title: 'User research & discovery',
+      description:
+        'Partner interviews and workflow mapping revealed how hoteliers make budget and placement decisions, informing a clearer information architecture and prioritization of key metrics.',
+      tags: ['UX Research', 'Interviews', 'Synthesis'],
+    },
+    {
+      title: 'Campaign & performance experience',
+      description:
+        'Redesigned campaign setup and performance dashboards so partners can see spend, position, and outcomes in one place with sensible defaults and progressive disclosure.',
+      tags: ['Interaction Design', 'Information Architecture', 'Prototyping'],
+      metric: { value: '72.4K', label: 'Active partners' },
+    },
+  ],
+  statement:
+    'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
+  firstBlockLabel: 'SITUATION',
+  overview: {
     paragraphs: [
-      'Hotel partners face challenges in optimizing their advertising strategies and improving search rankings due to a lack of an intuitive, modern experience and actionable insights.',
-      "Without a comprehensive, user-friendly product, partners struggle to make data-driven decisions, limiting their ability to engage guests effectively and maximize performance.",
+      'Hotel partners face challenges optimizing advertising and search rankings due to a lack of an intuitive, modern experience and actionable insights.',
+      'Without a comprehensive, user-friendly product, partners struggle to make data-driven decisions, limiting their ability to engage guests effectively and maximize performance.',
+    ],
+  },
+  heroIntro:
+    'We reimagined Accelerator as a modern, insight-led experience that helps hotel partners understand, optimize, and grow their visibility in Expedia search — without sacrificing clarity or control.',
+  images: expediaAcceleratorImage,
+  approach: { paragraphs: [] },
+  challenge: {
+    heading: 'The Challenge',
+    paragraphs: [
+      'Hotel partners struggled to understand how Accelerator influenced their placement in search, how much to invest, and where to focus in order to drive meaningful results.',
+      'The existing experience was fragmented and opaque, making it difficult for partners to connect their spend to outcomes — and even harder to build trust in the tool.',
+    ],
+  },
+  narrativeSections: [
+    {
+      heading: 'Designing for clarity and confidence',
+      body: [
+        'We partnered closely with product, research, and data teams to simplify how Accelerator communicates value. Rather than exposing raw levers and metrics, we focused on the decisions partners needed to make day to day.',
+        'The new experience brings together campaign configuration, performance insights, and guidance into a single, opinionated flow so partners always know what is happening, why it matters, and what they can do next.',
+      ],
+    },
+    {
+      heading: 'Balancing flexibility with guardrails',
+      body: [
+        'Accelerator serves hotel partners of all sizes, from independent properties to global brands. The design needed to honor their different levels of sophistication without overwhelming less-technical users.',
+        'We introduced sensible defaults, contextual recommendations, and inline education that keep power and control available for advanced users while ensuring that every partner can activate and optimize with confidence.',
+      ],
+    },
+    {
+      heading: 'Evolving with the platform',
+      body: [
+        'Because Accelerator sits at the intersection of multiple Expedia platforms, we aligned closely with the evolving design system and patterns used across the partner ecosystem.',
+        'This work not only refreshed the interface but also set a foundation for future experimentation, performance surfaces, and new optimization features that can be layered in over time.',
+      ],
+    },
+  ],
+  rallyingCry: {
+    heading: 'A shared vision for partner growth',
+    paragraphs: [
+      'Accelerator is more than a performance lever — it is a promise that Expedia will help partners grow in a way that is both transparent and sustainable.',
+      'By building an experience that hotel partners, product teams, and account managers can all stand behind, we created a unified foundation for future investment in performance tooling across the ecosystem.',
     ],
   },
   whyItMatters: {

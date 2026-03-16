@@ -44,14 +44,23 @@ export function ProjectCard({ project, onViewCaseStudy }: ProjectCardProps) {
           {project.description}
         </p>
         <div className="flex justify-start">
-          <button
-            type="button"
-            onClick={() => onViewCaseStudy(project.caseStudyRoute)}
-            className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity duration-150 hover:opacity-75 whitespace-nowrap"
-          >
-            View Case Study
-            <ArrowIcon />
-          </button>
+          {project.comingSoon ? (
+            <span
+              aria-disabled="true"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] cursor-not-allowed whitespace-nowrap"
+            >
+              Coming Soon
+            </span>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onViewCaseStudy(project.caseStudyRoute)}
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity duration-150 hover:opacity-75 whitespace-nowrap"
+            >
+              View Case Study
+              <ArrowIcon />
+            </button>
+          )}
         </div>
       </div>
     </article>

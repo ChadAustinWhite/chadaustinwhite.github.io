@@ -1,4 +1,3 @@
-import { ThemeToggle } from './ThemeToggle';
 import { useScrollBorder } from '../hooks/useScrollBorder';
 import { LINKEDIN_URL, EMAIL, CV_URL } from '../data/contact';
 
@@ -44,7 +43,7 @@ export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
         <a
           href={onNavigateHome ? '#work' : '#about'}
           onClick={handleNavClick}
-          className="whitespace-nowrap text-sm font-bold tracking-[0.03em] text-[var(--ink)]"
+          className="whitespace-nowrap text-sm font-normal tracking-[0.03em] text-[var(--ink)]"
         >
           Chad Austin White
         </a>
@@ -77,7 +76,6 @@ export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
             </a>
           </li>
         </ul>
-        <ThemeToggle />
       </div>
     </nav>
   );

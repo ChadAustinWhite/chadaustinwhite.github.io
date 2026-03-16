@@ -11,12 +11,61 @@ export const expediaAdPortalContent: CaseStudyContent = {
   },
   tagline:
     'Enabling advertising partners to manage campaigns and payments through a unified, modern portal built for scale and clarity.',
+  projectFocus: ['Travel', 'B2B', 'Advertising'],
+  uxEfforts: [
+    {
+      title: 'Partner workflow & portal IA',
+      description:
+        'Unified campaign management, billing, and payment history into a single portal so partners have one source of truth for spend, performance, and payments.',
+      tags: ['Information Architecture', 'Workflow Design', 'Stakeholder Alignment'],
+    },
+    {
+      title: 'Billing & payment flows',
+      description:
+        'Designed clear billing and payment management flows with explicit error states and reconciliation views to reduce support load and build partner trust.',
+      tags: ['UX Design', 'Forms & Validation', 'Design Systems'],
+    },
+  ],
+  statement:
+    'Expedia Group Ad Portal — A unified, modern portal for advertising partners to manage campaigns, payments, and performance with confidence.',
+  heroIntro:
+    'We brought fragmented advertising tools together into a single portal so partners can manage campaigns, payments, and performance with confidence — all in one place.',
   images: expediaAdPortalImage,
-  situation: {
-    heading: 'Situation',
+  challenge: {
+    heading: 'The Challenge',
     paragraphs: [
-      'Advertising partners needed a centralized platform to manage their campaigns, budgets, and payment profiles — but existing tooling was fragmented, inconsistent, and difficult to navigate.',
-      'Without a cohesive experience, partners struggled to make informed decisions about their advertising spend, leading to underutilization and missed revenue opportunities.',
+      'Advertising partners were forced to stitch together multiple tools to understand spend, performance, and billing — each with its own interaction patterns and mental model.',
+      'This fragmentation created friction, reduced trust, and made it difficult for partners to take decisive action on their campaigns or plan future investment.',
+    ],
+  },
+  narrativeSections: [
+    {
+      heading: 'Creating a single source of truth',
+      body: [
+        'We aligned stakeholders across product, finance, legal, and advertising to define what a unified portal needed to own from day one.',
+        'The resulting experience centralizes campaign management, billing, and payment history so partners no longer have to guess where to look or who to contact to get answers.',
+      ],
+    },
+    {
+      heading: 'Designing for diverse partner workflows',
+      body: [
+        'From independent advertisers to large agencies, partners bring very different expectations to the same interface. The portal had to flex without becoming complex.',
+        'We grounded the information architecture, navigation, and key flows in real partner scenarios, ensuring that core tasks — like adjusting budgets or resolving billing issues — feel fast and intuitive for everyone.',
+      ],
+    },
+    {
+      heading: 'Building on an evolving system',
+      body: [
+        'The portal became an important expression of Expedia’s design system. We worked closely with the platform team to adopt emerging components and patterns while feeding learnings back into the system.',
+        'This collaboration kept the experience feeling fresh and cohesive across the broader ecosystem, and made it easier to ship future enhancements with confidence.',
+      ],
+    },
+  ],
+  rallyingCry: {
+    heading: 'A foundation for long-term partnership',
+    paragraphs: [
+      'By giving partners a clear, governed view of their campaigns and billing, the Ad Portal reframes the relationship from transactional to strategic.',
+      'The work sets a new baseline for how Expedia shows up for advertisers — as a transparent, reliable partner invested in helping them grow.',
     ],
   },
   whyItMatters: {
@@ -90,6 +139,25 @@ export const expediaAdPortalContent: CaseStudyContent = {
       { value: '—', label: 'Metric Coming Soon' },
       { value: '—', label: 'Metric Coming Soon' },
       { value: '—', label: 'Metric Coming Soon' },
+    ],
+  },
+  roles: {
+    design: [
+      'Information architecture and navigation design',
+      'Interface design for campaigns, billing, and payments',
+      'Design system adoption and pattern definition',
+    ],
+    strategy: [
+      'Partner workflow mapping across advertiser segments',
+      'Portal positioning within the broader product ecosystem',
+    ],
+    content: [
+      'Interface copy for billing, payments, and error states',
+      'Narrative framing for spend, performance, and value',
+    ],
+    development: [
+      'Collaboration with engineering on state handling and edge cases',
+      'Design QA across complex billing scenarios',
     ],
   },
   reflections: {

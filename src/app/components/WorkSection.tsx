@@ -16,7 +16,7 @@ export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
     <SectionWrap id="work">
       <div className="mb-8 flex items-center justify-between">
         <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
-          Recent Projects
+          Recent Projects ({projects.length})
         </h2>
         <DisplayToggle value={displayMode} onChange={setDisplayMode} />
       </div>

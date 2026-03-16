@@ -16,7 +16,7 @@ export function CaseStudyWhyMatters({ heading, intro, cards }: CaseStudyWhyMatte
         {heading}
       </h2>
       {intro && (
-        <p className="mb-9 max-w-[640px] text-[15px] leading-[1.7] text-[var(--ink-muted)]">
+        <p className="mb-9 max-w-[640px] text-base leading-[1.7] text-[var(--ink-muted)]">
           {intro}
         </p>
       )}
@@ -26,10 +26,10 @@ export function CaseStudyWhyMatters({ heading, intro, cards }: CaseStudyWhyMatte
             key={i}
             className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-6 py-7 md:px-9 md:pt-7 md:pb-8"
           >
-            <div className="mb-3 text-[15px] font-medium leading-snug text-[var(--ink)]">
+            <div className="mb-3 text-base font-medium leading-snug text-[var(--ink)]">
               {card.title}
             </div>
-            <p className="text-[14px] leading-[1.65] text-[var(--ink-muted)]">
+            <p className="text-base leading-[1.65] text-[var(--ink-muted)]">
               {card.description}
             </p>
           </div>

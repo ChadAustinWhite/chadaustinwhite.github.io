@@ -12,7 +12,7 @@ export function CaseStudySituation({ heading, paragraphs }: CaseStudySituationPr
       >
         {heading}
       </h2>
-      <div className="max-w-[640px] text-[15px] leading-[1.75] text-[var(--ink-muted)]">
+      <div className="max-w-[640px] text-base leading-[1.75] text-[var(--ink-muted)]">
         {paragraphs.map((p, i) => (
           <p key={i} className={i > 0 ? 'mt-3.5' : ''}>
             {p}

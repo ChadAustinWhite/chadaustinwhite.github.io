@@ -16,6 +16,8 @@ export interface ProjectItem {
   image: string;
   imageAlt: string;
   caseStudyRoute: CaseStudyRoute;
+  /** When true, case study is not available; show "Coming Soon" and do not link. */
+  comingSoon?: boolean;
 }
 
 export const projects: ProjectItem[] = [
@@ -42,6 +44,7 @@ export const projects: ProjectItem[] = [
     image: payrixOnboardingImage,
     imageAlt: 'Worldpay Merchant Onboarding — access control and security compliance',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
+    comingSoon: true,
   },
   {
     title: 'Worldpay SSO Management',
@@ -50,6 +53,7 @@ export const projects: ProjectItem[] = [
     image: galileoImage,
     imageAlt: 'Worldpay SSO Management — identity access and security',
     caseStudyRoute: 'case-study-worldpay-sso',
+    comingSoon: true,
   },
 ];
 
@@ -67,7 +71,7 @@ export const experience: ExperienceItem[] = [
     company: 'Global Payments',
     role: 'Senior UX Designer (Contract)',
     detail:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam quis nostrud exercitation.',
+      'Led UX strategy for Risk products, redesigned key workflows, improved fraud investigation efficiency, aligned cross-functional teams, and delivered scalable, user-centered design systems.',
     period: 'Apr 2024 – Present',
     logoText: 'GP',
     tags: ['UX Design', 'Product Design', 'Prototyping', 'Design Systems'],
@@ -123,14 +127,26 @@ export interface EducationItem {
   degree: string;
   school: string;
   detail: string;
+  initials?: string;
 }
 
 export const education: EducationItem[] = [
-  { degree: 'Certificate · Dec 2024', school: 'Deque University', detail: 'Web Accessibility' },
-  { degree: 'Certificate · Jan 2024', school: 'IBM', detail: 'AI Team Essentials' },
+  {
+    degree: 'Certificate · Dec 2024',
+    school: 'Deque University',
+    detail: 'Training in accessible design and development principles to build inclusive, usable digital experiences that meet accessibility standards and support people that experience impairments.',
+    initials: 'DU',
+  },
+  {
+    degree: 'Certificate · Jan 2024',
+    school: 'IBM',
+    detail: 'Foundations for leading and collaborating with teams on AI-driven products, covering strategy, ethics, and practical implementation in enterprise and organizational settings.',
+    initials: 'IBM',
+  },
   {
     degree: 'BS · Mar 2009',
     school: 'The Art Institute of San Diego',
-    detail: 'Bachelor of Science in Graphic Design',
+    detail: 'Degree in visual communication, typography, and design for print and digital media, with focus on layout, branding, and user-centered outcomes and deliverables.',
+    initials: 'AISD',
   },
 ];

@@ -20,10 +20,10 @@ export function CaseStudyReflections({ heading, reflections }: CaseStudyReflecti
             key={i}
             className="rounded-xl border border-[var(--border)] bg-[var(--card-bg)] px-6 py-7 md:px-9 md:pt-7 md:pb-8"
           >
-            <span className="mb-4 block text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
+            <span className="mb-4 block text-xs font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
               {r.label}
             </span>
-            <p className="text-[14px] leading-[1.7] text-[var(--ink-muted)]">{r.text}</p>
+            <p className="text-base leading-[1.7] text-[var(--ink-muted)]">{r.text}</p>
           </div>
         ))}
       </div>

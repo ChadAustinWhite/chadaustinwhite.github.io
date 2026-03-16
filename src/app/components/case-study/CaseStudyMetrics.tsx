@@ -16,7 +16,7 @@ export function CaseStudyMetrics({ heading, intro, metrics }: CaseStudyMetricsPr
         {heading}
       </h2>
       {intro && (
-        <p className="mb-12 max-w-[640px] text-[15px] leading-[1.7] text-[var(--ink-muted)]">
+        <p className="mb-12 max-w-[640px] text-base leading-[1.7] text-[var(--ink-muted)]">
           {intro}
         </p>
       )}
@@ -32,7 +32,7 @@ export function CaseStudyMetrics({ heading, intro, metrics }: CaseStudyMetricsPr
             >
               {m.value}
             </div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.04em] text-[var(--ink-muted)]">
+            <div className="text-xs font-semibold uppercase tracking-[0.04em] text-[var(--ink-muted)]">
               {m.label}
             </div>
           </div>
