@@ -10,8 +10,6 @@ interface CaseStudyWhoopOverviewProps {
 
 function getFirstBlockParagraphs(content: CaseStudyContent): string[] {
   const label = content.firstBlockLabel ?? 'OVERVIEW';
-  if (label === 'CHALLENGE' && content.challenge?.paragraphs?.length)
-    return content.challenge.paragraphs;
   if (content.overview?.paragraphs?.length) return content.overview.paragraphs;
   if (content.heroIntro) return [content.heroIntro];
   return content.situation.paragraphs;
