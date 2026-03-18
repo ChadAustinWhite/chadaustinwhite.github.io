@@ -10,7 +10,7 @@ interface CaseStudyWhoopSectionProps {
 
 export function CaseStudyWhoopSection({ section }: CaseStudyWhoopSectionProps) {
   return (
-    <section className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24">
+    <section className="border-t border-[var(--border)] px-5 py-16 md:px-[100px] md:py-24">
       <div className="mx-auto max-w-[72rem]">
         <ScrollReveal>
           <CaseStudySectionLayout

@@ -39,7 +39,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   firstBlockLabel: 'SITUATION',
   overview: {
     paragraphs: [
-      'Hotel partners face challenges optimizing advertising and search rankings due to a lack of an intuitive, modern experience and actionable insights.',
+      'Situation',
       'Without a comprehensive, user-friendly product, partners struggle to make data-driven decisions, limiting their ability to engage guests effectively and maximize performance.',
     ],
   },

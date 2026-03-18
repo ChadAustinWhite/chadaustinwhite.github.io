@@ -29,7 +29,7 @@ export function Footer({ onNavigateHome }: FooterProps = {}) {
   };
 
   return (
-    <footer className="flex flex-col items-start gap-4 border-t border-[var(--border)] px-5 py-7 md:flex-row md:items-center md:justify-between md:px-10 md:py-9">
+    <footer className="flex flex-col items-start gap-4 border-t border-[var(--border)] px-5 py-7 md:flex-row md:items-center md:justify-between md:px-[100px] md:py-9">
       <span className="text-[13px] text-[var(--ink-muted)]">© 2026 Chad Austin White</span>
       <div className="flex gap-6">
         <a href="#work" onClick={handleWorkClick} className="text-[13px] text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)]">

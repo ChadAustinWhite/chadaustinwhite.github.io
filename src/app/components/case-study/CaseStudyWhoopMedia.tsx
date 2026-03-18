@@ -1,6 +1,6 @@
 export function CaseStudyWhoopMedia() {
   return (
-    <section className="border-t border-[var(--border)] px-5 py-12 md:px-10 md:py-16">
+    <section className="border-t border-[var(--border)] px-5 py-12 md:px-[100px] md:py-16">
       <div className="mx-auto flex max-w-[72rem] items-center gap-8">
         <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           PlayPlayPlay

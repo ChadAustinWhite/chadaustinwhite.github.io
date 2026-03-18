@@ -39,7 +39,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
     <header id="cs-hero">
       {/* Hero header: no background so scroll-driven --bg shows through */}
       <div
-        className="px-5 pt-[7.5rem] pb-12 md:px-10 md:pt-[7.5rem] md:pb-12"
+        className="px-5 pt-[7.5rem] pb-12 md:px-[100px] md:pt-[7.5rem] md:pb-12"
         style={{ color: 'var(--ink)' }}
       >
         <button
@@ -88,7 +88,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
       </div>
 
       {/* Below dark block: statement and hero image */}
-      <div className="px-5 pb-12 md:px-10 md:pb-16" style={{ background: 'var(--bg)' }}>
+      <div className="px-5 pb-12 md:px-[100px] md:pb-16" style={{ background: 'var(--bg)' }}>
         {(content.statement ?? content.tagline) && (
           <p className="mb-6 max-w-[720px] text-[17px] leading-[1.65] text-[var(--ink)] md:text-[20px]">
             {content.statement ?? content.tagline}

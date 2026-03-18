@@ -23,7 +23,7 @@ export function CaseStudyWhoopApproach({ content }: CaseStudyWhoopApproachProps)
   const body = paragraphs.length > 1 ? paragraphs.slice(1) : paragraphs;
 
   return (
-    <section id="cs-approach" className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24">
+    <section id="cs-approach" className="border-t border-[var(--border)] px-5 py-16 md:px-[100px] md:py-24">
       <div className="mx-auto max-w-[72rem]">
         <ScrollReveal>
           <CaseStudySectionLayout

@@ -14,7 +14,7 @@ export function CaseStudyUxEfforts({ cards }: CaseStudyUxEffortsProps) {
   return (
     <section
       id="cs-ux-efforts"
-      className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24"
+      className="border-t border-[var(--border)] px-5 py-16 md:px-[100px] md:py-24"
       aria-labelledby="cs-ux-efforts-heading"
     >
       <div className="mx-auto max-w-[72rem]">

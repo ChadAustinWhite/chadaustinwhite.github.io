@@ -3,11 +3,17 @@ import type { ReactNode } from 'react';
 const BRAND_LABEL = 'Chad Austin White';
 
 /** Header bar only: brand left, / LABEL right. Use for sections that have custom content below. */
-export function CaseStudySectionHeader({ sectionLabel }: { sectionLabel: string }) {
+export function CaseStudySectionHeader({
+  sectionLabel,
+  brandLabel = BRAND_LABEL,
+}: {
+  sectionLabel: string;
+  brandLabel?: string;
+}) {
   return (
     <div className="flex items-end justify-between gap-4 border-b border-[var(--border)] pb-3">
       <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
-        {BRAND_LABEL}
+        {brandLabel}
       </span>
       <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
         / {sectionLabel}
@@ -19,6 +25,8 @@ export function CaseStudySectionHeader({ sectionLabel }: { sectionLabel: string 
 interface CaseStudySectionLayoutProps {
   /** Right side of header, e.g. "DETAILS", "STRATEGY", "OVERVIEW" */
   sectionLabel: string;
+  /** Optional override for left label; defaults to BRAND_LABEL. */
+  brandLabel?: string;
   /** Left column: large headline */
   headline: string;
   /** Right column: body paragraphs. */
@@ -29,25 +37,26 @@ interface CaseStudySectionLayoutProps {
 
 export function CaseStudySectionLayout({
   sectionLabel,
+  brandLabel,
   headline,
   body,
   children,
 }: CaseStudySectionLayoutProps) {
   return (
     <>
-      <CaseStudySectionHeader sectionLabel={sectionLabel} />
+      <CaseStudySectionHeader sectionLabel={sectionLabel} brandLabel={brandLabel} />
 
       {/* Two-column: headline left, body right */}
       <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-12">
         <div className="md:col-span-5">
           <h2
-            className="line-clamp-3 font-bold uppercase leading-tight tracking-tight text-[var(--ink)]"
-            style={{ fontSize: 'clamp(20px, 3vw, 28px)' }}
+            className="line-clamp-3 font-normal leading-[1.1] tracking-[-0.02em] text-[var(--ink)]"
+            style={{ fontSize: 'clamp(26px, 3.2vw, 32px)' }}
           >
             {headline}
           </h2>
         </div>
-        <div className="space-y-4 text-[15px] font-bold leading-[1.65] text-[var(--ink)] md:col-span-7 md:text-[17px]">
+        <div className="space-y-3 text-[15px] font-normal leading-[1.7] text-[var(--ink-muted)] md:col-span-7 md:text-[17px]">
           {body.map((p, i) => (
             <p key={i}>{p}</p>
           ))}

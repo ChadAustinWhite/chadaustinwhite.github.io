@@ -96,60 +96,6 @@ export function CaseStudy({ onBack, onNavigate, onNavigateToProject }: CaseStudy
         </motion.div>
       </section>
 
-      {/* Challenge Section */}
-      <section className="px-6 md:px-12 py-32">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-6xl tracking-tight mb-8">Situation</h2>
-            <p className="text-xl md:text-2xl text-gray-400 leading-relaxed mb-8">
-              Hotel partners face challenges in optimizing their advertising strategies and improving search rankings due to a lack of an intuitive, modern experience and actionable insights.
-            </p>
-            <p className="text-xl md:text-2xl text-gray-400 leading-relaxed">
-              Without a comprehensive, user-friendly product, partners struggle to make data-driven decisions, limiting their ability to engage guests effectively and maximize performance.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Image Grid 1 */}
-      <section className="px-6 md:px-12 py-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="aspect-[4/5] overflow-hidden rounded-[24px]"
-            >
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1553601581-8a1f1010efbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBidWlsZGluZyUyMGZhY2FkZXxlbnwxfHx8fDE3NjYxMzM2Nzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Building Facade"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="aspect-[4/5] overflow-hidden rounded-[24px]"
-            >
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1696401680571-f6e9986026d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcmNoaXRlY3R1cmFsJTIwZGV0YWlsfGVufDF8fHx8MTc2NjEzMDUxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Architectural Detail"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Approach Section */}
       <section className="px-6 md:px-12 py-32 bg-white text-black">
         <div className="max-w-5xl mx-auto">

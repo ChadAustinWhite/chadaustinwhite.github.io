@@ -6,6 +6,7 @@ import { CaseStudyWhoopHero } from './CaseStudyWhoopHero';
 import { CaseStudyWhoopRoles } from './CaseStudyWhoopRoles';
 import { CaseStudyWhoopOverview } from './CaseStudyWhoopOverview';
 import { CaseStudyWhoopApproach } from './CaseStudyWhoopApproach';
+import { CaseStudyWhoopChallenge } from './CaseStudyWhoopChallenge';
 import { CaseStudyWhoopSection } from './CaseStudyWhoopSection';
 import { CaseStudyWhoopMedia } from './CaseStudyWhoopMedia';
 import { CaseStudyWhoopPagination } from './CaseStudyWhoopPagination';
@@ -23,13 +24,6 @@ const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
 function getStrategySections(content: CaseStudyContent): StrategySection[] {
   if (content.strategySections?.length) return content.strategySections;
   const sections: StrategySection[] = [];
-  if (content.challenge) {
-    sections.push({
-      category: 'Strategy',
-      heading: content.challenge.heading,
-      body: content.challenge.paragraphs,
-    });
-  }
   content.narrativeSections?.forEach((n) => {
     sections.push({
       category: 'Strategy',
@@ -79,6 +73,7 @@ export function CaseStudyPage({
   return (
     <>
       <CaseStudyWhoopHero content={content} onBack={onBack} />
+      <CaseStudyWhoopChallenge content={content} />
       <CaseStudyWhoopRoles content={content} />
       <CaseStudyWhoopOverview content={content} />
       <CaseStudyWhoopApproach content={content} />

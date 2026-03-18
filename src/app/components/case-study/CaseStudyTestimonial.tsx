@@ -8,7 +8,7 @@ export function CaseStudyTestimonial({ quote, name, role }: CaseStudyTestimonial
   return (
     <section
       id="cs-testimonial"
-      className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24"
+      className="border-t border-[var(--border)] px-5 py-16 md:px-[100px] md:py-24"
       aria-label="Testimonial"
     >
       <div className="mx-auto max-w-[72rem]">

@@ -1,5 +1,6 @@
 import { SiteNav } from './SiteNav';
 import { HeroSection } from './HeroSection';
+import { SkillsStrip } from './SkillsStrip';
 import { WorkSection } from './WorkSection';
 import { ExperienceSection } from './ExperienceSection';
 import { EducationSection } from './EducationSection';
@@ -29,6 +30,7 @@ export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
         }}
       >
         <HeroSection />
+        <SkillsStrip />
         <WorkSection onViewCaseStudy={onViewCaseStudy} />
         <ExperienceSection />
         <EducationSection />

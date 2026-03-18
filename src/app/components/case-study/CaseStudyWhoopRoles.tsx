@@ -25,7 +25,7 @@ export function CaseStudyWhoopRoles({ content }: CaseStudyWhoopRolesProps) {
   if (columnsWithItems.length === 0 && !viewLiveUrl) return null;
 
   return (
-    <section id="cs-roles" className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24">
+    <section id="cs-roles" className="border-t border-[var(--border)] px-5 py-16 md:px-[100px] md:py-24">
       <div className="mx-auto max-w-[72rem]">
         <ScrollReveal>
           <CaseStudySectionHeader sectionLabel="OUR ROLE" />

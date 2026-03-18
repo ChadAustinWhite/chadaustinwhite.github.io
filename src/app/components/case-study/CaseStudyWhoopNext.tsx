@@ -24,7 +24,7 @@ function ArrowIcon() {
 
 export function CaseStudyWhoopNext({ relatedProjects, onViewCaseStudy }: CaseStudyWhoopNextProps) {
   return (
-    <section id="cs-related" className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24" aria-labelledby="cs-related-heading">
+    <section id="cs-related" className="border-t border-[var(--border)] px-5 py-16 md:px-[100px] md:py-24" aria-labelledby="cs-related-heading">
       <div className="mx-auto max-w-[72rem]">
         <CaseStudySectionHeader sectionLabel="RELATED CASE STUDIES" />
         <div id="cs-related-heading" className="mt-10">
