@@ -4,12 +4,14 @@ import { CaseStudyLayout } from './CaseStudyLayout';
 import { CaseStudyWhoopHero } from './CaseStudyWhoopHero';
 import { CaseStudyWhoopStatement } from './CaseStudyWhoopStatement';
 import { CaseStudyWhoopRoles } from './CaseStudyWhoopRoles';
-import { CaseStudyWhoopOverview } from './CaseStudyWhoopOverview';
-import { CaseStudyWhoopApproach } from './CaseStudyWhoopApproach';
 import { CaseStudyWhoopMedia } from './CaseStudyWhoopMedia';
 import { CaseStudyWhoopPagination } from './CaseStudyWhoopPagination';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
 import { projects } from '../../data/portfolioData';
+import {
+  CaseStudySectionBrandProvider,
+  getSectionHeaderBrand,
+} from './CaseStudySectionBrandContext';
 
 const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-accelerator',
@@ -73,15 +75,15 @@ export function CaseStudyPlaceholder({
 
   return (
     <CaseStudyLayout onNavigateHome={onNavigateHome}>
+      <CaseStudySectionBrandProvider brand={getSectionHeaderBrand(content)}>
       <CaseStudyWhoopHero content={content} onBack={onBack} />
       <CaseStudyWhoopStatement content={content} />
       <CaseStudyWhoopRoles content={content} />
-      <CaseStudyWhoopOverview content={content} />
-      <CaseStudyWhoopApproach content={content} />
       <CaseStudyWhoopMedia />
       <section id="cs-content" />
       <CaseStudyWhoopPagination current={currentIndex} total={total} />
       <CaseStudyWhoopNext nextProject={nextProject} onViewCaseStudy={onViewCaseStudy} />
+      </CaseStudySectionBrandProvider>
     </CaseStudyLayout>
   );
 }

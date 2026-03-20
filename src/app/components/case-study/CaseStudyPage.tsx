@@ -4,14 +4,16 @@ import type { CaseStudyRoute, ProjectItem } from '../../data/portfolioData';
 import { projects } from '../../data/portfolioData';
 import { CaseStudyWhoopHero } from './CaseStudyWhoopHero';
 import { CaseStudyWhoopRoles } from './CaseStudyWhoopRoles';
-import { CaseStudyWhoopOverview } from './CaseStudyWhoopOverview';
-import { CaseStudyWhoopApproach } from './CaseStudyWhoopApproach';
 import { CaseStudyWhoopSection } from './CaseStudyWhoopSection';
 import { CaseStudyWhoopMedia } from './CaseStudyWhoopMedia';
 import { CaseStudyWhoopPagination } from './CaseStudyWhoopPagination';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
 import { CaseStudyTestimonial } from './CaseStudyTestimonial';
 import { CaseStudyUxEfforts } from './CaseStudyUxEfforts';
+import {
+  CaseStudySectionBrandProvider,
+  getSectionHeaderBrand,
+} from './CaseStudySectionBrandContext';
 
 const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-accelerator',
@@ -23,13 +25,6 @@ const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
 function getStrategySections(content: CaseStudyContent): StrategySection[] {
   if (content.strategySections?.length) return content.strategySections;
   const sections: StrategySection[] = [];
-  if (content.challenge) {
-    sections.push({
-      category: 'Strategy',
-      heading: content.challenge.heading,
-      body: content.challenge.paragraphs,
-    });
-  }
   content.narrativeSections?.forEach((n) => {
     sections.push({
       category: 'Strategy',
@@ -77,16 +72,19 @@ export function CaseStudyPage({
   const relatedProjects = getRelatedProjects(currentRoute);
 
   return (
-    <>
+    <CaseStudySectionBrandProvider brand={getSectionHeaderBrand(content)}>
       <CaseStudyWhoopHero content={content} onBack={onBack} />
       <CaseStudyWhoopRoles content={content} />
-      <CaseStudyWhoopOverview content={content} />
-      <CaseStudyWhoopApproach content={content} />
       {content.mediaBlock && <CaseStudyWhoopMedia />}
 
       <section id="cs-content">
         {strategySections.map((section, i) => (
-          <CaseStudyWhoopSection key={`${section.category}-${section.heading}-${i}`} section={section} />
+          <CaseStudyWhoopSection
+            key={`${section.category}-${section.heading}-${i}`}
+            section={section}
+            showSectionHeader={i !== 0}
+            showHeadlineColumn={i !== 0}
+          />
         ))}
       </section>
 
@@ -102,11 +100,15 @@ export function CaseStudyPage({
         />
       )}
 
-      <CaseStudyWhoopPagination current={currentIndex} total={total} />
-      <CaseStudyWhoopNext
-        relatedProjects={relatedProjects}
-        onViewCaseStudy={onViewCaseStudy}
-      />
-    </>
+      {!content.hidePagination && (
+        <CaseStudyWhoopPagination current={currentIndex} total={total} />
+      )}
+      {!content.hideRelatedCaseStudies && (
+        <CaseStudyWhoopNext
+          relatedProjects={relatedProjects}
+          onViewCaseStudy={onViewCaseStudy}
+        />
+      )}
+    </CaseStudySectionBrandProvider>
   );
 }
