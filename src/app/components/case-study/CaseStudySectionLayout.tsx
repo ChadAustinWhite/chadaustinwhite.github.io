@@ -47,7 +47,7 @@ export function CaseStudySectionLayout({
             {headline}
           </h2>
         </div>
-        <div className="space-y-4 text-[15px] font-bold leading-[1.65] text-[var(--ink)] md:col-span-7 md:text-[17px]">
+        <div className="space-y-4 text-[15px] font-normal leading-[1.65] text-[var(--ink)] md:col-span-7 md:text-[17px]">
           {body.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
