@@ -3,12 +3,13 @@ import type { Metric } from './types';
 interface CaseStudyHeroResultsProps {
   heading?: string;
   metrics: Metric[];
+  gallery?: string[];
 }
 
 /**
- * “Results” heading + metric grid (value on top, label below), under the overview image.
+ * “Results” heading + metric grid (value on top, label below), optional image row under metrics.
  */
-export function CaseStudyHeroResults({ heading = 'Results', metrics }: CaseStudyHeroResultsProps) {
+export function CaseStudyHeroResults({ heading = 'Results', metrics, gallery }: CaseStudyHeroResultsProps) {
   if (!metrics.length) return null;
 
   return (
@@ -45,6 +46,19 @@ export function CaseStudyHeroResults({ heading = 'Results', metrics }: CaseStudy
             </div>
           ))}
         </div>
+
+        {gallery && gallery.length > 0 ? (
+          <div className="mt-12 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2 md:gap-8 lg:gap-10">
+            {gallery.map((src, i) => (
+              <div
+                key={i}
+                className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] shadow-sm"
+              >
+                <img src={src} alt="" className="h-auto w-full object-cover" />
+              </div>
+            ))}
+          </div>
+        ) : null}
       </div>
     </section>
   );

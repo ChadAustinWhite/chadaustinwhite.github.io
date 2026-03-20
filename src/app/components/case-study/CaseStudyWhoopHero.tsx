@@ -104,6 +104,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
           <CaseStudyHeroResults
             heading={content.heroResults.heading}
             metrics={content.heroResults.metrics}
+            gallery={content.heroResults.gallery}
           />
         ) : null}
         {content.heroDiscovery ? (

@@ -1,5 +1,7 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
 import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
+import expediaResultsRatePlansMarketplace from '../../../assets/case-study/expedia-results-rate-plans-marketplace.png';
+import expediaResultsDashboardMetrics from '../../../assets/case-study/expedia-results-dashboard-metrics.png';
 
 export const expediaAcceleratorContent: CaseStudyContent = {
   title: 'Expedia Group Accelerator',
@@ -41,6 +43,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       { value: '5.4%', label: 'Average Margin Spend' },
       { value: '72.4K', label: 'Active Hotel Partners' },
     ],
+    gallery: [expediaResultsRatePlansMarketplace, expediaResultsDashboardMetrics],
   },
   heroDiscovery: {
     sectionLabel: 'DISCOVERY',

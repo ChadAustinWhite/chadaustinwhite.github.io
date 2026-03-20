@@ -135,6 +135,8 @@ export interface CaseStudyContent {
   heroResults?: {
     heading?: string;
     metrics: Metric[];
+    /** Optional row of screenshots below the metric grid (imported asset URLs). */
+    gallery?: string[];
   };
   /**
    * Discovery-style strip under hero results: section header + large left headline
