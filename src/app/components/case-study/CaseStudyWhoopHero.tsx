@@ -1,5 +1,8 @@
 import type { CaseStudyContent } from './types';
 import { PLACEHOLDER_IMAGE_HERO } from './constants';
+import { CaseStudyProjectOverview } from './CaseStudyProjectOverview';
+import { CaseStudyHeroResults } from './CaseStudyHeroResults';
+import { CaseStudyHeroDiscovery } from './CaseStudyHeroDiscovery';
 
 function getHeroImageSrc(content: CaseStudyContent): string {
   const images = content.images;
@@ -87,20 +90,30 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
         </div>
       </div>
 
-      {/* Below dark block: hero image and statement */}
+      {/* Below dark block: hero image and project overview */}
       <div className="px-5 pb-12 md:px-10 md:pb-16" style={{ background: 'var(--bg)' }}>
         <div className="max-h-[80vh] w-full overflow-hidden">
           <img
             src={getHeroImageSrc(content)}
             alt=""
-            className="h-full min-h-[400px] w-full object-cover"
+            className="h-full min-h-[400px] w-full object-cover pt-[129px]"
           />
         </div>
-        {(content.statement ?? content.tagline) && (
-          <p className="mt-6 max-w-[720px] text-[17px] leading-[1.65] text-[var(--ink)] md:text-[20px]">
-            {content.statement ?? content.tagline}
-          </p>
-        )}
+        <CaseStudyProjectOverview content={content} />
+        {content.heroResults?.metrics?.length ? (
+          <CaseStudyHeroResults
+            heading={content.heroResults.heading}
+            metrics={content.heroResults.metrics}
+          />
+        ) : null}
+        {content.heroDiscovery ? (
+          <CaseStudyHeroDiscovery
+            sectionLabel={content.heroDiscovery.sectionLabel}
+            headline={content.heroDiscovery.headline}
+            body={content.heroDiscovery.body}
+            sections={content.heroDiscovery.sections}
+          />
+        ) : null}
       </div>
     </header>
   );

@@ -67,6 +67,17 @@ export interface SectionImageCaption {
   paragraphs: string[];
 }
 
+/** Content blocks listed under the discovery headline (e.g. project outline). */
+export type HeroDiscoveryBlock =
+  | { type: 'label'; text: string }
+  | { type: 'title'; text: string }
+  | { type: 'paragraph'; text: string }
+  | { type: 'meta'; rows: { label: string; value: string }[] }
+  | { type: 'subheading'; text: string }
+  | { type: 'numbered'; number: string; title: string; body: string }
+  | { type: 'card'; title: string; body: string }
+  | { type: 'placeholder'; caption: string };
+
 /** WHOOP-style strategy/design/technology section */
 export interface StrategySection {
   category: string;
@@ -81,6 +92,11 @@ export interface StrategySection {
 
 export interface CaseStudyContent {
   title: string;
+  /**
+   * Left label in section headers (e.g. OVERVIEW). If omitted, uses second hero line when present,
+   * otherwise "Chad Austin White".
+   */
+  sectionHeaderBrand?: string;
   /** When set, hero shows these two lines (e.g. "Expedia Group" / "Accelerator") instead of title. */
   heroTitleLines?: [string, string];
   meta: CaseStudyMeta;
@@ -90,7 +106,16 @@ export interface CaseStudyContent {
   /** WHOOP-style: one-line statement headline. Falls back to tagline. */
   statement?: string;
   /** WHOOP-style: OVERVIEW block. Falls back to heroIntro or situation.paragraphs. */
-  overview?: { paragraphs: string[]; imageCaption?: SectionImageCaption };
+  overview?: {
+    paragraphs: string[];
+    imageCaption?: SectionImageCaption;
+    /** Large left-column line under hero (e.g. “Project — …”). Defaults to statement or title — tagline. */
+    introHeadline?: string;
+    /** Small-caps list under intro headline; defaults to projectFocus. */
+    serviceList?: string[];
+    /** Optional image under the overview grid; placeholder when omitted. */
+    introImage?: string;
+  };
   /** WHOOP-style: APPROACH block. Falls back to challenge or first narrative. */
   approach?: { paragraphs: string[]; imageCaption?: SectionImageCaption };
   /** WHOOP-style: "View live site" URL. Omit if absent. */
@@ -103,6 +128,26 @@ export interface CaseStudyContent {
   strategySections?: StrategySection[];
   /** Optional intro paragraph under the hero, used for EA-style layout. */
   heroIntro?: string;
+  /**
+   * Results grid below the overview intro image: uppercase heading + 3-column metrics
+   * (small caps label, large value). Use `\n` in value for a second line (e.g. "25+\nMINS").
+   */
+  heroResults?: {
+    heading?: string;
+    metrics: Metric[];
+  };
+  /**
+   * Discovery-style strip under hero results: section header + large left headline
+   * + bulleted body (BASIC/DEPT–style).
+   */
+  heroDiscovery?: {
+    sectionLabel?: string;
+    headline: string;
+    /** Two-column layout: bullet + body. Ignored when `sections` is set. */
+    body?: string;
+    /** Full-width stacked blocks under the headline. */
+    sections?: HeroDiscoveryBlock[];
+  };
   /** Single hero image or array for multiple image breaks (reused in order). */
   images: string | string[];
   /** EA-style narrative sections */
@@ -118,6 +163,10 @@ export interface CaseStudyContent {
   roles?: CaseStudyRoles;
   /** Optional testimonial (Instrument-style blockquote + attribution). */
   testimonial?: { quote: string; name: string; role: string };
+  /** Hide bottom case-study index (e.g. 01/04). */
+  hidePagination?: boolean;
+  /** Hide related case studies strip. */
+  hideRelatedCaseStudies?: boolean;
   /** Optional UX efforts cards (Hoodzpah-style: visual + title + tags + description). */
   uxEfforts?: CaseStudyUxEffortCard[];
   /** Legacy fields – still used by current layout, can be mapped into EA-style sections. */

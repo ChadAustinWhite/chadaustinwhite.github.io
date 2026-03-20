@@ -6,9 +6,15 @@ import { CaseStudySectionLayout } from './CaseStudySectionLayout';
 
 interface CaseStudyWhoopSectionProps {
   section: StrategySection;
+  showSectionHeader?: boolean;
+  showHeadlineColumn?: boolean;
 }
 
-export function CaseStudyWhoopSection({ section }: CaseStudyWhoopSectionProps) {
+export function CaseStudyWhoopSection({
+  section,
+  showSectionHeader = true,
+  showHeadlineColumn = true,
+}: CaseStudyWhoopSectionProps) {
   return (
     <section className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24">
       <div className="mx-auto max-w-[72rem]">
@@ -17,6 +23,8 @@ export function CaseStudyWhoopSection({ section }: CaseStudyWhoopSectionProps) {
             sectionLabel={section.category.toUpperCase()}
             headline={section.heading}
             body={section.body}
+            showSectionHeader={showSectionHeader}
+            showHeadlineColumn={showHeadlineColumn}
           >
             <div className="mt-10 w-full overflow-hidden rounded-xl">
               <img
