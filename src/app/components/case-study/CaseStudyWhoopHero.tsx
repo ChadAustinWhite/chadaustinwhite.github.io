@@ -45,7 +45,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
         <button
           type="button"
           onClick={onBack}
-          className="mb-8 inline-flex items-center gap-1.5 text-[15px] leading-[1.65] transition-colors duration-150 hover:opacity-100 md:text-[17px]"
+          className="mb-8 inline-flex items-center gap-1.5 text-[11px] leading-[1.65] transition-colors duration-150 hover:opacity-100"
           style={{ color: 'var(--ink-muted)' }}
           aria-label="Back to Work"
         >
@@ -87,13 +87,8 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
         </div>
       </div>
 
-      {/* Below dark block: statement and hero image */}
+      {/* Below dark block: hero image and statement */}
       <div className="px-5 pb-12 md:px-10 md:pb-16" style={{ background: 'var(--bg)' }}>
-        {(content.statement ?? content.tagline) && (
-          <p className="mb-6 max-w-[720px] text-[17px] leading-[1.65] text-[var(--ink)] md:text-[20px]">
-            {content.statement ?? content.tagline}
-          </p>
-        )}
         <div className="max-h-[80vh] w-full overflow-hidden">
           <img
             src={getHeroImageSrc(content)}
@@ -101,6 +96,11 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
             className="h-full min-h-[400px] w-full object-cover"
           />
         </div>
+        {(content.statement ?? content.tagline) && (
+          <p className="mt-6 max-w-[720px] text-[17px] leading-[1.65] text-[var(--ink)] md:text-[20px]">
+            {content.statement ?? content.tagline}
+          </p>
+        )}
       </div>
     </header>
   );
