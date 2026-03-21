@@ -1,7 +1,7 @@
 import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAdPortalImage from '../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
-import payrixOnboardingImage from '../../assets/d37a1587dc67bf7c157730c623efab0af7f1c1e7.png';
 import galileoImage from '../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
+import { PLACEHOLDER_IMAGE_HERO } from '../components/case-study/constants';
 
 export type CaseStudyRoute =
   | 'case-study-expedia-accelerator'
@@ -41,7 +41,7 @@ export const projects: ProjectItem[] = [
     title: 'Worldpay Merchant Onboarding',
     description: 'Access Control & Security Compliance',
     period: '2024–2025',
-    image: payrixOnboardingImage,
+    image: PLACEHOLDER_IMAGE_HERO,
     imageAlt: 'Worldpay Merchant Onboarding — access control and security compliance',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,

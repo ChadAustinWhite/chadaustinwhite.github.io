@@ -1,7 +1,10 @@
 import type { Metric } from './types';
+import { CaseStudySectionHeader } from './CaseStudySectionLayout';
 
 interface CaseStudyHeroResultsProps {
   heading?: string;
+  /** Bar label right side (e.g. RESULTS); defaults to uppercase heading. */
+  sectionLabel?: string;
   metrics: Metric[];
   gallery?: string[];
 }
@@ -9,8 +12,15 @@ interface CaseStudyHeroResultsProps {
 /**
  * “Results” heading + metric grid (value on top, label below), optional image row under metrics.
  */
-export function CaseStudyHeroResults({ heading = 'Results', metrics, gallery }: CaseStudyHeroResultsProps) {
+export function CaseStudyHeroResults({
+  heading = 'Results',
+  sectionLabel,
+  metrics,
+  gallery,
+}: CaseStudyHeroResultsProps) {
   if (!metrics.length) return null;
+
+  const barLabel = sectionLabel?.trim() || heading.toUpperCase();
 
   return (
     <section
@@ -19,9 +29,11 @@ export function CaseStudyHeroResults({ heading = 'Results', metrics, gallery }: 
       aria-labelledby="cs-hero-results-heading"
     >
       <div className="mx-auto max-w-[72rem]">
+        <CaseStudySectionHeader sectionLabel={barLabel} />
+
         <h2
           id="cs-hero-results-heading"
-          className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
+          className="mt-10 font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)] md:mt-14"
           style={{ fontSize: 'clamp(22px, 2.8vw, 34px)' }}
         >
           {heading}
