@@ -1,7 +1,5 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
 import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
-import expediaResultsRatePlansMarketplace from '../../../assets/case-study/expedia-results-rate-plans-marketplace.png';
-import expediaResultsDashboardMetrics from '../../../assets/case-study/expedia-results-dashboard-metrics.png';
 
 export const expediaAcceleratorContent: CaseStudyContent = {
   title: 'Expedia Group Accelerator',
@@ -34,8 +32,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       'Without a robust reporting experience, partners struggle to make data-driven decisions, hindering their ability to effectively engage with guests and maximize performance.',
     ],
     introBelowImage: {
-      label: 'Design',
-      headline: 'Playing with visual language to fit a new narrative.',
       body:
         'Their identity was created in-house, with us as their agency running parallel. Our design and copy team were in lock-step, rigorously exploring to create a narrative thread — a collaborative effort that compelled the client to think differently.',
     },
@@ -43,13 +39,13 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   heroIntro:
     'We reimagined Accelerator as a modern, insight-led experience that helps hotel partners understand, optimize, and grow their visibility in Expedia search — without sacrificing clarity or control.',
   heroResults: {
+    sectionLabel: 'RESULTS',
     heading: 'Results',
     metrics: [
       { value: '$300M', label: 'Gross Revenue' },
       { value: '5.4%', label: 'Average Margin Spend' },
       { value: '72.4K', label: 'Active Hotel Partners' },
     ],
-    gallery: [expediaResultsRatePlansMarketplace, expediaResultsDashboardMetrics],
   },
   heroDiscovery: {
     sectionLabel: 'DISCOVERY',

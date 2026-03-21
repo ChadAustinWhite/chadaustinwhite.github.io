@@ -40,6 +40,10 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
 
   const challengeLabel = (content.challenge?.heading ?? 'Challenge').replace(/^the\s+/i, '');
 
+  const introStrip = content.overview?.introBelowImage;
+  const stripLabel = introStrip?.label?.trim();
+  const stripHeadline = introStrip?.headline?.trim();
+
   return (
     <section
       className="border-t border-[var(--border)] px-5 py-14 md:px-10 md:py-20"
@@ -108,21 +112,31 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
         </div>
       </div>
 
-      {content.overview?.introBelowImage ? (
+      {introStrip ? (
         <div className="mx-auto mt-12 max-w-[72rem] text-left md:mt-16">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-24">
             <div className="min-w-0">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]">
-                {content.overview.introBelowImage.label}
-              </p>
-              <h3
-                className="mt-4 font-bold leading-[1.2] tracking-[-0.02em] text-[var(--ink)]"
-                style={{ fontSize: 'clamp(20px, 2.6vw, 30px)' }}
+              {stripLabel ? (
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]">
+                  {introStrip.label}
+                </p>
+              ) : null}
+              {stripHeadline ? (
+                <h3
+                  className={`font-bold leading-[1.2] tracking-[-0.02em] text-[var(--ink)] ${
+                    stripLabel ? 'mt-4' : ''
+                  }`}
+                  style={{ fontSize: 'clamp(20px, 2.6vw, 30px)' }}
+                >
+                  {introStrip.headline}
+                </h3>
+              ) : null}
+              <p
+                className={`text-[15px] font-normal leading-[1.65] text-[var(--ink-muted)] md:text-[17px] ${
+                  stripLabel || stripHeadline ? 'mt-5' : ''
+                }`}
               >
-                {content.overview.introBelowImage.headline}
-              </h3>
-              <p className="mt-5 text-[15px] font-normal leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
-                {content.overview.introBelowImage.body}
+                {introStrip.body}
               </p>
             </div>
             <div className="hidden min-w-0 md:block" aria-hidden="true" />

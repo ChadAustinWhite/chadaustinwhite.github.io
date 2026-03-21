@@ -4,8 +4,8 @@ import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { ArrowUpRight } from 'lucide-react';
 import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAdPortalImage from '../../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
-import payrixOnboardingImage from '../../../assets/d37a1587dc67bf7c157730c623efab0af7f1c1e7.png';
 import galileoImage from '../../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
+import { PLACEHOLDER_IMAGE_HERO } from '../case-study/constants';
 
 interface Project {
   title: string;
@@ -31,7 +31,7 @@ const projects: Project[] = [
   {
     title: 'Payrix Merchant Onboarding',
     category: 'Access Control & Security Compliance',
-    image: payrixOnboardingImage,
+    image: PLACEHOLDER_IMAGE_HERO,
     year: '2024',
     comingSoon: true,
   },

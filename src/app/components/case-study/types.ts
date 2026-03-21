@@ -115,8 +115,8 @@ export interface CaseStudyContent {
     serviceList?: string[];
     /** Optional image under the overview grid; placeholder when omitted. */
     introImage?: string;
-    /** Optional strip under `introImage` (e.g. Design + headline + body). */
-    introBelowImage?: { label: string; headline: string; body: string };
+    /** Optional strip under `introImage`; `label` / `headline` optional, `body` required when set. */
+    introBelowImage?: { label?: string; headline?: string; body: string };
   };
   /** WHOOP-style: APPROACH block. Falls back to challenge or first narrative. */
   approach?: { paragraphs: string[]; imageCaption?: SectionImageCaption };
@@ -136,6 +136,8 @@ export interface CaseStudyContent {
    */
   heroResults?: {
     heading?: string;
+    /** Right side of section bar (e.g. `RESULTS`); defaults to uppercase `heading`. */
+    sectionLabel?: string;
     metrics: Metric[];
     /** Optional row of screenshots below the metric grid (imported asset URLs). */
     gallery?: string[];

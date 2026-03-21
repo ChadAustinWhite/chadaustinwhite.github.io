@@ -100,19 +100,20 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
           />
         </div>
         <CaseStudyProjectOverview content={content} />
-        {content.heroResults?.metrics?.length ? (
-          <CaseStudyHeroResults
-            heading={content.heroResults.heading}
-            metrics={content.heroResults.metrics}
-            gallery={content.heroResults.gallery}
-          />
-        ) : null}
         {content.heroDiscovery ? (
           <CaseStudyHeroDiscovery
             sectionLabel={content.heroDiscovery.sectionLabel}
             headline={content.heroDiscovery.headline}
             body={content.heroDiscovery.body}
             sections={content.heroDiscovery.sections}
+          />
+        ) : null}
+        {content.heroResults?.metrics?.length ? (
+          <CaseStudyHeroResults
+            heading={content.heroResults.heading}
+            sectionLabel={content.heroResults.sectionLabel}
+            metrics={content.heroResults.metrics}
+            gallery={content.heroResults.gallery}
           />
         ) : null}
       </div>

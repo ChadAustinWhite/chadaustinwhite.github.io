@@ -1,5 +1,5 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
-import payrixOnboardingImage from '../../../assets/d37a1587dc67bf7c157730c623efab0af7f1c1e7.png';
+import { PLACEHOLDER_IMAGE_HERO } from '../../components/case-study/constants';
 
 export const worldpayMerchantOnboardingContent: CaseStudyContent = {
   title: 'Worldpay Merchant Onboarding',
@@ -31,7 +31,7 @@ export const worldpayMerchantOnboardingContent: CaseStudyContent = {
     'Worldpay Merchant Onboarding — A guided onboarding experience that feels clear, secure, and fast while enforcing security compliance.',
   heroIntro:
     'We rebuilt Worldpay’s merchant onboarding journey from the ground up, turning a fragmented, compliance-heavy process into a guided experience that feels clear, secure, and fast.',
-  images: payrixOnboardingImage,
+  images: PLACEHOLDER_IMAGE_HERO,
   challenge: {
     heading: 'The Challenge',
     paragraphs: [
