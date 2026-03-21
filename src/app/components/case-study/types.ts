@@ -115,6 +115,8 @@ export interface CaseStudyContent {
     serviceList?: string[];
     /** Optional image under the overview grid; placeholder when omitted. */
     introImage?: string;
+    /** Optional strip under `introImage` (e.g. Design + headline + body). */
+    introBelowImage?: { label: string; headline: string; body: string };
   };
   /** WHOOP-style: APPROACH block. Falls back to challenge or first narrative. */
   approach?: { paragraphs: string[]; imageCaption?: SectionImageCaption };
