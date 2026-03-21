@@ -96,15 +96,39 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
             ) : null}
           </div>
         </div>
+      </div>
 
-        <div className="mt-12 w-full overflow-hidden rounded-xl md:mt-16">
+      <div className="mt-12 -mx-5 overflow-hidden rounded-xl md:mt-16 md:-mx-10">
+        <div className="max-h-[80vh] w-full overflow-hidden">
           <img
             src={content.overview?.introImage ?? PLACEHOLDER_IMAGE_SECTION}
             alt=""
-            className="h-auto w-full object-cover"
+            className="h-full min-h-[400px] w-full object-cover"
           />
         </div>
       </div>
+
+      {content.overview?.introBelowImage ? (
+        <div className="mx-auto mt-12 max-w-[72rem] text-left md:mt-16">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-24">
+            <div className="min-w-0">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]">
+                {content.overview.introBelowImage.label}
+              </p>
+              <h3
+                className="mt-4 font-bold leading-[1.2] tracking-[-0.02em] text-[var(--ink)]"
+                style={{ fontSize: 'clamp(20px, 2.6vw, 30px)' }}
+              >
+                {content.overview.introBelowImage.headline}
+              </h3>
+              <p className="mt-5 text-[15px] font-normal leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
+                {content.overview.introBelowImage.body}
+              </p>
+            </div>
+            <div className="hidden min-w-0 md:block" aria-hidden="true" />
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

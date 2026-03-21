@@ -33,6 +33,12 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       'Hotel partners struggle to optimize their advertising strategies because the product lacks actionable insights.',
       'Without a robust reporting experience, partners struggle to make data-driven decisions, hindering their ability to effectively engage with guests and maximize performance.',
     ],
+    introBelowImage: {
+      label: 'Design',
+      headline: 'Playing with visual language to fit a new narrative.',
+      body:
+        'Their identity was created in-house, with us as their agency running parallel. Our design and copy team were in lock-step, rigorously exploring to create a narrative thread — a collaborative effort that compelled the client to think differently.',
+    },
   },
   heroIntro:
     'We reimagined Accelerator as a modern, insight-led experience that helps hotel partners understand, optimize, and grow their visibility in Expedia search — without sacrificing clarity or control.',
