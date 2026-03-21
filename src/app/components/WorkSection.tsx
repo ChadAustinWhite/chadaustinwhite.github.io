@@ -18,7 +18,9 @@ export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
         <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           Recent Projects ({projects.length})
         </h2>
-        <DisplayToggle value={displayMode} onChange={setDisplayMode} />
+        <div className="hidden md:block">
+          <DisplayToggle value={displayMode} onChange={setDisplayMode} />
+        </div>
       </div>
       <div
         className={`flex flex-col gap-6 ${
