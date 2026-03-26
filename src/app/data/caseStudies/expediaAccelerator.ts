@@ -6,6 +6,8 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   heroTitleLines: ['Expedia Group', 'Accelerator'],
   meta: {
     organization: 'Expedia Group',
+    organizationNote:
+      'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
     role: 'Lead UX Designer',
     year: '2025',
     duration: '8 Months',
