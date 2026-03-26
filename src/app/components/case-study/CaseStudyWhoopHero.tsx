@@ -84,10 +84,26 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
               >
                 {label}
               </span>
-              <div className="text-base" style={{ color: 'var(--ink)' }}>{meta[key]}</div>
+              <div className="text-base" style={{ color: 'var(--ink)' }}>
+                {meta[key]}
+              </div>
             </div>
           ))}
         </div>
+
+        {meta.organizationNote ? (
+          <p
+            className="mb-2 max-w-[80ch] text-[15px] leading-[1.7] text-[var(--ink-muted)] md:text-[17px]"
+            style={{
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 2,
+              overflow: 'hidden',
+            }}
+          >
+            {meta.organizationNote}
+          </p>
+        ) : null}
       </div>
 
       {/* Below dark block: hero image and project overview */}

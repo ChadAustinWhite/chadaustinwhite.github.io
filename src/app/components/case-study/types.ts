@@ -1,5 +1,7 @@
 export interface CaseStudyMeta {
   organization: string;
+  /** Optional one-line description shown beneath the organization value in the hero header. */
+  organizationNote?: string;
   role: string;
   year: string;
   duration: string;
