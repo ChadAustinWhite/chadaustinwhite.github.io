@@ -33,7 +33,7 @@ export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
   return (
     <nav
       id="site-nav"
-      className="fixed left-0 right-0 top-0 z-[100] flex h-14 md:h-16 items-center justify-between border-b px-5 transition-[border-color,background-color] duration-[0.2s] ease-out md:px-10"
+      className="fixed left-0 right-0 top-0 z-[100] flex h-14 md:h-16 items-center justify-between border-b px-[var(--cs-page-gutter)] transition-[border-color,background-color] duration-[0.2s] ease-out"
       style={{
         background: 'var(--nav-bg)',
         borderBottomColor: scrolled ? 'var(--border)' : 'transparent',

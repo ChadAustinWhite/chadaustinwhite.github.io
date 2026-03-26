@@ -24,7 +24,11 @@ function ArrowIcon() {
 
 export function CaseStudyWhoopNext({ relatedProjects, onViewCaseStudy }: CaseStudyWhoopNextProps) {
   return (
-    <section id="cs-related" className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24" aria-labelledby="cs-related-heading">
+    <section
+      id="cs-related"
+      className="border-t border-[var(--border)] px-[var(--cs-page-gutter)] py-16 md:py-24"
+      aria-labelledby="cs-related-heading"
+    >
       <div className="mx-auto max-w-[72rem]">
         <CaseStudySectionHeader sectionLabel="RELATED CASE STUDIES" />
         <div id="cs-related-heading" className="mt-10">
@@ -43,10 +47,10 @@ export function CaseStudyWhoopNext({ relatedProjects, onViewCaseStudy }: CaseStu
                   />
                 </div>
                 <div className="p-5 md:p-6">
-                  <h3 className="mb-2 text-lg font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[20px]">
+                  <h3 className="mb-2 text-[15px] font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[17px]">
                     {project.title}
                   </h3>
-                  <p className="mb-5 max-w-[640px] text-sm leading-relaxed text-[var(--ink-muted)] md:text-[15px]">
+                  <p className="mb-5 max-w-[640px] text-[15px] leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
                     {project.description}
                   </p>
                   <button

@@ -1,15 +1,18 @@
+import { Fragment } from 'react';
 import type { CaseStudyContent } from './types';
 import type { StrategySection } from './types';
 import type { CaseStudyRoute, ProjectItem } from '../../data/portfolioData';
 import { projects } from '../../data/portfolioData';
 import { CaseStudyWhoopHero } from './CaseStudyWhoopHero';
-import { CaseStudyWhoopRoles } from './CaseStudyWhoopRoles';
+import { CaseStudyWhoopRoles, caseStudyHasRolesSection } from './CaseStudyWhoopRoles';
+import { CaseStudySectionBreakImage } from './CaseStudySectionBreakImage';
 import { CaseStudyWhoopSection } from './CaseStudyWhoopSection';
 import { CaseStudyWhoopMedia } from './CaseStudyWhoopMedia';
 import { CaseStudyWhoopPagination } from './CaseStudyWhoopPagination';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
 import { CaseStudyTestimonial } from './CaseStudyTestimonial';
 import { CaseStudyUxEfforts } from './CaseStudyUxEfforts';
+import { CaseStudyReflections } from './CaseStudyReflections';
 import {
   CaseStudySectionBrandProvider,
   getSectionHeaderBrand,
@@ -71,44 +74,78 @@ export function CaseStudyPage({
   const total = CASE_STUDY_ROUTES.length;
   const relatedProjects = getRelatedProjects(currentRoute);
 
+  const showRoles = caseStudyHasRolesSection(content);
+
   return (
     <CaseStudySectionBrandProvider brand={getSectionHeaderBrand(content)}>
       <CaseStudyWhoopHero content={content} onBack={onBack} />
-      <CaseStudyWhoopRoles content={content} />
-      {content.mediaBlock && <CaseStudyWhoopMedia />}
+      <CaseStudySectionBreakImage />
+      {showRoles ? (
+        <>
+          <CaseStudyWhoopRoles content={content} />
+          <CaseStudySectionBreakImage />
+        </>
+      ) : null}
+      {content.mediaBlock ? (
+        <>
+          <CaseStudyWhoopMedia />
+          <CaseStudySectionBreakImage />
+        </>
+      ) : null}
 
       <section id="cs-content">
         {strategySections.map((section, i) => (
-          <CaseStudyWhoopSection
-            key={`${section.category}-${section.heading}-${i}`}
-            section={section}
-            showSectionHeader={i !== 0}
-            showHeadlineColumn={i !== 0}
-          />
+          <Fragment key={`${section.category}-${section.heading}-${i}`}>
+            {i > 0 ? <CaseStudySectionBreakImage /> : null}
+            <CaseStudyWhoopSection
+              section={section}
+              showSectionHeader={i !== 0}
+              showHeadlineColumn={i !== 0}
+            />
+          </Fragment>
         ))}
       </section>
 
-      {content.uxEfforts && content.uxEfforts.length > 0 && (
-        <CaseStudyUxEfforts cards={content.uxEfforts} />
-      )}
+      {content.uxEfforts && content.uxEfforts.length > 0 ? (
+        <>
+          <CaseStudySectionBreakImage />
+          <CaseStudyUxEfforts cards={content.uxEfforts} />
+        </>
+      ) : null}
 
-      {content.testimonial && (
-        <CaseStudyTestimonial
-          quote={content.testimonial.quote}
-          name={content.testimonial.name}
-          role={content.testimonial.role}
-        />
-      )}
+      {content.testimonial ? (
+        <>
+          <CaseStudySectionBreakImage />
+          <CaseStudyTestimonial
+            quote={content.testimonial.quote}
+            name={content.testimonial.name}
+            role={content.testimonial.role}
+          />
+        </>
+      ) : null}
 
-      {!content.hidePagination && (
-        <CaseStudyWhoopPagination current={currentIndex} total={total} />
-      )}
-      {!content.hideRelatedCaseStudies && (
-        <CaseStudyWhoopNext
-          relatedProjects={relatedProjects}
-          onViewCaseStudy={onViewCaseStudy}
-        />
-      )}
+      {content.reflections.items.length > 0 ? (
+        <>
+          <CaseStudySectionBreakImage />
+          <CaseStudyReflections heading={content.reflections.heading} reflections={content.reflections.items} />
+        </>
+      ) : null}
+
+      {!content.hidePagination ? (
+        <>
+          <CaseStudySectionBreakImage />
+          <CaseStudyWhoopPagination current={currentIndex} total={total} />
+        </>
+      ) : null}
+      {!content.hideRelatedCaseStudies ? (
+        <>
+          <CaseStudySectionBreakImage />
+          <CaseStudyWhoopNext
+            relatedProjects={relatedProjects}
+            onViewCaseStudy={onViewCaseStudy}
+          />
+        </>
+      ) : null}
     </CaseStudySectionBrandProvider>
   );
 }

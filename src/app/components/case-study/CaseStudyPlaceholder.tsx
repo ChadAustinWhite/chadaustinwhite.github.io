@@ -3,8 +3,9 @@ import type { CaseStudyRoute } from '../../data/portfolioData';
 import { CaseStudyLayout } from './CaseStudyLayout';
 import { CaseStudyWhoopHero } from './CaseStudyWhoopHero';
 import { CaseStudyWhoopStatement } from './CaseStudyWhoopStatement';
-import { CaseStudyWhoopRoles } from './CaseStudyWhoopRoles';
+import { CaseStudyWhoopRoles, caseStudyHasRolesSection } from './CaseStudyWhoopRoles';
 import { CaseStudyWhoopMedia } from './CaseStudyWhoopMedia';
+import { CaseStudySectionBreakImage } from './CaseStudySectionBreakImage';
 import { CaseStudyWhoopPagination } from './CaseStudyWhoopPagination';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
 import { projects } from '../../data/portfolioData';
@@ -72,16 +73,27 @@ export function CaseStudyPlaceholder({
   const currentIndex = CASE_STUDY_ROUTES.indexOf(currentRoute) + 1 || 1;
   const total = CASE_STUDY_ROUTES.length;
   const nextProject = getNextProject(currentRoute);
+  const showRoles = caseStudyHasRolesSection(content);
 
   return (
     <CaseStudyLayout onNavigateHome={onNavigateHome}>
       <CaseStudySectionBrandProvider brand={getSectionHeaderBrand(content)}>
       <CaseStudyWhoopHero content={content} onBack={onBack} />
+      <CaseStudySectionBreakImage />
       <CaseStudyWhoopStatement content={content} />
-      <CaseStudyWhoopRoles content={content} />
+      <CaseStudySectionBreakImage />
+      {showRoles ? (
+        <>
+          <CaseStudyWhoopRoles content={content} />
+          <CaseStudySectionBreakImage />
+        </>
+      ) : null}
       <CaseStudyWhoopMedia />
+      <CaseStudySectionBreakImage />
       <section id="cs-content" />
+      <CaseStudySectionBreakImage />
       <CaseStudyWhoopPagination current={currentIndex} total={total} />
+      <CaseStudySectionBreakImage />
       <CaseStudyWhoopNext nextProject={nextProject} onViewCaseStudy={onViewCaseStudy} />
       </CaseStudySectionBrandProvider>
     </CaseStudyLayout>

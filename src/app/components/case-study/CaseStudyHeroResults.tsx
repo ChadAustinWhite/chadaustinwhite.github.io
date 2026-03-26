@@ -5,6 +5,8 @@ interface CaseStudyHeroResultsProps {
   heading?: string;
   /** Bar label right side (e.g. RESULTS); defaults to uppercase heading. */
   sectionLabel?: string;
+  /** Optional secondary text displayed underneath the section bar. */
+  sectionSubtitle?: string;
   metrics: Metric[];
   gallery?: string[];
 }
@@ -15,25 +17,35 @@ interface CaseStudyHeroResultsProps {
 export function CaseStudyHeroResults({
   heading = 'Results',
   sectionLabel,
+  sectionSubtitle,
   metrics,
   gallery,
 }: CaseStudyHeroResultsProps) {
   if (!metrics.length) return null;
 
   const barLabel = sectionLabel?.trim() || heading.toUpperCase();
+  const subtitle = sectionSubtitle?.trim();
 
   return (
     <section
-      className="px-5 py-14 md:px-10 md:py-20"
+      className="px-[var(--cs-page-gutter)] py-14 md:py-20"
       style={{ color: 'var(--ink)' }}
       aria-labelledby="cs-hero-results-heading"
     >
-      <div className="mx-auto max-w-[72rem]">
+      <div className="w-full">
         <CaseStudySectionHeader sectionLabel={barLabel} />
+
+        {subtitle ? (
+          <p className="mt-6 text-[15px] leading-[1.7] text-[var(--ink-muted)] md:text-[17px]">
+            {subtitle}
+          </p>
+        ) : null}
 
         <h2
           id="cs-hero-results-heading"
-          className="mt-10 font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)] md:mt-14"
+          className={`font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)] ${
+            subtitle ? 'mt-6 md:mt-10' : 'mt-10 md:mt-14'
+          }`}
           style={{ fontSize: 'clamp(22px, 2.8vw, 34px)' }}
         >
           {heading}

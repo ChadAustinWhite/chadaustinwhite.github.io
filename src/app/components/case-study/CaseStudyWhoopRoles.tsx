@@ -13,6 +13,16 @@ const ROLE_COLUMNS: { key: keyof NonNullable<CaseStudyContent['roles']>; label: 
   { key: 'development', label: 'Development' },
 ];
 
+export function caseStudyHasRolesSection(content: CaseStudyContent): boolean {
+  const roles = content.roles;
+  const viewLiveUrl = content.viewLiveUrl;
+  const columnsWithItems = ROLE_COLUMNS.filter((col) => {
+    const items = roles?.[col.key];
+    return items && items.length > 0;
+  });
+  return columnsWithItems.length > 0 || !!viewLiveUrl;
+}
+
 export function CaseStudyWhoopRoles({ content }: CaseStudyWhoopRolesProps) {
   const roles = content.roles;
   const viewLiveUrl = content.viewLiveUrl;
@@ -22,10 +32,10 @@ export function CaseStudyWhoopRoles({ content }: CaseStudyWhoopRolesProps) {
     return items && items.length > 0;
   });
 
-  if (columnsWithItems.length === 0 && !viewLiveUrl) return null;
+  if (!caseStudyHasRolesSection(content)) return null;
 
   return (
-    <section id="cs-roles" className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24">
+    <section id="cs-roles" className="border-t border-[var(--border)] px-[var(--cs-page-gutter)] py-16 md:py-24">
       <div className="mx-auto max-w-[72rem]">
         <ScrollReveal>
           <CaseStudySectionHeader sectionLabel="OUR ROLE" />

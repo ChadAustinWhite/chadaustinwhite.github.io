@@ -7,7 +7,7 @@ interface CaseStudyImageBreakProps {
 
 export function CaseStudyImageBreak({ src, alt }: CaseStudyImageBreakProps) {
   return (
-    <div className="w-full px-5 leading-none md:px-10">
+    <div className="w-full px-[var(--cs-page-gutter)] leading-none">
       <ImageWithFallback
         src={src}
         alt={alt}

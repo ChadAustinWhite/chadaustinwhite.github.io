@@ -21,7 +21,7 @@ const BackArrow = () => (
 
 export function CaseStudyHero({ onBack, title, meta, tagline }: CaseStudyHeroProps) {
   return (
-    <header id="cs-hero" className="px-5 pt-[7.5rem] pb-[4.5rem] md:px-10 md:pt-[7.5rem] md:pb-[4.5rem]">
+    <header id="cs-hero" className="px-[var(--cs-page-gutter)] pt-[7.5rem] pb-[4.5rem] md:pt-[7.5rem] md:pb-[4.5rem]">
       <button
         type="button"
         onClick={onBack}
