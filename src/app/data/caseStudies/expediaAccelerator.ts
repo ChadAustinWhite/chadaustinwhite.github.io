@@ -36,19 +36,23 @@ export const expediaAcceleratorContent: CaseStudyContent = {
     introBelowImage: {
       body:
         'Their identity was created in-house, with us as their agency running parallel. Our design and copy team were in lock-step, rigorously exploring to create a narrative thread — a collaborative effort that compelled the client to think differently.',
+      image: expediaAcceleratorImage,
     },
   },
   heroIntro:
     'We reimagined Accelerator as a modern, insight-led experience that helps hotel partners understand, optimize, and grow their visibility in Expedia search — without sacrificing clarity or control.',
   heroResults: {
-    sectionLabel: 'RESULTS',
-    heading: 'Results',
+    sectionLabel: 'Impact and outcomes',
+    heading: 'Impact and outcomes',
+    sectionSubtitle:
+      'Accelerator empowers hotel partners to optimize their advertising strategies, improve search rankings, and drive better results with a modern, intuitive experience and comprehensive insights.',
     metrics: [
       { value: '$300M', label: 'Gross Revenue' },
       { value: '5.4%', label: 'Average Margin Spend' },
       { value: '72.4K', label: 'Active Hotel Partners' },
     ],
   },
+  heroWhyItMatters: true,
   heroDiscovery: {
     sectionLabel: 'DISCOVERY',
     headline: 'Project complications',
@@ -101,8 +105,8 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   challenge: {
     heading: 'The Challenge',
     paragraphs: [
-      'Hotel partners struggled to understand how Accelerator influenced their placement in search, how much to invest, and where to focus in order to drive meaningful results.',
-      'The existing experience was fragmented and opaque, making it difficult for partners to connect their spend to outcomes — and even harder to build trust in the tool.',
+      'Hotel partners face challenges in optimizing their advertising strategies and improving search rankings due to a lack of an intuitive, modern experience and actionable insights.',
+      'Without a comprehensive, user-friendly product, partners struggle to make data-driven decisions, limiting their ability to engage guests effectively and maximize performance.',
     ],
   },
   hidePagination: true,
@@ -181,7 +185,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
     ],
   },
   reflections: {
-    heading: 'Lessons Learned',
+    heading: 'Reflecting on the journey and key lessons learned.',
     items: [
       {
         label: 'What Worked Well',

@@ -3,6 +3,7 @@ import { PLACEHOLDER_IMAGE_HERO } from './constants';
 import { CaseStudyProjectOverview } from './CaseStudyProjectOverview';
 import { CaseStudyHeroResults } from './CaseStudyHeroResults';
 import { CaseStudyHeroDiscovery } from './CaseStudyHeroDiscovery';
+import { CaseStudyHeroWhyMatters } from './CaseStudyHeroWhyMatters';
 
 function getHeroImageSrc(content: CaseStudyContent): string {
   const images = content.images;
@@ -42,7 +43,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
     <header id="cs-hero">
       {/* Hero header: no background so scroll-driven --bg shows through */}
       <div
-        className="px-5 pt-[7.5rem] pb-12 md:px-10 md:pt-[7.5rem] md:pb-12"
+        className="px-[var(--cs-page-gutter)] pt-[7.5rem] pb-12 md:pt-[7.5rem] md:pb-12"
         style={{ color: 'var(--ink)' }}
       >
         <button
@@ -107,7 +108,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
       </div>
 
       {/* Below dark block: hero image and project overview */}
-      <div className="px-5 pb-12 md:px-10 md:pb-16" style={{ background: 'var(--bg)' }}>
+      <div className="px-[var(--cs-page-gutter)] pb-12 md:pb-16" style={{ background: 'var(--bg)' }}>
         <div className="max-h-[80vh] w-full overflow-hidden">
           <img
             src={getHeroImageSrc(content)}
@@ -116,6 +117,13 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
           />
         </div>
         <CaseStudyProjectOverview content={content} />
+        {content.heroWhyItMatters &&
+        (content.whyItMatters.intro?.trim() || content.whyItMatters.cards.length > 0) ? (
+          <CaseStudyHeroWhyMatters
+            intro={content.whyItMatters.intro}
+            cards={content.whyItMatters.cards}
+          />
+        ) : null}
         {content.heroDiscovery ? (
           <CaseStudyHeroDiscovery
             sectionLabel={content.heroDiscovery.sectionLabel}
@@ -128,6 +136,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
           <CaseStudyHeroResults
             heading={content.heroResults.heading}
             sectionLabel={content.heroResults.sectionLabel}
+            sectionSubtitle={content.heroResults.sectionSubtitle}
             metrics={content.heroResults.metrics}
             gallery={content.heroResults.gallery}
           />

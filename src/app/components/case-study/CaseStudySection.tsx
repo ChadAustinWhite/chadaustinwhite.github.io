@@ -8,7 +8,7 @@ interface CaseStudySectionProps {
 
 export function CaseStudySection({ children, className = '', id }: CaseStudySectionProps) {
   return (
-    <section id={id} className={`px-5 py-14 md:px-10 md:py-[4.5rem] ${className}`.trim()}>
+    <section id={id} className={`px-[var(--cs-page-gutter)] py-14 md:py-[4.5rem] ${className}`.trim()}>
       {children}
     </section>
   );

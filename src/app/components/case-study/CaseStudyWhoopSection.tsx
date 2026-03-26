@@ -16,7 +16,7 @@ export function CaseStudyWhoopSection({
   showHeadlineColumn = true,
 }: CaseStudyWhoopSectionProps) {
   return (
-    <section className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24">
+    <section className="border-t border-[var(--border)] px-[var(--cs-page-gutter)] py-16 md:py-24">
       <div className="mx-auto max-w-[72rem]">
         <ScrollReveal>
           <CaseStudySectionLayout

@@ -14,7 +14,7 @@ export function CaseStudyUxEfforts({ cards }: CaseStudyUxEffortsProps) {
   return (
     <section
       id="cs-ux-efforts"
-      className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24"
+      className="border-t border-[var(--border)] px-[var(--cs-page-gutter)] py-16 md:py-24"
       aria-labelledby="cs-ux-efforts-heading"
     >
       <div className="mx-auto max-w-[72rem]">
@@ -34,7 +34,7 @@ export function CaseStudyUxEfforts({ cards }: CaseStudyUxEffortsProps) {
                   </div>
                   {card.metric && (
                     <div className="absolute bottom-3 left-3 rounded-lg bg-[var(--ink)] px-3 py-2">
-                      <span className="block text-lg font-semibold leading-tight text-[var(--bg)]">
+                      <span className="block text-[15px] font-semibold leading-tight text-[var(--bg)]">
                         {card.metric.value}
                       </span>
                       <span className="block text-[10px] font-semibold uppercase tracking-wider text-[var(--bg)] opacity-90">
@@ -43,14 +43,14 @@ export function CaseStudyUxEfforts({ cards }: CaseStudyUxEffortsProps) {
                     </div>
                   )}
                   {card.quote && (
-                    <div className="absolute right-3 top-3 max-w-[55%] rounded-lg bg-white/95 px-3 py-2 text-sm leading-snug text-[#1c1c1a] shadow-sm">
+                    <div className="absolute right-3 top-3 max-w-[55%] rounded-lg bg-white/95 px-3 py-2 text-[13px] leading-snug text-[#1c1c1a] shadow-sm">
                       {card.quote}
                     </div>
                   )}
                 </div>
                 {/* Title, tags, description */}
                 <div className="p-5 md:p-6">
-                  <h3 className="mb-3 text-lg font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[20px]">
+                  <h3 className="mb-3 text-[15px] font-medium leading-[1.4] tracking-[-0.01em] text-[var(--ink)] md:text-[17px]">
                     {card.title}
                   </h3>
                   {card.tags.length > 0 && (
@@ -65,7 +65,7 @@ export function CaseStudyUxEfforts({ cards }: CaseStudyUxEffortsProps) {
                       ))}
                     </div>
                   )}
-                  <p className="text-sm leading-relaxed text-[var(--ink-muted)] md:text-[15px]">
+                  <p className="text-[15px] leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
                     {card.description}
                   </p>
                 </div>

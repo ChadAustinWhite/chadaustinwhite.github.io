@@ -46,11 +46,12 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
 
   return (
     <section
-      className="border-t border-[var(--border)] px-5 py-14 md:px-10 md:py-20"
+      className="border-t border-[var(--border)] py-14 md:py-20"
       style={{ color: 'var(--ink)' }}
       aria-labelledby="cs-overview-heading"
     >
-      <div className="mx-auto max-w-[72rem]">
+      {/* Horizontal inset comes only from CaseStudyWhoopHero parent (`px-[var(--cs-page-gutter)]`) so type aligns with hero image edges */}
+      <div className="w-full">
         <CaseStudySectionHeader sectionLabel="OVERVIEW" />
 
         <div className="mt-10 grid grid-cols-1 gap-12 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">
@@ -102,7 +103,7 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
         </div>
       </div>
 
-      <div className="mt-12 -mx-5 overflow-hidden rounded-xl md:mt-16 md:-mx-10">
+      <div className="mt-12 w-full overflow-hidden rounded-xl md:mt-16">
         <div className="max-h-[80vh] w-full overflow-hidden">
           <img
             src={content.overview?.introImage ?? PLACEHOLDER_IMAGE_SECTION}
@@ -113,7 +114,7 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
       </div>
 
       {introStrip ? (
-        <div className="mx-auto mt-12 max-w-[72rem] text-left md:mt-16">
+        <div className="mt-12 w-full text-left md:mt-16">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-24">
             <div className="min-w-0">
               {stripLabel ? (
@@ -141,6 +142,17 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
             </div>
             <div className="hidden min-w-0 md:block" aria-hidden="true" />
           </div>
+          {introStrip.image ? (
+            <div className="mt-10 w-full overflow-hidden rounded-xl md:mt-12">
+              <div className="max-h-[80vh] w-full overflow-hidden">
+                <img
+                  src={introStrip.image}
+                  alt=""
+                  className="h-full min-h-[400px] w-full object-cover"
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </section>

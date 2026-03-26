@@ -8,12 +8,12 @@ export function CaseStudyTestimonial({ quote, name, role }: CaseStudyTestimonial
   return (
     <section
       id="cs-testimonial"
-      className="border-t border-[var(--border)] px-5 py-16 md:px-10 md:py-24"
+      className="border-t border-[var(--border)] px-[var(--cs-page-gutter)] py-16 md:py-24"
       aria-label="Testimonial"
     >
       <div className="mx-auto max-w-[72rem]">
         <blockquote className="border-l-4 border-[var(--ink-muted)] pl-6 md:pl-8">
-          <p className="max-w-[720px] text-[17px] leading-[1.65] text-[var(--ink)] md:text-[20px] md:leading-[1.6]">
+          <p className="max-w-[720px] text-[15px] leading-[1.65] text-[var(--ink)] md:text-[17px] md:leading-[1.6]">
             {quote}
           </p>
           <footer className="mt-6">

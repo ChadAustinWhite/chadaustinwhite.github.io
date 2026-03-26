@@ -29,7 +29,7 @@ export function CaseStudyComplications({ heading, intro, items }: CaseStudyCompl
             <div className="mb-3 text-xs font-semibold tracking-[0.08em] text-[var(--ink-muted)]">
               {item.number}
             </div>
-            <div className="mb-2 text-base font-medium leading-snug text-[var(--ink)]">
+            <div className="mb-2 text-base font-medium leading-snug uppercase text-[var(--ink)]">
               {item.title}
             </div>
             <p className="text-base leading-[1.6] text-[var(--ink-muted)]">

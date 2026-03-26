@@ -1,4 +1,5 @@
 import type { HeroDiscoveryBlock } from './types';
+import { PLACEHOLDER_IMAGE_SECTION } from './constants';
 import { CaseStudySectionHeader } from './CaseStudySectionLayout';
 
 interface CaseStudyHeroDiscoveryProps {
@@ -81,7 +82,7 @@ function DiscoveryBlocks({ blocks }: { blocks: HeroDiscoveryBlock[] }) {
                     {block.number}
                   </span>
                   <div>
-                    <p className="mb-2 text-[15px] font-semibold text-[var(--ink)] md:text-[16px]">
+                    <p className="mb-2 text-[15px] font-semibold uppercase text-[var(--ink)] md:text-[16px]">
                       {block.title}
                     </p>
                     <p className="text-[15px] font-normal leading-[1.65] text-[var(--ink-muted)] md:text-[16px]">
@@ -121,15 +122,25 @@ export function CaseStudyHeroDiscovery({
 
   return (
     <section
-      className="px-5 py-14 md:px-10 md:py-20"
+      className="px-[var(--cs-page-gutter)] py-14 md:py-20"
       style={{ color: 'var(--ink)' }}
       aria-labelledby="cs-hero-discovery-heading"
     >
-      <div className="mx-auto max-w-[72rem]">
+      <div className="w-full">
         <CaseStudySectionHeader sectionLabel={sectionLabel} />
 
+        <div className="mt-10 w-full overflow-hidden rounded-xl md:mt-12">
+          <div className="max-h-[80vh] w-full overflow-hidden">
+            <img
+              src={PLACEHOLDER_IMAGE_SECTION}
+              alt=""
+              className="h-full min-h-[280px] w-full object-cover md:min-h-[400px]"
+            />
+          </div>
+        </div>
+
         {useSections ? (
-          <div className="mt-10 grid grid-cols-1 gap-12 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">
+          <div className="mt-10 grid grid-cols-1 gap-12 md:mt-12 md:grid-cols-2 md:gap-16 lg:gap-24">
             <div>
               <h2
                 id="cs-hero-discovery-heading"
@@ -144,7 +155,7 @@ export function CaseStudyHeroDiscovery({
             </div>
           </div>
         ) : (
-          <div className="mt-10 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">
+          <div className="mt-10 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-2 md:gap-16 lg:gap-24">
             <h2
               id="cs-hero-discovery-heading"
               className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
