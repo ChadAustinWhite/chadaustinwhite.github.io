@@ -1,4 +1,5 @@
 import type { Metric } from './types';
+import { PLACEHOLDER_IMAGE_SECTION, PLACEHOLDER_IMAGE_SECTION_WIDE } from './constants';
 import { CaseStudySectionHeader } from './CaseStudySectionLayout';
 
 interface CaseStudyHeroResultsProps {
@@ -7,6 +8,10 @@ interface CaseStudyHeroResultsProps {
   sectionLabel?: string;
   /** Optional secondary text displayed underneath the section bar. */
   sectionSubtitle?: string;
+  /** Full-width image above the section bar; defaults to section placeholder. */
+  imageAbove?: string;
+  /** When true, minimal top padding (follows `heroBetweenDiscoveryAndResults` two-up row). */
+  tightTopAfterGallery?: boolean;
   metrics: Metric[];
   gallery?: string[];
 }
@@ -18,6 +23,8 @@ export function CaseStudyHeroResults({
   heading = 'Results',
   sectionLabel,
   sectionSubtitle,
+  imageAbove,
+  tightTopAfterGallery = false,
   metrics,
   gallery,
 }: CaseStudyHeroResultsProps) {
@@ -25,14 +32,31 @@ export function CaseStudyHeroResults({
 
   const barLabel = sectionLabel?.trim() || heading.toUpperCase();
   const subtitle = sectionSubtitle?.trim();
+  const heroImageSrc =
+    imageAbove?.trim() ||
+    (tightTopAfterGallery ? PLACEHOLDER_IMAGE_SECTION_WIDE : PLACEHOLDER_IMAGE_SECTION);
 
   return (
     <section
-      className="px-[var(--cs-page-gutter)] py-14 md:py-20"
+      className={`w-full pb-14 md:pb-20 ${tightTopAfterGallery ? 'pt-0' : 'pt-14 md:pt-20'}`}
       style={{ color: 'var(--ink)' }}
       aria-labelledby="cs-hero-results-heading"
     >
       <div className="w-full">
+        <div
+          className={`mb-10 w-full overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] md:mb-12 ${
+            tightTopAfterGallery ? 'mt-6 md:mt-8' : ''
+          }`}
+        >
+          <div className="max-h-[80vh] w-full overflow-hidden">
+            <img
+              src={heroImageSrc}
+              alt=""
+              className="h-full min-h-[280px] w-full object-cover md:min-h-[400px]"
+            />
+          </div>
+        </div>
+
         <CaseStudySectionHeader sectionLabel={barLabel} />
 
         {subtitle ? (

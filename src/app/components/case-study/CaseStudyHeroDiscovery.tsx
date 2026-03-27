@@ -127,9 +127,7 @@ export function CaseStudyHeroDiscovery({
       aria-labelledby="cs-hero-discovery-heading"
     >
       <div className="w-full">
-        <CaseStudySectionHeader sectionLabel={sectionLabel} />
-
-        <div className="mt-10 w-full overflow-hidden rounded-xl md:mt-12">
+        <div className="mb-10 w-full overflow-hidden rounded-xl md:mb-12">
           <div className="max-h-[80vh] w-full overflow-hidden">
             <img
               src={PLACEHOLDER_IMAGE_SECTION}
@@ -139,8 +137,10 @@ export function CaseStudyHeroDiscovery({
           </div>
         </div>
 
+        <CaseStudySectionHeader sectionLabel={sectionLabel} />
+
         {useSections ? (
-          <div className="mt-10 grid grid-cols-1 gap-12 md:mt-12 md:grid-cols-2 md:gap-16 lg:gap-24">
+          <div className="mt-10 grid grid-cols-1 gap-12 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">
             <div>
               <h2
                 id="cs-hero-discovery-heading"
@@ -155,7 +155,7 @@ export function CaseStudyHeroDiscovery({
             </div>
           </div>
         ) : (
-          <div className="mt-10 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-2 md:gap-16 lg:gap-24">
+          <div className="mt-10 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">
             <h2
               id="cs-hero-discovery-heading"
               className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
