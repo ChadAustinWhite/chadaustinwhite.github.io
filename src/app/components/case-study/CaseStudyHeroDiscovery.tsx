@@ -122,7 +122,7 @@ export function CaseStudyHeroDiscovery({
 
   return (
     <section
-      className="px-[var(--cs-page-gutter)] py-14 md:py-20"
+      className="py-14 md:py-20"
       style={{ color: 'var(--ink)' }}
       aria-labelledby="cs-hero-discovery-heading"
     >
@@ -145,7 +145,7 @@ export function CaseStudyHeroDiscovery({
               <h2
                 id="cs-hero-discovery-heading"
                 className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-                style={{ fontSize: 'clamp(22px, 2.8vw, 34px)' }}
+                style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
               >
                 {headline}
               </h2>
@@ -159,7 +159,7 @@ export function CaseStudyHeroDiscovery({
             <h2
               id="cs-hero-discovery-heading"
               className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-              style={{ fontSize: 'clamp(22px, 2.8vw, 34px)' }}
+              style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
             >
               {headline}
             </h2>

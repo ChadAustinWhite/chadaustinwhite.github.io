@@ -45,8 +45,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   heroResults: {
     sectionLabel: 'Impact and outcomes',
     heading: 'Impact and outcomes',
-    sectionSubtitle:
-      'Accelerator empowers hotel partners to optimize their advertising strategies, improve search rankings, and drive better results with a modern, intuitive experience and comprehensive insights.',
+    imageBelowAbove: 'https://placehold.co/1600x720/1c1c1a/2a2a28?text=Image+4',
     metrics: [
       { value: '$300M', label: 'Gross Revenue' },
       { value: '5.4%', label: 'Average Margin Spend' },
@@ -178,8 +177,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   },
   impact: {
     heading: 'Impact and Outcomes',
-    intro:
-      'Accelerator empowers hotel partners to optimize their advertising strategies, improve search rankings, and drive better results with a modern, intuitive experience and comprehensive insights.',
     metrics: [
       { value: '$300M', label: 'Gross Revenue' },
       { value: '5.4%', label: 'Average Margin Spend' },

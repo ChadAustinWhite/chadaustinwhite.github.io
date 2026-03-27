@@ -154,6 +154,8 @@ export interface CaseStudyContent {
     sectionSubtitle?: string;
     /** Full-width image above the brand / section bar; placeholder when omitted. */
     imageAbove?: string;
+    /** Optional second full-width image stacked under `imageAbove`. */
+    imageBelowAbove?: string;
     metrics: Metric[];
     /** Optional row of screenshots below the metric grid (imported asset URLs). */
     gallery?: string[];
