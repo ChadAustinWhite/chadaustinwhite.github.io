@@ -144,6 +144,7 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
             sectionLabel={content.heroResults.sectionLabel}
             sectionSubtitle={content.heroResults.sectionSubtitle}
             imageAbove={content.heroResults.imageAbove}
+            imageBelowAbove={content.heroResults.imageBelowAbove}
             metrics={content.heroResults.metrics}
             gallery={content.heroResults.gallery}
             tightTopAfterGallery={

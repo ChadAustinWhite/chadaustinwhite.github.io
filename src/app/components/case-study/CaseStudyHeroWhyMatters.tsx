@@ -34,7 +34,7 @@ export function CaseStudyHeroWhyMatters({
             <h2
               id="cs-hero-why-heading"
               className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-              style={{ fontSize: 'clamp(22px, 2.8vw, 34px)' }}
+              style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
             >
               {headline}
             </h2>

@@ -9,5 +9,7 @@ export const PLACEHOLDER_IMAGE_SECTION_DUO: [string, string] = [
 ];
 /** Wide placeholder below the duo row (Impact / results hero image). */
 export const PLACEHOLDER_IMAGE_SECTION_WIDE = 'https://placehold.co/1600x720/1c1c1a/2a2a28?text=Image+3';
+/** Second wide placeholder stacked under Image 3 when needed. */
+export const PLACEHOLDER_IMAGE_SECTION_WIDE_2 = 'https://placehold.co/1600x720/1c1c1a/2a2a28?text=Image+4';
 /** Placeholder for subsection gallery. */
 export const PLACEHOLDER_IMAGE_SUB = 'https://placehold.co/800x500/1c1c1a/2a2a28?text=Image';

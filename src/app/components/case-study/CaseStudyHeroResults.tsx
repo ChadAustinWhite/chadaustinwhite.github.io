@@ -1,5 +1,9 @@
 import type { Metric } from './types';
-import { PLACEHOLDER_IMAGE_SECTION, PLACEHOLDER_IMAGE_SECTION_WIDE } from './constants';
+import {
+  PLACEHOLDER_IMAGE_SECTION,
+  PLACEHOLDER_IMAGE_SECTION_WIDE,
+  PLACEHOLDER_IMAGE_SECTION_WIDE_2,
+} from './constants';
 import { CaseStudySectionHeader } from './CaseStudySectionLayout';
 
 interface CaseStudyHeroResultsProps {
@@ -10,6 +14,8 @@ interface CaseStudyHeroResultsProps {
   sectionSubtitle?: string;
   /** Full-width image above the section bar; defaults to section placeholder. */
   imageAbove?: string;
+  /** Optional second image stacked under `imageAbove`. */
+  imageBelowAbove?: string;
   /** When true, minimal top padding (follows `heroBetweenDiscoveryAndResults` two-up row). */
   tightTopAfterGallery?: boolean;
   metrics: Metric[];
@@ -24,6 +30,7 @@ export function CaseStudyHeroResults({
   sectionLabel,
   sectionSubtitle,
   imageAbove,
+  imageBelowAbove,
   tightTopAfterGallery = false,
   metrics,
   gallery,
@@ -35,6 +42,7 @@ export function CaseStudyHeroResults({
   const heroImageSrc =
     imageAbove?.trim() ||
     (tightTopAfterGallery ? PLACEHOLDER_IMAGE_SECTION_WIDE : PLACEHOLDER_IMAGE_SECTION);
+  const secondHeroImageSrc = imageBelowAbove?.trim();
 
   return (
     <section
@@ -44,7 +52,7 @@ export function CaseStudyHeroResults({
     >
       <div className="w-full">
         <div
-          className={`mb-10 w-full overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] md:mb-12 ${
+          className={`mb-10 w-full overflow-hidden rounded-xl md:mb-12 ${
             tightTopAfterGallery ? 'mt-6 md:mt-8' : ''
           }`}
         >
@@ -56,6 +64,17 @@ export function CaseStudyHeroResults({
             />
           </div>
         </div>
+        {tightTopAfterGallery ? (
+          <div className="mb-10 w-full overflow-hidden rounded-xl md:mb-12">
+            <div className="max-h-[80vh] w-full overflow-hidden">
+              <img
+                src={secondHeroImageSrc || PLACEHOLDER_IMAGE_SECTION_WIDE_2}
+                alt=""
+                className="h-full min-h-[280px] w-full object-cover md:min-h-[400px]"
+              />
+            </div>
+          </div>
+        ) : null}
 
         <CaseStudySectionHeader sectionLabel={barLabel} />
 
@@ -70,7 +89,7 @@ export function CaseStudyHeroResults({
           className={`font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)] ${
             subtitle ? 'mt-6 md:mt-10' : 'mt-10 md:mt-14'
           }`}
-          style={{ fontSize: 'clamp(22px, 2.8vw, 34px)' }}
+          style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
         >
           {heading}
         </h2>
