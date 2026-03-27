@@ -1,6 +1,7 @@
 import type { CaseStudyContent } from './types';
 import { PLACEHOLDER_IMAGE_SECTION } from './constants';
 import { CaseStudySectionHeader } from './CaseStudySectionLayout';
+import { CaseStudyTwoUpImageRow } from './CaseStudyTwoUpImageRow';
 
 interface CaseStudyProjectOverviewProps {
   content: CaseStudyContent;
@@ -44,6 +45,8 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
   const stripLabel = introStrip?.label?.trim();
   const stripHeadline = introStrip?.headline?.trim();
 
+  const imagesAboveHeader = (content.overview?.imagesAboveHeader ?? []).filter(Boolean).slice(0, 2);
+
   return (
     <section
       className="border-t border-[var(--border)] py-14 md:py-20"
@@ -52,6 +55,12 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
     >
       {/* Horizontal inset comes only from CaseStudyWhoopHero parent (`px-[var(--cs-page-gutter)]`) so type aligns with hero image edges */}
       <div className="w-full">
+        {imagesAboveHeader.length > 0 ? (
+          <div className="mb-10 md:mb-12">
+            <CaseStudyTwoUpImageRow urls={imagesAboveHeader} />
+          </div>
+        ) : null}
+
         <CaseStudySectionHeader sectionLabel="OVERVIEW" />
 
         <div className="mt-10 grid grid-cols-1 gap-12 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">

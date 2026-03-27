@@ -4,6 +4,7 @@ import { CaseStudyProjectOverview } from './CaseStudyProjectOverview';
 import { CaseStudyHeroResults } from './CaseStudyHeroResults';
 import { CaseStudyHeroDiscovery } from './CaseStudyHeroDiscovery';
 import { CaseStudyHeroWhyMatters } from './CaseStudyHeroWhyMatters';
+import { CaseStudyTwoUpImageRow } from './CaseStudyTwoUpImageRow';
 
 function getHeroImageSrc(content: CaseStudyContent): string {
   const images = content.images;
@@ -132,13 +133,22 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
             sections={content.heroDiscovery.sections}
           />
         ) : null}
+        {(content.heroBetweenDiscoveryAndResults ?? []).filter(Boolean).length > 0 ? (
+          <div className="border-t border-[var(--border)] pt-10 pb-0 md:pt-14">
+            <CaseStudyTwoUpImageRow urls={content.heroBetweenDiscoveryAndResults ?? []} />
+          </div>
+        ) : null}
         {content.heroResults?.metrics?.length ? (
           <CaseStudyHeroResults
             heading={content.heroResults.heading}
             sectionLabel={content.heroResults.sectionLabel}
             sectionSubtitle={content.heroResults.sectionSubtitle}
+            imageAbove={content.heroResults.imageAbove}
             metrics={content.heroResults.metrics}
             gallery={content.heroResults.gallery}
+            tightTopAfterGallery={
+              (content.heroBetweenDiscoveryAndResults ?? []).filter(Boolean).length > 0
+            }
           />
         ) : null}
       </div>

@@ -115,6 +115,10 @@ export interface CaseStudyContent {
     introHeadline?: string;
     /** Small-caps list under intro headline; defaults to projectFocus. */
     serviceList?: string[];
+    /**
+     * One image: full width above the OVERVIEW bar. Two images: side-by-side on md+ (stack on small screens).
+     */
+    imagesAboveHeader?: string[];
     /** Optional image under the overview grid; placeholder when omitted. */
     introImage?: string;
     /** Optional strip under `introImage`; `label` / `headline` optional, `body` required when set. */
@@ -148,6 +152,8 @@ export interface CaseStudyContent {
     sectionLabel?: string;
     /** Optional secondary text displayed underneath the section bar. */
     sectionSubtitle?: string;
+    /** Full-width image above the brand / section bar; placeholder when omitted. */
+    imageAbove?: string;
     metrics: Metric[];
     /** Optional row of screenshots below the metric grid (imported asset URLs). */
     gallery?: string[];
@@ -169,6 +175,10 @@ export interface CaseStudyContent {
    * (section bar + headline + intro + cards), Discovery-style.
    */
   heroWhyItMatters?: boolean;
+  /**
+   * Up to two images side-by-side (md+) between `heroDiscovery` and `heroResults` when both exist in the layout.
+   */
+  heroBetweenDiscoveryAndResults?: string[];
   /** Single hero image or array for multiple image breaks (reused in order). */
   images: string | string[];
   /** EA-style narrative sections */

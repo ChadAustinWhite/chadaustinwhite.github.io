@@ -1,4 +1,5 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
+import { PLACEHOLDER_IMAGE_SECTION_DUO } from '../../components/case-study/constants';
 import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 
 export const expediaAcceleratorContent: CaseStudyContent = {
@@ -95,6 +96,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       },
     ],
   },
+  heroBetweenDiscoveryAndResults: [...PLACEHOLDER_IMAGE_SECTION_DUO],
   images: expediaAcceleratorImage,
   approach: {
     paragraphs: [
