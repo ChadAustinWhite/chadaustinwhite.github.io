@@ -28,6 +28,7 @@ export const projects: ProjectItem[] = [
     image: expediaAcceleratorImage,
     imageAlt: 'Expedia Group Accelerator — campaign creation and performance dashboard',
     caseStudyRoute: 'case-study-expedia-accelerator',
+    comingSoon: true,
   },
   {
     title: 'Expedia Group Ad Portal',
@@ -36,6 +37,7 @@ export const projects: ProjectItem[] = [
     image: expediaAdPortalImage,
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
     caseStudyRoute: 'case-study-expedia-ad-portal',
+    comingSoon: true,
   },
   {
     title: 'Worldpay Merchant Onboarding',
