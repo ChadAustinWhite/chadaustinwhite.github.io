@@ -16,7 +16,7 @@ export interface ProjectItem {
   image: string;
   imageAlt: string;
   caseStudyRoute: CaseStudyRoute;
-  /** When true, case study is not available; show "Coming Soon" and do not link. */
+  /** When true, case study is not available; show "Request Access" and do not link. */
   comingSoon?: boolean;
 }
 
