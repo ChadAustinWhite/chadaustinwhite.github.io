@@ -10,3 +10,34 @@ html {
 body {
   overflow-x: hidden;
 }
+
+/* Infinite horizontal marquee (hero brands strip) */
+@keyframes hero-brands-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-brands-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: hero-brands-marquee 80s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-brands-marquee__track {
+    animation: none;
+    transform: translateX(0);
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.35rem;
+  }
+
+  .hero-brands-marquee__track > span[aria-hidden='true'] {
+    display: none;
+  }
+}
