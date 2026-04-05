@@ -110,13 +110,23 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
 
       {/* Below dark block: hero image and project overview */}
       <div className="px-[var(--cs-page-gutter)] pb-12 md:pb-16" style={{ background: 'var(--bg)' }}>
-        <div className="max-h-[80vh] w-full overflow-hidden">
-          <img
-            src={getHeroImageSrc(content)}
-            alt=""
-            className="h-full min-h-[400px] w-full object-cover pt-[129px]"
-          />
-        </div>
+        {content.heroImageObjectFit === 'contain' ? (
+          <div className="w-full bg-[var(--bg)]">
+            <img
+              src={getHeroImageSrc(content)}
+              alt=""
+              className="block h-auto w-full max-w-full"
+            />
+          </div>
+        ) : (
+          <div className="max-h-[80vh] w-full overflow-hidden bg-[var(--bg)]">
+            <img
+              src={getHeroImageSrc(content)}
+              alt=""
+              className="h-full min-h-[400px] w-full object-cover pt-[129px]"
+            />
+          </div>
+        )}
         <CaseStudyProjectOverview content={content} />
         {content.heroWhyItMatters &&
         (content.whyItMatters.intro?.trim() || content.whyItMatters.cards.length > 0) ? (

@@ -1,7 +1,7 @@
 import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAdPortalImage from '../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
 import galileoImage from '../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
-import { PLACEHOLDER_IMAGE_HERO } from '../components/case-study/constants';
+import worldpayMerchantOnboardingImage from '../../assets/worldpay-merchant-onboarding.png';
 
 export type CaseStudyRoute =
   | 'case-study-expedia-accelerator'
@@ -18,9 +18,22 @@ export interface ProjectItem {
   caseStudyRoute: CaseStudyRoute;
   /** When true, case study is not available; show "Request Access" and do not link. */
   comingSoon?: boolean;
+  /** `contain` = full image visible in the tile; `cover` = fill 16:9 (default). */
+  imageObjectFit?: 'cover' | 'contain';
 }
 
 export const projects: ProjectItem[] = [
+  {
+    title: 'Worldpay Merchant Onboarding',
+    description: 'Access Control & Security Compliance',
+    period: '2024–2025',
+    image: worldpayMerchantOnboardingImage,
+    imageAlt:
+      'Worldpay Merchant Onboarding — Kinetic mobile onboarding on a soft gradient with contact fields and consent checkboxes',
+    caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
+    comingSoon: true,
+    imageObjectFit: 'contain',
+  },
   {
     title: 'Expedia Group Accelerator',
     description: 'Campaign launch and tracking',
@@ -37,15 +50,6 @@ export const projects: ProjectItem[] = [
     image: expediaAdPortalImage,
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
     caseStudyRoute: 'case-study-expedia-ad-portal',
-    comingSoon: true,
-  },
-  {
-    title: 'Worldpay Merchant Onboarding',
-    description: 'Access Control & Security Compliance',
-    period: '2024–2025',
-    image: PLACEHOLDER_IMAGE_HERO,
-    imageAlt: 'Worldpay Merchant Onboarding — access control and security compliance',
-    caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
   },
   {

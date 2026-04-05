@@ -24,8 +24,10 @@ const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
 function getNextProject(currentRoute: CaseStudyRoute) {
   const i = CASE_STUDY_ROUTES.indexOf(currentRoute);
   if (i < 0) return null;
-  for (let j = i + 1; j < projects.length; j++) {
-    if (!projects[j].comingSoon) return projects[j];
+  for (let k = i + 1; k < CASE_STUDY_ROUTES.length; k++) {
+    const route = CASE_STUDY_ROUTES[k]!;
+    const p = projects.find((pr) => pr.caseStudyRoute === route);
+    if (p && !p.comingSoon) return p;
   }
   return null;
 }

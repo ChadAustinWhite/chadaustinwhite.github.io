@@ -20,14 +20,19 @@ function ArrowIcon() {
 }
 
 export function ProjectCard({ project, onViewCaseStudy }: ProjectCardProps) {
+  const fit = project.imageObjectFit ?? 'cover';
+  const mediaBg = fit === 'contain' ? 'bg-[var(--bg)]' : 'bg-[var(--border)]';
+
   return (
     <article className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
-      <div className="grid grid-cols-1 gap-0.5 overflow-hidden bg-[var(--border)] [aspect-ratio:16/9] md:[aspect-ratio:16/9]">
+      <div
+        className={`grid grid-cols-1 gap-0.5 overflow-hidden ${mediaBg} [aspect-ratio:16/9] md:[aspect-ratio:16/9]`}
+      >
         <img
           src={project.image}
           alt={project.imageAlt}
           loading="lazy"
-          className="h-full w-full object-cover bg-[var(--bg)] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-[1.03]"
+          className={`h-full w-full bg-[var(--bg)] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${fit === 'contain' ? 'object-contain object-center' : 'object-cover group-hover:scale-[1.03]'}`}
         />
       </div>
       <div className="p-5 md:px-9 md:py-7 md:pb-8">

@@ -183,6 +183,8 @@ export interface CaseStudyContent {
   heroBetweenDiscoveryAndResults?: string[];
   /** Single hero image or array for multiple image breaks (reused in order). */
   images: string | string[];
+  /** When `contain`, hero image is uncropped (`w-full` / intrinsic height). Otherwise fixed block + `object-cover`. */
+  heroImageObjectFit?: 'cover' | 'contain';
   /** EA-style narrative sections */
   challenge?: {
     heading: string;
