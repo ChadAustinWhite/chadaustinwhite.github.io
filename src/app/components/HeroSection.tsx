@@ -10,46 +10,6 @@ const PORTRAIT_SRCS = [
 
 const CYCLE_INTERVAL_MS = 400;
 
-/** One full pass of the ticker; duplicated in the DOM for a seamless loop. */
-const HERO_PROCESS_LABELS = [
-  "Discovery",
-  "Research",
-  "Problem framing",
-  "Synthesis",
-  "Ideation",
-  "Sketching",
-  "Wireframing",
-  "Prototyping",
-  "Usability testing",
-  "Iteration",
-  "Design systems",
-  "Accessibility",
-  "Journey mapping",
-  "Handoff",
-] as const;
-
-function HeroProcessMarqueeSegment({ segmentId }: { segmentId: string }) {
-  return (
-    <span className="inline-flex shrink-0 items-center gap-x-5 px-5 md:gap-x-7 md:px-7">
-      {HERO_PROCESS_LABELS.map((label, i) => (
-        <React.Fragment key={`${segmentId}-${label}-${i}`}>
-          {i > 0 ? (
-            <span className="select-none text-[var(--ink-muted)] opacity-40" aria-hidden>
-              ·
-            </span>
-          ) : null}
-          <span className="whitespace-nowrap font-semibold uppercase tracking-[0.12em] text-[var(--ink-muted)]">
-            {label}
-          </span>
-        </React.Fragment>
-      ))}
-      <span className="select-none text-[var(--ink-muted)] opacity-40" aria-hidden>
-        ·
-      </span>
-    </span>
-  );
-}
-
 export function HeroSection() {
   const [showPortrait, setShowPortrait] = useState(false);
   const [portraitIndex, setPortraitIndex] = useState(0);
@@ -78,7 +38,7 @@ export function HeroSection() {
   }, [showPortrait]);
 
   return (
-    <section id="about" className="pt-[108px] pb-2 md:pt-36 md:pb-3">
+    <section id="about" className="pt-[108px] pb-14 md:pt-36 md:pb-[72px]">
       <div className="max-w-[900px] px-5 md:px-10">
         <h1
           className="mb-7 text-[clamp(34px,5vw,64px)] font-normal leading-[1.08] tracking-[-0.025em] text-[var(--ink)]"
@@ -115,19 +75,6 @@ export function HeroSection() {
           I'm mission-driven and passionate about delivering accessible, intuitive solutions that
           address real-world problems for users and businesses.
         </p>
-      </div>
-
-      <div
-        className="hero-brand-marquee mt-6 w-full min-w-0 overflow-x-hidden md:mt-8"
-        role="region"
-        aria-label="Product design process"
-      >
-        <div className="hero-brands-marquee__track text-[11px] md:text-[12px]">
-          <HeroProcessMarqueeSegment segmentId="a" />
-          <span aria-hidden="true">
-            <HeroProcessMarqueeSegment segmentId="b" />
-          </span>
-        </div>
       </div>
     </section>
   );
