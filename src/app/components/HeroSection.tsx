@@ -5,6 +5,7 @@ const PORTRAIT_SRCS = [
   "/chad-portrait-2.png",
   "/chad-portrait-3.png",
   "/chad-portrait-4.png",
+  "/chad-portrait-5.png",
 ];
 
 const CYCLE_INTERVAL_MS = 400;
