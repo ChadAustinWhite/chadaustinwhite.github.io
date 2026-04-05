@@ -49,7 +49,7 @@ export function ProjectCard({ project, onViewCaseStudy }: ProjectCardProps) {
               aria-disabled="true"
               className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] cursor-not-allowed whitespace-nowrap"
             >
-              Coming Soon
+              COMING SOON
             </span>
           ) : (
             <button
