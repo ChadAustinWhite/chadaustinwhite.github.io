@@ -10,9 +10,10 @@ import React from 'react';
 
 interface HomeLayoutProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
+  onRequestAccess: (route: CaseStudyRoute) => void;
 }
 
-export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
+export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps) {
   useSectionBackground();
 
   return (
@@ -29,7 +30,10 @@ export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
         }}
       >
         <HeroSection />
-        <WorkSection onViewCaseStudy={onViewCaseStudy} />
+        <WorkSection
+          onViewCaseStudy={onViewCaseStudy}
+          onRequestAccess={onRequestAccess}
+        />
         <ExperienceSection />
         <EducationSection />
         <Footer />

@@ -3,6 +3,7 @@ import type { ProjectItem } from '../data/portfolioData';
 interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
+  onRequestAccess: (route: ProjectItem['caseStudyRoute']) => void;
 }
 
 function ArrowIcon() {
@@ -19,7 +20,7 @@ function ArrowIcon() {
   );
 }
 
-export function ProjectCard({ project, onViewCaseStudy }: ProjectCardProps) {
+export function ProjectCard({ project, onViewCaseStudy, onRequestAccess }: ProjectCardProps) {
   const fit = project.imageObjectFit ?? 'cover';
   const mediaBg = fit === 'contain' ? 'bg-[var(--bg)]' : 'bg-[var(--border)]';
 
@@ -50,12 +51,13 @@ export function ProjectCard({ project, onViewCaseStudy }: ProjectCardProps) {
         </p>
         <div className="flex justify-start">
           {project.comingSoon ? (
-            <span
-              aria-disabled="true"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] cursor-not-allowed whitespace-nowrap"
+            <button
+              type="button"
+              onClick={() => onRequestAccess(project.caseStudyRoute)}
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity duration-150 hover:opacity-75 whitespace-nowrap"
             >
               Request Access
-            </span>
+            </button>
           ) : (
             <button
               type="button"

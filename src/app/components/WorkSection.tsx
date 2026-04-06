@@ -45,9 +45,10 @@ function WorkProcessMarqueeSegment({ segmentId }: { segmentId: string }) {
 
 interface WorkSectionProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
+  onRequestAccess: (route: CaseStudyRoute) => void;
 }
 
-export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
+export function WorkSection({ onViewCaseStudy, onRequestAccess }: WorkSectionProps) {
   const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('grid');
 
   return (
@@ -85,6 +86,7 @@ export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
             key={project.title}
             project={project}
             onViewCaseStudy={onViewCaseStudy}
+            onRequestAccess={onRequestAccess}
           />
         ))}
       </div>
