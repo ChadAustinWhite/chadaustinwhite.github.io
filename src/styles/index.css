@@ -5,10 +5,45 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: var(--bg);
+  transition: background-color 900ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
 body {
   overflow-x: hidden;
+  transition: background-color 900ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* Home scroll canvas: quick tint when Experience wins focus (see useHomeScrollBackground). */
+html.home-canvas-drive {
+  transition: background-color 0.22s ease-out;
+}
+
+html.home-canvas-drive body {
+  transition: background-color 0.22s ease-out;
+}
+
+html.home-canvas-drive .home-main-canvas {
+  transition: background-color 0.22s ease-out;
+}
+
+.site-nav-surface {
+  transition-property: border-bottom-color, background-color;
+  transition-duration: 900ms, 220ms;
+  transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1), ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    transition-duration: 0.01ms;
+  }
+
+  html.home-canvas-drive,
+  html.home-canvas-drive body,
+  html.home-canvas-drive .home-main-canvas {
+    transition-duration: 0.01ms;
+  }
 }
 
 /* Infinite horizontal marquee (hero brands strip) */
