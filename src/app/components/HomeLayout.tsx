@@ -4,7 +4,7 @@ import { WorkSection } from './WorkSection';
 import { ExperienceSection } from './ExperienceSection';
 import { EducationSection } from './EducationSection';
 import { Footer } from './Footer';
-import { useSectionBackground } from '../hooks/useSectionBackground';
+import { useHomeScrollBackground } from '../hooks/useHomeScrollBackground';
 import type { CaseStudyRoute } from '../data/portfolioData';
 import React from 'react';
 
@@ -14,15 +14,15 @@ interface HomeLayoutProps {
 }
 
 export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps) {
-  useSectionBackground();
+  useHomeScrollBackground();
 
   return (
     <>
       <SiteNav />
       <main
-        className="min-h-screen transition-colors duration-700 ease-out antialiased"
+        className="home-main-canvas min-h-screen antialiased"
         style={{
-          background: 'var(--bg)',
+          background: 'var(--home-canvas, var(--bg))',
           color: 'var(--ink)',
           fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
           fontSize: '15px',
