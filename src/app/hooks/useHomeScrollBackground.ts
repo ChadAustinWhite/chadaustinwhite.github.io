@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
-/** Page canvas above Experience; components keep token --bg / --ink / etc. */
+/** Page canvas only; components keep token --bg / --ink / etc. */
 const CANVAS_DEFAULT = '#000000';
-const CANVAS_EXPERIENCE = '#282828';
+const CANVAS_EXPERIENCE = '#2b2b2b';
+/** Third stop when the footer zone enters view (tune if you want a different bottom beat). */
+const CANVAS_NEAR_BOTTOM = '#1c1c1c';
 
 function clearCanvas() {
   const root = document.documentElement;
@@ -55,15 +57,28 @@ function computeActiveSectionId(): string {
   return closestId;
 }
 
-function canvasForSection(activeId: string): string {
+function isNearBottom(): boolean {
+  const footer = document.querySelector('main footer');
+  const vh = window.innerHeight || 1;
+  if (footer) {
+    const r = footer.getBoundingClientRect();
+    if (r.top < vh * 0.88) return true;
+  }
+  const maxScroll = document.documentElement.scrollHeight - vh;
+  if (maxScroll <= 0) return false;
+  return window.scrollY / maxScroll > 0.88;
+}
+
+function resolveCanvasColor(): string {
+  if (isNearBottom()) return CANVAS_NEAR_BOTTOM;
+  const activeId = computeActiveSectionId();
   if (activeId === 'experience' || activeId === 'education') return CANVAS_EXPERIENCE;
   return CANVAS_DEFAULT;
 }
 
 /**
- * Dark theme only: homepage canvas is black until the Experience band wins focus, then eases to
- * charcoal (#282828) and stays there through Education (and footer while Education still “owns”
- * the band). Does not change --bg / --ink / cards.
+ * Dark theme only: homepage canvas steps from black → #2b2b2b in Experience/Education, then to a
+ * third shade near the footer. Does not change --bg / --ink / cards.
  */
 export function useHomeScrollBackground() {
   const { resolvedTheme } = useTheme();
@@ -81,7 +96,7 @@ export function useHomeScrollBackground() {
     let raf = 0;
 
     const tick = () => {
-      const color = canvasForSection(computeActiveSectionId());
+      const color = resolveCanvasColor();
       root.style.setProperty('--home-canvas', color);
       root.style.backgroundColor = color;
       document.body.style.backgroundColor = color;
