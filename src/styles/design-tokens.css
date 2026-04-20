@@ -91,3 +91,15 @@ html[data-theme="dark"] [data-case-study] {
   --nav-bg: #1a1917;
   --cs-hero-bg: #1a1917;
 }
+
+/* Home: sage product-card palette when canvas has lifted (see useHomeScrollBackground). */
+html[data-canvas-lift] #experience,
+html[data-canvas-lift] #education {
+  --experience-card-surface: #e3e8e1;
+  --experience-card-ink: #0a0b0a;
+  --experience-card-ink-muted: #616161;
+  --experience-card-border: #c9d1cc;
+  --experience-tag-bg: #d5dcd6;
+  --experience-section-label: #616161;
+  border-top-color: #c9d1cc;
+}

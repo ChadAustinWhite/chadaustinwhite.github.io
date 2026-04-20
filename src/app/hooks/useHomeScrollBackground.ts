@@ -3,13 +3,13 @@ import { useTheme } from 'next-themes';
 
 /** Page canvas only; components keep token --bg / --ink / etc. */
 const CANVAS_DEFAULT = '#000000';
-const CANVAS_EXPERIENCE = '#2b2b2b';
-/** Third stop when the footer zone enters view (tune if you want a different bottom beat). */
-const CANVAS_NEAR_BOTTOM = '#1c1c1c';
+/** Warm off-white (~#f7f7f0): Experience / Education band and footer zone. */
+const CANVAS_LIFT = '#f7f7f0';
 
 function clearCanvas() {
   const root = document.documentElement;
   root.classList.remove('home-canvas-drive');
+  root.removeAttribute('data-canvas-lift');
   root.style.removeProperty('--home-canvas');
   root.style.removeProperty('background-color');
   document.body.style.removeProperty('background-color');
@@ -70,15 +70,16 @@ function isNearBottom(): boolean {
 }
 
 function resolveCanvasColor(): string {
-  if (isNearBottom()) return CANVAS_NEAR_BOTTOM;
+  if (isNearBottom()) return CANVAS_LIFT;
   const activeId = computeActiveSectionId();
-  if (activeId === 'experience' || activeId === 'education') return CANVAS_EXPERIENCE;
+  if (activeId === 'experience' || activeId === 'education') return CANVAS_LIFT;
   return CANVAS_DEFAULT;
 }
 
 /**
- * Dark theme only: homepage canvas steps from black → #2b2b2b in Experience/Education, then to a
- * third shade near the footer. Does not change --bg / --ink / cards.
+ * Dark theme only: homepage canvas steps from black to warm off-white (#f7f7f0) in
+ * Experience/Education and near the footer. Sets data-canvas-lift for Experience card palette.
+ * Other sections’ components still use global --bg / --ink / --card-bg tokens.
  */
 export function useHomeScrollBackground() {
   const { resolvedTheme } = useTheme();
@@ -100,6 +101,11 @@ export function useHomeScrollBackground() {
       root.style.setProperty('--home-canvas', color);
       root.style.backgroundColor = color;
       document.body.style.backgroundColor = color;
+      if (color === CANVAS_LIFT) {
+        root.setAttribute('data-canvas-lift', '');
+      } else {
+        root.removeAttribute('data-canvas-lift');
+      }
     };
 
     const onScrollOrResize = () => {
