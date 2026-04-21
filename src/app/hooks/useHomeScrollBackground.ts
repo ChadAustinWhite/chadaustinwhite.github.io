@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes';
 
 /** Page canvas only; components keep token --bg / --ink / etc. */
 const CANVAS_START = '#000000';
-const CANVAS_END = '#1f1f1f';
+const CANVAS_END = '#2a2a2a';
 
 function clearCanvas() {
   const root = document.documentElement;
