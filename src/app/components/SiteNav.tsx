@@ -43,7 +43,7 @@ export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
         <a
           href={onNavigateHome ? '#work' : '#about'}
           onClick={handleNavClick}
-          className="whitespace-nowrap text-sm font-normal tracking-[0.03em] text-[var(--ink)]"
+          className="site-nav-name whitespace-nowrap text-sm font-normal tracking-[0.03em] text-[var(--ink)] transition-colors duration-200 ease-out"
         >
           Chad Austin White
         </a>

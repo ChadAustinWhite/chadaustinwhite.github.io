@@ -92,9 +92,13 @@ html[data-theme="dark"] [data-case-study] {
   --cs-hero-bg: #1a1917;
 }
 
+/* Home: primary nav name matches dark ink on cream canvas (see useHomeScrollBackground). */
+html[data-canvas-lift] #site-nav .site-nav-name {
+  color: #0a0b0a;
+}
+
 /* Home: sage product-card palette when canvas has lifted (see useHomeScrollBackground). */
-html[data-canvas-lift] #experience,
-html[data-canvas-lift] #education {
+html[data-canvas-lift] #experience {
   --experience-card-surface: #e3e8e1;
   --experience-card-ink: #0a0b0a;
   --experience-card-ink-muted: #616161;

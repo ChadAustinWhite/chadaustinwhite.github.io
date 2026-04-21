@@ -3,7 +3,7 @@ import { useTheme } from 'next-themes';
 
 /** Page canvas only; components keep token --bg / --ink / etc. */
 const CANVAS_DEFAULT = '#000000';
-/** Warm off-white (~#f7f7f0): Experience / Education band and footer zone. */
+/** Warm off-white (~#f7f7f0): Experience band and footer zone. */
 const CANVAS_LIFT = '#f7f7f0';
 
 function clearCanvas() {
@@ -72,13 +72,13 @@ function isNearBottom(): boolean {
 function resolveCanvasColor(): string {
   if (isNearBottom()) return CANVAS_LIFT;
   const activeId = computeActiveSectionId();
-  if (activeId === 'experience' || activeId === 'education') return CANVAS_LIFT;
+  if (activeId === 'experience') return CANVAS_LIFT;
   return CANVAS_DEFAULT;
 }
 
 /**
  * Dark theme only: homepage canvas steps from black to warm off-white (#f7f7f0) in
- * Experience/Education and near the footer. Sets data-canvas-lift for Experience card palette.
+ * Experience and near the footer. Sets data-canvas-lift for Experience card palette.
  * Other sections’ components still use global --bg / --ink / --card-bg tokens.
  */
 export function useHomeScrollBackground() {
