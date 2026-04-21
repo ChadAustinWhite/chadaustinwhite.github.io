@@ -2,9 +2,8 @@ import { useEffect } from 'react';
 import { useTheme } from 'next-themes';
 
 /** Page canvas only; components keep token --bg / --ink / etc. */
-const CANVAS_DEFAULT = '#000000';
-/** Warm off-white (~#f7f7f0): Experience band and footer zone. */
-const CANVAS_LIFT = '#f7f7f0';
+const CANVAS_START = '#000000';
+const CANVAS_END = '#1f1f1f';
 
 function clearCanvas() {
   const root = document.documentElement;
@@ -15,70 +14,38 @@ function clearCanvas() {
   document.body.style.removeProperty('background-color');
 }
 
-/** Pick which `section[id]` owns the viewport focus band (same idea as prior section-bg hook). */
-function computeActiveSectionId(): string {
-  const sections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
-  if (sections.length === 0) return 'about';
-
-  const vh = window.innerHeight || 1;
-  const bandTop = vh * 0.2;
-  const bandBottom = vh * 0.72;
-
-  let bestId = 'about';
-  let bestOverlap = -1;
-
-  for (const el of sections) {
-    const id = el.id;
-    if (!id) continue;
-    const r = el.getBoundingClientRect();
-    const overlap = Math.max(0, Math.min(r.bottom, bandBottom) - Math.max(r.top, bandTop));
-    if (overlap > bestOverlap) {
-      bestOverlap = overlap;
-      bestId = id;
-    }
-  }
-
-  if (bestOverlap > 0) return bestId;
-
-  const targetY = vh * 0.35;
-  let closestId = 'about';
-  let minDist = Infinity;
-  for (const el of sections) {
-    const id = el.id;
-    if (!id) continue;
-    const r = el.getBoundingClientRect();
-    const mid = (r.top + r.bottom) / 2;
-    const d = Math.abs(mid - targetY);
-    if (d < minDist) {
-      minDist = d;
-      closestId = id;
-    }
-  }
-  return closestId;
+function hexToRgb(hex: string) {
+  const sanitized = hex.replace('#', '');
+  const value = Number.parseInt(sanitized, 16);
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
 }
 
-function isNearBottom(): boolean {
-  const footer = document.querySelector('main footer');
-  const vh = window.innerHeight || 1;
-  if (footer) {
-    const r = footer.getBoundingClientRect();
-    if (r.top < vh * 0.88) return true;
-  }
-  const maxScroll = document.documentElement.scrollHeight - vh;
-  if (maxScroll <= 0) return false;
-  return window.scrollY / maxScroll > 0.88;
+function blendHexColor(startHex: string, endHex: string, t: number): string {
+  const start = hexToRgb(startHex);
+  const end = hexToRgb(endHex);
+  const clamped = Math.max(0, Math.min(1, t));
+  const r = Math.round(start.r + (end.r - start.r) * clamped);
+  const g = Math.round(start.g + (end.g - start.g) * clamped);
+  const b = Math.round(start.b + (end.b - start.b) * clamped);
+  return `rgb(${r}, ${g}, ${b})`;
 }
 
 function resolveCanvasColor(): string {
-  if (isNearBottom()) return CANVAS_LIFT;
-  const activeId = computeActiveSectionId();
-  if (activeId === 'experience') return CANVAS_LIFT;
-  return CANVAS_DEFAULT;
+  const vh = window.innerHeight || 1;
+  const maxScroll = document.documentElement.scrollHeight - vh;
+  if (maxScroll <= 0) return CANVAS_START;
+
+  const rawProgress = window.scrollY / maxScroll;
+  const easedProgress = Math.max(0, Math.min(1, rawProgress)) ** 1.35;
+  return blendHexColor(CANVAS_START, CANVAS_END, easedProgress);
 }
 
 /**
- * Dark theme only: homepage canvas steps from black to warm off-white (#f7f7f0) in
- * Experience and near the footer. Sets data-canvas-lift for Experience card palette.
+ * Dark theme only: homepage canvas starts black and gradually tints to charcoal.
  * Other sections’ components still use global --bg / --ink / --card-bg tokens.
  */
 export function useHomeScrollBackground() {
@@ -101,11 +68,7 @@ export function useHomeScrollBackground() {
       root.style.setProperty('--home-canvas', color);
       root.style.backgroundColor = color;
       document.body.style.backgroundColor = color;
-      if (color === CANVAS_LIFT) {
-        root.setAttribute('data-canvas-lift', '');
-      } else {
-        root.removeAttribute('data-canvas-lift');
-      }
+      root.removeAttribute('data-canvas-lift');
     };
 
     const onScrollOrResize = () => {
