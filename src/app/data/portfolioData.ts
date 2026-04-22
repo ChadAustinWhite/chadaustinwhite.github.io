@@ -128,3 +128,29 @@ export const experience: ExperienceItem[] = [
     tags: ['Visual Design', 'Brand', 'Prototyping'],
   },
 ];
+
+/** Home tools & technologies block: stacked lines (same scale as hero headline). */
+export const principlesContent: {
+  /** Small caps row above the list, e.g. “Tools & Technologies (12)”. */
+  sectionLabel: string;
+  lines: string[];
+  metaBar: { left: string; center: string };
+} = {
+  sectionLabel: 'Tools & Technologies',
+  lines: [
+    'WCAG standards',
+    'Figma',
+    'Cursor',
+    'Claude code',
+    'GitHub',
+    'UserTesting',
+    'Google analytics',
+    'Adobe creative cloud',
+    'HTML/CSS',
+    'Microsoft office',
+    'Jira',
+    'Confluence',
+    'Miro',
+  ],
+  metaBar: { left: 'SEC.', center: '/D' },
+};
