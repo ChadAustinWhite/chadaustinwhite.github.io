@@ -56,6 +56,11 @@ export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
             </a>
           </li>
           <li>
+            <a href="#technologies" onClick={handleNavClick} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
+              Tools & Technologies
+            </a>
+          </li>
+          <li>
             <a href="#experience" onClick={handleNavClick} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
               Experience
             </a>

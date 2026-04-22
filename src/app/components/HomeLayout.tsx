@@ -2,6 +2,7 @@ import { SiteNav } from './SiteNav';
 import { HeroSection } from './HeroSection';
 import { WorkSection } from './WorkSection';
 import { ExperienceSection } from './ExperienceSection';
+import { PrinciplesSection } from './PrinciplesSection';
 import { Footer } from './Footer';
 import { useHomeScrollBackground } from '../hooks/useHomeScrollBackground';
 import type { CaseStudyRoute } from '../data/portfolioData';
@@ -33,6 +34,7 @@ export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps
           onViewCaseStudy={onViewCaseStudy}
           onRequestAccess={onRequestAccess}
         />
+        <PrinciplesSection />
         <ExperienceSection />
         <Footer />
       </main>
