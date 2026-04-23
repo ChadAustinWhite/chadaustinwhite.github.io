@@ -1,5 +1,4 @@
 import { Accessibility } from 'lucide-react';
-import React from 'react';
 import { SectionWrap } from './SectionWrap';
 import { principlesContent } from '../data/portfolioData';
 import { EMAIL } from '../data/contact';
@@ -11,7 +10,7 @@ const lineTextClass =
 const tallyClass =
   'hidden md:inline ml-[0.08em] align-super text-[0.28em] font-normal tracking-[-0.025em] text-[var(--ink)] no-underline';
 
-/** Per-word underline aligned with hero “Chad” treatment. */
+/** Underline the whole phrase so it remains continuous across spaces. */
 const wordUnderlineClass =
   'underline decoration-2 underline-offset-4 decoration-[var(--ink)]';
 
@@ -33,12 +32,7 @@ export function PrinciplesSection() {
             return (
               <li key={`${index}-${line}`} className="m-0 p-0">
                 <p className={lineTextClass}>
-                  {line.split(/\s+/).filter(Boolean).map((word, wi) => (
-                    <React.Fragment key={`${wi}-${word}`}>
-                      {wi > 0 ? ' ' : null}
-                      <span className={wordUnderlineClass}>{word}</span>
-                    </React.Fragment>
-                  ))}
+                  <span className={wordUnderlineClass}>{line}</span>
                   <span aria-hidden="true" className={tallyClass}>
                     /{tally}
                   </span>
