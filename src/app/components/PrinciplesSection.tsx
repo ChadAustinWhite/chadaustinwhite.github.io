@@ -9,7 +9,7 @@ const lineTextClass =
   'm-0 w-full max-w-none text-left text-[clamp(34px,5vw,64px)] font-normal leading-[1.08] tracking-[-0.025em] text-[var(--ink)]';
 
 const tallyClass =
-  'ml-[0.08em] align-super text-[0.28em] font-normal tracking-[-0.025em] text-[var(--ink)] no-underline';
+  'hidden md:inline ml-[0.08em] align-super text-[0.28em] font-normal tracking-[-0.025em] text-[var(--ink)] no-underline';
 
 /** Per-word underline aligned with hero “Chad” treatment. */
 const wordUnderlineClass =
