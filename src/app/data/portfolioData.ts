@@ -77,7 +77,7 @@ export const experience: ExperienceItem[] = [
     company: 'Global Payments',
     role: 'Principal UX Designer (Contract)',
     detail:
-      'Led UX strategy for Risk products, redesigned key workflows, improved fraud investigation efficiency, aligned cross-functional teams, and delivered scalable, user-centered design systems.',
+      'Led UX strategy for risk products, redesigned key workflows, improved fraud investigation efficiency, aligned cross-functional teams, and delivered scalable, user-centered design systems.',
     period: 'Apr 2024 – Present',
     logoText: 'GP',
     tags: ['UX Design', 'Product Design', 'Prototyping', 'Design Systems'],
