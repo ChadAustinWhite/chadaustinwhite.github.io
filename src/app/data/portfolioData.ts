@@ -75,7 +75,7 @@ export interface ExperienceItem {
 export const experience: ExperienceItem[] = [
   {
     company: 'Global Payments',
-    role: 'Senior UX Designer (Contract)',
+    role: 'Principal UX Designer (Contract)',
     detail:
       'Led UX strategy for Risk products, redesigned key workflows, improved fraud investigation efficiency, aligned cross-functional teams, and delivered scalable, user-centered design systems.',
     period: 'Apr 2024 – Present',
