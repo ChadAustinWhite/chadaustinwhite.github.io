@@ -32,8 +32,10 @@ export function ProjectCard({ project, onViewCaseStudy, onRequestAccess }: Proje
         <img
           src={project.image}
           alt={project.imageAlt}
+          sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
           loading="lazy"
-          className={`h-full w-full bg-[var(--bg)] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${fit === 'contain' ? 'object-contain object-center' : 'object-cover group-hover:scale-[1.03]'}`}
+          decoding="async"
+          className={`h-full w-full bg-[var(--bg)] [transform:translateZ(0)] [image-rendering:auto] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] motion-reduce:transition-none ${fit === 'contain' ? 'object-contain object-center' : 'object-cover group-hover:scale-[1.03]'}`}
         />
       </div>
       <div className="p-5 md:px-9 md:py-7 md:pb-8">
