@@ -1,8 +1,8 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
-import worldpayMerchantOnboardingHero from '../../../assets/worldpay-merchant-onboarding.png';
+import disputesHeroImage from '../../../assets/worldpay-merchant-onboarding.png';
 
 export const worldpayMerchantOnboardingContent: CaseStudyContent = {
-  title: 'Worldpay Merchant Onboarding',
+  title: 'Worldpay Disputes Experience',
   meta: {
     organization: 'Worldpay',
     role: 'Lead UX Designer',
@@ -28,11 +28,13 @@ export const worldpayMerchantOnboardingContent: CaseStudyContent = {
     },
   ],
   statement:
-    'Worldpay Merchant Onboarding — A guided onboarding experience that feels clear, secure, and fast while enforcing security compliance.',
+    'Worldpay Disputes Experience — A dashboard that surfaces case strength, deadlines, and next steps so merchants can respond with clarity and confidence.',
   heroIntro:
     'We rebuilt Worldpay’s merchant onboarding journey from the ground up, turning a fragmented, compliance-heavy process into a guided experience that feels clear, secure, and fast.',
-  images: worldpayMerchantOnboardingHero,
+  images: disputesHeroImage,
   heroImageObjectFit: 'contain',
+  heroIntrinsicWidthPx: 1024,
+  heroIntrinsicHeightPx: 575,
   challenge: {
     heading: 'The Challenge',
     paragraphs: [

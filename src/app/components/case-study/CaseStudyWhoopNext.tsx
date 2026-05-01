@@ -39,12 +39,14 @@ export function CaseStudyWhoopNext({ relatedProjects, onViewCaseStudy }: CaseStu
                 key={project.caseStudyRoute}
                 className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]"
               >
-                <div className="aspect-[16/10] w-full overflow-hidden">
-                  <ImageWithFallback
-                    src={project.image}
-                    alt={project.imageAlt}
-                    className="h-full w-full object-cover"
-                  />
+                <div className="aspect-[16/10] w-full overflow-hidden bg-[var(--border)]">
+                  {project.image ? (
+                    <ImageWithFallback
+                      src={project.image}
+                      alt={project.imageAlt ?? ''}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : null}
                 </div>
                 <div className="p-5 md:p-6">
                   <h3 className="mb-2 text-[15px] font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[17px]">

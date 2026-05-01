@@ -21,22 +21,55 @@ function ArrowIcon() {
 }
 
 export function ProjectCard({ project, onViewCaseStudy, onRequestAccess }: ProjectCardProps) {
+  const hasMockup = Boolean(project.image);
   const fit = project.imageObjectFit ?? 'cover';
-  const mediaBg = fit === 'contain' ? 'bg-[var(--bg)]' : 'bg-[var(--border)]';
+  /** Standard tiles use `--border`; charcoal contrasts light UI mocks in `contain` mode. */
+  const mediaBg =
+    project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2a2a2a]' : 'bg-[var(--border)]';
+  const intrinsicW = project.imageIntrinsicWidthPx;
+  const intrinsicH = project.imageIntrinsicHeightPx;
+  const cappedContain = hasMockup && fit === 'contain' && intrinsicW != null;
+
+  const imgSizingClass = cappedContain
+    ? 'h-auto w-auto max-h-full bg-transparent object-contain [image-rendering:auto]'
+    : `h-full w-full bg-[var(--bg)] [transform:translateZ(0)] [image-rendering:auto] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] motion-reduce:transition-none ${
+        fit === 'contain' ? 'object-contain object-center' : 'object-cover group-hover:scale-[1.03]'
+      }`;
 
   return (
     <article className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
       <div
         className={`grid grid-cols-1 gap-0.5 overflow-hidden ${mediaBg} [aspect-ratio:16/9] md:[aspect-ratio:16/9]`}
       >
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
-          loading="lazy"
-          decoding="async"
-          className={`h-full w-full bg-[var(--bg)] [transform:translateZ(0)] [image-rendering:auto] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] motion-reduce:transition-none ${fit === 'contain' ? 'object-contain object-center' : 'object-cover group-hover:scale-[1.03]'}`}
-        />
+        {!hasMockup ? (
+          <div className="h-full min-h-0 w-full" aria-hidden />
+        ) : cappedContain ? (
+          <div className="flex h-full min-h-0 w-full items-center justify-center">
+            <img
+              src={project.image}
+              alt={project.imageAlt ?? ''}
+              width={intrinsicW}
+              height={intrinsicH ?? undefined}
+              loading="lazy"
+              decoding="async"
+              sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+              style={{
+                maxWidth: `min(100%, ${intrinsicW}px)`,
+                maxHeight: '100%',
+              }}
+              className={imgSizingClass}
+            />
+          </div>
+        ) : (
+          <img
+            src={project.image}
+            alt={project.imageAlt ?? ''}
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+            className={imgSizingClass}
+          />
+        )}
       </div>
       <div className="p-5 md:px-9 md:py-7 md:pb-8">
         <div className="mb-2 flex items-start justify-between">
