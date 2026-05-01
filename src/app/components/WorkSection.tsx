@@ -49,7 +49,7 @@ interface WorkSectionProps {
 }
 
 export function WorkSection({ onViewCaseStudy, onRequestAccess }: WorkSectionProps) {
-  const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('grid');
+  const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('stack');
 
   return (
     <SectionWrap
@@ -77,9 +77,11 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess }: WorkSectionPro
         </div>
       </div>
       <div
-        className={`flex flex-col gap-6 ${
-          displayMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2' : ''
-        }`}
+        className={
+          displayMode === 'grid'
+            ? 'grid grid-cols-1 gap-6 md:grid-cols-2'
+            : 'flex flex-col gap-6'
+        }
       >
         {projects.map((project) => (
           <ProjectCard

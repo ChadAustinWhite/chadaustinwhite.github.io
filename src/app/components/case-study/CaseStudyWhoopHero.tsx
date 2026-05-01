@@ -111,11 +111,20 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
       {/* Below dark block: hero image and project overview */}
       <div className="px-[var(--cs-page-gutter)] pb-12 md:pb-16" style={{ background: 'var(--bg)' }}>
         {content.heroImageObjectFit === 'contain' ? (
-          <div className="w-full bg-[var(--bg)]">
+          <div className="flex w-full justify-center bg-[var(--border)]">
             <img
               src={getHeroImageSrc(content)}
               alt=""
-              className="block h-auto w-full max-w-full"
+              width={content.heroIntrinsicWidthPx}
+              height={content.heroIntrinsicHeightPx}
+              decoding="async"
+              sizes="100vw"
+              className="block h-auto w-full max-w-full [image-rendering:auto]"
+              style={
+                content.heroIntrinsicWidthPx != null
+                  ? { maxWidth: `min(100%, ${content.heroIntrinsicWidthPx}px)` }
+                  : undefined
+              }
             />
           </div>
         ) : (

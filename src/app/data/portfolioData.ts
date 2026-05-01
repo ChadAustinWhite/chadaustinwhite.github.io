@@ -1,7 +1,5 @@
 import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAdPortalImage from '../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
-import galileoImage from '../../assets/b191d448183cfac9582921f3ab94a468cb1b029a.png';
-import worldpayMerchantOnboardingImage from '../../assets/worldpay-merchant-onboarding.png';
 
 export type CaseStudyRoute =
   | 'case-study-expedia-accelerator'
@@ -13,27 +11,27 @@ export interface ProjectItem {
   title: string;
   description: string;
   period: string;
-  image: string;
-  imageAlt: string;
+  /** Omit when the tile has no screenshot (matte frame only). */
+  image?: string;
+  imageAlt?: string;
   caseStudyRoute: CaseStudyRoute;
   /** When true, case study is not available; show "Request Access" and do not link. */
   comingSoon?: boolean;
   /** `contain` = full image visible in the tile; `cover` = fill 16:9 (default). */
   imageObjectFit?: 'cover' | 'contain';
+  /**
+   * With `contain`, caps max CSS width to these pixel values (usually = source PNG dimensions).
+   * Prevents upscale past the raster’s native resolution—keeps dense UI typography sharp on large viewports / HiDPI.
+   */
+  imageIntrinsicWidthPx?: number;
+  imageIntrinsicHeightPx?: number;
+  /**
+   * `charcoal`: dark matte behind `contain` mockups so light UI contrasts (Expedia thumbnails use standard border tone).
+   */
+  imageMediaMatteTone?: 'default' | 'charcoal';
 }
 
 export const projects: ProjectItem[] = [
-  {
-    title: 'Worldpay Merchant Onboarding',
-    description: 'Access Control & Security Compliance',
-    period: '2024–2025',
-    image: worldpayMerchantOnboardingImage,
-    imageAlt:
-      'Worldpay Merchant Onboarding — Kinetic welcome screen with progress, mobile and email fields, authorization and terms checkboxes, and security copy on a white card over a soft gradient',
-    caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
-    comingSoon: true,
-    imageObjectFit: 'contain',
-  },
   {
     title: 'Expedia Group Accelerator',
     description: 'Campaign launch and tracking',
@@ -50,15 +48,6 @@ export const projects: ProjectItem[] = [
     image: expediaAdPortalImage,
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
     caseStudyRoute: 'case-study-expedia-ad-portal',
-    comingSoon: true,
-  },
-  {
-    title: 'Worldpay SSO Management',
-    description: 'Identity access and security',
-    period: '2025',
-    image: galileoImage,
-    imageAlt: 'Worldpay SSO Management — identity access and security',
-    caseStudyRoute: 'case-study-worldpay-sso',
     comingSoon: true,
   },
 ];

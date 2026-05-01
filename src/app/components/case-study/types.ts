@@ -185,6 +185,9 @@ export interface CaseStudyContent {
   images: string | string[];
   /** When `contain`, hero image is uncropped (`w-full` / intrinsic height). Otherwise fixed block + `object-cover`. */
   heroImageObjectFit?: 'cover' | 'contain';
+  /** With `contain`, avoids upscaling past native raster width / height (set to PNG pixel dimensions). */
+  heroIntrinsicWidthPx?: number;
+  heroIntrinsicHeightPx?: number;
   /** EA-style narrative sections */
   challenge?: {
     heading: string;
