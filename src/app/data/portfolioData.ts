@@ -29,7 +29,7 @@ export const projects: ProjectItem[] = [
     period: '2024–2025',
     image: worldpayMerchantOnboardingImage,
     imageAlt:
-      'Worldpay Merchant Onboarding — Kinetic mobile onboarding on a soft gradient with contact fields and consent checkboxes',
+      'Worldpay Merchant Onboarding — Kinetic welcome screen with progress, mobile and email fields, authorization and terms checkboxes, and security copy on a white card over a soft gradient',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
     imageObjectFit: 'contain',
