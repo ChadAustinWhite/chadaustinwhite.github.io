@@ -42,10 +42,6 @@ export const projects: ProjectItem[] = [
     image: worldpayMerchantOnboardingCardImage,
     imageAlt:
       'Kinetic merchant onboarding welcome — phone and email fields, terms agreement, security note, and continue',
-    imageObjectFit: 'contain',
-    imageIntrinsicWidthPx: 4101,
-    imageIntrinsicHeightPx: 2568,
-    imageMediaMatteTone: 'charcoal',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
   },
