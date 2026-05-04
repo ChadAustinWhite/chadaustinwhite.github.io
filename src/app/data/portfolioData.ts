@@ -43,8 +43,8 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Kinetic merchant onboarding welcome — phone and email fields, terms agreement, security note, and continue',
     imageObjectFit: 'contain',
-    imageIntrinsicWidthPx: 1024,
-    imageIntrinsicHeightPx: 641,
+    imageIntrinsicWidthPx: 4101,
+    imageIntrinsicHeightPx: 2568,
     imageMediaMatteTone: 'charcoal',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
