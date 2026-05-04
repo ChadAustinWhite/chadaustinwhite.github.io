@@ -49,7 +49,7 @@ interface WorkSectionProps {
 }
 
 export function WorkSection({ onViewCaseStudy, onRequestAccess }: WorkSectionProps) {
-  const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('stack');
+  const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('grid');
 
   return (
     <SectionWrap
