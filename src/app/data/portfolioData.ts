@@ -1,7 +1,9 @@
 import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAdPortalImage from '../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
+import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
 
 export type CaseStudyRoute =
+  | 'case-study-worldpay-disputes'
   | 'case-study-expedia-accelerator'
   | 'case-study-expedia-ad-portal'
   | 'case-study-worldpay-merchant-onboarding'
@@ -32,6 +34,16 @@ export interface ProjectItem {
 }
 
 export const projects: ProjectItem[] = [
+  {
+    title: 'Worldpay Disputes Experience',
+    description: 'Dispute intake, investigation, and resolution',
+    period: '2026',
+    image: worldpayDisputesImage,
+    imageAlt:
+      'Worldpay Dashboard — Disputes case detail with case analysis, win probability, and submit information',
+    caseStudyRoute: 'case-study-worldpay-disputes',
+    comingSoon: true,
+  },
   {
     title: 'Expedia Group Accelerator',
     description: 'Campaign launch and tracking',

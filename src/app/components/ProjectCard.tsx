@@ -72,14 +72,13 @@ export function ProjectCard({ project, onViewCaseStudy, onRequestAccess }: Proje
         )}
       </div>
       <div className="p-5 md:px-9 md:py-7 md:pb-8">
-        <div className="mb-2 flex items-start justify-between">
-          <div className="flex-1" />
-          <span className="flex-shrink-0 text-xs text-[var(--ink-muted)]">{project.period}</span>
-        </div>
         <div className="mb-2 flex items-baseline justify-between gap-4">
-          <h3 className="text-lg font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[22px]">
+          <h3 className="min-w-0 flex-1 text-lg font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[22px]">
             {project.title}
           </h3>
+          <span className="flex-shrink-0 text-xs leading-none text-[var(--ink-muted)] tabular-nums">
+            {project.period}
+          </span>
         </div>
         <p className="mb-6 max-w-[640px] text-sm leading-relaxed text-[var(--ink-muted)] md:mb-6">
           {project.description}
