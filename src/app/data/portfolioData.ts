@@ -35,6 +35,15 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
+    title: 'Expedia Group Accelerator',
+    description: 'Campaign launch and tracking',
+    period: '2023–2025',
+    image: expediaAcceleratorImage,
+    imageAlt: 'Expedia Group Accelerator — campaign creation and performance dashboard',
+    caseStudyRoute: 'case-study-expedia-accelerator',
+    comingSoon: true,
+  },
+  {
     title: 'Worldpay Disputes Experience',
     description: 'Dispute intake, investigation, and resolution',
     period: '2026',
@@ -42,15 +51,6 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Worldpay Dashboard — Disputes case detail with case analysis, win probability, and submit information',
     caseStudyRoute: 'case-study-worldpay-disputes',
-    comingSoon: true,
-  },
-  {
-    title: 'Expedia Group Accelerator',
-    description: 'Campaign launch and tracking',
-    period: '2023–2025',
-    image: expediaAcceleratorImage,
-    imageAlt: 'Expedia Group Accelerator — campaign creation and performance dashboard',
-    caseStudyRoute: 'case-study-expedia-accelerator',
     comingSoon: true,
   },
   {
