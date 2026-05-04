@@ -19,6 +19,7 @@ import {
 } from './CaseStudySectionBrandContext';
 
 const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
+  'case-study-worldpay-disputes',
   'case-study-expedia-accelerator',
   'case-study-expedia-ad-portal',
   'case-study-worldpay-merchant-onboarding',

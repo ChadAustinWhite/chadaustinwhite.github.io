@@ -126,6 +126,14 @@ export default function App() {
           currentRoute="case-study-worldpay-sso"
           onViewCaseStudy={handleViewCaseStudy}
         />
+      ) : currentPage === 'case-study-worldpay-disputes' ? (
+        <CaseStudyPlaceholder
+          title="Worldpay Disputes Experience"
+          onBack={handleBackFromCaseStudy}
+          onNavigateHome={handleBackFromCaseStudy}
+          currentRoute="case-study-worldpay-disputes"
+          onViewCaseStudy={handleViewCaseStudy}
+        />
       ) : null}
 
       {requestAccessRoute ? (
