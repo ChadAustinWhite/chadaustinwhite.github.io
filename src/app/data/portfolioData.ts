@@ -50,7 +50,8 @@ export const projects: ProjectItem[] = [
     description: 'Campaign launch and tracking',
     period: '2023–2025',
     image: expediaAcceleratorImage,
-    imageAlt: 'Expedia Group Accelerator — campaign creation and performance dashboard',
+    imageAlt:
+      'Expedia Group Partner Central — Performance and market trends, competitive set comparison, revenue and ADR summary',
     caseStudyRoute: 'case-study-expedia-accelerator',
     comingSoon: true,
   },
