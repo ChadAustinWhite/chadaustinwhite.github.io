@@ -33,6 +33,14 @@ html.home-canvas-drive .home-main-canvas {
   transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1), ease-out;
 }
 
+/* Project-card hover: slightly snappier canvas transition than scroll gradient. */
+html.home-canvas-interactive,
+html.home-canvas-interactive body,
+html.home-canvas-interactive .home-main-canvas,
+html.home-canvas-interactive .site-nav-surface {
+  transition: background-color 0.55s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html,
   body {

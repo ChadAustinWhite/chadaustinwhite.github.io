@@ -4,6 +4,8 @@ interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
   onRequestAccess: (route: ProjectItem['caseStudyRoute']) => void;
+  onHoverStart?: () => void;
+  onHoverEnd?: () => void;
 }
 
 function ArrowIcon() {
@@ -20,7 +22,13 @@ function ArrowIcon() {
   );
 }
 
-export function ProjectCard({ project, onViewCaseStudy, onRequestAccess }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  onViewCaseStudy,
+  onRequestAccess,
+  onHoverStart,
+  onHoverEnd,
+}: ProjectCardProps) {
   const hasMockup = Boolean(project.image);
   const fit = project.imageObjectFit ?? 'cover';
   /** Standard tiles use `--border`; charcoal contrasts light UI mocks in `contain` mode. */
@@ -37,7 +45,11 @@ export function ProjectCard({ project, onViewCaseStudy, onRequestAccess }: Proje
       }`;
 
   return (
-    <article className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]">
+    <article
+      className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]"
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
+    >
       <div
         className={`grid grid-cols-1 gap-0.5 overflow-hidden ${mediaBg} [aspect-ratio:16/9] md:[aspect-ratio:16/9]`}
       >
