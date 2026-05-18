@@ -3,16 +3,60 @@
  * Theme is controlled by data-theme on <html> (e.g. next-themes with attribute="data-theme").
  */
 :root {
-  --bg: #f2f2f0;
-  --ink: #1c1c1a;
-  --ink-muted: #6b6b65;
-  --border: #d8d8d2;
-  --card-bg: #ffffff;
-  --accent: #1c1c1a;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  /* Warm editorial palette (danrohr.com/work) */
+  --bg: #f5f4f0;
+  --ink: #2d2d2d;
+  --ink-hover: #454545;
+  /* #636363 ≈ 5.2:1 on #efeeea, 5.5:1 on #f5f4f0 (WCAG AA normal text) */
+  --ink-muted: #636363;
+  /* Decorative separators only (aria-hidden); not for body copy */
+  --ink-subtle: #8a8a8a;
+  --border: #e8e7e3;
+  --card-bg: #efeeea;
+  --card-bg-hover: #fdfdfc;
+  --nav-pill-bg: #e8e7e3;
+  --accent: #2d2d2d;
   --logo-filter: invert(0);
-  --nav-bg: #f2f2f0;
+  --nav-bg: #f5f4f0;
+  --home-canvas-base: #f5f4f0;
+  --experience-card-surface: #efeeea;
+  --experience-card-ink: #2d2d2d;
+  --experience-card-ink-muted: #636363;
+  --experience-card-border: #e8e7e3;
+  --experience-tag-bg: #e8e7e3;
+  --experience-section-label: #636363;
   /** Horizontal page gutter (home + default); case studies override below. */
   --cs-page-gutter: 1.25rem;
+}
+
+/* Homepage: always use warm editorial palette (matches reference), even in dark mode. */
+html:has(.home-main-canvas) {
+  --bg: #f5f4f0;
+  --ink: #2d2d2d;
+  --ink-hover: #454545;
+  /* #636363 ≈ 5.2:1 on #efeeea, 5.5:1 on #f5f4f0 (WCAG AA normal text) */
+  --ink-muted: #636363;
+  /* Decorative separators only (aria-hidden); not for body copy */
+  --ink-subtle: #8a8a8a;
+  --border: #e8e7e3;
+  --card-bg: #efeeea;
+  --card-bg-hover: #fdfdfc;
+  --nav-pill-bg: #e8e7e3;
+  --nav-bg: #f5f4f0;
+  --home-canvas-base: #f5f4f0;
+  --experience-card-surface: #efeeea;
+  --experience-card-ink: #2d2d2d;
+  --experience-card-ink-muted: #636363;
+  --experience-card-border: #e8e7e3;
+  --experience-tag-bg: #e8e7e3;
+  --experience-section-label: #636363;
+  color-scheme: light;
+}
+
+html:has(.home-main-canvas),
+html:has(.home-main-canvas) body {
+  background-color: var(--home-canvas, var(--home-canvas-base)) !important;
 }
 
 @media (min-width: 768px) {
@@ -22,14 +66,19 @@
 }
 
 [data-theme="dark"] {
-  --bg: #111110;
-  --ink: #f0f0ee;
-  --ink-muted: #8a8a82;
-  --border: #2a2a28;
-  --card-bg: #1c1c1a;
-  --accent: #f0f0ee;
+  --bg: #1c1c1a;
+  --ink: #f5f4f0;
+  --ink-hover: #d8d8d6;
+  /* #b8b8b8 ≈ 7.1:1 on #1c1c1a (WCAG AA) */
+  --ink-muted: #b8b8b8;
+  --ink-subtle: #949494;
+  --border: #3a3936;
+  --card-bg: #2a2926;
+  --card-bg-hover: #353432;
+  --nav-pill-bg: #353432;
+  --accent: #f5f4f0;
   --logo-filter: invert(1);
-  --nav-bg: #111110;
+  --nav-bg: #1c1c1a;
 }
 
 /* Typography scale (rem-based, WCAG AA–friendly) */
@@ -48,14 +97,26 @@ section[id] {
   scroll-margin-top: 80px;
 }
 
-/* Case study pages: Hoodzpah-inspired warm editorial palette */
+.serif-headline {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+/* Case study pages: same warm editorial palette as homepage */
 [data-case-study] {
-  --bg: #f5f3ef;
-  --ink: #1c1b19;
-  --ink-muted: #6b6760;
-  --border: #e0ddd6;
-  --card-bg: #faf8f5;
-  --nav-bg: #f5f3ef;
+  --bg: #f5f4f0;
+  --ink: #2d2d2d;
+  --ink-hover: #454545;
+  /* #636363 ≈ 5.2:1 on #efeeea, 5.5:1 on #f5f4f0 (WCAG AA normal text) */
+  --ink-muted: #636363;
+  /* Decorative separators only (aria-hidden); not for body copy */
+  --ink-subtle: #8a8a8a;
+  --border: #e8e7e3;
+  --card-bg: #efeeea;
+  --card-bg-hover: #fdfdfc;
+  --nav-pill-bg: #e8e7e3;
+  --nav-bg: #f5f4f0;
   --cs-hero-bg: #1a1917;
   /**
    * Case-study horizontal rhythm (~ BASIC/DEPT case studies such as Prisoner Wine):
@@ -83,27 +144,34 @@ section[id] {
 }
 
 html[data-theme="dark"] [data-case-study] {
-  --bg: #1a1917;
-  --ink: #f2f0ec;
-  --ink-muted: #9c9890;
-  --border: #2e2c29;
-  --card-bg: #22201d;
-  --nav-bg: #1a1917;
-  --cs-hero-bg: #1a1917;
+  --bg: #f5f4f0;
+  --ink: #2d2d2d;
+  --ink-hover: #454545;
+  /* #636363 ≈ 5.2:1 on #efeeea, 5.5:1 on #f5f4f0 (WCAG AA normal text) */
+  --ink-muted: #636363;
+  /* Decorative separators only (aria-hidden); not for body copy */
+  --ink-subtle: #8a8a8a;
+  --border: #e8e7e3;
+  --card-bg: #efeeea;
+  --card-bg-hover: #fdfdfc;
+  --nav-pill-bg: #e8e7e3;
+  --nav-bg: #f5f4f0;
+  --cs-hero-bg: #2d2d2d;
+  color-scheme: light;
 }
 
-/* Home: primary nav name matches dark ink on cream canvas (see useHomeScrollBackground). */
+/* Home: primary nav name matches ink on warm canvas (see useHomeScrollBackground). */
 html[data-canvas-lift] #site-nav .site-nav-name {
-  color: #0a0b0a;
+  color: #2d2d2d;
 }
 
-/* Home: sage product-card palette when canvas has lifted (see useHomeScrollBackground). */
+/* Home: experience cards lift slightly warmer when scroll canvas shifts. */
 html[data-canvas-lift] #experience {
-  --experience-card-surface: #e3e8e1;
-  --experience-card-ink: #0a0b0a;
-  --experience-card-ink-muted: #616161;
-  --experience-card-border: #c9d1cc;
-  --experience-tag-bg: #d5dcd6;
-  --experience-section-label: #616161;
-  border-top-color: #c9d1cc;
+  --experience-card-surface: #efeeea;
+  --experience-card-ink: #2d2d2d;
+  --experience-card-ink-muted: #636363;
+  --experience-card-border: #e8e7e3;
+  --experience-tag-bg: #e8e7e3;
+  --experience-section-label: #636363;
+  border-top-color: #e8e7e3;
 }

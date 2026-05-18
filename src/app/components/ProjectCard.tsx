@@ -8,6 +8,9 @@ interface ProjectCardProps {
   onHoverEnd?: () => void;
 }
 
+const projectCtaClass =
+  'inline-flex items-center gap-2 rounded-full bg-[var(--nav-pill-bg)] px-4 py-2 text-xs font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[var(--card-bg-hover)] whitespace-nowrap md:px-5 md:text-[13px]';
+
 function ArrowIcon() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
@@ -33,7 +36,7 @@ export function ProjectCard({
   const fit = project.imageObjectFit ?? 'cover';
   /** Standard tiles use `--border`; charcoal contrasts light UI mocks in `contain` mode. */
   const mediaBg =
-    project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2a2a2a]' : 'bg-[var(--border)]';
+    project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2d2d2d]' : 'bg-[var(--border)]';
   const intrinsicW = project.imageIntrinsicWidthPx;
   const intrinsicH = project.imageIntrinsicHeightPx;
   const cappedContain = hasMockup && fit === 'contain' && intrinsicW != null;
@@ -46,7 +49,7 @@ export function ProjectCard({
 
   return (
     <article
-      className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]"
+      className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[background-color,box-shadow,transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--card-bg-hover)] hover:bg-[var(--card-bg-hover)] hover:shadow-[0_8px_32px_rgba(45,45,45,0.06)] dark:hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
     >
@@ -85,7 +88,7 @@ export function ProjectCard({
       </div>
       <div className="p-5 md:px-9 md:py-7 md:pb-8">
         <div className="mb-2 flex items-baseline justify-between gap-4">
-          <h3 className="min-w-0 flex-1 text-lg font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[22px]">
+          <h3 className="serif-headline min-w-0 flex-1 text-lg leading-tight text-[var(--ink)] md:text-[22px]">
             {project.title}
           </h3>
           <span className="flex-shrink-0 text-xs leading-none text-[var(--ink-muted)] tabular-nums">
@@ -100,17 +103,17 @@ export function ProjectCard({
             <button
               type="button"
               onClick={() => onRequestAccess(project.caseStudyRoute)}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity duration-150 hover:opacity-75 whitespace-nowrap"
+              className={projectCtaClass}
             >
-              Request Access
+              Request access
             </button>
           ) : (
             <button
               type="button"
               onClick={() => onViewCaseStudy(project.caseStudyRoute)}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity duration-150 hover:opacity-75 whitespace-nowrap"
+              className={projectCtaClass}
             >
-              View Case Study
+              View case study
               <ArrowIcon />
             </button>
           )}
