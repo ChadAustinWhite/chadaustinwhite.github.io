@@ -15,6 +15,11 @@ export interface ProjectHoverCanvas {
   light: string;
 }
 
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
 export interface ProjectItem {
   title: string;
   description: string;
@@ -39,6 +44,8 @@ export interface ProjectItem {
    * `charcoal`: dark matte behind `contain` mockups so light UI contrasts (Expedia thumbnails use standard border tone).
    */
   imageMediaMatteTone?: 'default' | 'charcoal';
+  /** Two headline stats shown on the project card (label above value). */
+  metrics: [ProjectMetric, ProjectMetric];
 }
 
 export const projects: ProjectItem[] = [
@@ -52,6 +59,10 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
     hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
+    metrics: [
+      { label: 'Onboarding completion', value: '+32%' },
+      { label: 'Time to activate', value: '-40%' },
+    ],
   },
   {
     title: 'Expedia Group Accelerator',
@@ -63,6 +74,10 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-expedia-accelerator',
     comingSoon: true,
     hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
+    metrics: [
+      { label: 'Gross revenue', value: '$300M' },
+      { label: 'Active hotel partners', value: '72.4K' },
+    ],
   },
   {
     title: 'Worldpay Disputes Experience',
@@ -74,6 +89,10 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-worldpay-disputes',
     comingSoon: true,
     hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
+    metrics: [
+      { label: 'Monthly users', value: '50K' },
+      { label: 'Large merchants', value: '50% retention' },
+    ],
   },
   {
     title: 'Expedia Group Ad Portal',
@@ -84,6 +103,10 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-expedia-ad-portal',
     comingSoon: true,
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
+    metrics: [
+      { label: 'Partner markets', value: '12+' },
+      { label: 'Support escalations', value: '-28%' },
+    ],
   },
 ];
 

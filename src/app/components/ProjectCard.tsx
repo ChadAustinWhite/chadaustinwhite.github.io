@@ -93,9 +93,21 @@ export function ProjectCard({
             {project.period}
           </span>
         </div>
-        <p className="mb-6 max-w-[640px] text-sm leading-relaxed text-[var(--ink-muted)] md:mb-6">
+        <p className="mb-5 max-w-[640px] text-sm leading-relaxed text-[var(--ink-muted)] md:mb-5">
           {project.description}
         </p>
+        <dl className="mb-6 grid grid-cols-2 gap-x-8 gap-y-4 md:mb-7">
+          {project.metrics.map((metric) => (
+            <div key={metric.label} className="min-w-0">
+              <dt className="font-mono text-[11px] leading-snug text-[var(--ink-muted)] md:text-xs">
+                {metric.label}
+              </dt>
+              <dd className="mt-1 font-mono text-base font-medium leading-tight tracking-[-0.02em] text-[var(--ink)] tabular-nums md:text-lg">
+                {metric.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
         <div className="flex justify-start">
           {project.comingSoon ? (
             <button

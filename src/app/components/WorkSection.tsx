@@ -5,27 +5,23 @@ import { ProjectCard } from './ProjectCard';
 import { projects } from '../data/portfolioData';
 import type { CaseStudyRoute } from '../data/portfolioData';
 
-/** One full pass of the ticker; duplicated in the DOM for a seamless loop. Terms from Don Norman's design vocabulary (e.g. The Design of Everyday Things). */
-const WORK_PROCESS_LABELS = [
-  'Affordances',
-  'Signifiers',
-  'Mapping',
-  'Feedback',
-  'Constraints',
-  'Discoverability',
-  'Conceptual models',
-  'Visibility',
-  'System image',
-  'Gulf of execution',
-  'Gulf of evaluation',
-  'Forcing functions',
-  'Human-centered design',
+/** One full pass of the ticker; duplicated in the DOM for a seamless loop. */
+const WORK_MARQUEE_LABELS = [
+  'Global Payments',
+  'Expedia Group',
+  'First American Title',
+  'Lexus',
+  'Toyota',
+  'McLaren',
+  'Honda',
+  'Acura',
+  'Alpinestars',
 ] as const;
 
 function WorkProcessMarqueeSegment({ segmentId }: { segmentId: string }) {
   return (
     <span className="inline-flex shrink-0 items-center gap-x-5 px-5 md:gap-x-7 md:px-7">
-      {WORK_PROCESS_LABELS.map((label, i) => (
+      {WORK_MARQUEE_LABELS.map((label, i) => (
         <Fragment key={`${segmentId}-${label}-${i}`}>
           {i > 0 ? (
             <span className="select-none text-[var(--ink-subtle)]" aria-hidden>
@@ -59,7 +55,7 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
       <div
         className="relative -mx-5 mb-8 w-[calc(100%+2.5rem)] min-w-0 overflow-x-hidden md:-mx-10 md:w-[calc(100%+5rem)]"
         role="region"
-        aria-label="Don Norman design concepts"
+        aria-label="Client and brand experience"
       >
         <div className="hero-brands-marquee__track text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           <WorkProcessMarqueeSegment segmentId="a" />
