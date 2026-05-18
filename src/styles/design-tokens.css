@@ -3,6 +3,7 @@
  * Theme is controlled by data-theme on <html> (e.g. next-themes with attribute="data-theme").
  */
 :root {
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   /* Warm editorial palette (danrohr.com/work) */
   --bg: #f5f4f0;
   --ink: #2d2d2d;
@@ -94,6 +95,12 @@ html:has(.home-main-canvas) body {
 /* Section anchor scroll offset for fixed nav */
 section[id] {
   scroll-margin-top: 80px;
+}
+
+.serif-headline {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
 }
 
 /* Case study pages: same warm editorial palette as homepage */

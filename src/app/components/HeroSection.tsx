@@ -5,8 +5,8 @@ export function HeroSection() {
     <section id="about" className="pt-[108px] pb-14 md:pt-36 md:pb-[72px]">
       <div className="max-w-[900px] px-5 md:px-10">
         <h1
-          className="mb-7 font-[family-name:var(--font-serif)] text-[clamp(34px,5vw,64px)] font-normal leading-[1.08] tracking-[-0.03em] text-[var(--ink)]"
-          style={{ marginBottom: "28px", fontFamily: '"Source Serif 4", Georgia, serif' }}
+          className="serif-headline mb-7 text-[clamp(34px,5vw,64px)] leading-[1.08] text-[var(--ink)]"
+          style={{ marginBottom: "28px" }}
         >
           I'm Chad 👋
           <br />

@@ -88,7 +88,7 @@ export function ProjectCard({
       </div>
       <div className="p-5 md:px-9 md:py-7 md:pb-8">
         <div className="mb-2 flex items-baseline justify-between gap-4">
-          <h3 className="min-w-0 flex-1 text-lg font-medium leading-tight tracking-[-0.01em] text-[var(--ink)] md:text-[22px]">
+          <h3 className="serif-headline min-w-0 flex-1 text-lg leading-tight text-[var(--ink)] md:text-[22px]">
             {project.title}
           </h3>
           <span className="flex-shrink-0 text-xs leading-none text-[var(--ink-muted)] tabular-nums">
