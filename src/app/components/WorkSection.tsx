@@ -19,7 +19,6 @@ const WORK_PROCESS_LABELS = [
   'Gulf of execution',
   'Gulf of evaluation',
   'Forcing functions',
-  'Slips and mistakes',
   'Human-centered design',
 ] as const;
 

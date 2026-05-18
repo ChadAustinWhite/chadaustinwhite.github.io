@@ -9,6 +9,7 @@ import {
   worldpayMerchantOnboardingContent,
 } from './data/caseStudies';
 import type { CaseStudyRoute } from './data/portfolioData';
+import { isValidEmail, notifyCaseStudyAccess } from './lib/notifyCaseStudyAccess';
 
 const COMING_SOON_ROUTES: CaseStudyRoute[] = [
   'case-study-worldpay-merchant-onboarding',
@@ -16,13 +17,13 @@ const COMING_SOON_ROUTES: CaseStudyRoute[] = [
 ];
 
 type PageType = 'home' | CaseStudyRoute;
-const ACCESS_PASSWORD = import.meta.env.VITE_CASE_STUDY_ACCESS_PASSWORD ?? 'design';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const [requestAccessRoute, setRequestAccessRoute] = useState<CaseStudyRoute | null>(null);
-  const [passwordInput, setPasswordInput] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [emailInput, setEmailInput] = useState('');
+  const [accessError, setAccessError] = useState('');
+  const [isSubmittingAccess, setIsSubmittingAccess] = useState(false);
 
   const goToRoute = (route: CaseStudyRoute) => {
     setCurrentPage(route);
@@ -36,29 +37,41 @@ export default function App() {
 
   const handleRequestAccess = (route: CaseStudyRoute) => {
     setRequestAccessRoute(route);
-    setPasswordInput('');
-    setPasswordError('');
+    setEmailInput('');
+    setAccessError('');
+    setIsSubmittingAccess(false);
   };
 
   const closeRequestAccessModal = () => {
+    if (isSubmittingAccess) return;
     setRequestAccessRoute(null);
-    setPasswordInput('');
-    setPasswordError('');
+    setEmailInput('');
+    setAccessError('');
   };
 
-  const handleRequestAccessSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleRequestAccessSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!requestAccessRoute) return;
+    if (!requestAccessRoute || isSubmittingAccess) return;
 
-    if (passwordInput === ACCESS_PASSWORD) {
-      const route = requestAccessRoute;
-      closeRequestAccessModal();
-      goToRoute(route);
+    if (!isValidEmail(emailInput)) {
+      setAccessError('Enter a valid email address.');
       return;
     }
 
-    setPasswordError('Incorrect password. Please try again.');
-    setPasswordInput('');
+    setIsSubmittingAccess(true);
+    setAccessError('');
+
+    try {
+      await notifyCaseStudyAccess(emailInput, requestAccessRoute);
+      const route = requestAccessRoute;
+      setRequestAccessRoute(null);
+      setEmailInput('');
+      setIsSubmittingAccess(false);
+      goToRoute(route);
+    } catch {
+      setAccessError('Could not send your request. Please try again in a moment.');
+      setIsSubmittingAccess(false);
+    }
   };
 
   const handleBackFromCaseStudy = () => {
@@ -156,38 +169,44 @@ export default function App() {
               Request Access
             </h2>
             <p className="mt-4 text-[15px] leading-[1.65] text-[var(--ink-muted)]">
-              Enter the case study password to continue.
+              Enter your email to request access to this case study.
             </p>
 
             <form className="mt-6 space-y-4" onSubmit={handleRequestAccessSubmit}>
               <input
-                type="password"
-                value={passwordInput}
+                type="email"
+                name="email"
+                autoComplete="email"
+                value={emailInput}
                 onChange={(e) => {
-                  setPasswordInput(e.target.value);
-                  setPasswordError('');
+                  setEmailInput(e.target.value);
+                  setAccessError('');
                 }}
-                placeholder="Password"
+                placeholder="Email"
                 autoFocus
-                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--ink)]"
+                required
+                disabled={isSubmittingAccess}
+                className="w-full rounded-xl border border-[var(--border)] bg-[var(--bg)] px-4 py-3 text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--ink)] disabled:opacity-60"
               />
-              {passwordError ? (
-                <p className="text-sm text-red-500">{passwordError}</p>
+              {accessError ? (
+                <p className="text-sm text-red-500">{accessError}</p>
               ) : null}
 
               <div className="flex items-center justify-end gap-3 pt-2">
                 <button
                   type="button"
                   onClick={closeRequestAccessModal}
-                  className="rounded-full border border-[var(--border)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--ink-muted)] transition-opacity hover:opacity-75"
+                  disabled={isSubmittingAccess}
+                  className="rounded-full border border-[var(--border)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--ink-muted)] transition-opacity hover:opacity-75 disabled:opacity-50"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="rounded-full bg-[var(--ink)] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity hover:opacity-75"
+                  disabled={isSubmittingAccess}
+                  className="rounded-full bg-[var(--ink)] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity hover:opacity-75 disabled:opacity-50"
                 >
-                  Unlock
+                  {isSubmittingAccess ? 'Sending…' : 'Unlock'}
                 </button>
               </div>
             </form>
