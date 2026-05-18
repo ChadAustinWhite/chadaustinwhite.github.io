@@ -8,6 +8,9 @@ interface ProjectCardProps {
   onHoverEnd?: () => void;
 }
 
+const projectCtaClass =
+  'inline-flex items-center gap-2 rounded-full bg-[var(--nav-pill-bg)] px-4 py-2 text-xs font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[var(--card-bg-hover)] whitespace-nowrap md:px-5 md:text-[13px]';
+
 function ArrowIcon() {
   return (
     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
@@ -100,17 +103,17 @@ export function ProjectCard({
             <button
               type="button"
               onClick={() => onRequestAccess(project.caseStudyRoute)}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-colors duration-150 hover:bg-[var(--ink-hover)] whitespace-nowrap"
+              className={projectCtaClass}
             >
-              Request Access
+              Request access
             </button>
           ) : (
             <button
               type="button"
               onClick={() => onViewCaseStudy(project.caseStudyRoute)}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-colors duration-150 hover:bg-[var(--ink-hover)] whitespace-nowrap"
+              className={projectCtaClass}
             >
-              View Case Study
+              View case study
               <ArrowIcon />
             </button>
           )}
