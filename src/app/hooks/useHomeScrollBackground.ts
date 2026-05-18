@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 const HOME_CANVAS_BASE = '#f5f4f0';
+const HOME_CANVAS_DARK = '#1c1c1a';
 
 function applyCanvasColor(color: string) {
   const root = document.documentElement;
@@ -19,9 +20,9 @@ function clearCanvas() {
 }
 
 /**
- * Homepage canvas: warm cream base (#f5f4f0) or a project-card hover tint.
+ * Homepage canvas: warm cream by default; switches to dark mode while a project card is hovered.
  */
-export function useHomeScrollBackground(hoverCanvasColor: string | null) {
+export function useHomeScrollBackground(isCardHovered: boolean) {
   useEffect(() => {
     document.documentElement.classList.add('home-canvas-interactive');
     return () => {
@@ -31,27 +32,28 @@ export function useHomeScrollBackground(hoverCanvasColor: string | null) {
 
   useEffect(() => {
     const root = document.documentElement;
+    if (isCardHovered) {
+      root.classList.add('home-card-dark');
+    } else {
+      root.classList.remove('home-card-dark');
+    }
+    return () => root.classList.remove('home-card-dark');
+  }, [isCardHovered]);
+
+  useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (reducedMotion && !hoverCanvasColor) {
+    if (reducedMotion && !isCardHovered) {
       clearCanvas();
       applyCanvasColor(HOME_CANVAS_BASE);
       return;
     }
 
-    root.classList.add('home-canvas-drive');
-
-    if (hoverCanvasColor) {
-      applyCanvasColor(hoverCanvasColor);
-      return () => {
-        applyCanvasColor(HOME_CANVAS_BASE);
-      };
-    }
-
-    applyCanvasColor(HOME_CANVAS_BASE);
+    document.documentElement.classList.add('home-canvas-drive');
+    applyCanvasColor(isCardHovered ? HOME_CANVAS_DARK : HOME_CANVAS_BASE);
 
     return () => {
       clearCanvas();
     };
-  }, [hoverCanvasColor]);
+  }, [isCardHovered]);
 }
