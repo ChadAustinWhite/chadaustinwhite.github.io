@@ -65,11 +65,6 @@ export function SiteNav({ onNavigateHome, isHome = false }: SiteNavProps = {}) {
               Work
             </a>
           </li>
-          <li>
-            <a href="#experience" onClick={handleNavClick} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
-              Experience
-            </a>
-          </li>
           <li className="hidden md:list-item">
             <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)]">
               LinkedIn

@@ -49,7 +49,7 @@ export function ProjectCard({
 
   return (
     <article
-      className="group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[background-color,box-shadow,transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--card-bg-hover)] hover:bg-[var(--card-bg-hover)] hover:shadow-[0_8px_32px_rgba(45,45,45,0.06)] dark:hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+      className="project-card group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[background-color,box-shadow,transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--card-bg-hover)] hover:bg-[var(--card-bg-hover)] hover:shadow-[0_8px_32px_rgba(45,45,45,0.06)]"
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
     >
