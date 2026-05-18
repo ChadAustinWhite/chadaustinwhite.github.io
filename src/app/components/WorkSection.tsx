@@ -46,9 +46,10 @@ function WorkProcessMarqueeSegment({ segmentId }: { segmentId: string }) {
 interface WorkSectionProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
   onRequestAccess: (route: CaseStudyRoute) => void;
+  onProjectHover: (route: CaseStudyRoute | null) => void;
 }
 
-export function WorkSection({ onViewCaseStudy, onRequestAccess }: WorkSectionProps) {
+export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }: WorkSectionProps) {
   const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('grid');
 
   return (
@@ -89,6 +90,8 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess }: WorkSectionPro
             project={project}
             onViewCaseStudy={onViewCaseStudy}
             onRequestAccess={onRequestAccess}
+            onHoverStart={() => onProjectHover(project.caseStudyRoute)}
+            onHoverEnd={() => onProjectHover(null)}
           />
         ))}
       </div>

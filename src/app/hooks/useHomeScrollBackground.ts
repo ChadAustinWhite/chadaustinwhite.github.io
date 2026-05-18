@@ -5,6 +5,13 @@ import { useTheme } from 'next-themes';
 const CANVAS_START = '#000000';
 const CANVAS_END = '#2a2a2a';
 
+function applyCanvasColor(color: string) {
+  const root = document.documentElement;
+  root.style.setProperty('--home-canvas', color);
+  root.style.backgroundColor = color;
+  document.body.style.backgroundColor = color;
+}
+
 function clearCanvas() {
   const root = document.documentElement;
   root.classList.remove('home-canvas-drive');
@@ -34,7 +41,7 @@ function blendHexColor(startHex: string, endHex: string, t: number): string {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-function resolveCanvasColor(): string {
+function resolveScrollCanvasColor(): string {
   const vh = window.innerHeight || 1;
   const maxScroll = document.documentElement.scrollHeight - vh;
   if (maxScroll <= 0) return CANVAS_START;
@@ -45,29 +52,48 @@ function resolveCanvasColor(): string {
 }
 
 /**
- * Dark theme only: homepage canvas starts black and gradually tints to charcoal.
- * Other sections’ components still use global --bg / --ink / --card-bg tokens.
+ * Homepage canvas: scroll-driven gradient in dark mode, or a project-card hover tint.
  */
-export function useHomeScrollBackground() {
+export function useHomeScrollBackground(hoverCanvasColor: string | null) {
   const { resolvedTheme } = useTheme();
 
   useEffect(() => {
+    document.documentElement.classList.add('home-canvas-interactive');
+    return () => {
+      document.documentElement.classList.remove('home-canvas-interactive');
+    };
+  }, []);
+
+  useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion || resolvedTheme !== 'dark') {
+    const root = document.documentElement;
+
+    if (reducedMotion && !hoverCanvasColor) {
       clearCanvas();
       return;
     }
 
-    const root = document.documentElement;
+    if (hoverCanvasColor) {
+      root.classList.add('home-canvas-drive');
+      applyCanvasColor(hoverCanvasColor);
+      return () => {
+        if (resolvedTheme !== 'dark') {
+          clearCanvas();
+        }
+      };
+    }
+
+    if (resolvedTheme !== 'dark') {
+      clearCanvas();
+      return;
+    }
+
     root.classList.add('home-canvas-drive');
 
     let raf = 0;
 
     const tick = () => {
-      const color = resolveCanvasColor();
-      root.style.setProperty('--home-canvas', color);
-      root.style.backgroundColor = color;
-      document.body.style.backgroundColor = color;
+      applyCanvasColor(resolveScrollCanvasColor());
       root.removeAttribute('data-canvas-lift');
     };
 
@@ -86,5 +112,5 @@ export function useHomeScrollBackground() {
       window.removeEventListener('resize', onScrollOrResize);
       clearCanvas();
     };
-  }, [resolvedTheme]);
+  }, [resolvedTheme, hoverCanvasColor]);
 }
