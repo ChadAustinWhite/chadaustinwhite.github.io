@@ -16,6 +16,7 @@
   --card-bg: #efeeea;
   --card-bg-hover: #fdfdfc;
   --nav-pill-bg: #e8e7e3;
+  --nav-pill-bg-hover: #fdfdfc;
   --accent: #2d2d2d;
   --logo-filter: invert(0);
   --nav-bg: #f5f4f0;
@@ -43,6 +44,7 @@ html:has(.home-main-canvas) {
   --card-bg: #efeeea;
   --card-bg-hover: #fdfdfc;
   --nav-pill-bg: #e8e7e3;
+  --nav-pill-bg-hover: #fdfdfc;
   --nav-bg: #f5f4f0;
   --home-canvas-base: #f5f4f0;
   --experience-card-surface: #efeeea;
@@ -70,6 +72,7 @@ html.home-card-dark:has(.home-main-canvas) {
   --card-bg: #2a2926;
   --card-bg-hover: #353432;
   --nav-pill-bg: #353432;
+  --nav-pill-bg-hover: #454545;
   --nav-bg: #1c1c1a;
   --home-canvas-base: #1c1c1a;
   --experience-card-surface: #2a2926;

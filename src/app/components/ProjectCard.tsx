@@ -9,7 +9,7 @@ interface ProjectCardProps {
 }
 
 const projectCtaClass =
-  'inline-flex items-center gap-2 rounded-full bg-[var(--nav-pill-bg)] px-4 py-2 text-xs font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[var(--card-bg-hover)] whitespace-nowrap md:px-5 md:text-[13px]';
+  'inline-flex items-center gap-2 rounded-full bg-[var(--nav-pill-bg)] px-4 py-2 text-xs font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[var(--nav-pill-bg-hover)] whitespace-nowrap md:px-5 md:text-[13px]';
 
 function ArrowIcon() {
   return (
