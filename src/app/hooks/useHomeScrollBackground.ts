@@ -20,7 +20,7 @@ function clearCanvas() {
 }
 
 /**
- * Homepage canvas: warm cream by default; switches to dark mode while a project card is hovered.
+ * Homepage canvas: warm cream by default; switches to dark mode while a project CTA is hovered.
  */
 export function useHomeScrollBackground(isCardHovered: boolean) {
   useEffect(() => {
