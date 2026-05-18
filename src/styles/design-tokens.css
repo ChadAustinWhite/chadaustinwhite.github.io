@@ -65,7 +65,7 @@ html:has(.home-main-canvas) body {
   background-color: var(--home-canvas, var(--home-canvas-base)) !important;
 }
 
-/* Homepage: temporary dark mode while hovering a project card. */
+/* Homepage: temporary dark mode while hovering a project CTA button. */
 html.home-card-dark:has(.home-main-canvas) {
   --bg: #1c1c1a;
   --ink: #f5f4f0;
@@ -89,10 +89,6 @@ html.home-card-dark:has(.home-main-canvas) {
   --experience-tag-bg: #3a3936;
   --experience-section-label: #b8b8b8;
   color-scheme: dark;
-}
-
-html.home-card-dark:has(.home-main-canvas) .project-card:hover {
-  box-shadow: 0 8px 32px rgb(0 0 0 / 35%);
 }
 
 @media (min-width: 768px) {

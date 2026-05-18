@@ -89,8 +89,8 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
             project={project}
             onViewCaseStudy={onViewCaseStudy}
             onRequestAccess={onRequestAccess}
-            onHoverStart={() => onProjectHover(project.caseStudyRoute)}
-            onHoverEnd={() => onProjectHover(null)}
+            onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
+            onCtaHoverEnd={() => onProjectHover(null)}
           />
         ))}
       </div>

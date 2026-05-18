@@ -4,8 +4,8 @@ interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
   onRequestAccess: (route: ProjectItem['caseStudyRoute']) => void;
-  onHoverStart?: () => void;
-  onHoverEnd?: () => void;
+  onCtaHoverStart?: () => void;
+  onCtaHoverEnd?: () => void;
 }
 
 const projectCtaClass =
@@ -29,8 +29,8 @@ export function ProjectCard({
   project,
   onViewCaseStudy,
   onRequestAccess,
-  onHoverStart,
-  onHoverEnd,
+  onCtaHoverStart,
+  onCtaHoverEnd,
 }: ProjectCardProps) {
   const hasMockup = Boolean(project.image);
   const fit = project.imageObjectFit ?? 'cover';
@@ -43,15 +43,13 @@ export function ProjectCard({
 
   const imgSizingClass = cappedContain
     ? 'h-auto w-auto max-h-full bg-transparent object-contain [image-rendering:auto]'
-    : `h-full w-full bg-[var(--bg)] [transform:translateZ(0)] [image-rendering:auto] transition-transform duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] motion-reduce:transition-none ${
-        fit === 'contain' ? 'object-contain object-center' : 'object-cover group-hover:scale-[1.03]'
+    : `h-full w-full bg-[var(--bg)] [transform:translateZ(0)] [image-rendering:auto] ${
+        fit === 'contain' ? 'object-contain object-center' : 'object-cover'
       }`;
 
   return (
     <article
-      className="project-card group overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[background-color,box-shadow,transform,border-color] duration-300 hover:-translate-y-0.5 hover:border-[var(--card-bg-hover)] hover:bg-[var(--card-bg-hover)] hover:shadow-[0_8px_32px_rgba(45,45,45,0.06)]"
-      onMouseEnter={onHoverStart}
-      onMouseLeave={onHoverEnd}
+      className="project-card overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)]"
     >
       <div
         className={`grid grid-cols-1 gap-0.5 overflow-hidden ${mediaBg} [aspect-ratio:16/9] md:[aspect-ratio:16/9]`}
@@ -103,6 +101,8 @@ export function ProjectCard({
             <button
               type="button"
               onClick={() => onRequestAccess(project.caseStudyRoute)}
+              onMouseEnter={onCtaHoverStart}
+              onMouseLeave={onCtaHoverEnd}
               className={projectCtaClass}
             >
               Request access
@@ -111,6 +111,8 @@ export function ProjectCard({
             <button
               type="button"
               onClick={() => onViewCaseStudy(project.caseStudyRoute)}
+              onMouseEnter={onCtaHoverStart}
+              onMouseLeave={onCtaHoverEnd}
               className={projectCtaClass}
             >
               View case study
