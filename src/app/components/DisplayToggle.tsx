@@ -37,7 +37,7 @@ export function DisplayToggle({ value, onChange }: DisplayToggleProps) {
           type="button"
           onClick={() => onChange('grid')}
           aria-label="Grid layout"
-          className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] transition-[background,color,border-color] duration-150 ${
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-normal transition-[background,color,border-color] duration-150 md:text-[13px] ${
             value === 'grid'
               ? 'border-[var(--nav-pill-bg)] bg-[var(--nav-pill-bg)] text-[var(--ink)]'
               : 'border-[var(--border)] bg-transparent text-[var(--ink-muted)] hover:bg-[var(--card-bg)] hover:text-[var(--ink)]'
@@ -50,7 +50,7 @@ export function DisplayToggle({ value, onChange }: DisplayToggleProps) {
           type="button"
           onClick={() => onChange('stack')}
           aria-label="Stack layout"
-          className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] transition-[background,color,border-color] duration-150 ${
+          className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-normal transition-[background,color,border-color] duration-150 md:text-[13px] ${
             value === 'stack'
               ? 'border-[var(--nav-pill-bg)] bg-[var(--nav-pill-bg)] text-[var(--ink)]'
               : 'border-[var(--border)] bg-transparent text-[var(--ink-muted)] hover:bg-[var(--card-bg)] hover:text-[var(--ink)]'
