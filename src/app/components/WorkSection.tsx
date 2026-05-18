@@ -29,14 +29,14 @@ function WorkProcessMarqueeSegment({ segmentId }: { segmentId: string }) {
       {WORK_PROCESS_LABELS.map((label, i) => (
         <Fragment key={`${segmentId}-${label}-${i}`}>
           {i > 0 ? (
-            <span className="select-none text-[var(--ink-muted)] opacity-40" aria-hidden>
+            <span className="select-none text-[var(--ink-subtle)]" aria-hidden>
               ·
             </span>
           ) : null}
           <span className="whitespace-nowrap">{label}</span>
         </Fragment>
       ))}
-      <span className="select-none text-[var(--ink-muted)] opacity-40" aria-hidden>
+      <span className="select-none text-[var(--ink-subtle)]" aria-hidden>
         ·
       </span>
     </span>

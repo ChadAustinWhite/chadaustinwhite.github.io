@@ -14,11 +14,13 @@ function handleSmoothScroll(e: React.MouseEvent<HTMLAnchorElement>) {
 }
 
 interface SiteNavProps {
-  /** When set, logo and in-page links (Work, Experience) navigate back to home instead of using hash. */
+  /** When set, logo and in-page links navigate back to home instead of using hash. */
   onNavigateHome?: () => void;
+  /** Highlights Work with pill background (homepage). */
+  isHome?: boolean;
 }
 
-export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
+export function SiteNav({ onNavigateHome, isHome = false }: SiteNavProps = {}) {
   const scrolled = useScrollBorder(20);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -51,7 +53,15 @@ export function SiteNav({ onNavigateHome }: SiteNavProps = {}) {
       <div className="flex items-center gap-7 md:gap-6">
         <ul className="flex items-center gap-4 md:gap-6">
           <li>
-            <a href="#work" onClick={handleNavClick} className="text-xs text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)] md:text-[13px]">
+            <a
+              href="#work"
+              onClick={handleNavClick}
+              className={`text-xs transition-colors duration-150 md:text-[13px] ${
+                isHome && !onNavigateHome
+                  ? 'rounded-full bg-[var(--nav-pill-bg)] px-3 py-2 text-[var(--ink)]'
+                  : 'text-[var(--ink-muted)] hover:text-[var(--ink)]'
+              }`}
+            >
               Work
             </a>
           </li>

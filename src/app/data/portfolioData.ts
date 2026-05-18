@@ -51,7 +51,7 @@ export const projects: ProjectItem[] = [
       'Kinetic merchant onboarding welcome — phone and email fields, terms agreement, security note, and continue',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
-    hoverCanvas: { dark: '#0f1a17', light: '#dfe8e4' },
+    hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
   },
   {
     title: 'Expedia Group Accelerator',
@@ -62,7 +62,7 @@ export const projects: ProjectItem[] = [
       'Expedia Group Partner Central — Performance and market trends, competitive set comparison, revenue and ADR summary',
     caseStudyRoute: 'case-study-expedia-accelerator',
     comingSoon: true,
-    hoverCanvas: { dark: '#101828', light: '#e2e9f2' },
+    hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
   },
   {
     title: 'Worldpay Disputes Experience',
@@ -73,7 +73,7 @@ export const projects: ProjectItem[] = [
       'Worldpay Dashboard — Disputes case detail with case analysis, win probability, and submit information',
     caseStudyRoute: 'case-study-worldpay-disputes',
     comingSoon: true,
-    hoverCanvas: { dark: '#1a1418', light: '#e8e4ec' },
+    hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
   },
   {
     title: 'Expedia Group Ad Portal',
@@ -83,7 +83,7 @@ export const projects: ProjectItem[] = [
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
     caseStudyRoute: 'case-study-expedia-ad-portal',
     comingSoon: true,
-    hoverCanvas: { dark: '#1a1712', light: '#efe9df' },
+    hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
   },
 ];
 

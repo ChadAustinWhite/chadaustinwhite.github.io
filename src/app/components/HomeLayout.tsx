@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react';
-import { useTheme } from 'next-themes';
 import { SiteNav } from './SiteNav';
 import { HeroSection } from './HeroSection';
 import { WorkSection } from './WorkSection';
@@ -15,21 +14,20 @@ interface HomeLayoutProps {
 }
 
 export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps) {
-  const { resolvedTheme } = useTheme();
   const [hoveredProjectRoute, setHoveredProjectRoute] = useState<CaseStudyRoute | null>(null);
 
   const hoverCanvasColor = useMemo(() => {
     if (!hoveredProjectRoute) return null;
     const project = projects.find((p) => p.caseStudyRoute === hoveredProjectRoute);
     if (!project) return null;
-    return resolvedTheme === 'light' ? project.hoverCanvas.light : project.hoverCanvas.dark;
-  }, [hoveredProjectRoute, resolvedTheme]);
+    return project.hoverCanvas.light;
+  }, [hoveredProjectRoute]);
 
   useHomeScrollBackground(hoverCanvasColor);
 
   return (
     <>
-      <SiteNav />
+      <SiteNav isHome />
       <main
         className="home-main-canvas min-h-screen antialiased"
         style={{

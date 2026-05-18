@@ -58,7 +58,7 @@ export function CaseStudyWhoopNext({ relatedProjects, onViewCaseStudy }: CaseStu
                   <button
                     type="button"
                     onClick={() => onViewCaseStudy(project.caseStudyRoute)}
-                    className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity duration-150 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[var(--ink)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]"
+                    className="inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-[18px] py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-colors duration-150 hover:bg-[var(--ink-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--ink)] focus:ring-offset-2 focus:ring-offset-[var(--bg)]"
                   >
                     View case study
                     <ArrowIcon />

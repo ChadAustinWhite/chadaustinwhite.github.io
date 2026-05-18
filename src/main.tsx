@@ -4,7 +4,7 @@ import App from "./app/App.tsx";
 import "./styles/index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <ThemeProvider attribute="data-theme" defaultTheme="dark" storageKey="theme">
+  <ThemeProvider attribute="data-theme" defaultTheme="light" storageKey="theme">
     <App />
   </ThemeProvider>
 );
