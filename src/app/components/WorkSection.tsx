@@ -7,17 +7,17 @@ import type { CaseStudyRoute } from '../data/portfolioData';
 
 /** One full pass of the ticker; duplicated in the DOM for a seamless loop. */
 const WORK_MARQUEE_LABELS = [
-  'Global Payments',
-  'Expedia Group',
-  'First American Title',
-  'Lexus',
-  'Toyota',
-  'McLaren',
-  'Honda',
   'Acura',
   'Alpinestars',
   'Car Finance Capital',
+  'Expedia Group',
+  'First American Title',
+  'Global Payments',
+  'Honda',
+  'Lexus',
+  'McLaren',
   'Tony Robbins Foundation',
+  'Toyota',
 ] as const;
 
 /** Equal space on both sides of each interpunct so word · word rhythm is uniform. */
