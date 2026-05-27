@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
 import type { CaseStudySonosCarouselCardVariant, CaseStudySonosCarouselImage } from './types';
 
-/** Mixed aspect ratios on one row, vertically centered (square, wide landscape, tall 9:16). */
+/** Large mixed-aspect strip (Instrument services / Sonos case study scale). */
 const CARD_CLASS: Record<CaseStudySonosCarouselCardVariant, string> = {
-  square: 'w-[min(58vw,360px)] aspect-square md:w-[400px]',
-  landscape: 'w-[min(64vw,340px)] aspect-[16/10] md:w-[380px]',
-  landscapeWide: 'w-[min(76vw,420px)] aspect-[3/2] md:w-[480px]',
-  tall: 'w-[min(42vw,200px)] aspect-[9/16] md:w-[220px]',
+  square: 'w-[min(78vw,520px)] aspect-square md:w-[560px] lg:w-[620px]',
+  landscape: 'w-[min(85vw,600px)] aspect-[16/10] md:w-[680px] lg:w-[760px]',
+  landscapeWide: 'w-[min(94vw,820px)] aspect-[3/2] md:w-[880px] lg:w-[960px]',
+  tall: 'w-[min(52vw,300px)] aspect-[9/16] md:w-[340px] lg:w-[380px]',
 };
 
 const AUTO_SCROLL_DURATION_MS = 55_000;
@@ -29,7 +29,7 @@ function CarouselCard({
   return (
     <figure
       key={id}
-      className={`relative shrink-0 overflow-hidden rounded-3xl bg-[var(--card-bg)] ${CARD_CLASS[variant]}`}
+      className={`relative shrink-0 overflow-hidden rounded-[1.75rem] bg-[var(--card-bg)] md:rounded-[2rem] ${CARD_CLASS[variant]}`}
     >
       <img
         src={image.src}

@@ -87,7 +87,7 @@ html.home-canvas-interactive .site-nav-surface {
 
 /* Case study Sonos — horizontal screen carousel (auto-scroll + drag) */
 .case-study-sonos-carousel {
-  margin-block: var(--cs-carousel-gap);
+  margin-block: clamp(3rem, 8vw, 6rem);
 }
 
 .case-study-sonos-carousel__viewport {
@@ -109,6 +109,7 @@ html.home-canvas-interactive .site-nav-surface {
 .case-study-sonos-carousel__track {
   display: flex;
   width: max-content;
+  min-height: clamp(280px, 48vh, 560px);
   align-items: center;
   gap: var(--cs-carousel-gap);
   padding-inline: max(var(--cs-page-gutter), clamp(1.5rem, 5vw, 3rem));
