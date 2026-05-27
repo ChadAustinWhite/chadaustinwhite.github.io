@@ -22,7 +22,7 @@ function AccordionToggleIcon({ isOpen }: { isOpen: boolean }) {
       >
         <path
           d="M8 4v8"
-          className={`transition-opacity duration-300 ease-out ${isOpen ? 'opacity-0' : 'opacity-100'}`}
+          className={`sonos-subpoint-accordion__icon-vertical ${isOpen ? 'opacity-0' : 'opacity-100'}`}
         />
         <path d="M4 8h8" />
       </svg>
@@ -43,8 +43,8 @@ export function CaseStudySonosSubpointAccordion({ items }: CaseStudySonosSubpoin
         return (
           <div
             key={item.title}
-            className={`group overflow-hidden bg-[var(--card-bg)] transition-[border-radius,background-color] duration-300 ease-out hover:bg-[color-mix(in_srgb,var(--card-bg)_88%,var(--ink)_12%)] ${
-              isOpen ? 'rounded-3xl' : 'rounded-full'
+            className={`sonos-subpoint-accordion__item group overflow-hidden bg-[var(--card-bg)] hover:bg-[color-mix(in_srgb,var(--card-bg)_88%,var(--ink)_12%)] ${
+              isOpen ? 'is-open rounded-3xl' : 'rounded-full'
             }`}
           >
             <button
@@ -66,15 +66,11 @@ export function CaseStudySonosSubpointAccordion({ items }: CaseStudySonosSubpoin
             </button>
 
             <div
-              className="sonos-subpoint-accordion__panel grid transition-[grid-template-rows] duration-[350ms] ease-[cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
+              className="sonos-subpoint-accordion__panel grid motion-reduce:transition-none"
               style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
             >
               <div className="min-h-0 overflow-hidden">
-                <p
-                  className={`cs-text-body max-w-[52ch] px-5 pb-5 text-[var(--ink-muted)] transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none motion-reduce:transform-none md:px-7 md:pb-6 ${
-                    isOpen ? 'translate-y-0 opacity-100' : '-translate-y-1 opacity-0'
-                  }`}
-                >
+                <p className="sonos-subpoint-accordion__panel-body cs-text-body max-w-[52ch] px-5 pb-5 text-[var(--ink-muted)] md:px-7 md:pb-6">
                   {item.body}
                 </p>
               </div>
