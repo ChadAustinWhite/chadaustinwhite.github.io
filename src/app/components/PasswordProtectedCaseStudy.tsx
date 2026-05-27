@@ -1,26 +1,39 @@
-import { useState, FormEvent } from 'react';
+import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { motion } from 'motion/react';
 import { Lock } from 'lucide-react';
+import type { CaseStudyRoute } from '../data/portfolioData';
+import {
+  CASE_STUDY_PASSWORD,
+  isCaseStudyUnlocked,
+  setCaseStudyUnlocked,
+} from '../lib/caseStudyAccess';
 
 interface PasswordProtectedCaseStudyProps {
-  children: React.ReactNode;
-  password: string;
+  children: ReactNode;
   title: string;
+  route: CaseStudyRoute;
 }
 
-export function PasswordProtectedCaseStudy({ 
-  children, 
-  password, 
-  title 
+export function PasswordProtectedCaseStudy({
+  children,
+  title,
+  route,
 }: PasswordProtectedCaseStudyProps) {
   const [inputPassword, setInputPassword] = useState('');
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isUnlocked, setIsUnlocked] = useState(() => isCaseStudyUnlocked(route));
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setIsUnlocked(isCaseStudyUnlocked(route));
+    setInputPassword('');
+    setError('');
+  }, [route]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
-    if (inputPassword === password) {
+
+    if (inputPassword === CASE_STUDY_PASSWORD) {
+      setCaseStudyUnlocked(route);
       setIsUnlocked(true);
       setError('');
     } else {
@@ -34,30 +47,26 @@ export function PasswordProtectedCaseStudy({
   }
 
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center px-6">
+    <div className="flex min-h-screen items-center justify-center bg-black px-6 text-white">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="max-w-md w-full"
+        className="w-full max-w-md"
       >
-        <div className="text-center mb-12">
+        <div className="mb-12 text-center">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 mb-6"
+            className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white/5"
           >
-            <Lock className="w-10 h-10 text-white" />
+            <Lock className="h-10 w-10 text-white" />
           </motion.div>
-          
-          <h1 className="text-4xl md:text-5xl tracking-tight mb-4">
-            {title}
-          </h1>
-          
-          <p className="text-gray-400 text-lg">
-            This case study is password protected
-          </p>
+
+          <h1 className="mb-4 text-4xl tracking-tight md:text-5xl">{title}</h1>
+
+          <p className="text-lg text-gray-400">This case study is password protected</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -70,32 +79,30 @@ export function PasswordProtectedCaseStudy({
                 setError('');
               }}
               placeholder="Enter password"
-              className="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/30 transition-colors text-lg"
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-6 py-4 text-lg text-white placeholder-gray-500 transition-colors focus:border-white/30 focus:outline-none"
               autoFocus
             />
-            
-            {error && (
+
+            {error ? (
               <motion.p
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-red-400 text-sm mt-2"
+                className="mt-2 text-sm text-red-400"
               >
                 {error}
               </motion.p>
-            )}
+            ) : null}
           </div>
 
           <button
             type="submit"
-            className="w-full px-6 py-4 bg-white text-black rounded-lg font-medium text-lg hover:bg-gray-200 transition-colors"
+            className="w-full rounded-lg bg-white px-6 py-4 text-lg font-medium text-black transition-colors hover:bg-gray-200"
           >
-            Unlock Case Study
+            Unlock case study
           </button>
         </form>
 
-        <p className="text-gray-500 text-sm text-center mt-8">
-          Contact Chad White for access
-        </p>
+        <p className="mt-8 text-center text-sm text-gray-500">Contact Chad White for access</p>
       </motion.div>
     </div>
   );

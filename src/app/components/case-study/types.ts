@@ -103,8 +103,16 @@ export interface CaseStudySonosImage {
   variant: CaseStudySonosImageVariant;
   /** Optional caption below image (Instrument-style, may repeat for emphasis). */
   caption?: string;
-  /** `fullBleed` = edge-to-edge; `inset` = prose-width column with rounded corners. */
-  display?: 'fullBleed' | 'inset';
+  /** `fullBleed` = edge-to-edge; `inset` = prose-width column; `duo` = wide left + portrait right. */
+  display?: 'fullBleed' | 'inset' | 'duo';
+  /** Right panel when `display` is `duo`. */
+  duoSecondary?: { src: string; variant: CaseStudySonosImageVariant };
+  /** Defaults to `cover`; use `contain` for UI comps and layout explorations. */
+  objectFit?: 'cover' | 'contain';
+  /** Defaults to `card`; use `none` for comps on the page background. */
+  background?: 'card' | 'none';
+  /** Keep image within page gutters instead of full-bleed breakout. */
+  padded?: boolean;
 }
 
 export interface CaseStudySonosNumberedItem {
@@ -116,6 +124,8 @@ export interface CaseStudySonosNumberedItem {
 export interface CaseStudySonosSubpoint {
   title: string;
   body: string;
+  /** Optional muted label after “ / ” in accordion row (e.g. client name). */
+  label?: string;
 }
 
 export interface CaseStudySonosMetric {
