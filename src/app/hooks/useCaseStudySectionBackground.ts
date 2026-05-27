@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const BG_START = '#0a0a0a';
-const BG_END = '#f5f4f0';
+const BG_END = '#f4f4f2';
 const INK_START = '#f0f0ee';
 const INK_END = '#2d2d2d';
 const INK_MUTED_START = '#9c9890';
