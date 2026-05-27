@@ -150,7 +150,7 @@ section[id] {
   --nav-bg: #f5f4f0;
   --home-canvas-base: #f5f4f0;
   --cs-page-gutter: 1.25rem;
-  --cs-carousel-gap: clamp(3rem, 4.5vw, 4rem);
+  --cs-carousel-gap: clamp(2.5rem, 5vw, 5.5rem);
   color-scheme: light;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 15px;
