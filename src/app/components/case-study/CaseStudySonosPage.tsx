@@ -263,7 +263,7 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
     content.heroIntro ??
     content.tagline;
   const tags = sonos ? (sonos.tags ?? []) : (content.projectFocus ?? []);
-  const showLeadBelowHero = Boolean(lead?.trim() && !content.meta.organizationNote);
+  const showLeadBelowHero = Boolean(sonos?.lead?.trim() && !content.meta.organizationNote);
 
   return (
     <article className="case-study-sonos bg-[var(--bg)] pb-8 text-[var(--ink)]">

@@ -11,6 +11,10 @@ import expediaAcceleratorMiroAudit from '../../../assets/expedia-accelerator-mir
 import expediaAcceleratorExclusiveFeature from '../../../assets/expedia-accelerator-exclusive-feature.png';
 import expediaAcceleratorUsabilitySynthesis from '../../../assets/expedia-accelerator-usability-synthesis.png';
 import expediaAcceleratorUserTesting from '../../../assets/expedia-accelerator-user-testing.png';
+import expediaAcceleratorCreateStayDates from '../../../assets/expedia-accelerator-create-stay-dates.png';
+import expediaAcceleratorResearchSession from '../../../assets/expedia-accelerator-research-session.png';
+import expediaAcceleratorOneKeyCashHypothesis from '../../../assets/expedia-accelerator-onekeycash-hypothesis.png';
+import expediaAcceleratorPrototype3Synthesis from '../../../assets/expedia-accelerator-prototype-3-synthesis.png';
 
 export const expediaAcceleratorContent: CaseStudyContent = {
   layout: 'sonos',
@@ -19,8 +23,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   heroTitleLines: ['Expedia Group', 'Accelerator'],
   meta: {
     organization: 'Expedia Group',
-    organizationNote:
-      'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
     role: 'Lead UX Designer',
     year: '2025',
     duration: '8 Months',
@@ -57,6 +59,11 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         alt: 'Create an Accelerator with OneKeyCash exclusive feature card',
       },
       {
+        src: expediaAcceleratorCreateStayDates,
+        variant: 'landscapeWide',
+        alt: 'Create an Accelerator stay dates, blockout dates, and visibility settings in Partner Central',
+      },
+      {
         src: expediaAcceleratorUsabilitySynthesis,
         variant: 'landscapeWide',
         alt: 'Usability testing synthesis: successes and opportunities for OneKeyCash',
@@ -66,11 +73,27 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         variant: 'landscapeWide',
         alt: 'Live user testing session alongside Miro research synthesis',
       },
+      {
+        src: expediaAcceleratorResearchSession,
+        variant: 'landscapeWide',
+        alt: 'User research session with participant feedback captured on a Miro board',
+      },
+      {
+        src: expediaAcceleratorOneKeyCashHypothesis,
+        variant: 'landscapeWide',
+        alt: 'OneKeyCash design explorations and Create an Accelerator hypothesis screens',
+      },
+      {
+        src: expediaAcceleratorPrototype3Synthesis,
+        variant: 'landscapeWide',
+        alt: 'Prototype 3 usability synthesis: successes and opportunities',
+      },
     ],
     sections: [
       {
         heading: 'Why it matters',
         paragraphs: [
+          'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
           'Search visibility directly impacts bookings and revenue. When hotel partners can’t clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.',
         ],
         subpoints: [
