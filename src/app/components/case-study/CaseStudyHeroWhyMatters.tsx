@@ -33,8 +33,7 @@ export function CaseStudyHeroWhyMatters({
           <div>
             <h2
               id="cs-hero-why-heading"
-              className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-              style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
+              className="serif-headline text-[clamp(34px,5vw,64px)] leading-[1.15] text-[var(--ink)]"
             >
               {headline}
             </h2>
@@ -55,10 +54,10 @@ export function CaseStudyHeroWhyMatters({
                       : 'border-t border-[var(--border)] pt-6'
                   }
                 >
-                  <p className="mb-2 text-[15px] font-semibold uppercase text-[var(--ink)] md:text-[16px]">
+                  <p className="mb-2 text-[15px] font-semibold uppercase text-[var(--ink)] md:text-[17px]">
                     {card.title}
                   </p>
-                  <p className="text-[15px] font-normal leading-[1.65] text-[var(--ink-muted)] md:text-[16px]">
+                  <p className="text-[15px] font-normal leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
                     {card.description}
                   </p>
                 </div>

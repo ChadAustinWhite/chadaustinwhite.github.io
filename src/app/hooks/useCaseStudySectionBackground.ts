@@ -1,15 +1,19 @@
 import { useEffect } from 'react';
 
 const BG_START = '#0a0a0a';
-const BG_END = '#f5f5f0';
+const BG_END = '#f5f4f0';
 const INK_START = '#f0f0ee';
-const INK_END = '#000000';
+const INK_END = '#2d2d2d';
 const INK_MUTED_START = '#9c9890';
-const INK_MUTED_END = '#000000';
+const INK_MUTED_END = '#636363';
+const INK_SUBTLE_START = '#7a7670';
+const INK_SUBTLE_END = '#8a8a8a';
 const BORDER_START = '#2a2a28';
-const BORDER_END = '#e0ddd6';
+const BORDER_END = '#e8e7e3';
 const CARD_BG_START = '#1c1c1a';
-const CARD_BG_END = '#faf8f5';
+const CARD_BG_END = '#efeeea';
+const NAV_PILL_START = '#2a2a28';
+const NAV_PILL_END = '#e8e7e3';
 
 const TRANSITION = 'background-color 0.4s ease-out, color 0.4s ease-out';
 
@@ -49,36 +53,73 @@ function getScrollProgress(): number {
   return easeInCubic(linear);
 }
 
-export function useCaseStudySectionBackground() {
+function applyScrollGradient(t: number) {
+  const bg = interpolateHex(BG_START, BG_END, t);
+  const ink = interpolateHex(INK_START, INK_END, t);
+  const inkMuted = interpolateHex(INK_MUTED_START, INK_MUTED_END, t);
+  const inkSubtle = interpolateHex(INK_SUBTLE_START, INK_SUBTLE_END, t);
+  const border = interpolateHex(BORDER_START, BORDER_END, t);
+  const cardBg = interpolateHex(CARD_BG_START, CARD_BG_END, t);
+  const navPillBg = interpolateHex(NAV_PILL_START, NAV_PILL_END, t);
+
+  document.body.style.transition = TRANSITION;
+  document.body.style.backgroundColor = bg;
+
+  const nav = document.getElementById('site-nav');
+  if (nav) {
+    nav.style.transition = TRANSITION;
+    nav.style.backgroundColor = bg;
+  }
+
+  const wrapper = document.querySelector('[data-case-study]') as HTMLElement | null;
+  if (wrapper) {
+    wrapper.style.setProperty('--bg', bg);
+    wrapper.style.setProperty('--ink', ink);
+    wrapper.style.setProperty('--ink-muted', inkMuted);
+    wrapper.style.setProperty('--ink-subtle', inkSubtle);
+    wrapper.style.setProperty('--border', border);
+    wrapper.style.setProperty('--card-bg', cardBg);
+    wrapper.style.setProperty('--nav-pill-bg', navPillBg);
+    wrapper.style.setProperty('--nav-bg', bg);
+    wrapper.style.setProperty('--home-canvas-base', bg);
+  }
+}
+
+function clearScrollGradient() {
+  document.body.style.backgroundColor = '';
+  document.body.style.transition = '';
+  const nav = document.getElementById('site-nav');
+  if (nav) {
+    nav.style.backgroundColor = '';
+    nav.style.transition = '';
+  }
+  const wrapper = document.querySelector('[data-case-study]') as HTMLElement | null;
+  if (wrapper) {
+    wrapper.removeAttribute('data-scroll-gradient');
+    wrapper.style.removeProperty('--bg');
+    wrapper.style.removeProperty('--ink');
+    wrapper.style.removeProperty('--ink-muted');
+    wrapper.style.removeProperty('--ink-subtle');
+    wrapper.style.removeProperty('--border');
+    wrapper.style.removeProperty('--card-bg');
+    wrapper.style.removeProperty('--nav-pill-bg');
+    wrapper.style.removeProperty('--nav-bg');
+    wrapper.style.removeProperty('--home-canvas-base');
+  }
+}
+
+/** Dark → warm editorial gradient driven by vertical scroll on case study pages. */
+export function useCaseStudySectionBackground(enabled: boolean) {
   useEffect(() => {
-    let rafId: number = 0;
+    if (!enabled) return;
+
+    const wrapper = document.querySelector('[data-case-study]') as HTMLElement | null;
+    wrapper?.setAttribute('data-scroll-gradient', '');
+
+    let rafId = 0;
 
     const update = () => {
-      const t = getScrollProgress();
-      const bg = interpolateHex(BG_START, BG_END, t);
-      const ink = interpolateHex(INK_START, INK_END, t);
-      const inkMuted = interpolateHex(INK_MUTED_START, INK_MUTED_END, t);
-      const border = interpolateHex(BORDER_START, BORDER_END, t);
-      const cardBg = interpolateHex(CARD_BG_START, CARD_BG_END, t);
-
-      document.body.style.transition = TRANSITION;
-      document.body.style.backgroundColor = bg;
-
-      const nav = document.getElementById('site-nav');
-      if (nav) {
-        nav.style.transition = TRANSITION;
-        nav.style.backgroundColor = bg;
-      }
-
-      const wrapper = document.querySelector('[data-case-study]') as HTMLElement | null;
-      if (wrapper) {
-        wrapper.style.setProperty('--bg', bg);
-        wrapper.style.setProperty('--ink', ink);
-        wrapper.style.setProperty('--ink-muted', inkMuted);
-        wrapper.style.setProperty('--border', border);
-        wrapper.style.setProperty('--card-bg', cardBg);
-        wrapper.style.setProperty('--nav-bg', bg);
-      }
+      applyScrollGradient(getScrollProgress());
     };
 
     const onScroll = () => {
@@ -90,23 +131,8 @@ export function useCaseStudySectionBackground() {
 
     return () => {
       window.removeEventListener('scroll', onScroll);
-      cancelAnimationFrame(rafId!);
-      document.body.style.backgroundColor = '';
-      document.body.style.transition = '';
-      const nav = document.getElementById('site-nav');
-      if (nav) {
-        nav.style.backgroundColor = '';
-        nav.style.transition = '';
-      }
-      const wrapper = document.querySelector('[data-case-study]') as HTMLElement | null;
-      if (wrapper) {
-        wrapper.style.removeProperty('--bg');
-        wrapper.style.removeProperty('--ink');
-        wrapper.style.removeProperty('--ink-muted');
-        wrapper.style.removeProperty('--border');
-        wrapper.style.removeProperty('--card-bg');
-        wrapper.style.removeProperty('--nav-bg');
-      }
+      cancelAnimationFrame(rafId);
+      clearScrollGradient();
     };
-  }, []);
+  }, [enabled]);
 }

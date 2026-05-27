@@ -84,3 +84,97 @@ html.home-canvas-interactive .site-nav-surface {
     display: none;
   }
 }
+
+/* Case study Sonos — horizontal screen carousel (auto-scroll + drag) */
+.case-study-sonos-carousel {
+  margin-block: var(--cs-carousel-gap);
+}
+
+.case-study-sonos-carousel__viewport {
+  overflow-x: auto;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  user-select: none;
+}
+
+.case-study-sonos-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.case-study-sonos-carousel__viewport.is-dragging {
+  cursor: grabbing;
+}
+
+.case-study-sonos-carousel__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: var(--cs-carousel-gap);
+  padding-inline: max(var(--cs-page-gutter), clamp(1.5rem, 5vw, 3rem));
+}
+
+.sonos-subpoint-accordion__trigger:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ink-muted) 55%, transparent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sonos-subpoint-accordion__panel {
+    transition: none !important;
+  }
+
+  .sonos-subpoint-accordion__panel p {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-sonos-carousel__viewport {
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.5rem;
+  }
+
+  .case-study-sonos-carousel__track > .contents[aria-hidden='true'] {
+    display: none;
+  }
+
+  .case-study-sonos-carousel__track figure {
+    scroll-snap-align: start;
+  }
+}
+
+/* Case study editorial — large-type service marquee (Lucid-style) */
+.case-study-service-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  padding-inline: var(--cs-page-gutter, 1.25rem);
+  animation: hero-brands-marquee 100s linear infinite;
+}
+
+@media (min-width: 768px) {
+  .case-study-service-marquee__track {
+    gap: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-service-marquee__track {
+    animation: none;
+    transform: translateX(0);
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    row-gap: 0.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .case-study-service-marquee__track > span[aria-hidden='true'] {
+    display: none;
+  }
+}

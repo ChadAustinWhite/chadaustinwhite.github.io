@@ -67,8 +67,7 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
           <div>
             <h2
               id="cs-overview-heading"
-              className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-              style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
+              className="serif-headline text-[clamp(34px,5vw,64px)] leading-[1.15] text-[var(--ink)]"
             >
               {headline}
             </h2>
@@ -86,7 +85,7 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
           <div className="flex min-w-0 flex-col gap-14 md:gap-16">
             {challengeParagraphs.length > 0 ? (
               <div>
-                <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]">
+                <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
                   {challengeLabel}
                 </h3>
                 <div className="space-y-4 text-[15px] font-normal leading-[1.65] text-[var(--ink)] md:text-[17px]">
@@ -98,7 +97,7 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
             ) : null}
             {approachParagraphs.length > 0 ? (
               <div>
-                <h3 className="mb-4 text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]">
+                <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
                   Approach
                 </h3>
                 <div className="space-y-4 text-[15px] font-normal leading-[1.65] text-[var(--ink)] md:text-[17px]">
@@ -127,7 +126,7 @@ export function CaseStudyProjectOverview({ content }: CaseStudyProjectOverviewPr
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-24">
             <div className="min-w-0">
               {stripLabel ? (
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--ink)]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
                   {introStrip.label}
                 </p>
               ) : null}

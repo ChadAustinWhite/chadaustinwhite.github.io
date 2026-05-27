@@ -42,31 +42,23 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
 
   return (
     <header id="cs-hero">
-      {/* Hero header: no background so scroll-driven --bg shows through */}
       <div
-        className="px-[var(--cs-page-gutter)] pt-[7.5rem] pb-12 md:pt-[7.5rem] md:pb-12"
+        className="bg-[var(--bg)] px-[var(--cs-page-gutter)] pt-[7.5rem] pb-12 md:pt-[7.5rem] md:pb-12"
         style={{ color: 'var(--ink)' }}
       >
         <button
           type="button"
           onClick={onBack}
-          className="mb-8 inline-flex items-center gap-1.5 text-[11px] leading-[1.65] transition-colors duration-150 hover:opacity-100"
-          style={{ color: 'var(--ink-muted)' }}
+          className="mb-8 inline-flex items-center gap-1.5 text-[11px] leading-[1.5] text-[var(--ink-muted)] transition-colors duration-150 hover:text-[var(--ink)]"
           aria-label="Back to Work"
         >
           <BackArrow />
           Work
         </button>
-        <span
-          className="mb-4 block text-[11px] font-semibold uppercase tracking-[0.1em]"
-          style={{ color: 'var(--ink-muted)' }}
-        >
+        <span className="mb-4 block text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           Case Study
         </span>
-        <h1
-          className="mb-8 font-normal leading-[1.08] tracking-[-0.025em]"
-          style={{ fontSize: 'clamp(34px, 5vw, 64px)', color: 'var(--ink)' }}
-        >
+        <h1 className="serif-headline mb-8 text-[clamp(34px,5vw,64px)] leading-[1.08] text-[var(--ink)]">
           {content.heroTitleLines ? (
             <>
               {content.heroTitleLines[0]}
@@ -80,22 +72,17 @@ export function CaseStudyWhoopHero({ content, onBack }: CaseStudyWhoopHeroProps)
         <div className="mb-8 flex flex-wrap gap-8 md:gap-12">
           {META_LABELS.map(({ key, label }) => (
             <div key={key}>
-              <span
-                className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.1em]"
-                style={{ color: 'var(--ink-muted)' }}
-              >
+              <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
                 {label}
               </span>
-              <div className="text-base" style={{ color: 'var(--ink)' }}>
-                {meta[key]}
-              </div>
+              <div className="text-[15px] text-[var(--ink)] md:text-[17px]">{meta[key]}</div>
             </div>
           ))}
         </div>
 
         {meta.organizationNote ? (
           <p
-            className="mb-2 max-w-[80ch] text-[15px] leading-[1.7] text-[var(--ink-muted)] md:text-[17px]"
+            className="mb-2 max-w-[80ch] text-[15px] leading-[1.65] text-[var(--ink-muted)] md:text-[17px]"
             style={{
               display: '-webkit-box',
               WebkitBoxOrient: 'vertical',

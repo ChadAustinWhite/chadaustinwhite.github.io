@@ -57,7 +57,6 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Kinetic merchant onboarding welcome — phone and email fields, terms agreement, security note, and continue',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
-    comingSoon: true,
     hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
     metrics: [
       { label: 'Onboarding completion', value: '+32%' },
@@ -72,7 +71,6 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Expedia Group Partner Central — Performance and market trends, competitive set comparison, revenue and ADR summary',
     caseStudyRoute: 'case-study-expedia-accelerator',
-    comingSoon: true,
     hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
     metrics: [
       { label: 'Gross revenue', value: '$300M' },

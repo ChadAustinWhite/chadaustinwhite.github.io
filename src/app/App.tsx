@@ -11,10 +11,7 @@ import {
 import type { CaseStudyRoute } from './data/portfolioData';
 import { isValidEmail, notifyCaseStudyAccess } from './lib/notifyCaseStudyAccess';
 
-const COMING_SOON_ROUTES: CaseStudyRoute[] = [
-  'case-study-worldpay-merchant-onboarding',
-  'case-study-worldpay-sso',
-];
+const COMING_SOON_ROUTES: CaseStudyRoute[] = ['case-study-worldpay-sso'];
 
 type PageType = 'home' | CaseStudyRoute;
 
