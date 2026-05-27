@@ -79,17 +79,16 @@ export function CaseStudyHeroResults({
         <CaseStudySectionHeader sectionLabel={barLabel} />
 
         {subtitle ? (
-          <p className="mt-6 text-[15px] leading-[1.7] text-[var(--ink-muted)] md:text-[17px]">
+          <p className="mt-6 text-[15px] leading-[1.65] text-[var(--ink-muted)] md:text-[17px]">
             {subtitle}
           </p>
         ) : null}
 
         <h2
           id="cs-hero-results-heading"
-          className={`font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)] ${
+          className={`serif-headline text-[clamp(34px,5vw,64px)] leading-[1.15] text-[var(--ink)] ${
             subtitle ? 'mt-6 md:mt-10' : 'mt-10 md:mt-14'
           }`}
-          style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
         >
           {heading}
         </h2>
@@ -97,17 +96,14 @@ export function CaseStudyHeroResults({
         <div className="mt-10 grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-14 md:mt-14 md:grid-cols-3 md:gap-x-12 md:gap-y-16">
           {metrics.map((m, i) => (
             <div key={`${m.label}-${i}`} className="min-w-0 text-left">
-              <div
-                className="mb-3 font-normal leading-[1.05] tracking-[-0.02em] text-[var(--ink)]"
-                style={{ fontSize: 'clamp(32px, 4.5vw, 52px)' }}
-              >
+              <div className="serif-headline mb-1 text-[clamp(28px,4vw,48px)] font-medium leading-[1.05] tracking-[-0.02em] text-[var(--ink)] tabular-nums">
                 {m.value.split('\n').map((line, j) => (
                   <span key={j} className="block">
                     {line}
                   </span>
                 ))}
               </div>
-              <p className="text-[10px] font-bold uppercase leading-snug tracking-[0.14em] text-[var(--ink)] md:text-[11px]">
+              <p className="serif-headline text-[11px] leading-snug text-[var(--ink-muted)] md:text-xs">
                 {m.label}
               </p>
             </div>

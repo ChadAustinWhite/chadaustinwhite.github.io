@@ -92,8 +92,115 @@ export interface StrategySection {
   subsections?: StrategySubsection[];
 }
 
+/** Case study page layout variants. */
+export type CaseStudyLayoutVariant = 'whoop' | 'editorial' | 'sonos';
+
+/** Image aspect presets matching Instrument Sonos case study assets. */
+export type CaseStudySonosImageVariant = 'portrait' | 'wide' | 'wideShort' | 'wideTall';
+
+export interface CaseStudySonosImage {
+  src: string;
+  variant: CaseStudySonosImageVariant;
+  /** Optional caption below image (Instrument-style, may repeat for emphasis). */
+  caption?: string;
+  /** `fullBleed` = edge-to-edge; `inset` = prose-width column with rounded corners. */
+  display?: 'fullBleed' | 'inset';
+}
+
+export interface CaseStudySonosNumberedItem {
+  number: string;
+  title: string;
+  body: string;
+}
+
+export interface CaseStudySonosSubpoint {
+  title: string;
+  body: string;
+}
+
+export interface CaseStudySonosMetric {
+  value: string;
+  label: string;
+}
+
+/** Card in a horizontal auto-scrolling gallery (below a section). */
+export type CaseStudySonosCarouselCardVariant =
+  | 'square'
+  | 'landscape'
+  | 'landscapeWide'
+  | 'tall';
+
+export interface CaseStudySonosCarouselImage {
+  src: string;
+  alt?: string;
+  variant?: CaseStudySonosCarouselCardVariant;
+}
+
+export interface CaseStudySonosSection {
+  /** H2-style section title (e.g. “A Digital Identity”). */
+  heading: string;
+  paragraphs: string[];
+  /** Optional KPI row (matches homepage project card metrics). */
+  metrics?: CaseStudySonosMetric[];
+  /** Optional numbered list (e.g. project complications). */
+  numberedItems?: CaseStudySonosNumberedItem[];
+  /** Optional titled sub-points (e.g. why it matters pillars). */
+  subpoints?: CaseStudySonosSubpoint[];
+  /** `bullet` = inline list; `stacked` = title + body blocks; `accordion` = expand/collapse rows. */
+  subpointsVariant?: 'bullet' | 'stacked' | 'accordion';
+  /** Quote block after section copy (mid-page testimonial). */
+  testimonial?: { quote: string; name: string; role: string };
+  /** Auto-scrolling horizontal gallery rendered below section copy. */
+  imageCarousel?: CaseStudySonosCarouselImage[];
+  image?: CaseStudySonosImage;
+}
+
+/** Instrument Sonos work page layout (instrument.com/work/sonos-brand-refresh). */
+export interface CaseStudySonosContent {
+  lead?: string;
+  tags?: string[];
+  /** KPI row in the page header (label above value, two columns). */
+  heroMetrics?: CaseStudySonosMetric[];
+  /** Auto-scrolling gallery below the header (replaces a single hero image). */
+  heroCarousel?: CaseStudySonosCarouselImage[];
+  /** Full-bleed hero image at the top of the page (after tags, before lead). */
+  introImage?: CaseStudySonosImage;
+  sections: CaseStudySonosSection[];
+}
+
+export interface CaseStudyEditorialSection {
+  heading: string;
+  body: string;
+  /** When set, renders multiple paragraphs instead of a single `body` block. */
+  bodyParagraphs?: string[];
+  images?: string[];
+  /** When true, images render in a responsive icon grid (e.g. 4 columns). */
+  imageGrid?: boolean;
+  /** Full-width image with no card chrome (Lucid-style break). */
+  fullBleedImage?: boolean;
+}
+
 export interface CaseStudyContent {
   title: string;
+  /** Page structure; `sonos` matches instrument.com/work/sonos-brand-refresh. */
+  layout?: CaseStudyLayoutVariant;
+  /** Sonos-style Instrument work page content. */
+  sonos?: CaseStudySonosContent;
+  /** Scroll-driven dark → light background on the case study page. */
+  scrollGradient?: boolean;
+  /** Editorial-only overrides (lucid-motors-style). */
+  editorial?: {
+    statement?: string;
+    metricsHeading?: string;
+    galleryHeading?: string;
+    /** When false, skips the process gallery block. */
+    showGallery?: boolean;
+    /** Hero product shot spans viewport width (no inset card). */
+    heroImageFullBleed?: boolean;
+    testimonial?: { quote: string; name: string; role: string };
+    sections?: CaseStudyEditorialSection[];
+    nextProjectTitle?: string;
+  };
   /**
    * Left label in section headers (e.g. OVERVIEW). If omitted, uses second hero line when present,
    * otherwise "Chad Austin White".

@@ -144,8 +144,7 @@ export function CaseStudyHeroDiscovery({
             <div>
               <h2
                 id="cs-hero-discovery-heading"
-                className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-                style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
+                className="serif-headline text-[clamp(34px,5vw,64px)] leading-[1.15] text-[var(--ink)]"
               >
                 {headline}
               </h2>
@@ -158,8 +157,7 @@ export function CaseStudyHeroDiscovery({
           <div className="mt-10 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-2 md:gap-16 lg:gap-24">
             <h2
               id="cs-hero-discovery-heading"
-              className="font-normal leading-[1.15] tracking-[-0.02em] text-[var(--ink)]"
-              style={{ fontSize: 'clamp(34px, 5vw, 64px)' }}
+              className="serif-headline text-[clamp(34px,5vw,64px)] leading-[1.15] text-[var(--ink)]"
             >
               {headline}
             </h2>
