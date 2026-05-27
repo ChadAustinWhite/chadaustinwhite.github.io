@@ -115,6 +115,43 @@ html.home-canvas-interactive .site-nav-surface {
   padding-inline: max(var(--cs-page-gutter), clamp(1.5rem, 5vw, 3rem));
 }
 
+/* Case study Sonos — Instrument-style asymmetric work grid */
+.case-study-sonos-work-grid {
+  margin-block: clamp(2.5rem, 7vw, 5rem);
+}
+
+.case-study-sonos-work-grid__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.case-study-sonos-work-grid__row + .case-study-sonos-work-grid__row {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 768px) {
+  .case-study-sonos-work-grid__row {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .case-study-sonos-work-grid__cell.is-large {
+    grid-column: span 8;
+  }
+
+  .case-study-sonos-work-grid__cell.is-small {
+    grid-column: span 4;
+  }
+
+  .case-study-sonos-work-grid__cell[data-aspect='portrait'].is-large .case-study-sonos-work-grid__media {
+    max-height: min(72vh, 720px);
+    margin-inline-start: auto;
+    max-width: 100%;
+  }
+}
+
 .sonos-subpoint-accordion__trigger:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--ink-muted) 55%, transparent);
   outline-offset: 3px;

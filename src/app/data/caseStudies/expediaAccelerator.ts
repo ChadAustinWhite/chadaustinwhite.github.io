@@ -121,12 +121,80 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         ],
         subpointsVariant: 'accordion',
         image: {
-          ...sonosDuoPlaceholder(expediaAcceleratorPartnerCentral, 'wideShort'),
+          src: expediaAcceleratorPartnerCentral,
+          variant: 'wideShort',
           objectFit: 'contain',
+          background: 'none',
+          padded: true,
         },
       },
       {
         heading: 'Project complications',
+        workGrid: {
+          position: 'above',
+          rows: [
+            {
+              cells: [
+                {
+                  src: PLACEHOLDER_SONOS_WIDE_SHORT,
+                  size: 'large',
+                  aspect: 'landscape',
+                  alt: '',
+                  title: 'Partner Central overview',
+                  caption: 'Placeholder for Accelerator performance and market context.',
+                },
+                {
+                  src: PLACEHOLDER_SONOS_PORTRAIT,
+                  size: 'small',
+                  aspect: 'portrait',
+                  alt: '',
+                  title: 'Campaign setup',
+                  caption: 'Placeholder for create-flow and configuration screens.',
+                },
+              ],
+            },
+            {
+              cells: [
+                {
+                  src: PLACEHOLDER_SONOS_WIDE_SHORT,
+                  size: 'small',
+                  aspect: 'landscape',
+                  alt: '',
+                  title: 'Research synthesis',
+                  caption: 'Placeholder for usability and testing artifacts.',
+                },
+                {
+                  src: PLACEHOLDER_SONOS_PORTRAIT,
+                  size: 'large',
+                  aspect: 'portrait',
+                  alt: '',
+                  title: 'OneKeyCash exploration',
+                  caption: 'Placeholder for hypothesis and prototype screens.',
+                },
+              ],
+            },
+            {
+              cells: [
+                {
+                  src: PLACEHOLDER_SONOS_WIDE,
+                  size: 'large',
+                  aspect: 'landscape',
+                  alt: '',
+                  title: 'Cross-product journey',
+                  caption: 'Placeholder for interdependencies across partner tools.',
+                },
+                {
+                  src: PLACEHOLDER_SONOS_WIDE_SHORT,
+                  size: 'small',
+                  aspect: 'landscape',
+                  alt: '',
+                  title: 'Legacy system constraints',
+                  caption: 'Placeholder for design system and technical limitation context.',
+                },
+              ],
+            },
+          ],
+        },
         paragraphs: [
           'A quick look at the main challenges and roadblocks the team faced during the initiative, and how we tackled them with perseverance and flexibility.',
         ],
@@ -157,7 +225,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: sonosDuoPlaceholder(),
       },
       {
         heading: 'Defining what success looks like',

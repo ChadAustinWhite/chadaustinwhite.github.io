@@ -146,6 +146,26 @@ export interface CaseStudySonosCarouselImage {
   variant?: CaseStudySonosCarouselCardVariant;
 }
 
+/** Cell in an Instrument-style asymmetric work grid (large/small pairs per row). */
+export interface CaseStudySonosWorkGridCell {
+  src: string;
+  alt?: string;
+  title?: string;
+  caption?: string;
+  size: 'large' | 'small';
+  aspect?: 'landscape' | 'portrait' | 'square';
+}
+
+export interface CaseStudySonosWorkGridRow {
+  cells: [CaseStudySonosWorkGridCell, CaseStudySonosWorkGridCell];
+}
+
+export interface CaseStudySonosWorkGrid {
+  /** When `above`, renders before the section heading and copy. */
+  position?: 'above' | 'below';
+  rows: CaseStudySonosWorkGridRow[];
+}
+
 export interface CaseStudySonosSection {
   /** H2-style section title (e.g. “A Digital Identity”). */
   heading: string;
@@ -162,6 +182,8 @@ export interface CaseStudySonosSection {
   testimonial?: { quote: string; name: string; role: string };
   /** Auto-scrolling horizontal gallery rendered below section copy. */
   imageCarousel?: CaseStudySonosCarouselImage[];
+  /** Asymmetric 2-up image grid (Instrument work index style). */
+  workGrid?: CaseStudySonosWorkGrid;
   image?: CaseStudySonosImage;
 }
 
