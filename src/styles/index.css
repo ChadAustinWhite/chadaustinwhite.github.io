@@ -119,14 +119,50 @@ html.home-canvas-interactive .site-nav-surface {
   outline-offset: 3px;
 }
 
+.sonos-subpoint-accordion__item {
+  transition:
+    border-radius 420ms cubic-bezier(0.33, 1, 0.68, 1),
+    background-color 280ms ease-out;
+}
+
+.sonos-subpoint-accordion__panel {
+  transition: grid-template-rows 420ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.sonos-subpoint-accordion__panel-body {
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.sonos-subpoint-accordion__item.is-open .sonos-subpoint-accordion__panel-body {
+  opacity: 1;
+  transition-delay: 120ms;
+}
+
+.sonos-subpoint-accordion__icon-vertical {
+  transition: opacity 280ms cubic-bezier(0.33, 1, 0.68, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .sonos-subpoint-accordion__item {
+    transition: background-color 150ms ease-out;
+  }
+
   .sonos-subpoint-accordion__panel {
     transition: none !important;
   }
 
-  .sonos-subpoint-accordion__panel p {
+  .sonos-subpoint-accordion__panel-body {
     transition: none !important;
-    transform: none !important;
+    opacity: 1;
+  }
+
+  .sonos-subpoint-accordion__item.is-open .sonos-subpoint-accordion__panel-body {
+    transition-delay: 0ms;
+  }
+
+  .sonos-subpoint-accordion__icon-vertical {
+    transition: none !important;
   }
 }
 
