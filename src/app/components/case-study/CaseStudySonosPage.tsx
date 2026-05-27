@@ -39,6 +39,7 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
 
   if (display === 'duo' && image.duoSecondary) {
     const secondary = image.duoSecondary;
+    const primaryImgClass = `block h-full w-full ${image.objectFit === 'contain' ? 'object-contain' : 'object-cover'}`;
 
     return (
       <figure className={`${GUTTER} my-12 md:my-16`}>
@@ -47,7 +48,13 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
             className="overflow-hidden rounded-2xl bg-[var(--card-bg)] md:rounded-3xl"
             style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
           >
-            <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
+            <img
+              src={image.src}
+              alt=""
+              className={primaryImgClass}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <div
             className="mx-auto w-full max-w-[200px] shrink-0 overflow-hidden rounded-2xl bg-[var(--card-bg)] sm:mx-0 sm:w-[clamp(180px,22vw,260px)] md:rounded-3xl"
@@ -56,7 +63,7 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
             <img
               src={secondary.src}
               alt=""
-              className={imgClass}
+              className="block h-full w-full object-cover"
               loading="lazy"
               decoding="async"
             />
