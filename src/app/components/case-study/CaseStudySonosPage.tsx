@@ -1,6 +1,7 @@
 import { useCaseStudySectionBackground } from '../../hooks/useCaseStudySectionBackground';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 import { CaseStudySonosImageCarousel } from './CaseStudySonosImageCarousel';
+import { CaseStudySonosWorkGrid } from './CaseStudySonosWorkGrid';
 import { CaseStudyPageHeader } from './CaseStudyPageHeader';
 import type {
   CaseStudyContent,
@@ -114,7 +115,7 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
     return (
       <figure className={`${GUTTER} my-12 md:my-16`}>
         <div
-          className={`w-full overflow-hidden ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+          className={`w-full overflow-hidden rounded-2xl md:rounded-3xl ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
           style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
         >
           <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
@@ -364,6 +365,11 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
 
       {sections.map((section, i) => (
         <div key={`${section.heading}-${i}`}>
+          {section.workGrid &&
+          section.workGrid.rows.length > 0 &&
+          (section.workGrid.position ?? 'below') === 'above' ? (
+            <CaseStudySonosWorkGrid grid={section.workGrid} />
+          ) : null}
           <section className={`${GUTTER} pb-10 md:pb-14`}>
             <div className={`${PROSE} cs-text-body space-y-5`}>
               <h2 className="cs-text-title text-[var(--ink)]">{section.heading}</h2>
@@ -395,6 +401,11 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
           </section>
           {section.imageCarousel && section.imageCarousel.length > 0 ? (
             <CaseStudySonosImageCarousel images={section.imageCarousel} />
+          ) : null}
+          {section.workGrid &&
+          section.workGrid.rows.length > 0 &&
+          (section.workGrid.position ?? 'below') === 'below' ? (
+            <CaseStudySonosWorkGrid grid={section.workGrid} />
           ) : null}
           {section.image ? <SonosImageBlock image={section.image} /> : null}
         </div>
