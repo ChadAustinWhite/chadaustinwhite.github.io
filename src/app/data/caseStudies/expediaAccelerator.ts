@@ -16,6 +16,20 @@ import expediaAcceleratorResearchSession from '../../../assets/expedia-accelerat
 import expediaAcceleratorOneKeyCashHypothesis from '../../../assets/expedia-accelerator-onekeycash-hypothesis.png';
 import expediaAcceleratorPrototype3Synthesis from '../../../assets/expedia-accelerator-prototype-3-synthesis.png';
 
+/** Instrument-style section break: wide landscape left, portrait right, gutter-padded. */
+const sonosDuoPlaceholder = (
+  primary: string = PLACEHOLDER_SONOS_WIDE_SHORT,
+  primaryVariant: 'wide' | 'wideShort' = 'wideShort',
+  secondary: string = PLACEHOLDER_SONOS_PORTRAIT,
+) => ({
+  display: 'duo' as const,
+  src: primary,
+  variant: primaryVariant,
+  duoSecondary: { src: secondary, variant: 'portrait' as const },
+  padded: true,
+  background: 'none' as const,
+});
+
 export const expediaAcceleratorContent: CaseStudyContent = {
   layout: 'sonos',
   scrollGradient: true,
@@ -111,7 +125,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: { src: PLACEHOLDER_SONOS_WIDE_SHORT, variant: 'wideShort', display: 'inset' },
+        image: sonosDuoPlaceholder(),
       },
       {
         heading: 'Project complications',
@@ -145,7 +159,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: { src: PLACEHOLDER_SONOS_PORTRAIT, variant: 'portrait' },
+        image: sonosDuoPlaceholder(),
       },
       {
         heading: 'Defining what success looks like',
@@ -179,7 +193,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: { src: PLACEHOLDER_SONOS_WIDE, variant: 'wide' },
+        image: sonosDuoPlaceholder(PLACEHOLDER_SONOS_WIDE, 'wide'),
       },
       {
         heading: 'Product strategy foundations',
@@ -220,7 +234,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
             body: 'Picture superiority, goal-gradient progress, and Zeigarnik-style incomplete states kept partners moving through setup without overwhelm.',
           },
         ],
-        image: { src: PLACEHOLDER_SONOS_WIDE_SHORT, variant: 'wideShort' },
+        image: sonosDuoPlaceholder(),
       },
       {
         heading: 'System thinking and data-informed iteration',
@@ -243,8 +257,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           'Within three months of launch, partner visibility in search results rose roughly 30%. Campaign setup success reached 80% versus 54% with the previous solution. CSAT for the ads experience climbed 20 points; partner opt-in doubled in six months, contributing to a 15% lift in quarterly revenue from long-tail partners.',
         ],
         image: {
-          src: PLACEHOLDER_SONOS_WIDE,
-          variant: 'wide',
+          ...sonosDuoPlaceholder(PLACEHOLDER_SONOS_WIDE, 'wide'),
           caption:
             'We helped partners reimagine pay-after-success advertising, driving adoption with transparency, behavioral design, and clear performance storytelling.',
         },

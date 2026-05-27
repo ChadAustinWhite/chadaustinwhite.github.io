@@ -116,8 +116,7 @@ html.home-canvas-interactive .site-nav-surface {
 
 .sonos-subpoint-accordion__trigger:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--ink-muted) 55%, transparent);
-  outline-offset: 4px;
-  border-radius: 2px;
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {

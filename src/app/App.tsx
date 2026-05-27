@@ -9,11 +9,33 @@ import {
   worldpayMerchantOnboardingContent,
 } from './data/caseStudies';
 import type { CaseStudyRoute } from './data/portfolioData';
+import { PasswordProtectedCaseStudy } from './components/PasswordProtectedCaseStudy';
 import { isValidEmail, notifyCaseStudyAccess } from './lib/notifyCaseStudyAccess';
 
 const COMING_SOON_ROUTES: CaseStudyRoute[] = ['case-study-worldpay-sso'];
 
 type PageType = 'home' | CaseStudyRoute;
+
+function isCaseStudyRoute(page: PageType): page is CaseStudyRoute {
+  return page !== 'home';
+}
+
+function getCaseStudyTitle(route: CaseStudyRoute): string {
+  switch (route) {
+    case 'case-study-expedia-accelerator':
+      return expediaAcceleratorContent.title;
+    case 'case-study-expedia-ad-portal':
+      return expediaAdPortalContent.title;
+    case 'case-study-worldpay-merchant-onboarding':
+      return worldpayMerchantOnboardingContent.title;
+    case 'case-study-worldpay-sso':
+      return 'Worldpay SSO Management';
+    case 'case-study-worldpay-disputes':
+      return 'Worldpay Disputes Experience';
+    default:
+      return 'Case study';
+  }
+}
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
@@ -94,6 +116,66 @@ export default function App() {
     };
   }, [requestAccessRoute]);
 
+  const renderCaseStudy = (route: CaseStudyRoute) => {
+    switch (route) {
+      case 'case-study-expedia-accelerator':
+        return (
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <CaseStudyPage
+              content={expediaAcceleratorContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
+          </CaseStudyLayout>
+        );
+      case 'case-study-expedia-ad-portal':
+        return (
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <CaseStudyPage
+              content={expediaAdPortalContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
+          </CaseStudyLayout>
+        );
+      case 'case-study-worldpay-merchant-onboarding':
+        return (
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <CaseStudyPage
+              content={worldpayMerchantOnboardingContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
+          </CaseStudyLayout>
+        );
+      case 'case-study-worldpay-sso':
+        return (
+          <CaseStudyPlaceholder
+            title="Worldpay SSO Management"
+            onBack={handleBackFromCaseStudy}
+            onNavigateHome={handleBackFromCaseStudy}
+            currentRoute={route}
+            onViewCaseStudy={handleViewCaseStudy}
+          />
+        );
+      case 'case-study-worldpay-disputes':
+        return (
+          <CaseStudyPlaceholder
+            title="Worldpay Disputes Experience"
+            onBack={handleBackFromCaseStudy}
+            onNavigateHome={handleBackFromCaseStudy}
+            currentRoute={route}
+            onViewCaseStudy={handleViewCaseStudy}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {currentPage === 'home' ? (
@@ -101,49 +183,14 @@ export default function App() {
           onViewCaseStudy={handleViewCaseStudy}
           onRequestAccess={handleRequestAccess}
         />
-      ) : currentPage === 'case-study-expedia-accelerator' ? (
-        <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
-          <CaseStudyPage
-            content={expediaAcceleratorContent}
-            onBack={handleBackFromCaseStudy}
-            currentRoute="case-study-expedia-accelerator"
-            onViewCaseStudy={handleViewCaseStudy}
-          />
-        </CaseStudyLayout>
-      ) : currentPage === 'case-study-expedia-ad-portal' ? (
-        <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
-          <CaseStudyPage
-            content={expediaAdPortalContent}
-            onBack={handleBackFromCaseStudy}
-            currentRoute="case-study-expedia-ad-portal"
-            onViewCaseStudy={handleViewCaseStudy}
-          />
-        </CaseStudyLayout>
-      ) : currentPage === 'case-study-worldpay-merchant-onboarding' ? (
-        <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
-          <CaseStudyPage
-            content={worldpayMerchantOnboardingContent}
-            onBack={handleBackFromCaseStudy}
-            currentRoute="case-study-worldpay-merchant-onboarding"
-            onViewCaseStudy={handleViewCaseStudy}
-          />
-        </CaseStudyLayout>
-      ) : currentPage === 'case-study-worldpay-sso' ? (
-        <CaseStudyPlaceholder
-          title="Worldpay SSO Management"
-          onBack={handleBackFromCaseStudy}
-          onNavigateHome={handleBackFromCaseStudy}
-          currentRoute="case-study-worldpay-sso"
-          onViewCaseStudy={handleViewCaseStudy}
-        />
-      ) : currentPage === 'case-study-worldpay-disputes' ? (
-        <CaseStudyPlaceholder
-          title="Worldpay Disputes Experience"
-          onBack={handleBackFromCaseStudy}
-          onNavigateHome={handleBackFromCaseStudy}
-          currentRoute="case-study-worldpay-disputes"
-          onViewCaseStudy={handleViewCaseStudy}
-        />
+      ) : isCaseStudyRoute(currentPage) ? (
+        <PasswordProtectedCaseStudy
+          key={currentPage}
+          route={currentPage}
+          title={getCaseStudyTitle(currentPage)}
+        >
+          {renderCaseStudy(currentPage)}
+        </PasswordProtectedCaseStudy>
       ) : null}
 
       {requestAccessRoute ? (
@@ -203,7 +250,7 @@ export default function App() {
                   disabled={isSubmittingAccess}
                   className="rounded-full bg-[var(--ink)] px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--bg)] transition-opacity hover:opacity-75 disabled:opacity-50"
                 >
-                  {isSubmittingAccess ? 'Sending…' : 'Unlock'}
+                  {isSubmittingAccess ? 'Sending…' : 'Continue'}
                 </button>
               </div>
             </form>

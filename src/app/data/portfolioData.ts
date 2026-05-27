@@ -85,7 +85,6 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Worldpay Dashboard — Disputes case detail with case analysis, win probability, and submit information',
     caseStudyRoute: 'case-study-worldpay-disputes',
-    comingSoon: true,
     hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
     metrics: [
       { label: 'Monthly users', value: '50K' },
@@ -99,7 +98,6 @@ export const projects: ProjectItem[] = [
     image: expediaAdPortalImage,
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
     caseStudyRoute: 'case-study-expedia-ad-portal',
-    comingSoon: true,
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
     metrics: [
       { label: 'Partner markets', value: '12+' },

@@ -34,19 +34,29 @@ function getSonosSections(content: CaseStudyContent): CaseStudySonosSection[] {
 function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
   const captions = image.caption ? [image.caption, image.caption] : [];
   const display = image.display ?? 'fullBleed';
+  const useCardBg = image.background !== 'none';
+  const imgClass = `block h-full w-full ${image.objectFit === 'contain' ? 'object-contain' : 'object-cover'}`;
 
-  if (display === 'inset') {
+  if (display === 'duo' && image.duoSecondary) {
+    const secondary = image.duoSecondary;
+
     return (
-      <figure className={`${GUTTER} my-10 md:my-12`}>
-        <div className={`${PROSE} mx-auto w-full`}>
+      <figure className={`${GUTTER} my-12 md:my-16`}>
+        <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-5 md:gap-6">
           <div
             className="overflow-hidden rounded-2xl bg-[var(--card-bg)] md:rounded-3xl"
             style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
           >
+            <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
+          </div>
+          <div
+            className="mx-auto w-full max-w-[200px] shrink-0 overflow-hidden rounded-2xl bg-[var(--card-bg)] sm:mx-0 sm:w-[clamp(180px,22vw,260px)] md:rounded-3xl"
+            style={{ aspectRatio: SONOS_ASPECT[secondary.variant] }}
+          >
             <img
-              src={image.src}
+              src={secondary.src}
               alt=""
-              className="block h-full w-full object-cover"
+              className={imgClass}
               loading="lazy"
               decoding="async"
             />
@@ -64,19 +74,63 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
     );
   }
 
+  if (display === 'inset') {
+    return (
+      <figure className={`${GUTTER} my-10 md:my-12`}>
+        <div className={`${PROSE} mx-auto w-full`}>
+          <div
+            className={`overflow-hidden rounded-2xl md:rounded-3xl ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+            style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
+          >
+            <img
+              src={image.src}
+              alt=""
+              className={imgClass}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        {captions.map((text, i) => (
+          <figcaption
+            key={`${text}-${i}`}
+            className={`${PROSE} cs-text-meta mx-auto w-full pt-4 text-center text-[var(--ink-muted)]`}
+          >
+            {text}
+          </figcaption>
+        ))}
+      </figure>
+    );
+  }
+
+  if (image.padded) {
+    return (
+      <figure className={`${GUTTER} my-12 md:my-16`}>
+        <div
+          className={`w-full overflow-hidden ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+          style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
+        >
+          <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
+        </div>
+        {captions.map((text, i) => (
+          <figcaption
+            key={`${text}-${i}`}
+            className={`${PROSE} cs-text-meta mx-auto w-full pt-4 text-center text-[var(--ink-muted)]`}
+          >
+            {text}
+          </figcaption>
+        ))}
+      </figure>
+    );
+  }
+
   return (
     <figure className="my-12 md:my-16">
       <div
-        className={`-mx-[var(--cs-page-gutter)] w-[calc(100%+2*var(--cs-page-gutter))] overflow-hidden bg-[var(--card-bg)]`}
+        className={`-mx-[var(--cs-page-gutter)] w-[calc(100%+2*var(--cs-page-gutter))] overflow-hidden ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
       >
         <div className="w-full" style={{ aspectRatio: SONOS_ASPECT[image.variant] }}>
-          <img
-            src={image.src}
-            alt=""
-            className="block h-full w-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
         </div>
       </div>
       {captions.map((text, i) => (
@@ -228,10 +282,9 @@ function SonosRoles({ content }: { content: CaseStudyContent }) {
 
   return (
     <section className={`${GUTTER} border-t border-[var(--border)] py-16 md:py-24`}>
-      <div className={PROSE}>
-        <h2 className="cs-text-label text-[var(--ink-muted)]">Our Roles</h2>
-      </div>
-      <div className="mx-auto mt-10 grid max-w-[72rem] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+      <div className="max-w-[72rem]">
+        <h2 className="cs-text-label text-left text-[var(--ink-muted)]">My Roles</h2>
+        <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
         {columns.map((col) => (
           <div key={col.key}>
             <h3 className="cs-text-label mb-4 text-[var(--ink-muted)]">{col.label}</h3>
@@ -242,6 +295,7 @@ function SonosRoles({ content }: { content: CaseStudyContent }) {
             </ul>
           </div>
         ))}
+        </div>
       </div>
     </section>
   );
