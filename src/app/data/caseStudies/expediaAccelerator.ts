@@ -12,9 +12,9 @@ import expediaAcceleratorExclusiveFeature from '../../../assets/expedia-accelera
 import expediaAcceleratorUsabilitySynthesis from '../../../assets/expedia-accelerator-usability-synthesis.png';
 import expediaAcceleratorUserTesting from '../../../assets/expedia-accelerator-user-testing.png';
 import expediaAcceleratorCreateStayDates from '../../../assets/expedia-accelerator-create-stay-dates.png';
-import expediaAcceleratorResearchSession from '../../../assets/expedia-accelerator-research-session.png';
 import expediaAcceleratorOneKeyCashHypothesis from '../../../assets/expedia-accelerator-onekeycash-hypothesis.png';
 import expediaAcceleratorPrototype3Synthesis from '../../../assets/expedia-accelerator-prototype-3-synthesis.png';
+import expediaAcceleratorPartnerCentral from '../../../assets/expedia-accelerator-partner-central.png';
 
 /** Instrument-style section break: wide landscape left, portrait right, gutter-padded. */
 const sonosDuoPlaceholder = (
@@ -88,11 +88,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         alt: 'Live user testing session alongside Miro research synthesis',
       },
       {
-        src: expediaAcceleratorResearchSession,
-        variant: 'landscapeWide',
-        alt: 'User research session with participant feedback captured on a Miro board',
-      },
-      {
         src: expediaAcceleratorOneKeyCashHypothesis,
         variant: 'landscapeWide',
         alt: 'OneKeyCash design explorations and Create an Accelerator hypothesis screens',
@@ -125,7 +120,10 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: sonosDuoPlaceholder(),
+        image: {
+          ...sonosDuoPlaceholder(expediaAcceleratorPartnerCentral, 'wideShort'),
+          objectFit: 'contain',
+        },
       },
       {
         heading: 'Project complications',
