@@ -20,12 +20,12 @@ import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-
 import expediaAcceleratorPartnerResearch from '../../../assets/expedia-accelerator-partner-research.png';
 import expediaAcceleratorIdeationFigma from '../../../assets/expedia-accelerator-ideation-figma.png';
 import expediaAcceleratorDesignCritique from '../../../assets/expedia-accelerator-design-critique.png';
-import expediaAcceleratorLofiWireframe from '../../../assets/expedia-accelerator-lofi-wireframe.png';
 import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
 import expediaAcceleratorUiPerformanceDashboard from '../../../assets/expedia-accelerator-ui-performance-dashboard.png';
 import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator-ui-metric-cards.png';
 import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
+import expediaAcceleratorUiSearchImpressions from '../../../assets/expedia-accelerator-ui-search-impressions.png';
 
 /** Padded duo break: wide process or product screen left, supporting screen right. */
 const sonosDuoImage = (
@@ -329,32 +329,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         ),
       },
       {
-        heading: 'System thinking and data-informed iteration',
-        paragraphs: [
-          'We mapped touchpoints across search results, listing pages, partner dashboards, and billing, then partnered with adjacent product teams to align UI and reduce fragmentation. Reusable components were proposed for future monetization tools.',
-          'With data science, we tracked funnel drop-off, refined activation, A/B tested CTA language and default budgets, and used clickstream data to validate setup abandonment hypotheses, keeping design and data in lockstep so partners could trust what they saw.',
-        ],
-      },
-      {
-        heading: 'Vision, leadership, and team impact',
-        paragraphs: [
-          'A north-star prototype envisioned a self-optimizing, AI-assisted ad platform; a modular system was roadmapped for budget recommendations, predictive bidding, and ROI forecasting. I co-led strategy with PM and engineering, advocated for UX in quarterly planning, and facilitated crits, retros, and co-creation workshops.',
-          'I mentored two mid-level designers on complementary monetization features, hosted a behavioral-design lunch and learn, and helped introduce experience principles that now guide monetization product decisions org-wide.',
-        ],
-      },
-      {
-        heading: 'Impact and outcomes',
-        paragraphs: [
-          'Accelerator empowers hotel partners to optimize their advertising strategies, improve search rankings, and drive better results with a modern, intuitive experience and comprehensive insights.',
-          'Within three months of launch, partner visibility in search results rose roughly 30%. Campaign setup success reached 80% versus 54% with the previous solution. CSAT for the ads experience climbed 20 points; partner opt-in doubled in six months, contributing to a 15% lift in quarterly revenue from long-tail partners.',
-        ],
-        image: {
-          ...sonosDuoImage(expediaAcceleratorLofiWireframe, expediaAcceleratorCreateFlow, 'wide'),
-          caption:
-            'From low-fidelity exploration to shipped Partner Central flows: transparency, behavioral design, and clear performance storytelling.',
-        },
-      },
-      {
         heading: 'Interface refinement',
         paragraphs: [
           'The shipped Partner Central experience balances information density with clarity: consistent spacing, predictable components, and interaction patterns that scale from campaign setup through performance reporting.',
@@ -388,20 +362,28 @@ export const expediaAcceleratorContent: CaseStudyContent = {
                 'Stay dates, blockouts, compensation preview, and launch review in a single guided setup path.',
             },
             {
-              src: expediaAcceleratorUiStayDates,
-              objectFit: 'contain',
-              alt: 'Stay dates and blockout date fields with advanced visibility settings',
-              title: 'Date and visibility controls',
-              caption:
-                'Structured inputs for stay windows, optional blockouts, and advanced visibility in one scannable form.',
-            },
-            {
               src: expediaAcceleratorUiRateSelection,
               objectFit: 'contain',
               alt: 'Rate plan and marketplace selection with radio hierarchy and helper copy',
               title: 'Rate plan and marketplace selection',
               caption:
                 'Radio hierarchy, helper copy, and WCAG-aligned contrast for long-form decisions.',
+            },
+            {
+              src: expediaAcceleratorUiStayDates,
+              objectFit: 'contain',
+              alt: 'Create an Accelerator stay dates, blockout dates, and advanced visibility settings',
+              title: 'Date and visibility controls',
+              caption:
+                'Structured inputs for stay windows, optional blockouts, and advanced visibility in one scannable form.',
+            },
+            {
+              src: expediaAcceleratorUiSearchImpressions,
+              objectFit: 'contain',
+              alt: 'Search impressions performance chart with Accelerator lift, blackout dates, and rate plan breakdown',
+              title: 'Search impressions and rate plan performance',
+              caption:
+                'Partners compare estimated versus Accelerator-driven impressions over time, then drill into revenue, room nights, and bookings by rate plan.',
             },
           ],
         },
