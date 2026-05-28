@@ -62,6 +62,66 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
     heroCarousel: [
       {
+        src: expediaAcceleratorStudyOverview,
+        variant: 'landscapeWide',
+        alt: 'UR brief outlining study dates, recruitment criteria, and interview methodology',
+      },
+      {
+        src: expediaAcceleratorResearchBrief,
+        variant: 'landscapeWide',
+        alt: 'XLR and OneKeyCash study plan with structured interview sections',
+      },
+      {
+        src: expediaAcceleratorDataAnalysis,
+        variant: 'landscapeWide',
+        alt: 'Transaction analysis reviewed alongside partner performance data',
+      },
+      {
+        src: expediaAcceleratorMiroAudit,
+        variant: 'landscapeWide',
+        alt: 'XLR and OneKeyCash UX audit synthesis on a Miro board',
+      },
+      {
+        src: expediaAcceleratorAffinityMapping,
+        variant: 'landscapeWide',
+        alt: 'Miro affinity map clustering partner research findings',
+      },
+      {
+        src: expediaAcceleratorUserTesting,
+        variant: 'landscapeWide',
+        alt: 'Live user testing session alongside Miro research synthesis',
+      },
+      {
+        src: expediaAcceleratorUsabilitySynthesis,
+        variant: 'landscapeWide',
+        alt: 'Usability testing synthesis: successes and opportunities for OneKeyCash',
+      },
+      {
+        src: expediaAcceleratorPrototype3Synthesis,
+        variant: 'landscapeWide',
+        alt: 'Prototype 3 usability synthesis: successes and opportunities',
+      },
+      {
+        src: expediaAcceleratorLofiWireframe,
+        variant: 'landscapeWide',
+        alt: 'Low-fidelity Accelerator wireframes',
+      },
+      {
+        src: expediaAcceleratorIdeationFigma,
+        variant: 'landscapeWide',
+        alt: 'Figma ideation boards for Accelerator flows',
+      },
+      {
+        src: expediaAcceleratorOneKeyCashHypothesis,
+        variant: 'landscapeWide',
+        alt: 'OneKeyCash design explorations and Create an Accelerator hypothesis screens',
+      },
+      {
+        src: expediaAcceleratorDataIteration,
+        variant: 'landscapeWide',
+        alt: 'Excel transaction analysis reviewed in Zoom alongside successive Figma prototypes',
+      },
+      {
         src: expediaAcceleratorCreateFlow,
         variant: 'landscapeWide',
         alt: 'Create an Accelerator flow in Partner Central with annotated design feedback',
@@ -70,16 +130,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         src: expediaAcceleratorOneKeyCash,
         variant: 'landscape',
         alt: 'OneKeyCash promotion qualification and preview in Partner Central',
-      },
-      {
-        src: expediaAcceleratorImage,
-        variant: 'landscapeWide',
-        alt: 'Partner Central performance and market trends',
-      },
-      {
-        src: expediaAcceleratorMiroAudit,
-        variant: 'landscapeWide',
-        alt: 'XLR and OneKeyCash UX audit synthesis on a Miro board',
       },
       {
         src: expediaAcceleratorExclusiveFeature,
@@ -92,24 +142,14 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         alt: 'Create an Accelerator stay dates, blockout dates, and visibility settings in Partner Central',
       },
       {
-        src: expediaAcceleratorUsabilitySynthesis,
+        src: expediaAcceleratorImage,
         variant: 'landscapeWide',
-        alt: 'Usability testing synthesis: successes and opportunities for OneKeyCash',
+        alt: 'Partner Central performance and market trends',
       },
       {
-        src: expediaAcceleratorUserTesting,
+        src: expediaAcceleratorUiPerformanceDashboard,
         variant: 'landscapeWide',
-        alt: 'Live user testing session alongside Miro research synthesis',
-      },
-      {
-        src: expediaAcceleratorOneKeyCashHypothesis,
-        variant: 'landscapeWide',
-        alt: 'OneKeyCash design explorations and Create an Accelerator hypothesis screens',
-      },
-      {
-        src: expediaAcceleratorPrototype3Synthesis,
-        variant: 'landscapeWide',
-        alt: 'Prototype 3 usability synthesis: successes and opportunities',
+        alt: 'Accelerator performance dashboard showing standard, OneKeyCash, and unavailable data states',
       },
     ],
     sections: [
