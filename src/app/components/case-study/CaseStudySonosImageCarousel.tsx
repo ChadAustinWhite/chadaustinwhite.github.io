@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { SONOS_IMAGE_FRAME_CLASS } from './constants';
 import type { CaseStudySonosCarouselCardVariant, CaseStudySonosCarouselImage } from './types';
 
 /** Large mixed-aspect strip (Instrument services / Sonos case study scale). */
@@ -29,7 +30,7 @@ function CarouselCard({
   return (
     <figure
       key={id}
-      className={`relative shrink-0 overflow-hidden rounded-[1.75rem] bg-[var(--card-bg)] md:rounded-[2rem] ${CARD_CLASS[variant]}`}
+      className={`relative shrink-0 bg-[var(--card-bg)] ${SONOS_IMAGE_FRAME_CLASS} ${CARD_CLASS[variant]}`}
     >
       <img
         src={image.src}

@@ -1,9 +1,4 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
-import {
-  PLACEHOLDER_SONOS_PORTRAIT,
-  PLACEHOLDER_SONOS_WIDE,
-  PLACEHOLDER_SONOS_WIDE_SHORT,
-} from '../../components/case-study/constants';
 import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
 import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
@@ -15,12 +10,28 @@ import expediaAcceleratorCreateStayDates from '../../../assets/expedia-accelerat
 import expediaAcceleratorOneKeyCashHypothesis from '../../../assets/expedia-accelerator-onekeycash-hypothesis.png';
 import expediaAcceleratorPrototype3Synthesis from '../../../assets/expedia-accelerator-prototype-3-synthesis.png';
 import expediaAcceleratorPartnerCentral from '../../../assets/expedia-accelerator-partner-central.png';
+import expediaAcceleratorStudyOverview from '../../../assets/expedia-accelerator-study-overview.png';
+import expediaAcceleratorCollaborationPlanning from '../../../assets/expedia-accelerator-collaboration-planning.png';
+import expediaAcceleratorResearchBrief from '../../../assets/expedia-accelerator-research-brief.png';
+import expediaAcceleratorAffinityMapping from '../../../assets/expedia-accelerator-affinity-mapping.png';
+import expediaAcceleratorDataIteration from '../../../assets/expedia-accelerator-data-iteration.png';
+import expediaAcceleratorDesignSystem from '../../../assets/expedia-accelerator-design-system.png';
+import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-data-analysis.png';
+import expediaAcceleratorPartnerResearch from '../../../assets/expedia-accelerator-partner-research.png';
+import expediaAcceleratorIdeationFigma from '../../../assets/expedia-accelerator-ideation-figma.png';
+import expediaAcceleratorDesignCritique from '../../../assets/expedia-accelerator-design-critique.png';
+import expediaAcceleratorLofiWireframe from '../../../assets/expedia-accelerator-lofi-wireframe.png';
+import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
+import expediaAcceleratorUiPerformanceDashboard from '../../../assets/expedia-accelerator-ui-performance-dashboard.png';
+import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator-ui-metric-cards.png';
+import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
+import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
 
-/** Instrument-style section break: wide landscape left, portrait right, gutter-padded. */
-const sonosDuoPlaceholder = (
-  primary: string = PLACEHOLDER_SONOS_WIDE_SHORT,
+/** Padded duo break: wide process or product screen left, supporting screen right. */
+const sonosDuoImage = (
+  primary: string,
+  secondary: string,
   primaryVariant: 'wide' | 'wideShort' = 'wideShort',
-  secondary: string = PLACEHOLDER_SONOS_PORTRAIT,
 ) => ({
   display: 'duo' as const,
   src: primary,
@@ -28,6 +39,7 @@ const sonosDuoPlaceholder = (
   duoSecondary: { src: secondary, variant: 'portrait' as const },
   padded: true,
   background: 'none' as const,
+  objectFit: 'contain' as const,
 });
 
 export const expediaAcceleratorContent: CaseStudyContent = {
@@ -46,6 +58,8 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   projectFocus: ['Travel', 'B2B', 'Product'],
   images: expediaAcceleratorImage,
   sonos: {
+    lead:
+      'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
     heroCarousel: [
       {
         src: expediaAcceleratorCreateFlow,
@@ -102,7 +116,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       {
         heading: 'Why it matters',
         paragraphs: [
-          'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
           'Search visibility directly impacts bookings and revenue. When hotel partners can’t clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.',
         ],
         subpoints: [
@@ -131,65 +144,71 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       {
         heading: 'Project complications',
         workGrid: {
-          position: 'above',
+          position: 'below',
           rows: [
             {
               cells: [
                 {
-                  src: PLACEHOLDER_SONOS_WIDE_SHORT,
+                  src: expediaAcceleratorStudyOverview,
                   size: 'large',
                   aspect: 'landscape',
-                  alt: '',
-                  title: 'Partner Central overview',
-                  caption: 'Placeholder for Accelerator performance and market context.',
+                  alt: 'UR brief outlining study dates, recruitment criteria, and interview methodology',
+                  title: 'Evaluative study brief',
+                  caption:
+                    'Aligned research, CX, and design on recruitment, sessions, and goals before post-launch partner interviews.',
                 },
                 {
-                  src: PLACEHOLDER_SONOS_PORTRAIT,
+                  src: expediaAcceleratorCollaborationPlanning,
                   size: 'small',
                   aspect: 'portrait',
-                  alt: '',
-                  title: 'Campaign setup',
-                  caption: 'Placeholder for create-flow and configuration screens.',
+                  alt: 'Zoom working session reviewing the Q3 Accelerator study plan with the full team',
+                  title: 'Planning as a team',
+                  caption:
+                    'Live working session to refine research questions and partner criteria across time zones.',
                 },
               ],
             },
             {
               cells: [
                 {
-                  src: PLACEHOLDER_SONOS_WIDE_SHORT,
+                  src: expediaAcceleratorResearchBrief,
                   size: 'small',
                   aspect: 'landscape',
-                  alt: '',
-                  title: 'Research synthesis',
-                  caption: 'Placeholder for usability and testing artifacts.',
+                  alt: 'XLR and OneKeyCash study plan with structured interview sections',
+                  title: 'Discussion guide',
+                  caption:
+                    'Structured script for Accelerator usage, OneKeyCash perception, and prototype walkthroughs.',
                 },
                 {
-                  src: PLACEHOLDER_SONOS_PORTRAIT,
+                  src: expediaAcceleratorAffinityMapping,
                   size: 'large',
                   aspect: 'portrait',
-                  alt: '',
-                  title: 'OneKeyCash exploration',
-                  caption: 'Placeholder for hypothesis and prototype screens.',
+                  alt: 'Miro affinity map clustering partner research findings',
+                  title: 'Synthesis workshop',
+                  caption:
+                    'Affinity mapping to turn partner feedback into themes, opportunities, and design priorities.',
                 },
               ],
             },
             {
               cells: [
                 {
-                  src: PLACEHOLDER_SONOS_WIDE,
+                  src: expediaAcceleratorDataIteration,
                   size: 'large',
                   aspect: 'landscape',
-                  alt: '',
-                  title: 'Cross-product journey',
-                  caption: 'Placeholder for interdependencies across partner tools.',
+                  alt: 'Excel transaction analysis reviewed in Zoom alongside successive Figma prototypes',
+                  title: 'Data-informed iteration',
+                  caption:
+                    'Partner transaction data reviewed alongside successive prototypes to validate direction.',
                 },
                 {
-                  src: PLACEHOLDER_SONOS_WIDE_SHORT,
+                  src: expediaAcceleratorDesignSystem,
                   size: 'small',
                   aspect: 'landscape',
-                  alt: '',
-                  title: 'Legacy system constraints',
-                  caption: 'Placeholder for design system and technical limitation context.',
+                  alt: 'FDS component library and variables in Figma',
+                  title: 'Design system alignment',
+                  caption:
+                    'Bridging legacy Partner Central patterns with shared components, tokens, and variables.',
                 },
               ],
             },
@@ -258,13 +277,18 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: sonosDuoPlaceholder(PLACEHOLDER_SONOS_WIDE, 'wide'),
+        image: sonosDuoImage(
+          expediaAcceleratorDataAnalysis,
+          expediaAcceleratorPartnerResearch,
+          'wide',
+        ),
       },
       {
         heading: 'Product strategy foundations',
         paragraphs: [
           'We grounded the experience in behavioral insights and usability heuristics while aligning teams around a shared definition of partner and business success.',
         ],
+        subpointsVariant: 'accordion',
         subpoints: [
           {
             title: 'Cross-functional alignment',
@@ -299,7 +323,10 @@ export const expediaAcceleratorContent: CaseStudyContent = {
             body: 'Picture superiority, goal-gradient progress, and Zeigarnik-style incomplete states kept partners moving through setup without overwhelm.',
           },
         ],
-        image: sonosDuoPlaceholder(),
+        image: sonosDuoImage(
+          expediaAcceleratorIdeationFigma,
+          expediaAcceleratorDesignCritique,
+        ),
       },
       {
         heading: 'System thinking and data-informed iteration',
@@ -322,9 +349,61 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           'Within three months of launch, partner visibility in search results rose roughly 30%. Campaign setup success reached 80% versus 54% with the previous solution. CSAT for the ads experience climbed 20 points; partner opt-in doubled in six months, contributing to a 15% lift in quarterly revenue from long-tail partners.',
         ],
         image: {
-          ...sonosDuoPlaceholder(PLACEHOLDER_SONOS_WIDE, 'wide'),
+          ...sonosDuoImage(expediaAcceleratorLofiWireframe, expediaAcceleratorCreateFlow, 'wide'),
           caption:
-            'We helped partners reimagine pay-after-success advertising, driving adoption with transparency, behavioral design, and clear performance storytelling.',
+            'From low-fidelity exploration to shipped Partner Central flows: transparency, behavioral design, and clear performance storytelling.',
+        },
+      },
+      {
+        heading: 'Interface refinement',
+        paragraphs: [
+          'The shipped Partner Central experience balances information density with clarity: consistent spacing, predictable components, and interaction patterns that scale from campaign setup through performance reporting.',
+          'Surfaces were designed for real edge cases (multi-date ranges, OneKeyCash eligibility, unavailable metrics) so partners always understood what they configured and what they could expect in return.',
+        ],
+        screenStack: {
+          position: 'below',
+          items: [
+            {
+              src: expediaAcceleratorUiPerformanceDashboard,
+              objectFit: 'contain',
+              alt: 'Accelerator performance dashboard showing standard, OneKeyCash, and unavailable data states',
+              title: 'Performance reporting',
+              caption:
+                'Three dashboard states: standard Accelerator, OneKeyCash overlay, and graceful handling when metrics are unavailable.',
+            },
+            {
+              src: expediaAcceleratorUiMetricCards,
+              objectFit: 'contain',
+              alt: 'Sort order, page views, and search impressions metric cards with comparison to estimated performance without Accelerator',
+              title: 'Impact at a glance',
+              caption:
+                'Modular metric cards with clear baselines so partners see lift versus running without Accelerator.',
+            },
+            {
+              src: expediaAcceleratorUiCreateCalendar,
+              objectFit: 'contain',
+              alt: 'Create an Accelerator flow with stay date calendar picker and compensation preview chart',
+              title: 'Create flow',
+              caption:
+                'Stay dates, blockouts, compensation preview, and launch review in a single guided setup path.',
+            },
+            {
+              src: expediaAcceleratorUiStayDates,
+              objectFit: 'contain',
+              alt: 'Stay dates and blockout date fields with advanced visibility settings',
+              title: 'Date and visibility controls',
+              caption:
+                'Structured inputs for stay windows, optional blockouts, and advanced visibility in one scannable form.',
+            },
+            {
+              src: expediaAcceleratorUiRateSelection,
+              objectFit: 'contain',
+              alt: 'Rate plan and marketplace selection with radio hierarchy and helper copy',
+              title: 'Rate plan and marketplace selection',
+              caption:
+                'Radio hierarchy, helper copy, and WCAG-aligned contrast for long-form decisions.',
+            },
+          ],
         },
       },
       {

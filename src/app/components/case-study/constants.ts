@@ -27,6 +27,9 @@ export const PLACEHOLDER_SONOS_WIDE_SHORT =
 export const PLACEHOLDER_SONOS_WIDE_TALL =
   'https://placehold.co/3840x2548/1c1c1a/2a2a28?text=3840×2548';
 
+/** Rounded clip frame for Sonos case study images (carousel, grid, section breaks). */
+export const SONOS_IMAGE_FRAME_CLASS = 'overflow-hidden rounded-2xl md:rounded-3xl';
+
 /** Placeholders for Sonos hero carousel (square, 16:10, 3:2, 9:16). */
 export const PLACEHOLDER_SONOS_CAROUSEL_SQUARE =
   'https://placehold.co/800x800/1c1c1a/2a2a28?text=Screen';

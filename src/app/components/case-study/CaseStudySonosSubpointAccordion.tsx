@@ -3,6 +3,7 @@ import type { CaseStudySonosSubpoint } from './types';
 
 interface CaseStudySonosSubpointAccordionProps {
   items: CaseStudySonosSubpoint[];
+  className?: string;
 }
 
 function AccordionToggleIcon({ isOpen }: { isOpen: boolean }) {
@@ -30,13 +31,18 @@ function AccordionToggleIcon({ isOpen }: { isOpen: boolean }) {
   );
 }
 
-export function CaseStudySonosSubpointAccordion({ items }: CaseStudySonosSubpointAccordionProps) {
+export function CaseStudySonosSubpointAccordion({
+  items,
+  className = '',
+}: CaseStudySonosSubpointAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   if (!items.length) return null;
 
   return (
-    <div className="sonos-subpoint-accordion mt-8 flex flex-col gap-2 md:mt-10 md:gap-2.5">
+    <div
+      className={`sonos-subpoint-accordion flex flex-col gap-2 md:gap-2.5 ${className || 'mt-8 md:mt-10'}`.trim()}
+    >
       {items.map((item, i) => {
         const isOpen = openIndex === i;
 

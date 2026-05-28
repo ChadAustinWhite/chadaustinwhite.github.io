@@ -28,9 +28,11 @@ interface CaseStudyPageHeaderProps {
   content: CaseStudyContent;
   onBack: () => void;
   metrics?: CaseStudyHeroMetric[];
+  /** Lead sentence below Organization / Role / Year / Duration. */
+  lead?: string;
 }
 
-export function CaseStudyPageHeader({ content, onBack, metrics }: CaseStudyPageHeaderProps) {
+export function CaseStudyPageHeader({ content, onBack, metrics, lead }: CaseStudyPageHeaderProps) {
   const { meta } = content;
 
   return (
@@ -68,8 +70,12 @@ export function CaseStudyPageHeader({ content, onBack, metrics }: CaseStudyPageH
         ))}
       </div>
 
-      {meta.organizationNote ? (
-        <p className="cs-text-lead max-w-[80ch] text-[var(--ink-muted)]">{meta.organizationNote}</p>
+      {lead?.trim() ? (
+        <p className="cs-text-lead mb-8 max-w-[42rem] text-[var(--ink-muted)] md:mb-10">{lead}</p>
+      ) : meta.organizationNote ? (
+        <p className="cs-text-lead mb-8 max-w-[42rem] text-[var(--ink-muted)] md:mb-10">
+          {meta.organizationNote}
+        </p>
       ) : null}
 
       {metrics && metrics.length > 0 ? (

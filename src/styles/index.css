@@ -152,6 +152,17 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
+/* Case study Sonos — full-width stacked hi-fi screens */
+.case-study-sonos-screen-stack {
+  margin-block: clamp(2.5rem, 7vw, 5rem);
+}
+
+.case-study-sonos-screen-stack__list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4rem);
+}
+
 .sonos-subpoint-accordion__trigger:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--ink-muted) 55%, transparent);
   outline-offset: 3px;
