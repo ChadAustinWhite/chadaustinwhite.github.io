@@ -30,6 +30,23 @@ export const PLACEHOLDER_SONOS_WIDE_TALL =
 /** Rounded clip frame for Sonos case study images (carousel, grid, section breaks). */
 export const SONOS_IMAGE_FRAME_CLASS = 'overflow-hidden rounded-2xl md:rounded-3xl';
 
+/**
+ * Expedia / Partner Central UI captures are ~1024px wide. Capping display width avoids
+ * upscaling past native resolution (blurry type on large viewports).
+ */
+export const SONOS_SCREENSHOT_MAX_WIDTH_PX = 1024;
+
+export function getSonosRasterStyle(intrinsicWidthPx = SONOS_SCREENSHOT_MAX_WIDTH_PX) {
+  return {
+    maxWidth: `min(100%, ${intrinsicWidthPx}px)`,
+    width: '100%',
+    height: 'auto',
+  } as const;
+}
+
+export const SONOS_RASTER_IMG_CLASS =
+  'case-study-sonos-raster block h-auto w-full object-contain [image-rendering:auto]';
+
 /** Placeholders for Sonos hero carousel (square, 16:10, 3:2, 9:16). */
 export const PLACEHOLDER_SONOS_CAROUSEL_SQUARE =
   'https://placehold.co/800x800/1c1c1a/2a2a28?text=Screen';

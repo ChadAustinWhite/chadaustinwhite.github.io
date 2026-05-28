@@ -101,18 +101,25 @@ export type CaseStudySonosImageVariant = 'portrait' | 'wide' | 'wideShort' | 'wi
 export interface CaseStudySonosImage {
   src: string;
   variant: CaseStudySonosImageVariant;
+  alt?: string;
+  title?: string;
   /** Optional caption below image (Instrument-style, may repeat for emphasis). */
   caption?: string;
   /** `fullBleed` = edge-to-edge; `inset` = prose-width column; `duo` = wide left + portrait right. */
   display?: 'fullBleed' | 'inset' | 'duo';
   /** Right panel when `display` is `duo`. */
-  duoSecondary?: { src: string; variant: CaseStudySonosImageVariant };
+  duoSecondary?: { src: string; variant: CaseStudySonosImageVariant; alt?: string };
   /** Defaults to `cover`; use `contain` for UI comps and layout explorations. */
   objectFit?: 'cover' | 'contain';
   /** Defaults to `card`; use `none` for comps on the page background. */
   background?: 'card' | 'none';
   /** Keep image within page gutters instead of full-bleed breakout. */
   padded?: boolean;
+  /** Skip fixed aspect ratio (diagrams, UI comps). */
+  fitContent?: boolean;
+  /** Cap CSS width so rasters are not upscaled past native pixels (usually 1024 for UI captures). */
+  intrinsicWidthPx?: number;
+  intrinsicHeightPx?: number;
 }
 
 export interface CaseStudySonosNumberedItem {
@@ -144,6 +151,7 @@ export interface CaseStudySonosCarouselImage {
   src: string;
   alt?: string;
   variant?: CaseStudySonosCarouselCardVariant;
+  intrinsicWidthPx?: number;
 }
 
 /** Cell in an Instrument-style asymmetric work grid (large/small pairs per row). */
@@ -174,6 +182,8 @@ export interface CaseStudySonosScreenStackItem {
   title?: string;
   caption?: string;
   objectFit?: 'cover' | 'contain';
+  intrinsicWidthPx?: number;
+  intrinsicHeightPx?: number;
 }
 
 export interface CaseStudySonosScreenStack {
@@ -181,9 +191,11 @@ export interface CaseStudySonosScreenStack {
   items: CaseStudySonosScreenStackItem[];
 }
 
-export type CaseStudySonosSectionLayout = 'default' | 'split';
+export type CaseStudySonosSectionLayout = 'default' | 'split' | 'editorial';
 
 export interface CaseStudySonosSection {
+  /** Design thinking phase label (e.g. Empathize, Define). */
+  phase?: string;
   /** H2-style section title (e.g. “A Digital Identity”). */
   heading: string;
   paragraphs: string[];
@@ -206,10 +218,16 @@ export interface CaseStudySonosSection {
   /** Vertical stack of full-width screens (hi-fi UI detail). */
   screenStack?: CaseStudySonosScreenStack;
   image?: CaseStudySonosImage;
+  /** Repeated wide + portrait pairs (layout exploration style). */
+  imageDuos?: CaseStudySonosImage[];
+  /** Full-width images in sequence below section copy (process story). */
+  imageSequence?: CaseStudySonosImage[];
 }
 
 /** Instrument Sonos work page layout (instrument.com/work/sonos-brand-refresh). */
 export interface CaseStudySonosContent {
+  /** `editorial` = Lucid-style heading left, copy + accordion right. */
+  narrativeLayout?: 'default' | 'editorial';
   lead?: string;
   tags?: string[];
   /** KPI row in the page header (label above value, two columns). */

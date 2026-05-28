@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { SONOS_IMAGE_FRAME_CLASS } from './constants';
+import { SONOS_IMAGE_FRAME_CLASS, SONOS_RASTER_IMG_CLASS, SONOS_SCREENSHOT_MAX_WIDTH_PX } from './constants';
 import type { CaseStudySonosCarouselCardVariant, CaseStudySonosCarouselImage } from './types';
 
 /** Large mixed-aspect strip (Instrument services / Sonos case study scale). */
 const CARD_CLASS: Record<CaseStudySonosCarouselCardVariant, string> = {
-  square: 'w-[min(78vw,520px)] aspect-square md:w-[560px] lg:w-[620px]',
-  landscape: 'w-[min(85vw,600px)] aspect-[16/10] md:w-[680px] lg:w-[760px]',
-  landscapeWide: 'w-[min(94vw,820px)] aspect-[3/2] md:w-[880px] lg:w-[960px]',
-  tall: 'w-[min(52vw,300px)] aspect-[9/16] md:w-[340px] lg:w-[380px]',
+  square: `w-[min(78vw,${SONOS_SCREENSHOT_MAX_WIDTH_PX}px)] aspect-square`,
+  landscape: `w-[min(85vw,${SONOS_SCREENSHOT_MAX_WIDTH_PX}px)] aspect-[16/10]`,
+  landscapeWide: `w-[min(94vw,${SONOS_SCREENSHOT_MAX_WIDTH_PX}px)] aspect-[3/2]`,
+  tall: 'w-[min(52vw,380px)] aspect-[9/16]',
 };
 
 const AUTO_SCROLL_DURATION_MS = 55_000;
@@ -27,15 +27,19 @@ function CarouselCard({
 }) {
   const variant: CaseStudySonosCarouselCardVariant = image.variant ?? 'landscape';
 
+  const maxW = image.intrinsicWidthPx ?? SONOS_SCREENSHOT_MAX_WIDTH_PX;
+
   return (
     <figure
       key={id}
-      className={`relative shrink-0 bg-[var(--card-bg)] ${SONOS_IMAGE_FRAME_CLASS} ${CARD_CLASS[variant]}`}
+      className={`relative flex shrink-0 items-center justify-center bg-[var(--card-bg)] ${SONOS_IMAGE_FRAME_CLASS} ${CARD_CLASS[variant]}`}
     >
       <img
         src={image.src}
         alt={image.alt ?? ''}
-        className="pointer-events-none block h-full w-full object-cover select-none"
+        width={maxW}
+        className={`pointer-events-none mx-auto max-h-full select-none ${SONOS_RASTER_IMG_CLASS}`}
+        style={{ maxWidth: `min(100%, ${maxW}px)` }}
         loading="lazy"
         decoding="async"
         draggable={false}

@@ -1,4 +1,9 @@
-import { SONOS_IMAGE_FRAME_CLASS } from './constants';
+import {
+  getSonosRasterStyle,
+  SONOS_IMAGE_FRAME_CLASS,
+  SONOS_RASTER_IMG_CLASS,
+  SONOS_SCREENSHOT_MAX_WIDTH_PX,
+} from './constants';
 import type { CaseStudySonosScreenStack as ScreenStackData } from './types';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -18,11 +23,16 @@ export function CaseStudySonosScreenStack({ stack }: CaseStudySonosScreenStackPr
             key={`${item.src}-${index}`}
             className="case-study-sonos-screen-stack__item"
           >
-            <div className={`bg-[var(--card-bg)] ${SONOS_IMAGE_FRAME_CLASS}`}>
+            <div
+              className={`flex justify-center bg-[var(--card-bg)] ${SONOS_IMAGE_FRAME_CLASS}`}
+            >
               <img
                 src={item.src}
                 alt={item.alt ?? ''}
-                className={`block h-auto w-full ${item.objectFit === 'cover' ? 'object-cover' : 'object-contain'}`}
+                width={item.intrinsicWidthPx ?? SONOS_SCREENSHOT_MAX_WIDTH_PX}
+                height={item.intrinsicHeightPx}
+                className={SONOS_RASTER_IMG_CLASS}
+                style={getSonosRasterStyle(item.intrinsicWidthPx)}
                 loading="lazy"
                 decoding="async"
               />

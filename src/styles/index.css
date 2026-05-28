@@ -152,6 +152,16 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
+/* Case study Sonos — wide + portrait duo (layout exploration comp) */
+.case-study-sonos-duo + .case-study-sonos-duo {
+  margin-top: calc(-1 * clamp(1.5rem, 4vw, 2.5rem));
+}
+
+.case-study-sonos-chapter .case-study-sonos-duo + .case-study-sonos-duo,
+.case-study-sonos-chapter figure + figure.case-study-sonos-duo {
+  margin-top: calc(-1 * clamp(1rem, 3vw, 2rem));
+}
+
 /* Case study Sonos — full-width stacked hi-fi screens */
 .case-study-sonos-screen-stack {
   margin-block: clamp(2.5rem, 7vw, 5rem);
@@ -161,6 +171,11 @@ html.home-canvas-interactive .site-nav-surface {
   display: flex;
   flex-direction: column;
   gap: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* UI screenshots: never upscale past ~1024px native width */
+.case-study-sonos-raster {
+  image-rendering: auto;
 }
 
 .sonos-subpoint-accordion__trigger:focus-visible {

@@ -1,4 +1,5 @@
-import type { CaseStudyContent } from '../../components/case-study/types';
+import { SONOS_SCREENSHOT_MAX_WIDTH_PX } from '../../components/case-study/constants';
+import type { CaseStudyContent, CaseStudySonosImage } from '../../components/case-study/types';
 import expediaAcceleratorImage from '../../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
 import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
 import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
@@ -10,6 +11,7 @@ import expediaAcceleratorCreateStayDates from '../../../assets/expedia-accelerat
 import expediaAcceleratorOneKeyCashHypothesis from '../../../assets/expedia-accelerator-onekeycash-hypothesis.png';
 import expediaAcceleratorPrototype3Synthesis from '../../../assets/expedia-accelerator-prototype-3-synthesis.png';
 import expediaAcceleratorPartnerCentral from '../../../assets/expedia-accelerator-partner-central.png';
+import expediaAcceleratorHookModel from '../../../assets/expedia-accelerator-hook-model.png';
 import expediaAcceleratorStudyOverview from '../../../assets/expedia-accelerator-study-overview.png';
 import expediaAcceleratorCollaborationPlanning from '../../../assets/expedia-accelerator-collaboration-planning.png';
 import expediaAcceleratorResearchBrief from '../../../assets/expedia-accelerator-research-brief.png';
@@ -20,6 +22,7 @@ import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-
 import expediaAcceleratorPartnerResearch from '../../../assets/expedia-accelerator-partner-research.png';
 import expediaAcceleratorIdeationFigma from '../../../assets/expedia-accelerator-ideation-figma.png';
 import expediaAcceleratorDesignCritique from '../../../assets/expedia-accelerator-design-critique.png';
+import expediaAcceleratorLofiWireframe from '../../../assets/expedia-accelerator-lofi-wireframe.png';
 import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
 import expediaAcceleratorUiPerformanceDashboard from '../../../assets/expedia-accelerator-ui-performance-dashboard.png';
 import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator-ui-metric-cards.png';
@@ -27,19 +30,27 @@ import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-u
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
 import expediaAcceleratorUiSearchImpressions from '../../../assets/expedia-accelerator-ui-search-impressions.png';
 
-/** Padded duo break: wide process or product screen left, supporting screen right. */
-const sonosDuoImage = (
-  primary: string,
-  secondary: string,
-  primaryVariant: 'wide' | 'wideShort' = 'wideShort',
-) => ({
-  display: 'duo' as const,
-  src: primary,
-  variant: primaryVariant,
-  duoSecondary: { src: secondary, variant: 'portrait' as const },
+/** Full-width process image below a narrative section. */
+const processImage = (
+  src: string,
+  options: {
+    variant?: 'wide' | 'wideShort' | 'wideTall';
+    title?: string;
+    caption?: string;
+    alt?: string;
+    fitContent?: boolean;
+  } = {},
+): CaseStudySonosImage => ({
+  src,
+  variant: options.variant ?? 'wideShort',
   padded: true,
-  background: 'none' as const,
-  objectFit: 'contain' as const,
+  background: 'none',
+  objectFit: 'contain',
+  fitContent: options.fitContent ?? true,
+  intrinsicWidthPx: SONOS_SCREENSHOT_MAX_WIDTH_PX,
+  title: options.title,
+  caption: options.caption,
+  alt: options.alt,
 });
 
 export const expediaAcceleratorContent: CaseStudyContent = {
@@ -58,6 +69,7 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   projectFocus: ['Travel', 'B2B', 'Product'],
   images: expediaAcceleratorImage,
   sonos: {
+    narrativeLayout: 'editorial',
     lead:
       'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
     heroCarousel: [
@@ -114,7 +126,9 @@ export const expediaAcceleratorContent: CaseStudyContent = {
     ],
     sections: [
       {
+        phase: 'Empathize',
         heading: 'Why it matters',
+        layout: 'editorial',
         paragraphs: [
           'Search visibility directly impacts bookings and revenue. When hotel partners can’t clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.',
         ],
@@ -133,89 +147,46 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: {
-          src: expediaAcceleratorPartnerCentral,
-          variant: 'wideShort',
-          objectFit: 'contain',
-          background: 'none',
-          padded: true,
-        },
+        image: processImage(expediaAcceleratorPartnerCentral, {
+          title: 'Partner Central at scale',
+          caption:
+            'The performance and campaign surfaces partners rely on every day — the starting point for understanding their mental model.',
+          alt: 'Partner Central performance and campaign management',
+        }),
       },
       {
-        heading: 'Project complications',
-        workGrid: {
-          position: 'below',
-          rows: [
-            {
-              cells: [
-                {
-                  src: expediaAcceleratorStudyOverview,
-                  size: 'large',
-                  aspect: 'landscape',
-                  alt: 'UR brief outlining study dates, recruitment criteria, and interview methodology',
-                  title: 'Evaluative study brief',
-                  caption:
-                    'Aligned research, CX, and design on recruitment, sessions, and goals before post-launch partner interviews.',
-                },
-                {
-                  src: expediaAcceleratorCollaborationPlanning,
-                  size: 'small',
-                  aspect: 'portrait',
-                  alt: 'Zoom working session reviewing the Q3 Accelerator study plan with the full team',
-                  title: 'Planning as a team',
-                  caption:
-                    'Live working session to refine research questions and partner criteria across time zones.',
-                },
-              ],
-            },
-            {
-              cells: [
-                {
-                  src: expediaAcceleratorResearchBrief,
-                  size: 'small',
-                  aspect: 'landscape',
-                  alt: 'XLR and OneKeyCash study plan with structured interview sections',
-                  title: 'Discussion guide',
-                  caption:
-                    'Structured script for Accelerator usage, OneKeyCash perception, and prototype walkthroughs.',
-                },
-                {
-                  src: expediaAcceleratorAffinityMapping,
-                  size: 'large',
-                  aspect: 'portrait',
-                  alt: 'Miro affinity map clustering partner research findings',
-                  title: 'Synthesis workshop',
-                  caption:
-                    'Affinity mapping to turn partner feedback into themes, opportunities, and design priorities.',
-                },
-              ],
-            },
-            {
-              cells: [
-                {
-                  src: expediaAcceleratorDataIteration,
-                  size: 'large',
-                  aspect: 'landscape',
-                  alt: 'Excel transaction analysis reviewed in Zoom alongside successive Figma prototypes',
-                  title: 'Data-informed iteration',
-                  caption:
-                    'Partner transaction data reviewed alongside successive prototypes to validate direction.',
-                },
-                {
-                  src: expediaAcceleratorDesignSystem,
-                  size: 'small',
-                  aspect: 'landscape',
-                  alt: 'FDS component library and variables in Figma',
-                  title: 'Design system alignment',
-                  caption:
-                    'Bridging legacy Partner Central patterns with shared components, tokens, and variables.',
-                },
-              ],
-            },
-          ],
-        },
+        phase: 'Empathize',
+        heading: 'Listening to hotel partners',
+        layout: 'editorial',
         paragraphs: [
-          'A quick look at the main challenges and roadblocks the team faced during the initiative, and how we tackled them with perseverance and flexibility.',
+          'Post-launch evaluative research grounded the program in how partners actually use Accelerator — not how we assumed they would. Live sessions and synthesis workshops surfaced trust, literacy, and transparency as the through-line.',
+        ],
+        imageSequence: [
+          processImage(expediaAcceleratorCollaborationPlanning, {
+            title: 'Planning as a team',
+            caption:
+              'Cross-functional working sessions aligned research questions and partner criteria across time zones.',
+            alt: 'Zoom working session reviewing the Q3 Accelerator study plan with the full team',
+          }),
+          processImage(expediaAcceleratorUserTesting, {
+            title: 'Live partner sessions',
+            caption:
+              'Usability testing alongside Miro synthesis so insights fed directly into the next design iteration.',
+            alt: 'Live user testing session alongside Miro research synthesis',
+          }),
+          processImage(expediaAcceleratorPartnerResearch, {
+            title: 'Qualitative depth',
+            caption: 'Partner interviews captured hesitation, literacy gaps, and what “pay-after-success” needed to mean.',
+            alt: 'Partner research session notes and synthesis',
+          }),
+        ],
+      },
+      {
+        phase: 'Define',
+        heading: 'Project complications',
+        layout: 'editorial',
+        paragraphs: [
+          'Before we could optimize flows, we had to name the constraints: legacy systems, cross-team dependencies, technical limits, and partners who were unsure whether Accelerator drove their results.',
         ],
         subpoints: [
           {
@@ -244,11 +215,19 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
+        image: processImage(expediaAcceleratorStudyOverview, {
+          title: 'Evaluative study brief',
+          caption:
+            'Aligned research, CX, and design on recruitment, sessions, and goals before post-launch partner interviews.',
+          alt: 'UR brief outlining study dates, recruitment criteria, and interview methodology',
+        }),
       },
       {
+        phase: 'Define',
         heading: 'Defining what success looks like',
+        layout: 'editorial',
         paragraphs: [
-          'We anchored the program around measurable outcomes by clearly defining what success looked like.',
+          'We anchored the program around measurable outcomes — accessibility, partner confidence, engagement, adoption, retention, and task success — so design decisions had a shared scorecard.',
         ],
         subpoints: [
           {
@@ -277,14 +256,39 @@ export const expediaAcceleratorContent: CaseStudyContent = {
           },
         ],
         subpointsVariant: 'accordion',
-        image: sonosDuoImage(
-          expediaAcceleratorDataAnalysis,
-          expediaAcceleratorPartnerResearch,
-          'wide',
-        ),
+        imageSequence: [
+          processImage(expediaAcceleratorDataAnalysis, {
+            variant: 'wide',
+            title: 'Quantitative signals',
+            caption: 'Transaction analysis validated where partners struggled and where Accelerator showed lift.',
+            alt: 'Excel transaction analysis reviewed alongside partner performance data',
+          }),
+          processImage(expediaAcceleratorResearchBrief, {
+            title: 'Structured discovery',
+            caption:
+              'Discussion guides kept interviews focused on Accelerator usage, OneKeyCash perception, and prototype walkthroughs.',
+            alt: 'XLR and OneKeyCash study plan with structured interview sections',
+          }),
+        ],
       },
       {
+        phase: 'Discover',
+        heading: 'Synthesizing partner feedback',
+        layout: 'editorial',
+        paragraphs: [
+          'Affinity mapping turned hours of partner conversations into themes, opportunities, and priorities the whole squad could act on — bridging research and design without losing nuance.',
+        ],
+        image: processImage(expediaAcceleratorAffinityMapping, {
+          title: 'Synthesis workshop',
+          caption:
+            'Clustered findings on Miro to connect partner quotes to concrete product and UX opportunities.',
+          alt: 'Miro affinity map clustering partner research findings',
+        }),
+      },
+      {
+        phase: 'Ideate',
         heading: 'Product strategy foundations',
+        layout: 'editorial',
         paragraphs: [
           'We grounded the experience in behavioral insights and usability heuristics while aligning teams around a shared definition of partner and business success.',
         ],
@@ -323,13 +327,103 @@ export const expediaAcceleratorContent: CaseStudyContent = {
             body: 'Picture superiority, goal-gradient progress, and Zeigarnik-style incomplete states kept partners moving through setup without overwhelm.',
           },
         ],
-        image: sonosDuoImage(
-          expediaAcceleratorIdeationFigma,
-          expediaAcceleratorDesignCritique,
-        ),
+        image: processImage(expediaAcceleratorHookModel, {
+          variant: 'wide',
+          title: 'Hook model for partner habits',
+          caption:
+            'Mapped triggers, actions, variable rewards, and investment so Accelerator felt trustworthy and repeatable — not a one-off ad buy.',
+          alt: 'Hook model diagram for Accelerator partner journey',
+        }),
       },
       {
+        phase: 'Ideate',
+        heading: 'Exploring flows in Figma',
+        layout: 'editorial',
+        paragraphs: [
+          'Ideation paired behavioral framing with concrete UI explorations — campaign setup, OneKeyCash eligibility, and performance reporting — before we committed to hi-fi.',
+        ],
+        imageSequence: [
+          processImage(expediaAcceleratorIdeationFigma, {
+            title: 'Figma exploration',
+            caption: 'Campaign setup and performance patterns explored with PM, research, and engineering in the loop.',
+            alt: 'Figma ideation boards for Accelerator flows',
+          }),
+          processImage(expediaAcceleratorOneKeyCashHypothesis, {
+            title: 'OneKeyCash hypotheses',
+            caption:
+              'Alternative Create an Accelerator paths tested how partners understood exclusive promotions and compensation.',
+            alt: 'OneKeyCash design explorations and Create an Accelerator hypothesis screens',
+          }),
+        ],
+      },
+      {
+        phase: 'Prototype',
+        heading: 'From audit to iteration',
+        layout: 'editorial',
+        paragraphs: [
+          'We audited existing Partner Central patterns, sketched low-fidelity flows, and iterated in Figma while reviewing partner transaction data — design and evidence moving together.',
+        ],
+        imageSequence: [
+          processImage(expediaAcceleratorMiroAudit, {
+            title: 'UX audit synthesis',
+            caption: 'XLR and OneKeyCash flows mapped on Miro to find gaps before rebuilding in the design system.',
+            alt: 'XLR and OneKeyCash UX audit synthesis on a Miro board',
+          }),
+          processImage(expediaAcceleratorLofiWireframe, {
+            title: 'Low-fidelity structure',
+            caption: 'Early wireframes validated information hierarchy before visual polish.',
+            alt: 'Low-fidelity Accelerator wireframes',
+          }),
+          processImage(expediaAcceleratorDataIteration, {
+            title: 'Data-informed iteration',
+            caption:
+              'Partner transaction data reviewed alongside successive prototypes to validate direction.',
+            alt: 'Excel transaction analysis reviewed in Zoom alongside successive Figma prototypes',
+          }),
+        ],
+      },
+      {
+        phase: 'Test',
+        heading: 'Validation with partners',
+        layout: 'editorial',
+        paragraphs: [
+          'Usability testing across global markets, synthesis readouts, and design critique kept partners at the center as flows hardened — especially around OneKeyCash and campaign setup edge cases.',
+        ],
+        imageSequence: [
+          processImage(expediaAcceleratorUsabilitySynthesis, {
+            title: 'Usability synthesis',
+            caption: 'Successes and opportunities from OneKeyCash testing distilled for the squad.',
+            alt: 'Usability testing synthesis: successes and opportunities for OneKeyCash',
+          }),
+          processImage(expediaAcceleratorPrototype3Synthesis, {
+            title: 'Prototype 3 readout',
+            caption: 'Third-round testing highlighted remaining friction before engineering handoff.',
+            alt: 'Prototype 3 usability synthesis: successes and opportunities',
+          }),
+          processImage(expediaAcceleratorDesignCritique, {
+            title: 'Design critique',
+            caption: 'Cross-functional critique pressure-tested flows before build.',
+            alt: 'Design critique session reviewing Accelerator flows',
+          }),
+        ],
+      },
+      {
+        phase: 'Deliver',
+        heading: 'Design system alignment',
+        layout: 'editorial',
+        paragraphs: [
+          'We bridged legacy Partner Central patterns with the shared FDS library so new Accelerator surfaces scaled across brands without one-off UI debt.',
+        ],
+        image: processImage(expediaAcceleratorDesignSystem, {
+          title: 'FDS in Figma',
+          caption: 'Components, tokens, and variables kept campaign and reporting UI consistent with the platform.',
+          alt: 'FDS component library and variables in Figma',
+        }),
+      },
+      {
+        phase: 'Deliver',
         heading: 'Interface refinement',
+        layout: 'editorial',
         paragraphs: [
           'The shipped Partner Central experience balances information density with clarity: consistent spacing, predictable components, and interaction patterns that scale from campaign setup through performance reporting.',
           'Surfaces were designed for real edge cases (multi-date ranges, OneKeyCash eligibility, unavailable metrics) so partners always understood what they configured and what they could expect in return.',
@@ -389,7 +483,9 @@ export const expediaAcceleratorContent: CaseStudyContent = {
         },
       },
       {
+        phase: 'Impact',
         heading: 'Recognition and what’s next',
+        layout: 'editorial',
         paragraphs: [
           'CEO Ariane Gorin highlighted Accelerator as one of the company’s top-performing partner products at the Q1 2025 all-hands. The work was presented at an internal design summit and global partner forum, cited in QBR as a model for trust-first monetization, and reused as a template for next-gen partner tools.',
           'Behavioral design drove adoption beyond expectations; transparency mattered more than granular control for most partners; and data plus design had to move together to earn confidence. Next steps include predictive campaign insights, personalized suggestions from performance and market signals, and expanding Accelerator across email, retargeting, and in-app placements.',

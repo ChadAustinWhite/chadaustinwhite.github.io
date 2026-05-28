@@ -4,7 +4,12 @@ import { CaseStudySonosImageCarousel } from './CaseStudySonosImageCarousel';
 import { CaseStudySonosWorkGrid } from './CaseStudySonosWorkGrid';
 import { CaseStudySonosScreenStack } from './CaseStudySonosScreenStack';
 import { CaseStudyPageHeader } from './CaseStudyPageHeader';
-import { SONOS_IMAGE_FRAME_CLASS } from './constants';
+import {
+  getSonosRasterStyle,
+  SONOS_IMAGE_FRAME_CLASS,
+  SONOS_RASTER_IMG_CLASS,
+  SONOS_SCREENSHOT_MAX_WIDTH_PX,
+} from './constants';
 import type {
   CaseStudyContent,
   CaseStudySonosImage,
@@ -17,6 +22,7 @@ import type {
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
 const PROSE = 'mx-auto w-full max-w-[42rem]';
+const MEDIA_SHELL = 'mx-auto w-full max-w-[72rem]';
 
 const BODY = 'cs-text-body text-[var(--ink-muted)]';
 const BODY_INK = 'cs-text-body text-[var(--ink)]';
@@ -33,53 +39,86 @@ function getSonosSections(content: CaseStudyContent): CaseStudySonosSection[] {
   return [];
 }
 
+function SonosImageCaption({ image }: { image: CaseStudySonosImage }) {
+  if (!image.title && !image.caption) return null;
+
+  return (
+    <figcaption className={`${MEDIA_SHELL} mt-4 md:mt-5`}>
+      {image.title ? (
+        <p className="text-[15px] font-medium text-[var(--ink)] md:text-base">{image.title}</p>
+      ) : null}
+      {image.caption ? (
+        <p className="cs-text-body mt-1 text-[var(--ink-muted)]">{image.caption}</p>
+      ) : null}
+    </figcaption>
+  );
+}
+
+function SonosImagePanel({
+  image,
+  panel,
+  className = '',
+}: {
+  image: CaseStudySonosImage;
+  panel: 'primary' | 'secondary';
+  className?: string;
+}) {
+  const useCardBg = image.background !== 'none';
+  const src = panel === 'primary' ? image.src : image.duoSecondary!.src;
+  const alt = panel === 'primary' ? image.alt : image.duoSecondary?.alt;
+  const variant =
+    panel === 'primary' ? image.variant : image.duoSecondary!.variant;
+  const maxW = image.intrinsicWidthPx ?? SONOS_SCREENSHOT_MAX_WIDTH_PX;
+  const useRasterCap = image.fitContent || image.padded;
+  const imgClass = useRasterCap
+    ? SONOS_RASTER_IMG_CLASS
+    : `block h-full w-full ${image.objectFit === 'contain' ? 'object-contain' : 'object-cover'} [image-rendering:auto]`;
+
+  return (
+    <div
+      className={`${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''} ${useRasterCap ? 'flex justify-center' : ''} ${image.fitContent ? 'overflow-hidden' : ''} ${className}`.trim()}
+      style={useRasterCap ? undefined : { aspectRatio: SONOS_ASPECT[variant] }}
+    >
+      <img
+        src={src}
+        alt={alt ?? ''}
+        width={useRasterCap ? maxW : undefined}
+        height={useRasterCap ? image.intrinsicHeightPx : undefined}
+        className={imgClass}
+        style={useRasterCap ? getSonosRasterStyle(maxW) : undefined}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
+}
+
 /** Image break between narrative sections (full-bleed or inset within prose column). */
 function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
-  const captions = image.caption ? [image.caption, image.caption] : [];
+  const captions = image.caption && !image.title ? [image.caption, image.caption] : [];
   const display = image.display ?? 'fullBleed';
   const useCardBg = image.background !== 'none';
   const imgClass = `block h-full w-full ${image.objectFit === 'contain' ? 'object-contain' : 'object-cover'}`;
+  const shellClass = image.padded ? MEDIA_SHELL : 'w-full';
 
   if (display === 'duo' && image.duoSecondary) {
-    const secondary = image.duoSecondary;
-    const primaryImgClass = `block h-full w-full ${image.objectFit === 'contain' ? 'object-contain' : 'object-cover'}`;
-
     return (
-      <figure className={`${GUTTER} my-12 md:my-16`}>
-        <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-5 md:gap-6">
+      <figure className="case-study-sonos-duo my-12 md:my-16">
+        <div className={GUTTER}>
           <div
-            className={`${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
-            style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
+            className={`${shellClass} grid grid-cols-1 items-start gap-4 md:grid-cols-[minmax(0,2fr)_minmax(200px,1fr)] md:gap-5 lg:gap-6`}
           >
-            <img
-              src={image.src}
-              alt=""
-              className={primaryImgClass}
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div
-            className={`mx-auto w-full max-w-[200px] shrink-0 sm:mx-0 sm:w-[clamp(180px,22vw,260px)] ${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
-            style={{ aspectRatio: SONOS_ASPECT[secondary.variant] }}
-          >
-            <img
-              src={secondary.src}
-              alt=""
-              className={primaryImgClass}
-              loading="lazy"
-              decoding="async"
+            <SonosImagePanel image={image} panel="primary" />
+            <SonosImagePanel
+              image={image}
+              panel="secondary"
+              className="mx-auto w-full max-w-[280px] md:mx-0 md:max-w-none"
             />
           </div>
         </div>
-        {captions.map((text, i) => (
-          <figcaption
-            key={`${text}-${i}`}
-            className={`${PROSE} cs-text-meta mx-auto w-full pt-4 text-center text-[var(--ink-muted)]`}
-          >
-            {text}
-          </figcaption>
-        ))}
+        <div className={GUTTER}>
+          <SonosImageCaption image={image} />
+        </div>
       </figure>
     );
   }
@@ -114,22 +153,40 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
   }
 
   if (image.padded) {
+    const maxW = image.intrinsicWidthPx ?? SONOS_SCREENSHOT_MAX_WIDTH_PX;
     return (
       <figure className={`${GUTTER} my-12 md:my-16`}>
-        <div
-          className={`w-full ${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
-          style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
-        >
-          <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
-        </div>
-        {captions.map((text, i) => (
-          <figcaption
-            key={`${text}-${i}`}
-            className={`${PROSE} cs-text-meta mx-auto w-full pt-4 text-center text-[var(--ink-muted)]`}
+        <div className={`${shellClass} flex justify-center`}>
+          <div
+            className={`${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''} ${image.fitContent ? 'flex w-full justify-center' : ''}`}
+            style={image.fitContent ? undefined : { aspectRatio: SONOS_ASPECT[image.variant] }}
           >
-            {text}
-          </figcaption>
-        ))}
+            <img
+              src={image.src}
+              alt={image.alt ?? ''}
+              width={image.fitContent ? maxW : undefined}
+              height={image.fitContent ? image.intrinsicHeightPx : undefined}
+              className={image.fitContent ? SONOS_RASTER_IMG_CLASS : imgClass}
+              style={image.fitContent ? getSonosRasterStyle(maxW) : undefined}
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        {captions.length > 0
+          ? captions.map((text, i) => (
+              <figcaption
+                key={`${text}-${i}`}
+                className={`${PROSE} cs-text-meta mx-auto w-full pt-4 text-center text-[var(--ink-muted)]`}
+              >
+                {text}
+              </figcaption>
+            ))
+          : (
+            <div className={GUTTER}>
+              <SonosImageCaption image={image} />
+            </div>
+          )}
       </figure>
     );
   }
@@ -276,16 +333,97 @@ function SonosSectionExtras({ section }: { section: CaseStudySonosSection }) {
   );
 }
 
-function SonosSectionCopy({ section }: { section: CaseStudySonosSection }) {
+function SonosSectionHeading({ section }: { section: CaseStudySonosSection }) {
   return (
     <>
-      <h2 className="cs-text-title text-[var(--ink)]">{section.heading}</h2>
+      {section.phase ? (
+        <p className="cs-text-label mb-3 text-[var(--ink-muted)]">{section.phase}</p>
+      ) : null}
+      <h2
+        className={
+          section.layout === 'editorial' || section.phase
+            ? 'case-study-editorial__section-heading serif-headline max-w-[14ch] text-[var(--ink)]'
+            : 'cs-text-title text-[var(--ink)]'
+        }
+      >
+        {section.heading}
+      </h2>
+    </>
+  );
+}
+
+function SonosSectionParagraphs({ section }: { section: CaseStudySonosSection }) {
+  return (
+    <>
       {section.paragraphs.map((p, j) => (
-        <p key={`${section.heading}-p-${j}`} className="text-[var(--ink-muted)]">
+        <p
+          key={`${section.heading}-p-${j}`}
+          className={
+            section.layout === 'editorial'
+              ? 'case-study-editorial__section-body serif-headline max-w-[42ch] text-[var(--ink-muted)]'
+              : 'text-[var(--ink-muted)]'
+          }
+        >
           {p}
         </p>
       ))}
     </>
+  );
+}
+
+function SonosSectionCopy({ section }: { section: CaseStudySonosSection }) {
+  return (
+    <>
+      <SonosSectionHeading section={section} />
+      <SonosSectionParagraphs section={section} />
+    </>
+  );
+}
+
+function SonosSectionNarrative({
+  section,
+  narrativeLayout,
+}: {
+  section: CaseStudySonosSection;
+  narrativeLayout: 'default' | 'editorial';
+}) {
+  const useEditorial =
+    narrativeLayout === 'editorial' || section.layout === 'editorial' || Boolean(section.phase);
+
+  if (useEditorial) {
+    return (
+      <div className="mx-auto w-full max-w-[72rem] cs-text-body">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-x-10 lg:gap-x-16">
+          <div className="md:col-span-5">
+            <SonosSectionHeading section={{ ...section, layout: 'editorial' }} />
+          </div>
+          <div className="min-w-0 space-y-5 md:col-span-6 md:col-start-7">
+            <SonosSectionParagraphs section={{ ...section, layout: 'editorial' }} />
+            {section.subpoints && section.subpoints.length > 0 ? (
+              <SonosSubpointList
+                items={section.subpoints}
+                variant={section.subpointsVariant ?? 'accordion'}
+                className="mt-2"
+              />
+            ) : null}
+            <SonosSectionExtras section={section} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${PROSE} cs-text-body sonos-section-copy space-y-5`}>
+      <SonosSectionCopy section={section} />
+      {section.subpoints && section.subpoints.length > 0 ? (
+        <SonosSubpointList
+          items={section.subpoints}
+          variant={section.subpointsVariant ?? 'accordion'}
+        />
+      ) : null}
+      <SonosSectionExtras section={section} />
+    </div>
   );
 }
 
@@ -354,6 +492,7 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
   useCaseStudySectionBackground(Boolean(content.scrollGradient));
 
   const sonos = content.sonos;
+  const narrativeLayout = sonos?.narrativeLayout ?? 'default';
   const sections = getSonosSections(content);
   const tags = sonos ? (sonos.tags ?? []) : (content.projectFocus ?? []);
   const headerLead = sonos?.lead?.trim() || content.meta.organizationNote?.trim() || undefined;
@@ -391,7 +530,7 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
       ) : null}
 
       {sections.map((section, i) => (
-        <div key={`${section.heading}-${i}`}>
+        <div key={`${section.heading}-${i}`} className="case-study-sonos-chapter">
           {section.screenStack &&
           section.screenStack.items.length > 0 &&
           (section.screenStack.position ?? 'below') === 'above' ? (
@@ -402,7 +541,9 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
           (section.workGrid.position ?? 'below') === 'above' ? (
             <CaseStudySonosWorkGrid grid={section.workGrid} />
           ) : null}
-          <section className={`${GUTTER} pb-10 md:pb-14`}>
+          <section
+            className={`${GUTTER} pb-10 md:pb-14 ${i > 0 ? 'border-t border-[var(--border)] pt-12 md:pt-16' : 'pt-2 md:pt-4'}`}
+          >
             {section.layout === 'split' && section.subpoints && section.subpoints.length > 0 ? (
               <div className="mx-auto w-full max-w-[72rem] cs-text-body space-y-8 md:space-y-10">
                 <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
@@ -422,16 +563,7 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
                 </div>
               </div>
             ) : (
-              <div className={`${PROSE} cs-text-body sonos-section-copy space-y-5`}>
-                <SonosSectionCopy section={section} />
-                {section.subpoints && section.subpoints.length > 0 ? (
-                  <SonosSubpointList
-                    items={section.subpoints}
-                    variant={section.subpointsVariant ?? 'accordion'}
-                  />
-                ) : null}
-                <SonosSectionExtras section={section} />
-              </div>
+              <SonosSectionNarrative section={section} narrativeLayout={narrativeLayout} />
             )}
           </section>
           {section.imageCarousel && section.imageCarousel.length > 0 ? (
@@ -448,6 +580,12 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
             <CaseStudySonosScreenStack stack={section.screenStack} />
           ) : null}
           {section.image ? <SonosImageBlock image={section.image} /> : null}
+          {section.imageSequence?.map((img, seqIndex) => (
+            <SonosImageBlock key={`${section.heading}-seq-${seqIndex}`} image={img} />
+          ))}
+          {section.imageDuos?.map((duo, duoIndex) => (
+            <SonosImageBlock key={`${section.heading}-duo-${duoIndex}`} image={duo} />
+          ))}
         </div>
       ))}
 
