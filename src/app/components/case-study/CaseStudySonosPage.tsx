@@ -437,15 +437,15 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
           {section.imageCarousel && section.imageCarousel.length > 0 ? (
             <CaseStudySonosImageCarousel images={section.imageCarousel} />
           ) : null}
-          {section.workGrid &&
-          section.workGrid.rows.length > 0 &&
-          (section.workGrid.position ?? 'below') === 'below' ? (
-            <CaseStudySonosWorkGrid grid={section.workGrid} />
-          ) : null}
           {section.screenStack &&
           section.screenStack.items.length > 0 &&
           (section.screenStack.position ?? 'below') === 'below' ? (
             <CaseStudySonosScreenStack stack={section.screenStack} />
+          ) : null}
+          {section.workGrid &&
+          section.workGrid.rows.length > 0 &&
+          (section.workGrid.position ?? 'below') === 'below' ? (
+            <CaseStudySonosWorkGrid grid={section.workGrid} />
           ) : null}
           {section.image ? <SonosImageBlock image={section.image} /> : null}
         </div>
