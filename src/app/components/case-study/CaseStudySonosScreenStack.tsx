@@ -12,6 +12,11 @@ export function CaseStudySonosScreenStack({ stack }: CaseStudySonosScreenStackPr
 
   return (
     <div className={`case-study-sonos-screen-stack ${GUTTER}`} aria-label="Interface screens">
+      {stack.intro?.trim() ? (
+        <p className="case-study-sonos-screen-stack__intro cs-text-body mx-auto mb-8 max-w-[72rem] text-[var(--ink)] md:mb-10">
+          {stack.intro}
+        </p>
+      ) : null}
       <div className="case-study-sonos-screen-stack__list mx-auto w-full max-w-[72rem]">
         {stack.items.map((item, index) => (
           <figure

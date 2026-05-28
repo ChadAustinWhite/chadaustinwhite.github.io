@@ -178,6 +178,8 @@ export interface CaseStudySonosScreenStackItem {
 
 export interface CaseStudySonosScreenStack {
   position?: 'above' | 'below';
+  /** Optional lead-in rendered above the stack (e.g. context for legacy screenshots). */
+  intro?: string;
   items: CaseStudySonosScreenStackItem[];
 }
 

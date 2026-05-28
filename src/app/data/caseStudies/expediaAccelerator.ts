@@ -26,6 +26,9 @@ import expediaAcceleratorUiPerformanceDashboard from '../../../assets/expedia-ac
 import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator-ui-metric-cards.png';
 import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
+import expediaAcceleratorLegacyPartnerCentralTrio from '../../../assets/expedia-accelerator-legacy-partner-central-trio.png';
+import expediaAcceleratorLegacyCreateAccelerator from '../../../assets/expedia-accelerator-legacy-create-accelerator.png';
+import expediaAcceleratorLegacyPerformanceReport from '../../../assets/expedia-accelerator-legacy-performance-report.png';
 
 /** Padded duo break: wide process or product screen left, supporting screen right. */
 const sonosDuoImage = (
@@ -183,6 +186,67 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       },
       {
         heading: 'Project complications',
+        paragraphs: [
+          'A quick look at the main challenges and roadblocks the team faced during the initiative, and how we tackled them with perseverance and flexibility.',
+        ],
+        subpoints: [
+          {
+            title: 'Product comprehension',
+            body: 'Hotel partners were uncertain about whether Accelerator directly contributed to booking last-minute rooms or if it was the primary factor behind their success.',
+          },
+          {
+            title: 'Interdependencies',
+            body: 'Collaborating cross-functionally to identify offerings in other partner tools, their timing, and how Accelerator adds value at key moments of the partner journey.',
+          },
+          {
+            title: 'Multi-stakeholder alignment',
+            body: 'Balancing the needs of hotel partners, product, customer success, and design, while maintaining design system consistency and platform scalability.',
+          },
+          {
+            title: 'Legacy design system',
+            body: 'When I joined, the project used an outdated design system, and with feature parity, some approaches needed rethinking.',
+          },
+          {
+            title: 'Technical limitations',
+            body: 'Multi-property selection, date selection, forecast prediction, and performance data updates were key pain points for partners that required attention.',
+          },
+          {
+            title: 'Time zone',
+            body: 'Time zone differences between colleagues in Southern California, Chicago, New York, Seattle, and India encouraged early and late syncs, improving collaboration and delivering value to hotel partners at velocity.',
+          },
+        ],
+        subpointsVariant: 'accordion',
+        screenStack: {
+          position: 'below',
+          intro:
+            'When I first joined the project, Accelerator and Partner Central already looked like this—the screens below are the existing experience I inherited, not concepts from the redesign.',
+          items: [
+            {
+              src: expediaAcceleratorLegacyPartnerCentralTrio,
+              objectFit: 'contain',
+              alt: 'Legacy Partner Central Accelerator list, create flow with stay-date errors, and active Accelerator summary with OneKeyCash',
+              title: 'Partner Central as I found it',
+              caption:
+                'Accelerators list and performance, a dense create flow with validation edge cases, and an active-campaign summary—the starting point for simplification and clarity.',
+            },
+            {
+              src: expediaAcceleratorLegacyCreateAccelerator,
+              objectFit: 'contain',
+              alt: 'Legacy Create an Accelerator flow with OneKeyCash exclusive feature unlock and stay date fields',
+              title: 'Create an Accelerator (legacy)',
+              caption:
+                'The prior setup path mixed OneKeyCash eligibility, stay dates, compensation preview, and dense helper copy in a single scroll.',
+            },
+            {
+              src: expediaAcceleratorLegacyPerformanceReport,
+              objectFit: 'contain',
+              alt: 'Legacy Accelerator performance report with summary metrics, visibility overview, and page views chart',
+              title: 'Performance reporting (legacy)',
+              caption:
+                'Reporting surfaced the right data but buried partners in cards, comparison tables, and chart chrome before we reframed impact at a glance.',
+            },
+          ],
+        },
         workGrid: {
           position: 'below',
           rows: [
@@ -254,36 +318,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
             },
           ],
         },
-        paragraphs: [
-          'A quick look at the main challenges and roadblocks the team faced during the initiative, and how we tackled them with perseverance and flexibility.',
-        ],
-        subpoints: [
-          {
-            title: 'Product comprehension',
-            body: 'Hotel partners were uncertain about whether Accelerator directly contributed to booking last-minute rooms or if it was the primary factor behind their success.',
-          },
-          {
-            title: 'Interdependencies',
-            body: 'Collaborating cross-functionally to identify offerings in other partner tools, their timing, and how Accelerator adds value at key moments of the partner journey.',
-          },
-          {
-            title: 'Multi-stakeholder alignment',
-            body: 'Balancing the needs of hotel partners, product, customer success, and design, while maintaining design system consistency and platform scalability.',
-          },
-          {
-            title: 'Legacy design system',
-            body: 'When I joined, the project used an outdated design system, and with feature parity, some approaches needed rethinking.',
-          },
-          {
-            title: 'Technical limitations',
-            body: 'Multi-property selection, date selection, forecast prediction, and performance data updates were key pain points for partners that required attention.',
-          },
-          {
-            title: 'Time zone',
-            body: 'Time zone differences between colleagues in Southern California, Chicago, New York, Seattle, and India encouraged early and late syncs, improving collaboration and delivering value to hotel partners at velocity.',
-          },
-        ],
-        subpointsVariant: 'accordion',
       },
       {
         heading: 'Defining what success looks like',
