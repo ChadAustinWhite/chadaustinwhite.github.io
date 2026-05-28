@@ -1,3 +1,4 @@
+import { SONOS_IMAGE_FRAME_CLASS } from './constants';
 import type { CaseStudySonosWorkGrid as WorkGridData, CaseStudySonosWorkGridCell } from './types';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -22,13 +23,13 @@ function WorkGridCell({ cell }: { cell: CaseStudySonosWorkGridCell }) {
       data-aspect={cell.aspect ?? (cell.size === 'large' ? 'landscape' : 'portrait')}
     >
       <div
-        className="case-study-sonos-work-grid__media overflow-hidden rounded-2xl bg-[var(--card-bg)] md:rounded-3xl"
+        className={`case-study-sonos-work-grid__media bg-[var(--card-bg)] ${SONOS_IMAGE_FRAME_CLASS}`}
         style={{ aspectRatio: cellAspect(cell) }}
       >
         <img
           src={cell.src}
           alt={cell.alt ?? ''}
-          className="block h-full w-full object-cover"
+          className={`block h-full w-full ${cell.objectFit === 'contain' ? 'object-contain' : 'object-cover'}`}
           loading="lazy"
           decoding="async"
         />

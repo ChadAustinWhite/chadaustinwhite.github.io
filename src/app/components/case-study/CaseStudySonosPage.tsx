@@ -2,7 +2,9 @@ import { useCaseStudySectionBackground } from '../../hooks/useCaseStudySectionBa
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 import { CaseStudySonosImageCarousel } from './CaseStudySonosImageCarousel';
 import { CaseStudySonosWorkGrid } from './CaseStudySonosWorkGrid';
+import { CaseStudySonosScreenStack } from './CaseStudySonosScreenStack';
 import { CaseStudyPageHeader } from './CaseStudyPageHeader';
+import { SONOS_IMAGE_FRAME_CLASS } from './constants';
 import type {
   CaseStudyContent,
   CaseStudySonosImage,
@@ -46,7 +48,7 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
       <figure className={`${GUTTER} my-12 md:my-16`}>
         <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-5 md:gap-6">
           <div
-            className="overflow-hidden rounded-2xl bg-[var(--card-bg)] md:rounded-3xl"
+            className={`${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
             style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
           >
             <img
@@ -58,13 +60,13 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
             />
           </div>
           <div
-            className="mx-auto w-full max-w-[200px] shrink-0 overflow-hidden rounded-2xl bg-[var(--card-bg)] sm:mx-0 sm:w-[clamp(180px,22vw,260px)] md:rounded-3xl"
+            className={`mx-auto w-full max-w-[200px] shrink-0 sm:mx-0 sm:w-[clamp(180px,22vw,260px)] ${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
             style={{ aspectRatio: SONOS_ASPECT[secondary.variant] }}
           >
             <img
               src={secondary.src}
               alt=""
-              className="block h-full w-full object-cover"
+              className={primaryImgClass}
               loading="lazy"
               decoding="async"
             />
@@ -87,7 +89,7 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
       <figure className={`${GUTTER} my-10 md:my-12`}>
         <div className={`${PROSE} mx-auto w-full`}>
           <div
-            className={`overflow-hidden rounded-2xl md:rounded-3xl ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+            className={`${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
             style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
           >
             <img
@@ -115,7 +117,7 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
     return (
       <figure className={`${GUTTER} my-12 md:my-16`}>
         <div
-          className={`w-full overflow-hidden rounded-2xl md:rounded-3xl ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+          className={`w-full ${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
           style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
         >
           <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
@@ -133,18 +135,17 @@ function SonosImageBlock({ image }: { image: CaseStudySonosImage }) {
   }
 
   return (
-    <figure className="my-12 md:my-16">
+    <figure className={`${GUTTER} my-12 md:my-16`}>
       <div
-        className={`-mx-[var(--cs-page-gutter)] w-[calc(100%+2*var(--cs-page-gutter))] overflow-hidden ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+        className={`w-full ${SONOS_IMAGE_FRAME_CLASS} ${useCardBg ? 'bg-[var(--card-bg)]' : ''}`}
+        style={{ aspectRatio: SONOS_ASPECT[image.variant] }}
       >
-        <div className="w-full" style={{ aspectRatio: SONOS_ASPECT[image.variant] }}>
-          <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
-        </div>
+        <img src={image.src} alt="" className={imgClass} loading="lazy" decoding="async" />
       </div>
       {captions.map((text, i) => (
         <figcaption
           key={`${text}-${i}`}
-          className={`${GUTTER} cs-text-meta mx-auto max-w-[42rem] pt-4 text-center text-[var(--ink-muted)]`}
+          className={`${PROSE} cs-text-meta mx-auto w-full pt-4 text-center text-[var(--ink-muted)]`}
         >
           {text}
         </figcaption>
@@ -179,12 +180,14 @@ function SonosMetricsGrid({
 function SonosSubpointList({
   items,
   variant = 'bullet',
+  className,
 }: {
   items: CaseStudySonosSubpoint[];
   variant?: 'bullet' | 'stacked' | 'accordion';
+  className?: string;
 }) {
   if (variant === 'accordion') {
-    return <CaseStudySonosSubpointAccordion items={items} />;
+    return <CaseStudySonosSubpointAccordion items={items} className={className} />;
   }
 
   if (variant === 'stacked') {
@@ -250,6 +253,39 @@ function SonosTagPills({ tags }: { tags: string[] }) {
         </li>
       ))}
     </ul>
+  );
+}
+
+function SonosSectionExtras({ section }: { section: CaseStudySonosSection }) {
+  return (
+    <>
+      {section.metrics && section.metrics.length > 0 ? (
+        <SonosMetricsGrid metrics={section.metrics} />
+      ) : null}
+      {section.numberedItems && section.numberedItems.length > 0 ? (
+        <SonosNumberedList items={section.numberedItems} />
+      ) : null}
+      {section.testimonial ? (
+        <SonosTestimonial
+          quote={section.testimonial.quote}
+          name={section.testimonial.name}
+          role={section.testimonial.role}
+        />
+      ) : null}
+    </>
+  );
+}
+
+function SonosSectionCopy({ section }: { section: CaseStudySonosSection }) {
+  return (
+    <>
+      <h2 className="cs-text-title text-[var(--ink)]">{section.heading}</h2>
+      {section.paragraphs.map((p, j) => (
+        <p key={`${section.heading}-p-${j}`} className="text-[var(--ink-muted)]">
+          {p}
+        </p>
+      ))}
+    </>
   );
 }
 
@@ -319,13 +355,8 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
 
   const sonos = content.sonos;
   const sections = getSonosSections(content);
-  const lead =
-    sonos?.lead ??
-    content.overview?.paragraphs?.[1] ??
-    content.heroIntro ??
-    content.tagline;
   const tags = sonos ? (sonos.tags ?? []) : (content.projectFocus ?? []);
-  const showLeadBelowHero = Boolean(sonos?.lead?.trim() && !content.meta.organizationNote);
+  const headerLead = sonos?.lead?.trim() || content.meta.organizationNote?.trim() || undefined;
 
   return (
     <article className="case-study-sonos bg-[var(--bg)] pb-8 text-[var(--ink)]">
@@ -338,6 +369,7 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
           content={content}
           onBack={onBack}
           metrics={sonos?.heroMetrics}
+          lead={headerLead}
         />
 
         {tags.length > 0 ? (
@@ -352,11 +384,6 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
           </div>
         ) : null}
 
-        {showLeadBelowHero ? (
-          <div className={`${PROSE} mt-10 md:mt-12`}>
-            <p className="cs-text-lead text-[var(--ink-muted)]">{lead}</p>
-          </div>
-        ) : null}
       </div>
 
       {sonos?.heroCarousel && sonos.heroCarousel.length > 0 ? (
@@ -365,39 +392,47 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
 
       {sections.map((section, i) => (
         <div key={`${section.heading}-${i}`}>
+          {section.screenStack &&
+          section.screenStack.items.length > 0 &&
+          (section.screenStack.position ?? 'below') === 'above' ? (
+            <CaseStudySonosScreenStack stack={section.screenStack} />
+          ) : null}
           {section.workGrid &&
           section.workGrid.rows.length > 0 &&
           (section.workGrid.position ?? 'below') === 'above' ? (
             <CaseStudySonosWorkGrid grid={section.workGrid} />
           ) : null}
           <section className={`${GUTTER} pb-10 md:pb-14`}>
-            <div className={`${PROSE} cs-text-body space-y-5`}>
-              <h2 className="cs-text-title text-[var(--ink)]">{section.heading}</h2>
-              {section.paragraphs.map((p, j) => (
-                <p key={`${section.heading}-p-${j}`} className="text-[var(--ink-muted)]">
-                  {p}
-                </p>
-              ))}
-              {section.metrics && section.metrics.length > 0 ? (
-                <SonosMetricsGrid metrics={section.metrics} />
-              ) : null}
-              {section.subpoints && section.subpoints.length > 0 ? (
-                <SonosSubpointList
-                  items={section.subpoints}
-                  variant={section.subpointsVariant ?? 'bullet'}
-                />
-              ) : null}
-              {section.numberedItems && section.numberedItems.length > 0 ? (
-                <SonosNumberedList items={section.numberedItems} />
-              ) : null}
-              {section.testimonial ? (
-                <SonosTestimonial
-                  quote={section.testimonial.quote}
-                  name={section.testimonial.name}
-                  role={section.testimonial.role}
-                />
-              ) : null}
-            </div>
+            {section.layout === 'split' && section.subpoints && section.subpoints.length > 0 ? (
+              <div className="mx-auto w-full max-w-[72rem] cs-text-body space-y-8 md:space-y-10">
+                <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
+                  <div className="min-w-0 space-y-5 md:max-w-[34rem]">
+                    <SonosSectionCopy section={section} />
+                  </div>
+                  <div className="min-w-0 md:pt-1">
+                    <SonosSubpointList
+                      items={section.subpoints}
+                      variant={section.subpointsVariant ?? 'accordion'}
+                      className="mt-0"
+                    />
+                  </div>
+                </div>
+                <div className={`${PROSE} space-y-5`}>
+                  <SonosSectionExtras section={section} />
+                </div>
+              </div>
+            ) : (
+              <div className={`${PROSE} cs-text-body sonos-section-copy space-y-5`}>
+                <SonosSectionCopy section={section} />
+                {section.subpoints && section.subpoints.length > 0 ? (
+                  <SonosSubpointList
+                    items={section.subpoints}
+                    variant={section.subpointsVariant ?? 'accordion'}
+                  />
+                ) : null}
+                <SonosSectionExtras section={section} />
+              </div>
+            )}
           </section>
           {section.imageCarousel && section.imageCarousel.length > 0 ? (
             <CaseStudySonosImageCarousel images={section.imageCarousel} />
@@ -406,6 +441,11 @@ export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps)
           section.workGrid.rows.length > 0 &&
           (section.workGrid.position ?? 'below') === 'below' ? (
             <CaseStudySonosWorkGrid grid={section.workGrid} />
+          ) : null}
+          {section.screenStack &&
+          section.screenStack.items.length > 0 &&
+          (section.screenStack.position ?? 'below') === 'below' ? (
+            <CaseStudySonosScreenStack stack={section.screenStack} />
           ) : null}
           {section.image ? <SonosImageBlock image={section.image} /> : null}
         </div>

@@ -154,6 +154,7 @@ export interface CaseStudySonosWorkGridCell {
   caption?: string;
   size: 'large' | 'small';
   aspect?: 'landscape' | 'portrait' | 'square';
+  objectFit?: 'cover' | 'contain';
 }
 
 export interface CaseStudySonosWorkGridRow {
@@ -166,10 +167,28 @@ export interface CaseStudySonosWorkGrid {
   rows: CaseStudySonosWorkGridRow[];
 }
 
+/** Full-width stacked screens for inspecting hi-fi UI detail. */
+export interface CaseStudySonosScreenStackItem {
+  src: string;
+  alt?: string;
+  title?: string;
+  caption?: string;
+  objectFit?: 'cover' | 'contain';
+}
+
+export interface CaseStudySonosScreenStack {
+  position?: 'above' | 'below';
+  items: CaseStudySonosScreenStackItem[];
+}
+
+export type CaseStudySonosSectionLayout = 'default' | 'split';
+
 export interface CaseStudySonosSection {
   /** H2-style section title (e.g. “A Digital Identity”). */
   heading: string;
   paragraphs: string[];
+  /** `split`: heading + copy left, subpoints (e.g. accordion) right on md+. */
+  layout?: CaseStudySonosSectionLayout;
   /** Optional KPI row (matches homepage project card metrics). */
   metrics?: CaseStudySonosMetric[];
   /** Optional numbered list (e.g. project complications). */
@@ -184,6 +203,8 @@ export interface CaseStudySonosSection {
   imageCarousel?: CaseStudySonosCarouselImage[];
   /** Asymmetric 2-up image grid (Instrument work index style). */
   workGrid?: CaseStudySonosWorkGrid;
+  /** Vertical stack of full-width screens (hi-fi UI detail). */
+  screenStack?: CaseStudySonosScreenStack;
   image?: CaseStudySonosImage;
 }
 
