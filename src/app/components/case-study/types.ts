@@ -99,6 +99,10 @@ export interface CaseStudyInstrumentImage {
   src: string;
   alt?: string;
   caption?: string;
+  /** Defaults to `cover` so images fill the frame instead of a padded placeholder box. */
+  objectFit?: 'cover' | 'contain';
+  /** Frame behind the image; use `charcoal` for dark UI comps. */
+  background?: 'page' | 'card' | 'charcoal';
 }
 
 /** Instrument work page bento: tall primary left, two stacked right (servicenow-rebrand). */

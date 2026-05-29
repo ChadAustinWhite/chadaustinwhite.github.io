@@ -12,7 +12,7 @@ import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-u
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
 /** Instrument ServiceNow-style narrative for Expedia Group Accelerator. */
 export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
-  clientName: 'Expedia Group',
+  clientName: 'Expedia Group Accelerator',
   projectName: 'Accelerator',
   breadcrumb: 'Expedia Group Accelerator',
   tags: ['Travel', 'B2B', 'Product'],
@@ -26,14 +26,17 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     primary: {
       src: expediaAcceleratorUiRateSelection,
       alt: 'Rate plan and marketplace selection with radio hierarchy and helper copy',
+      background: 'charcoal',
     },
     secondary: {
       src: expediaAcceleratorOneKeyCash,
       alt: 'OneKeyCash promotion qualification and preview in Partner Central',
+      background: 'page',
     },
     tertiary: {
       src: expediaAcceleratorCreateFlow,
       alt: 'Create an Accelerator flow in Partner Central',
+      background: 'page',
     },
   },
   chapters: [
@@ -52,14 +55,17 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
             primary: {
               src: expediaAcceleratorIdeationFigma,
               alt: 'Figma ideation boards for Accelerator flows',
+              background: 'page',
             },
             secondary: {
               src: expediaAcceleratorDesignCritique,
               alt: 'Design critique session for Accelerator flows',
+              background: 'page',
             },
             tertiary: {
               src: expediaAcceleratorMiroAudit,
               alt: 'XLR and OneKeyCash UX audit synthesis on a Miro board',
+              background: 'page',
             },
           },
         },
@@ -110,14 +116,17 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
             primary: {
               src: expediaAcceleratorCreateFlow,
               alt: 'Create an Accelerator flow in Partner Central',
+              background: 'page',
             },
             secondary: {
               src: expediaAcceleratorUiMetricCards,
               alt: 'Sort order, page views, and search impressions metric cards',
+              background: 'page',
             },
             tertiary: {
               src: expediaAcceleratorUiCreateCalendar,
               alt: 'Create an Accelerator flow with stay date calendar and compensation preview',
+              background: 'page',
             },
           },
           bentoGrids: [
@@ -125,14 +134,17 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
               primary: {
                 src: expediaAcceleratorUiRateSelection,
                 alt: 'Rate plan and marketplace selection with radio hierarchy and helper copy',
+                background: 'charcoal',
               },
               secondary: {
                 src: expediaAcceleratorUiStayDates,
                 alt: 'Stay dates and blockout date fields with advanced visibility settings',
+                background: 'page',
               },
               tertiary: {
                 src: expediaAcceleratorUiPerformanceDashboard,
                 alt: 'Accelerator performance dashboard showing standard, OneKeyCash, and unavailable data states',
+                background: 'page',
               },
             },
           ],

@@ -23,6 +23,17 @@ const ROLE_COLUMNS: {
 
 type InstrumentFigureVariant = 'hero' | 'content';
 
+function instrumentMediaBackground(image: CaseStudyInstrumentImage): string {
+  switch (image.background) {
+    case 'charcoal':
+      return 'case-study-instrument__media--charcoal';
+    case 'card':
+      return 'case-study-instrument__media--card';
+    default:
+      return 'case-study-instrument__media--page';
+  }
+}
+
 function InstrumentFigure({
   image,
   variant = 'content',
@@ -30,21 +41,29 @@ function InstrumentFigure({
   image: CaseStudyInstrumentImage;
   variant?: InstrumentFigureVariant;
 }) {
+  const isHero = variant === 'hero';
+  const figureImgClass =
+    isHero && !image.objectFit
+      ? 'case-study-instrument__figure-img case-study-instrument__img--natural'
+      : `case-study-instrument__figure-img case-study-instrument__img--${image.objectFit ?? 'cover'}`;
+
   return (
     <figure
       className={`case-study-instrument__figure case-study-instrument__figure--bleed case-study-instrument__figure--${variant}`}
     >
-      <div className="case-study-instrument__figure-media bg-[var(--card-bg)]">
+      <div
+        className={`case-study-instrument__figure-media ${instrumentMediaBackground(image)}`}
+      >
         <div
           className="case-study-instrument__parallax-media case-study-instrument__parallax-media--figure"
           data-parallax
-          data-parallax-speed={variant === 'hero' ? '0.06' : '0.1'}
+          data-parallax-speed={isHero ? '0.06' : '0.1'}
         >
           <img
             src={image.src}
             alt={image.alt ?? ''}
-            className="case-study-instrument__figure-img"
-            loading={variant === 'hero' ? 'eager' : 'lazy'}
+            className={figureImgClass}
+            loading={isHero ? 'eager' : 'lazy'}
             decoding="async"
             sizes="100vw"
           />
