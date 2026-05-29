@@ -3,10 +3,6 @@ import expediaAcceleratorCreateAcceleratorHero from '../../../assets/expedia-acc
 import expediaAcceleratorPerformanceMarketTrends from '../../../assets/expedia-accelerator-performance-market-trends.png';
 import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
 import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
-import expediaAcceleratorUiPerformanceDashboard from '../../../assets/expedia-accelerator-ui-performance-dashboard.png';
-import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator-ui-metric-cards.png';
-import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
-import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
 import expediaAcceleratorSearchVisibilityAd from '../../../assets/expedia-accelerator-search-visibility-ad.png';
 import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-accelerator-observations-create-flow.png';
@@ -143,49 +139,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'The Result',
       subsections: [
         {
-          title: 'From exploration to shipped UI',
-          paragraphs: [
-            'We mapped touchpoints across search results, listing pages, partner dashboards, and billing—then partnered with data science to track funnel drop-off, refine activation, and validate setup abandonment hypotheses.',
-            'The shipped experience balances information density with clarity: consistent spacing, predictable components, and interaction patterns from campaign setup through performance reporting—including multi-date ranges, OneKeyCash eligibility, and unavailable metrics so partners always understood what they configured.',
-          ],
-          bentoGrid: {
-            primary: {
-              src: expediaAcceleratorCreateFlow,
-              alt: 'Create an Accelerator flow in Partner Central',
-              background: 'page',
-            },
-            secondary: {
-              src: expediaAcceleratorUiMetricCards,
-              alt: 'Sort order, page views, and search impressions metric cards',
-              background: 'page',
-            },
-            tertiary: {
-              src: expediaAcceleratorUiCreateCalendar,
-              alt: 'Create an Accelerator flow with stay date calendar and compensation preview',
-              background: 'page',
-            },
-          },
-          bentoGrids: [
-            {
-              primary: {
-                src: expediaAcceleratorUiRateSelection,
-                alt: 'Rate plan and marketplace selection with radio hierarchy and helper copy',
-                background: 'charcoal',
-              },
-              secondary: {
-                src: expediaAcceleratorUiStayDates,
-                alt: 'Stay dates and blockout date fields with advanced visibility settings',
-                background: 'page',
-              },
-              tertiary: {
-                src: expediaAcceleratorUiPerformanceDashboard,
-                alt: 'Accelerator performance dashboard showing standard, OneKeyCash, and unavailable data states',
-                background: 'page',
-              },
-            },
-          ],
-        },
-        {
           title: 'Launch impact',
           paragraphs: [
             'Within three months of launch, partner visibility in search results rose roughly 30%. Campaign setup success reached 80% versus 54% with the previous solution. CSAT for the ads experience climbed 20 points; partner opt-in doubled in six months, contributing to a 15% lift in quarterly revenue from long-tail partners.',
@@ -200,7 +153,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       ],
       testimonial: {
         quote:
-          'Transparency mattered more than granular control for most partners—and when design and data moved together, partners finally trusted what they saw in Partner Central.',
+          'Transparency mattered more than granular control for most partners. When design and data moved together, partners finally trusted what they saw in Partner Central.',
         name: 'Program leadership',
         role: 'Expedia Group — Monetization',
       },
