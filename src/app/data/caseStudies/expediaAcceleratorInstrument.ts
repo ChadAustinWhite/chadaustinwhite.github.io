@@ -7,6 +7,9 @@ import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator
 import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
 import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
+import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
+import expediaAcceleratorAffinityMapping from '../../../assets/expedia-accelerator-affinity-mapping.png';
+import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-data-analysis.png';
 /** Instrument ServiceNow-style narrative for Expedia Group Accelerator. */
 export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   clientName: 'Expedia Group Accelerator',
@@ -76,6 +79,32 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       ],
     },
     {
+      title: 'Inductive vs. Deductive',
+      lead:
+        'We paired inductive discovery—journey mapping and heuristic synthesis from partner feedback—with deductive validation through loyalty and performance data, so every design bet was grounded in what partners said and what the numbers showed.',
+      subsections: [],
+      bentoGrid: {
+        primary: {
+          src: expediaAcceleratorNorthstarVisionMiro,
+          alt: 'Accelerator Northstar Vision collaboration journey map on Miro',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        secondary: {
+          src: expediaAcceleratorAffinityMapping,
+          alt: 'XLR and OneKeyCash heuristic evaluation affinity mapping on Miro',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        tertiary: {
+          src: expediaAcceleratorDataAnalysis,
+          alt: 'XLR loyalty OneKeyCash Looker dashboard with spend, GBV, and booking metrics',
+          objectFit: 'contain',
+          background: 'page',
+        },
+      },
+    },
+    {
       title: 'The Result',
       subsections: [
         {
@@ -140,6 +169,24 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         name: 'Program leadership',
         role: 'Expedia Group — Monetization',
       },
+    },
+    {
+      title: 'Reflecting on the journey and key lessons learned.',
+      subsections: [],
+      accordion: [
+        {
+          title: 'What worked well',
+          body: 'Cross-functional collaboration between research, design, product, and engineering teams enabled rapid iteration and deployment of features that directly addressed hotel partner pain points.',
+        },
+        {
+          title: "What we'd do differently",
+          body: 'Conducting more structured evaluative testing with diverse partner types would have uncovered edge cases earlier and informed prioritization of feature rollouts.',
+        },
+        {
+          title: 'Key takeaway',
+          body: 'Successful hotel partner products blend automation, human input, and transparency. Partners seek tools that streamline processes and provide real-time results to guide their decisions.',
+        },
+      ],
     },
   ],
   closing: {
