@@ -129,6 +129,8 @@ export interface CaseStudyInstrumentChapter {
   subsections: CaseStudyInstrumentSubsection[];
   /** Pill accordion rows (Sonos / Dan-style) after chapter lead. */
   accordion?: CaseStudySonosSubpoint[];
+  /** Full-bleed images stacked vertically above chapter bento (in order). */
+  stackedImages?: CaseStudyInstrumentImage[];
   /** Bento grid directly under chapter lead (e.g. research synthesis gallery). */
   bentoGrid?: CaseStudyInstrumentBentoGrid;
   bentoGrids?: CaseStudyInstrumentBentoGrid[];

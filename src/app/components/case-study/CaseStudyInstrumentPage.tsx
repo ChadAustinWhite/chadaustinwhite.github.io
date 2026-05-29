@@ -118,6 +118,14 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         ) : null}
       </div>
 
+      {chapter.stackedImages && chapter.stackedImages.length > 0 ? (
+        <div className="case-study-instrument__stacked-figures">
+          {chapter.stackedImages.map((image, i) => (
+            <InstrumentFigure key={`${chapter.title}-stack-${i}`} image={image} variant="content" />
+          ))}
+        </div>
+      ) : null}
+
       {chapter.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={chapter.bentoGrid} /> : null}
       {chapter.bentoGrids?.map((grid, i) => (
         <CaseStudyInstrumentBentoGrid key={`${chapter.title}-bento-${i}`} grid={grid} />

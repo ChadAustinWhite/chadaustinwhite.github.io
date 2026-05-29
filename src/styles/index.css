@@ -320,6 +320,31 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 /* Full-bleed breakout (Instrument work pages — text stays narrow, media spans viewport). */
+.case-study-instrument__stacked-figures {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  width: 100%;
+  max-width: 90rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.case-study-instrument__stacked-figures .case-study-instrument__figure--bleed {
+  width: 100%;
+  max-width: 100%;
+  margin-inline: 0;
+  margin-block: 0;
+}
+
+.case-study-instrument__stacked-figures .case-study-instrument__figure-media {
+  border-radius: clamp(10px, 1.2vw, 14px);
+  overflow: hidden;
+}
+
+.case-study-instrument__stacked-figures .case-study-instrument__parallax-media--figure {
+  border-radius: inherit;
+}
+
 .case-study-instrument__subsection-block {
   margin-top: clamp(2.5rem, 6vw, 3.5rem);
 }

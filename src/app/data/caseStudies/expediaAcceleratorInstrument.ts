@@ -8,6 +8,8 @@ import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator
 import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
 import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
+import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-accelerator-observations-create-flow.png';
+import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-accelerator-observations-impact-phases.png';
 import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
 import expediaAcceleratorAffinityMapping from '../../../assets/expedia-accelerator-affinity-mapping.png';
 import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-data-analysis.png';
@@ -91,6 +93,20 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       lead:
         'We paired inductive discovery—journey mapping and heuristic synthesis from partner feedback—with deductive validation through loyalty and performance data, so every design bet was grounded in what partners said and what the numbers showed.',
       subsections: [],
+      stackedImages: [
+        {
+          src: expediaAcceleratorObservationsCreateFlow,
+          alt: 'Figma observations and recommendations for Create an Accelerator impact phases',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: expediaAcceleratorObservationsImpactPhases,
+          alt: 'Figma observations linking discovery insights and UX requirements on Create an Accelerator impact phases',
+          objectFit: 'contain',
+          background: 'page',
+        },
+      ],
       bentoGrid: {
         primary: {
           src: expediaAcceleratorNorthstarVisionMiro,
