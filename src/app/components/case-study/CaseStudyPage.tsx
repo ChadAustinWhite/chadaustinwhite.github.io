@@ -4,6 +4,7 @@ import type { StrategySection } from './types';
 import type { CaseStudyRoute, ProjectItem } from '../../data/portfolioData';
 import { projects } from '../../data/portfolioData';
 import { CaseStudyEditorialPage } from './CaseStudyEditorialPage';
+import { CaseStudyInstrumentPage } from './CaseStudyInstrumentPage';
 import { CaseStudySonosPage } from './CaseStudySonosPage';
 import { CaseStudyWhoopHero } from './CaseStudyWhoopHero';
 import { CaseStudyWhoopRoles, caseStudyHasRolesSection } from './CaseStudyWhoopRoles';
@@ -72,6 +73,17 @@ export function CaseStudyPage({
   currentRoute,
   onViewCaseStudy,
 }: CaseStudyPageProps) {
+  if (content.layout === 'instrument') {
+    return (
+      <CaseStudyInstrumentPage
+        content={content}
+        onBack={onBack}
+        currentRoute={currentRoute}
+        onViewCaseStudy={onViewCaseStudy}
+      />
+    );
+  }
+
   if (content.layout === 'sonos') {
     return (
       <CaseStudySonosPage content={content} onBack={onBack} />

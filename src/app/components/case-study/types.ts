@@ -93,7 +93,61 @@ export interface StrategySection {
 }
 
 /** Case study page layout variants. */
-export type CaseStudyLayoutVariant = 'whoop' | 'editorial' | 'sonos';
+export type CaseStudyLayoutVariant = 'whoop' | 'editorial' | 'sonos' | 'instrument';
+
+export interface CaseStudyInstrumentImage {
+  src: string;
+  alt?: string;
+  caption?: string;
+}
+
+/** Instrument work page bento: tall primary left, two stacked right (servicenow-rebrand). */
+export interface CaseStudyInstrumentBentoGrid {
+  primary: CaseStudyInstrumentImage;
+  secondary: CaseStudyInstrumentImage;
+  tertiary: CaseStudyInstrumentImage;
+  caption?: string;
+}
+
+export interface CaseStudyInstrumentSubsection {
+  title: string;
+  paragraphs: string[];
+  image?: CaseStudyInstrumentImage;
+  images?: CaseStudyInstrumentImage[];
+  bentoGrid?: CaseStudyInstrumentBentoGrid;
+  /** Additional bento grids after the first (e.g. research or UI galleries). */
+  bentoGrids?: CaseStudyInstrumentBentoGrid[];
+}
+
+export interface CaseStudyInstrumentChapter {
+  title: string;
+  lead?: string;
+  subsections: CaseStudyInstrumentSubsection[];
+  /** Pill accordion rows (Sonos / Dan-style) after chapter lead. */
+  accordion?: CaseStudySonosSubpoint[];
+  testimonial?: { quote: string; name: string; role: string };
+  metrics?: CaseStudySonosMetric[];
+}
+
+/** Instrument work page (instrument.com/work/servicenow-rebrand). */
+export interface CaseStudyInstrumentContent {
+  clientName: string;
+  projectName: string;
+  breadcrumb?: string;
+  tags?: string[];
+  lead: string;
+  /** Full-bleed image directly under the lead paragraph. */
+  leadImage?: CaseStudyInstrumentImage;
+  /** Bento grid directly under the lead (replaces heroImages when set). */
+  leadBento?: CaseStudyInstrumentBentoGrid;
+  heroImages?: CaseStudyInstrumentImage[];
+  chapters: CaseStudyInstrumentChapter[];
+  closing?: {
+    paragraphs: string[];
+    image?: CaseStudyInstrumentImage;
+  };
+  rolesHeading?: string;
+}
 
 /** Image aspect presets matching Instrument Sonos case study assets. */
 export type CaseStudySonosImageVariant = 'portrait' | 'wide' | 'wideShort' | 'wideTall';
@@ -239,10 +293,14 @@ export interface CaseStudyContent {
   title: string;
   /** Page structure; `sonos` matches instrument.com/work/sonos-brand-refresh. */
   layout?: CaseStudyLayoutVariant;
+  /** ServiceNow-style Instrument work page (instrument.com/work/servicenow-rebrand). */
+  instrument?: CaseStudyInstrumentContent;
   /** Sonos-style Instrument work page content. */
   sonos?: CaseStudySonosContent;
   /** Scroll-driven dark → light background on the case study page. */
   scrollGradient?: boolean;
+  /** Scroll-linked parallax on media (Instrument layout). Defaults to on for `instrument`. */
+  parallax?: boolean;
   /** Editorial-only overrides (lucid-motors-style). */
   editorial?: {
     statement?: string;

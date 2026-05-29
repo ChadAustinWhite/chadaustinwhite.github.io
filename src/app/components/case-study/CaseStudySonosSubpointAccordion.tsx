@@ -76,7 +76,7 @@ export function CaseStudySonosSubpointAccordion({
               style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
             >
               <div className="min-h-0 overflow-hidden">
-                <p className="sonos-subpoint-accordion__panel-body cs-text-body max-w-[52ch] px-5 pb-5 text-[var(--ink-muted)] md:px-7 md:pb-6">
+                <p className="sonos-subpoint-accordion__panel-body cs-text-body max-w-[52ch] whitespace-pre-line px-5 pb-5 text-[var(--ink-muted)] md:px-7 md:pb-6">
                   {item.body}
                 </p>
               </div>
