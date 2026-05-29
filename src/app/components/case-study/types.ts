@@ -129,6 +129,9 @@ export interface CaseStudyInstrumentChapter {
   subsections: CaseStudyInstrumentSubsection[];
   /** Pill accordion rows (Sonos / Dan-style) after chapter lead. */
   accordion?: CaseStudySonosSubpoint[];
+  /** Bento grid directly under chapter lead (e.g. research synthesis gallery). */
+  bentoGrid?: CaseStudyInstrumentBentoGrid;
+  bentoGrids?: CaseStudyInstrumentBentoGrid[];
   testimonial?: { quote: string; name: string; role: string };
   metrics?: CaseStudySonosMetric[];
 }

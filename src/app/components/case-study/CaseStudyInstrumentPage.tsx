@@ -118,6 +118,11 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         ) : null}
       </div>
 
+      {chapter.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={chapter.bentoGrid} /> : null}
+      {chapter.bentoGrids?.map((grid, i) => (
+        <CaseStudyInstrumentBentoGrid key={`${chapter.title}-bento-${i}`} grid={grid} />
+      ))}
+
       {chapter.subsections.map((sub) => (
         <div key={sub.title} className="case-study-instrument__subsection-block">
           <div className={CONTENT}>

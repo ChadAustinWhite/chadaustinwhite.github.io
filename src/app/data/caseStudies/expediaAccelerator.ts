@@ -36,29 +36,6 @@ export const expediaAcceleratorContent: CaseStudyContent = {
       { value: '72.4K', label: 'Active Hotel Partners' },
     ],
   },
-  roles: {
-    strategy: [
-      'UX strategy, behavioral design, and ideation',
-      'Stakeholder alignment across product, engineering, CX, marketing, research, and content design',
-      'Co-led product strategy with PM and engineering; quarterly planning advocacy',
-    ],
-    design: [
-      'Campaign creation, performance dashboard, budget, and billing flows',
-      'Experience principles: Transparent, Empowering, Easy-to-Start',
-      'Figma, Miro, and internal design system delivery',
-      'Usability testing across four global markets',
-    ],
-    content: [
-      'Content strategy, terminology, and in-product education',
-      'Localization across twelve languages',
-      'Contextual tips and milestone-based guidance',
-    ],
-    development: [
-      'WCAG AA accessibility from the start',
-      'Prototyping, handoff, and design QA with engineering',
-      'Reusable components for monetization tooling',
-    ],
-  },
   hidePagination: true,
   hideRelatedCaseStudies: true,
 };
