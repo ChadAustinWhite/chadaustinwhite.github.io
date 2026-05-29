@@ -98,7 +98,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     {
       title: 'Inductive vs. Deductive',
       lead:
-        'We paired inductive discovery—journey mapping and heuristic synthesis from partner feedback—with deductive validation through loyalty and performance data, so every design bet was grounded in what partners said and what the numbers showed.',
+        'We paired inductive discovery (journey mapping and heuristic synthesis from partner feedback) with deductive validation through loyalty and performance data, so every design bet was grounded in what partners said and what the numbers showed.',
       subsections: [],
       stackedImages: [
         {
