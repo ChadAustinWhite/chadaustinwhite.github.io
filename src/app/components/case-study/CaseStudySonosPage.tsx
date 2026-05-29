@@ -179,7 +179,7 @@ function SonosMetricsGrid({
 
 function SonosSubpointList({
   items,
-  variant = 'bullet',
+  variant = 'accordion',
   className,
 }: {
   items: CaseStudySonosSubpoint[];
@@ -324,22 +324,16 @@ function SonosRoles({ content }: { content: CaseStudyContent }) {
   const columns = ROLE_COLUMNS.filter((col) => (roles?.[col.key]?.length ?? 0) > 0);
   if (columns.length === 0) return null;
 
+  const items: CaseStudySonosSubpoint[] = columns.map((col) => ({
+    title: col.label,
+    body: roles![col.key]!.join('\n\n'),
+  }));
+
   return (
     <section className={`${GUTTER} border-t border-[var(--border)] py-16 md:py-24`}>
       <div className="max-w-[72rem]">
-        <h2 className="cs-text-label text-left text-[var(--ink-muted)]">My Roles</h2>
-        <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-        {columns.map((col) => (
-          <div key={col.key}>
-            <h3 className="cs-text-label mb-4 text-[var(--ink-muted)]">{col.label}</h3>
-            <ul className={`${BODY} space-y-2`}>
-              {roles![col.key]!.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        </div>
+        <h2 className="cs-text-title text-[var(--ink)]">My roles</h2>
+        <CaseStudySonosSubpointAccordion items={items} className="mt-8 md:mt-10" />
       </div>
     </section>
   );
