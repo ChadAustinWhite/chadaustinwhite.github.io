@@ -1,7 +1,13 @@
 import { useRef } from 'react';
 import { useCaseStudyParallax } from '../../hooks/useCaseStudyParallax';
 import { useCaseStudySectionBackground } from '../../hooks/useCaseStudySectionBackground';
-import type { CaseStudyContent, CaseStudyInstrumentChapter, CaseStudyInstrumentImage } from './types';
+import type {
+  CaseStudyContent,
+  CaseStudyInstrumentChapter,
+  CaseStudyInstrumentImage,
+  CaseStudyInstrumentMetricsPanel,
+  CaseStudySonosMetric,
+} from './types';
 import type { CaseStudyRoute } from '../../data/portfolioData';
 import { projects } from '../../data/portfolioData';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
@@ -84,6 +90,42 @@ function InstrumentFigure({
   );
 }
 
+function InstrumentMetricsList({ metrics }: { metrics: CaseStudySonosMetric[] }) {
+  return (
+    <div className="case-study-instrument__metrics" role="list">
+      {metrics.map((m) => (
+        <div key={m.label} className="case-study-instrument__metric" role="listitem">
+          <p className="case-study-instrument__metric-label">{m.label}</p>
+          <p className="case-study-instrument__metric-value">{m.value}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function InstrumentMetricsPanel({ panel }: { panel: CaseStudyInstrumentMetricsPanel }) {
+  const { image, metrics } = panel;
+  const imgClass = `case-study-instrument__figure-img case-study-instrument__img--${image.objectFit ?? 'contain'}`;
+
+  return (
+    <div className={`${GUTTER} case-study-instrument__metrics-panel mt-12 md:mt-16`}>
+      <div className="case-study-instrument__metrics-panel-grid">
+        <figure className="case-study-instrument__metrics-panel-figure">
+          <div
+            className={`case-study-instrument__figure-media ${instrumentMediaBackground(image)}`}
+          >
+            <img src={image.src} alt={image.alt ?? ''} className={imgClass} loading="lazy" decoding="async" />
+          </div>
+          {image.caption ? (
+            <figcaption className="case-study-instrument__caption mt-4">{image.caption}</figcaption>
+          ) : null}
+        </figure>
+        <InstrumentMetricsList metrics={metrics} />
+      </div>
+    </div>
+  );
+}
+
 function InstrumentSubsectionCopy({
   title,
   paragraphs,
@@ -158,16 +200,11 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         </div>
       ))}
 
-      {chapter.metrics && chapter.metrics.length > 0 ? (
-        <div className={`${GUTTER} mt-12 md:mt-16`}>
-          <div className={`${CONTENT} case-study-instrument__metrics`}>
-            {chapter.metrics.map((m) => (
-              <div key={m.label} className="case-study-instrument__metric">
-                <p className="case-study-instrument__metric-label">{m.label}</p>
-                <p className="case-study-instrument__metric-value">{m.value}</p>
-              </div>
-            ))}
-          </div>
+      {chapter.metricsPanel ? (
+        <InstrumentMetricsPanel panel={chapter.metricsPanel} />
+      ) : chapter.metrics && chapter.metrics.length > 0 ? (
+        <div className={`${CONTENT} case-study-instrument__metrics mt-12 md:mt-16`}>
+          <InstrumentMetricsList metrics={chapter.metrics} />
         </div>
       ) : null}
 

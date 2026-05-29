@@ -127,6 +127,11 @@ export interface CaseStudyInstrumentSubsection {
   bentoGrids?: CaseStudyInstrumentBentoGrid[];
 }
 
+export interface CaseStudyInstrumentMetricsPanel {
+  image: CaseStudyInstrumentImage;
+  metrics: CaseStudySonosMetric[];
+}
+
 export interface CaseStudyInstrumentChapter {
   title: string;
   lead?: string;
@@ -142,6 +147,8 @@ export interface CaseStudyInstrumentChapter {
   bentoGrids?: CaseStudyInstrumentBentoGrid[];
   testimonial?: { quote: string; name: string; role: string };
   metrics?: CaseStudySonosMetric[];
+  /** KPI row beside a product UI image (e.g. rate plan types + launch metrics). */
+  metricsPanel?: CaseStudyInstrumentMetricsPanel;
 }
 
 /** Instrument work page (instrument.com/work/servicenow-rebrand). */

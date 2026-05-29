@@ -491,6 +491,8 @@ html.home-canvas-interactive .site-nav-surface {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  width: fit-content;
+  max-width: 100%;
   padding-block: 1rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -498,7 +500,7 @@ html.home-canvas-interactive .site-nav-surface {
 
 @media (min-width: 768px) {
   .case-study-instrument__metrics {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, auto);
     gap: 0;
   }
 
@@ -509,6 +511,62 @@ html.home-canvas-interactive .site-nav-surface {
 
   .case-study-instrument__metric:not(:last-child) {
     padding-right: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+.case-study-instrument__metrics-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  max-width: 90rem;
+}
+
+@media (min-width: 900px) {
+  .case-study-instrument__metrics-panel-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+}
+
+.case-study-instrument__metrics-panel-figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.case-study-instrument__metrics-panel-figure .case-study-instrument__figure-media {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.case-study-instrument__metrics-panel .case-study-instrument__metrics {
+  width: fit-content;
+  max-width: 100%;
+  padding-block: 0;
+  border-top: none;
+  border-bottom: none;
+}
+
+@media (min-width: 900px) {
+  .case-study-instrument__metrics-panel .case-study-instrument__metrics {
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .case-study-instrument__metrics-panel .case-study-instrument__metric + .case-study-instrument__metric {
+    border-left: none;
+    padding-left: 0;
+    padding-top: clamp(1.75rem, 3vw, 2.5rem);
+    border-top: 1px solid var(--border);
+  }
+
+  .case-study-instrument__metrics-panel .case-study-instrument__metric:not(:last-child) {
+    padding-right: 0;
+  }
+
+  .case-study-instrument__metrics-panel .case-study-instrument__metric:first-child {
+    padding-top: 0;
+    border-top: none;
   }
 }
 
