@@ -251,9 +251,14 @@ export function CaseStudyInstrumentPage({
         </p>
       </header>
 
-      {instrument.leadImage ? (
-        <InstrumentFigure image={instrument.leadImage} variant="hero" />
-      ) : null}
+      {(instrument.leadImages?.length
+        ? instrument.leadImages
+        : instrument.leadImage
+          ? [instrument.leadImage]
+          : []
+      ).map((image, i) => (
+        <InstrumentFigure key={`lead-hero-${i}`} image={image} variant="hero" />
+      ))}
 
       {instrument.leadBento ? (
         <CaseStudyInstrumentBentoGrid grid={instrument.leadBento} />
