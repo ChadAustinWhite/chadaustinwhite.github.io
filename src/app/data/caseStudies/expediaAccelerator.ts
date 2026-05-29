@@ -7,9 +7,9 @@ export const expediaAcceleratorContent: CaseStudyContent = {
   scrollGradient: false,
   parallax: true,
   title: 'Expedia Group Accelerator',
-  heroTitleLines: ['Expedia Group', 'Accelerator'],
+  heroTitleLines: ['Expedia Group Accelerator'],
   meta: {
-    organization: 'Expedia Group',
+    organization: 'Expedia Group Accelerator',
     role: 'Lead UX Designer',
     year: '2025',
     duration: '8 Months',

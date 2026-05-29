@@ -1,6 +1,25 @@
-import type { CaseStudyInstrumentBentoGrid as BentoGridData } from './types';
+import type {
+  CaseStudyInstrumentBentoGrid as BentoGridData,
+  CaseStudyInstrumentImage,
+} from './types';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
+
+function instrumentMediaBackground(image: CaseStudyInstrumentImage): string {
+  switch (image.background) {
+    case 'charcoal':
+      return 'case-study-instrument__media--charcoal';
+    case 'card':
+      return 'case-study-instrument__media--card';
+    default:
+      return 'case-study-instrument__media--page';
+  }
+}
+
+function instrumentBentoImgClass(image: CaseStudyInstrumentImage): string {
+  const fit = image.objectFit ?? 'cover';
+  return `case-study-instrument__bento-img case-study-instrument__img--${fit}`;
+}
 
 interface CaseStudyInstrumentBentoGridProps {
   grid: BentoGridData;
@@ -20,7 +39,9 @@ function BentoCell({ image, className }: { image: BentoGridData['primary']; clas
   const { speed, delay } = BENTO_PARALLAX[className] ?? { speed: '0.12', delay: '0' };
 
   return (
-    <div className={`case-study-instrument__bento-cell ${className}`}>
+    <div
+      className={`case-study-instrument__bento-cell ${className} ${instrumentMediaBackground(image)}`}
+    >
       <div
         className="case-study-instrument__parallax-media"
         data-parallax
@@ -31,7 +52,7 @@ function BentoCell({ image, className }: { image: BentoGridData['primary']; clas
         <img
           src={image.src}
           alt={image.alt ?? ''}
-          className="case-study-instrument__bento-img"
+          className={instrumentBentoImgClass(image)}
           loading="lazy"
           decoding="async"
           sizes="(min-width: 768px) 55vw, 100vw"
