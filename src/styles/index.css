@@ -329,6 +329,10 @@ html.home-canvas-interactive .site-nav-surface {
   margin-top: clamp(2rem, 5vw, 3rem);
 }
 
+.case-study-instrument__stacked-figures--prose {
+  max-width: 46rem;
+}
+
 .case-study-instrument__stacked-figures .case-study-instrument__figure--bleed {
   width: 100%;
   max-width: 100%;
@@ -339,10 +343,17 @@ html.home-canvas-interactive .site-nav-surface {
 .case-study-instrument__stacked-figures .case-study-instrument__figure-media {
   border-radius: clamp(10px, 1.2vw, 14px);
   overflow: hidden;
+  min-height: clamp(14rem, 36vw, 22rem);
 }
 
 .case-study-instrument__stacked-figures .case-study-instrument__parallax-media--figure {
   border-radius: inherit;
+  min-height: clamp(14rem, 36vw, 22rem);
+}
+
+.case-study-instrument__stacked-figures--prose .case-study-instrument__figure-media,
+.case-study-instrument__stacked-figures--prose .case-study-instrument__parallax-media--figure {
+  min-height: clamp(12rem, 32vw, 18rem);
 }
 
 .case-study-instrument__subsection-block {

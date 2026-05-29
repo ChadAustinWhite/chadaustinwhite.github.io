@@ -8,6 +8,7 @@ import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator
 import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
 import expediaAcceleratorUiStayDates from '../../../assets/expedia-accelerator-ui-stay-dates.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
+import expediaAcceleratorSearchVisibilityAd from '../../../assets/expedia-accelerator-search-visibility-ad.png';
 import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-accelerator-observations-create-flow.png';
 import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-accelerator-observations-impact-phases.png';
 import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
@@ -55,6 +56,16 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       lead:
         "Search visibility directly impacts bookings and revenue. When hotel partners can't clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.",
       subsections: [],
+      stackedImagesWidth: 'prose',
+      stackedImages: [
+        {
+          src: expediaAcceleratorSearchVisibilityAd,
+          alt: 'Expedia search results wireframe highlighting sponsored Accelerator ad placement in the sort order',
+          objectFit: 'contain',
+          background: 'page',
+          parallaxSpeed: '0.14',
+        },
+      ],
     },
     {
       title: 'Project complications',

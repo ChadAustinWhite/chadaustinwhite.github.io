@@ -103,6 +103,10 @@ export interface CaseStudyInstrumentImage {
   objectFit?: 'cover' | 'contain';
   /** Frame behind the image; use `charcoal` for dark UI comps. */
   background?: 'page' | 'card' | 'charcoal';
+  /** Scroll-linked parallax (`data-parallax-speed`). */
+  parallaxSpeed?: string;
+  parallaxMode?: 'scroll-lag' | 'viewport';
+  parallaxDelay?: string;
 }
 
 /** Instrument work page bento: tall primary left, two stacked right (servicenow-rebrand). */
@@ -131,6 +135,8 @@ export interface CaseStudyInstrumentChapter {
   accordion?: CaseStudySonosSubpoint[];
   /** Full-bleed images stacked vertically above chapter bento (in order). */
   stackedImages?: CaseStudyInstrumentImage[];
+  /** Width of `stackedImages`; `prose` aligns with chapter copy (46rem). */
+  stackedImagesWidth?: 'prose' | 'wide';
   /** Bento grid directly under chapter lead (e.g. research synthesis gallery). */
   bentoGrid?: CaseStudyInstrumentBentoGrid;
   bentoGrids?: CaseStudyInstrumentBentoGrid[];

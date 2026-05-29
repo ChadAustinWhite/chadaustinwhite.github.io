@@ -47,6 +47,7 @@ function InstrumentFigure({
     isHero && !image.objectFit
       ? 'case-study-instrument__figure-img case-study-instrument__img--natural'
       : `case-study-instrument__figure-img case-study-instrument__img--${image.objectFit ?? 'cover'}`;
+  const parallaxSpeed = image.parallaxSpeed ?? (isHero ? '0.06' : '0.1');
 
   return (
     <figure
@@ -58,7 +59,9 @@ function InstrumentFigure({
         <div
           className="case-study-instrument__parallax-media case-study-instrument__parallax-media--figure"
           data-parallax
-          data-parallax-speed={isHero ? '0.06' : '0.1'}
+          data-parallax-speed={parallaxSpeed}
+          {...(image.parallaxMode ? { 'data-parallax-mode': image.parallaxMode } : {})}
+          {...(image.parallaxDelay ? { 'data-parallax-delay': image.parallaxDelay } : {})}
         >
           <img
             src={image.src}
@@ -119,7 +122,15 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       </div>
 
       {chapter.stackedImages && chapter.stackedImages.length > 0 ? (
-        <div className="case-study-instrument__stacked-figures">
+        <div
+          className={`case-study-instrument__stacked-figures${
+            chapter.stackedImagesWidth === 'prose'
+              ? ' case-study-instrument__stacked-figures--prose'
+              : ''
+          }`}
+          data-parallax
+          data-parallax-speed="0.05"
+        >
           {chapter.stackedImages.map((image, i) => (
             <InstrumentFigure key={`${chapter.title}-stack-${i}`} image={image} variant="content" />
           ))}
