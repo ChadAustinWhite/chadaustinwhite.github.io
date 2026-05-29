@@ -143,7 +143,9 @@ export interface CaseStudyInstrumentContent {
   breadcrumb?: string;
   tags?: string[];
   lead: string;
-  /** Full-bleed image directly under the lead paragraph. */
+  /** Full-bleed images directly under the lead paragraph (in order). */
+  leadImages?: CaseStudyInstrumentImage[];
+  /** Single lead image when only one hero frame is needed. */
   leadImage?: CaseStudyInstrumentImage;
   /** Bento grid directly under the lead (replaces heroImages when set). */
   leadBento?: CaseStudyInstrumentBentoGrid;
