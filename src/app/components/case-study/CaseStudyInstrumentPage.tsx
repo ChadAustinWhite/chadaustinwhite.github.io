@@ -9,7 +9,8 @@ import { CaseStudyInstrumentBentoGrid } from './CaseStudyInstrumentBentoGrid';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
-const CONTENT = 'mx-auto w-full max-w-[46rem]';
+/** Left-aligned prose column (matches page lead; no horizontal centering). */
+const CONTENT = 'w-full max-w-[46rem]';
 
 const ROLE_COLUMNS: {
   key: 'design' | 'content' | 'strategy' | 'development';
@@ -119,7 +120,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
 
       {chapter.subsections.map((sub) => (
         <div key={sub.title} className="case-study-instrument__subsection-block">
-          <div className={`${GUTTER} ${CONTENT}`}>
+          <div className={CONTENT}>
             <InstrumentSubsectionCopy title={sub.title} paragraphs={sub.paragraphs} />
           </div>
           {sub.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={sub.bentoGrid} /> : null}
@@ -147,7 +148,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.testimonial ? (
-        <div className={`${GUTTER} ${CONTENT} case-study-instrument__testimonial`}>
+        <div className={`${CONTENT} case-study-instrument__testimonial`}>
           <blockquote className="case-study-instrument__quote serif-headline">
             “{chapter.testimonial.quote}”
           </blockquote>

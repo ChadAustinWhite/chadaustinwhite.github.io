@@ -2,9 +2,6 @@ import type { CaseStudyInstrumentContent } from '../../components/case-study/typ
 import expediaAcceleratorPerformanceMarketTrends from '../../../assets/expedia-accelerator-performance-market-trends.png';
 import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
 import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
-import expediaAcceleratorMiroAudit from '../../../assets/expedia-accelerator-miro-audit.png';
-import expediaAcceleratorIdeationFigma from '../../../assets/expedia-accelerator-ideation-figma.png';
-import expediaAcceleratorDesignCritique from '../../../assets/expedia-accelerator-design-critique.png';
 import expediaAcceleratorUiPerformanceDashboard from '../../../assets/expedia-accelerator-ui-performance-dashboard.png';
 import expediaAcceleratorUiMetricCards from '../../../assets/expedia-accelerator-ui-metric-cards.png';
 import expediaAcceleratorUiCreateCalendar from '../../../assets/expedia-accelerator-ui-create-calendar.png';
@@ -44,32 +41,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       lead:
         "Search visibility directly impacts bookings and revenue. When hotel partners can't clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.",
-      subsections: [
-        {
-          title: 'A system built to scale',
-          paragraphs: [
-            'We grounded the experience in behavioral insights and usability heuristics while aligning teams around a shared definition of partner and business success.',
-            'Behavioral interviews surfaced a consistent pattern: partners hesitated when ad tools lacked transparency; smaller partners had low ad literacy and limited time; everyone wanted visibility without financial risk. We positioned Accelerator as pay-after-success, applied anchoring and smart defaults, limited choice to reduce cognitive load, and used loss aversion and goal-gradient progress to keep partners moving through setup without overwhelm.',
-          ],
-          bentoGrid: {
-            primary: {
-              src: expediaAcceleratorIdeationFigma,
-              alt: 'Figma ideation boards for Accelerator flows',
-              background: 'page',
-            },
-            secondary: {
-              src: expediaAcceleratorDesignCritique,
-              alt: 'Design critique session for Accelerator flows',
-              background: 'page',
-            },
-            tertiary: {
-              src: expediaAcceleratorMiroAudit,
-              alt: 'XLR and OneKeyCash UX audit synthesis on a Miro board',
-              background: 'page',
-            },
-          },
-        },
-      ],
+      subsections: [],
     },
     {
       title: 'Project complications',
