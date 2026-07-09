@@ -78,12 +78,12 @@ export const projects: ProjectItem[] = [
     ],
   },
   {
-    title: 'Worldpay Disputes Experience',
-    description: 'Dispute intake, investigation, and resolution',
+    title: 'Worldpay Dispute Defender',
+    description: 'Automated dispute resolution',
     period: '2026',
     image: worldpayDisputesImage,
     imageAlt:
-      'Worldpay Dashboard — Disputes case detail with case analysis, win probability, and submit information',
+      'Worldpay Dispute Defender — performance summary with sales protected, time saved, and disputes handled',
     caseStudyRoute: 'case-study-worldpay-disputes',
     hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
     metrics: [
