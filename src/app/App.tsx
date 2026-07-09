@@ -31,7 +31,7 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
     case 'case-study-worldpay-sso':
       return 'Worldpay SSO Management';
     case 'case-study-worldpay-disputes':
-      return 'Worldpay Disputes Experience';
+      return 'Worldpay Dispute Defender';
     default:
       return 'Case study';
   }
@@ -164,7 +164,7 @@ export default function App() {
       case 'case-study-worldpay-disputes':
         return (
           <CaseStudyPlaceholder
-            title="Worldpay Disputes Experience"
+            title="Worldpay Dispute Defender"
             onBack={handleBackFromCaseStudy}
             onNavigateHome={handleBackFromCaseStudy}
             currentRoute={route}
