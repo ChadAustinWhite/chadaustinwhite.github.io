@@ -141,6 +141,10 @@ html.home-canvas-interactive .site-nav-surface {
   scroll-snap-align: start;
 }
 
+.work-section-stack__slide .project-card > :first-child {
+  aspect-ratio: 16 / 10;
+}
+
 @media (min-width: 768px) {
   .work-section-stack {
     margin-inline: -2.5rem;
@@ -154,7 +158,17 @@ html.home-canvas-interactive .site-nav-surface {
   }
 
   .work-section-stack__slide {
-    width: min(calc(100vw - 10rem), 42rem);
+    width: min(calc(100vw - 7rem), 54rem);
+  }
+
+  .work-section-stack__slide .project-card > :first-child {
+    aspect-ratio: 16 / 9.5;
+  }
+}
+
+@media (min-width: 1280px) {
+  .work-section-stack__slide {
+    width: min(calc(100vw - 8rem), 58rem);
   }
 }
 
