@@ -1,6 +1,8 @@
 import {
+  useCallback,
   useEffect,
   useRef,
+  useState,
   type FocusEvent as ReactFocusEvent,
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
@@ -24,6 +26,22 @@ function isInteractiveTarget(target: EventTarget | null): boolean {
 
 function getSlides(viewport: HTMLDivElement, slideSelector: string) {
   return Array.from(viewport.querySelectorAll<HTMLElement>(slideSelector));
+}
+
+function getActiveSlideIndex(viewport: HTMLDivElement, slides: HTMLElement[]) {
+  const scrollLeft = viewport.scrollLeft;
+  let activeIndex = 0;
+  let minDistance = Infinity;
+
+  for (let i = 0; i < slides.length; i++) {
+    const distance = Math.abs(scrollLeft - slides[i].offsetLeft);
+    if (distance < minDistance) {
+      minDistance = distance;
+      activeIndex = i;
+    }
+  }
+
+  return activeIndex;
 }
 
 function snapToNearestSlide(viewport: HTMLDivElement, slideSelector: string) {
@@ -62,10 +80,65 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
   const rafRef = useRef(0);
   const lastFrameRef = useRef(0);
   const reducedMotionRef = useRef(false);
+  const [scrollState, setScrollState] = useState({
+    canScrollPrev: false,
+    canScrollNext: false,
+  });
+
+  const updateScrollState = useCallback(() => {
+    const viewport = ref.current;
+    if (!viewport) return;
+
+    const slides = getSlides(viewport, slideSelectorRef.current);
+    if (!slides.length) {
+      setScrollState({ canScrollPrev: false, canScrollNext: false });
+      return;
+    }
+
+    const index = getActiveSlideIndex(viewport, slides);
+    setScrollState({
+      canScrollPrev: index > 0,
+      canScrollNext: index < slides.length - 1,
+    });
+  }, []);
+
+  const scrollBySlide = useCallback((direction: -1 | 1) => {
+    const viewport = ref.current;
+    if (!viewport) return;
+
+    isMomentumRef.current = false;
+    velocityRef.current = 0;
+    viewport.classList.remove('is-coasting', 'is-dragging');
+
+    const slides = getSlides(viewport, slideSelectorRef.current);
+    const index = getActiveSlideIndex(viewport, slides);
+    const nextIndex = index + direction;
+    const nextSlide = slides[nextIndex];
+    if (!nextSlide) return;
+
+    viewport.scrollTo({
+      left: nextSlide.offsetLeft,
+      behavior: reducedMotionRef.current ? 'auto' : 'smooth',
+    });
+  }, []);
 
   useEffect(() => {
     reducedMotionRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }, []);
+
+  useEffect(() => {
+    const viewport = ref.current;
+    if (!viewport) return;
+
+    updateScrollState();
+    viewport.addEventListener('scroll', updateScrollState, { passive: true });
+    window.addEventListener('resize', updateScrollState);
+
+    return () => {
+      viewport.removeEventListener('scroll', updateScrollState);
+      window.removeEventListener('resize', updateScrollState);
+    };
+  }, [updateScrollState]);
 
   useEffect(() => {
     const onFrame = (time: number) => {
@@ -219,6 +292,10 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
 
   return {
     ref,
+    canScrollPrev: scrollState.canScrollPrev,
+    canScrollNext: scrollState.canScrollNext,
+    scrollPrev: () => scrollBySlide(-1),
+    scrollNext: () => scrollBySlide(1),
     dragScrollProps: {
       onPointerDown,
       onPointerMove,
