@@ -4,6 +4,7 @@ import { DisplayToggle } from './DisplayToggle';
 import { ProjectCard } from './ProjectCard';
 import { projects } from '../data/portfolioData';
 import type { CaseStudyRoute } from '../data/portfolioData';
+import { useHorizontalDragScroll } from '../hooks/useHorizontalDragScroll';
 
 /** One full pass of the ticker; duplicated in the DOM for a seamless loop. */
 const WORK_MARQUEE_LABELS = [
@@ -52,7 +53,8 @@ interface WorkSectionProps {
 }
 
 export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }: WorkSectionProps) {
-  const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('grid');
+  const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('stack');
+  const { ref: stackRef, dragScrollProps } = useHorizontalDragScroll();
 
   return (
     <SectionWrap
@@ -79,24 +81,42 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
           <DisplayToggle value={displayMode} onChange={setDisplayMode} />
         </div>
       </div>
-      <div
-        className={
-          displayMode === 'grid'
-            ? 'grid grid-cols-1 gap-6 md:grid-cols-2'
-            : 'flex flex-col gap-6'
-        }
-      >
-        {projects.map((project) => (
-          <ProjectCard
-            key={project.title}
-            project={project}
-            onViewCaseStudy={onViewCaseStudy}
-            onRequestAccess={onRequestAccess}
-            onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
-            onCtaHoverEnd={() => onProjectHover(null)}
-          />
-        ))}
-      </div>
+      {displayMode === 'grid' ? (
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              onViewCaseStudy={onViewCaseStudy}
+              onRequestAccess={onRequestAccess}
+              onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
+              onCtaHoverEnd={() => onProjectHover(null)}
+            />
+          ))}
+        </div>
+      ) : (
+        <div
+          ref={stackRef}
+          className="work-section-stack touch-pan-x"
+          role="region"
+          aria-label="Recent projects, horizontal scroll"
+          {...dragScrollProps}
+        >
+          <div className="work-section-stack__track">
+            {projects.map((project) => (
+              <div key={project.title} className="work-section-stack__slide">
+                <ProjectCard
+                  project={project}
+                  onViewCaseStudy={onViewCaseStudy}
+                  onRequestAccess={onRequestAccess}
+                  onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
+                  onCtaHoverEnd={() => onProjectHover(null)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </SectionWrap>
   );
 }
