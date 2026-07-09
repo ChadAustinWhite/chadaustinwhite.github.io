@@ -50,17 +50,17 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
-    title: 'Worldpay Merchant Onboarding',
-    description: 'Guided onboarding, verification, and compliance',
-    period: '2025',
-    image: worldpayMerchantOnboardingCardImage,
+    title: 'Worldpay Dispute Defender',
+    description: 'Automated dispute resolution',
+    period: '2026',
+    image: worldpayDisputesImage,
     imageAlt:
-      'Kinetic merchant onboarding welcome — phone and email fields, terms agreement, security note, and continue',
-    caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
-    hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
+      'Worldpay Dispute Defender — performance summary with sales protected, time saved, and disputes handled',
+    caseStudyRoute: 'case-study-worldpay-disputes',
+    hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
     metrics: [
-      { label: 'Onboarding completion', value: '+32%' },
-      { label: 'Time to activate', value: '-40%' },
+      { label: 'Protected revenue', value: '$44.6M annually' },
+      { label: 'Disputes automated', value: '147K/month' },
     ],
   },
   {
@@ -78,17 +78,17 @@ export const projects: ProjectItem[] = [
     ],
   },
   {
-    title: 'Worldpay Dispute Defender',
-    description: 'Automated dispute resolution',
-    period: '2026',
-    image: worldpayDisputesImage,
+    title: 'Worldpay Merchant Onboarding',
+    description: 'Guided onboarding, verification, and compliance',
+    period: '2025',
+    image: worldpayMerchantOnboardingCardImage,
     imageAlt:
-      'Worldpay Dispute Defender — performance summary with sales protected, time saved, and disputes handled',
-    caseStudyRoute: 'case-study-worldpay-disputes',
-    hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
+      'Kinetic merchant onboarding welcome — phone and email fields, terms agreement, security note, and continue',
+    caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
+    hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
     metrics: [
-      { label: 'Monthly users', value: '50K' },
-      { label: 'Large merchants', value: '50% retention' },
+      { label: 'Onboarding completion', value: '+32%' },
+      { label: 'Time to activate', value: '-40%' },
     ],
   },
   {
