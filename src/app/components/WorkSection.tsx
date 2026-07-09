@@ -74,48 +74,64 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
           </span>
         </div>
       </div>
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
-          <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
-            Recent Projects ({projects.length})
-          </h2>
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
+          Recent Projects ({projects.length})
+        </h2>
+        <div className="hidden md:block">
           <DisplayToggle value={displayMode} onChange={setDisplayMode} />
         </div>
-      {displayMode === 'grid' ? (
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              onViewCaseStudy={onViewCaseStudy}
-              onRequestAccess={onRequestAccess}
-              onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
-              onCtaHoverEnd={() => onProjectHover(null)}
-            />
-          ))}
-        </div>
-      ) : (
-        <div
-          ref={stackRef}
-          className="work-section-stack touch-pan-x"
-          role="region"
-          aria-label="Recent projects, horizontal scroll"
-          {...dragScrollProps}
-        >
-          <div className="work-section-stack__track">
+      </div>
+      <div className="grid grid-cols-1 gap-6 md:hidden">
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.title}
+            project={project}
+            onViewCaseStudy={onViewCaseStudy}
+            onRequestAccess={onRequestAccess}
+            onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
+            onCtaHoverEnd={() => onProjectHover(null)}
+          />
+        ))}
+      </div>
+      <div className="hidden md:block">
+        {displayMode === 'grid' ? (
+          <div className="grid grid-cols-2 gap-6">
             {projects.map((project) => (
-              <div key={project.title} className="work-section-stack__slide">
-                <ProjectCard
-                  project={project}
-                  onViewCaseStudy={onViewCaseStudy}
-                  onRequestAccess={onRequestAccess}
-                  onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
-                  onCtaHoverEnd={() => onProjectHover(null)}
-                />
-              </div>
+              <ProjectCard
+                key={project.title}
+                project={project}
+                onViewCaseStudy={onViewCaseStudy}
+                onRequestAccess={onRequestAccess}
+                onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
+                onCtaHoverEnd={() => onProjectHover(null)}
+              />
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div
+            ref={stackRef}
+            className="work-section-stack touch-pan-x"
+            role="region"
+            aria-label="Recent projects, horizontal scroll"
+            {...dragScrollProps}
+          >
+            <div className="work-section-stack__track">
+              {projects.map((project) => (
+                <div key={project.title} className="work-section-stack__slide">
+                  <ProjectCard
+                    project={project}
+                    onViewCaseStudy={onViewCaseStudy}
+                    onRequestAccess={onRequestAccess}
+                    onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
+                    onCtaHoverEnd={() => onProjectHover(null)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </SectionWrap>
   );
 }
