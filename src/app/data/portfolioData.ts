@@ -93,7 +93,7 @@ export const projects: ProjectItem[] = [
   },
   {
     title: 'Expedia Group Ad Portal',
-    description: 'Campaign & Payment Management',
+    description: 'Campaign & payment management',
     period: '2025',
     image: expediaAdPortalImage,
     imageAlt: 'Expedia Group Ad Portal — campaign and payment management',

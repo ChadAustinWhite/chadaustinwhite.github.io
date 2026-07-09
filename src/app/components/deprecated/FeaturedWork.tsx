@@ -24,7 +24,7 @@ const projects: Project[] = [
   },
   {
     title: 'Expedia Group Ad Portal',
-    category: 'Campaign & Payment Management',
+    category: 'Campaign & payment management',
     image: expediaAdPortalImage,
     year: '2025',
   },
