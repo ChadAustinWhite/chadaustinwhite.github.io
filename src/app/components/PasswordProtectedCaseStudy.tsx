@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { motion } from 'motion/react';
-import { Lock } from 'lucide-react';
+import { ArrowLeft, Lock } from 'lucide-react';
 import type { CaseStudyRoute } from '../data/portfolioData';
 import {
   CASE_STUDY_PASSWORD,
@@ -12,12 +12,14 @@ interface PasswordProtectedCaseStudyProps {
   children: ReactNode;
   title: string;
   route: CaseStudyRoute;
+  onBack?: () => void;
 }
 
 export function PasswordProtectedCaseStudy({
   children,
   title,
   route,
+  onBack,
 }: PasswordProtectedCaseStudyProps) {
   const [inputPassword, setInputPassword] = useState('');
   const [isUnlocked, setIsUnlocked] = useState(() => isCaseStudyUnlocked(route));
@@ -102,7 +104,16 @@ export function PasswordProtectedCaseStudy({
           </button>
         </form>
 
-        <p className="mt-8 text-center text-sm text-gray-500">Contact Chad White for access</p>
+        {onBack ? (
+          <button
+            type="button"
+            onClick={onBack}
+            className="mt-8 flex w-full items-center justify-center gap-2 text-lg font-medium text-gray-400 transition-colors hover:text-white"
+          >
+            <ArrowLeft className="h-5 w-5" aria-hidden />
+            Back to home
+          </button>
+        ) : null}
       </motion.div>
     </div>
   );

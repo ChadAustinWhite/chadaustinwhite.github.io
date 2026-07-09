@@ -188,6 +188,7 @@ export default function App() {
           key={currentPage}
           route={currentPage}
           title={getCaseStudyTitle(currentPage)}
+          onBack={handleBackFromCaseStudy}
         >
           {renderCaseStudy(currentPage)}
         </PasswordProtectedCaseStudy>
