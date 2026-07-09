@@ -33,8 +33,9 @@ export function SiteNav({ onNavigateHome, isHome = false }: SiteNavProps = {}) {
   };
 
   return (
-    <nav
+      <nav
       id="site-nav"
+      aria-label="Primary"
       className="site-nav-surface fixed left-0 right-0 top-0 z-[100] flex h-14 md:h-16 items-center justify-between border-b px-[var(--cs-page-gutter)] motion-reduce:transition-none"
       style={{
         background: 'var(--home-canvas, var(--nav-bg))',

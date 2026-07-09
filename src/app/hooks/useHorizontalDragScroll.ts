@@ -1,20 +1,33 @@
-import { useEffect, useRef, type PointerEvent as ReactPointerEvent } from 'react';
+import {
+  useEffect,
+  useRef,
+  type FocusEvent as ReactFocusEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+} from 'react';
 
 const DRAG_THRESHOLD_PX = 4;
 const MOMENTUM_MIN_VELOCITY = 0.012;
 const MOMENTUM_RELEASE_BOOST = 1.18;
 const MOMENTUM_FRICTION = 3.6;
-const SNAP_SLIDE_SELECTOR = '.work-section-stack__slide';
+const DEFAULT_SLIDE_SELECTOR = '.work-section-stack__slide';
+
+interface HorizontalDragScrollOptions {
+  slideSelector?: string;
+}
 
 function isInteractiveTarget(target: EventTarget | null): boolean {
   if (!(target instanceof HTMLElement)) return false;
   return Boolean(target.closest('button, a, input, textarea, select, label'));
 }
 
-function snapToNearestSlide(viewport: HTMLDivElement) {
-  const slides = Array.from(
-    viewport.querySelectorAll<HTMLElement>(SNAP_SLIDE_SELECTOR),
-  );
+function getSlides(viewport: HTMLDivElement, slideSelector: string) {
+  return Array.from(viewport.querySelectorAll<HTMLElement>(slideSelector));
+}
+
+function snapToNearestSlide(viewport: HTMLDivElement, slideSelector: string) {
+  const slides = getSlides(viewport, slideSelector);
   if (!slides.length) return;
 
   const scrollLeft = viewport.scrollLeft;
@@ -34,7 +47,11 @@ function snapToNearestSlide(viewport: HTMLDivElement) {
 }
 
 /** Pointer drag-to-scroll with release momentum for horizontal overflow containers. */
-export function useHorizontalDragScroll() {
+export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {}) {
+  const slideSelector = options.slideSelector ?? DEFAULT_SLIDE_SELECTOR;
+  const slideSelectorRef = useRef(slideSelector);
+  slideSelectorRef.current = slideSelector;
+
   const ref = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
   const isMomentumRef = useRef(false);
@@ -71,12 +88,12 @@ export function useHorizontalDragScroll() {
           velocityRef.current = 0;
           isMomentumRef.current = false;
           viewport.classList.remove('is-coasting');
-          snapToNearestSlide(viewport);
+          snapToNearestSlide(viewport, slideSelectorRef.current);
         } else if (Math.abs(velocityRef.current) < MOMENTUM_MIN_VELOCITY) {
           isMomentumRef.current = false;
           velocityRef.current = 0;
           viewport.classList.remove('is-coasting');
-          snapToNearestSlide(viewport);
+          snapToNearestSlide(viewport, slideSelectorRef.current);
         }
       }
 
@@ -139,7 +156,7 @@ export function useHorizontalDragScroll() {
     viewport.classList.remove('is-dragging');
 
     if (reducedMotionRef.current || !didDragRef.current) {
-      if (didDragRef.current) snapToNearestSlide(viewport);
+      if (didDragRef.current) snapToNearestSlide(viewport, slideSelectorRef.current);
       return;
     }
 
@@ -151,15 +168,53 @@ export function useHorizontalDragScroll() {
       return;
     }
 
-    snapToNearestSlide(viewport);
+    snapToNearestSlide(viewport, slideSelectorRef.current);
   };
 
-  const onClickCapture = (event: React.MouseEvent<HTMLDivElement>) => {
+  const onClickCapture = (event: ReactMouseEvent<HTMLDivElement>) => {
     if (didDragRef.current) {
       event.preventDefault();
       event.stopPropagation();
       didDragRef.current = false;
     }
+  };
+
+  const onFocusIn = (event: ReactFocusEvent<HTMLDivElement>) => {
+    const viewport = ref.current;
+    const target = event.target;
+    if (!viewport || !(target instanceof HTMLElement)) return;
+    if (!target.closest('button, a')) return;
+
+    const slide = target.closest(slideSelectorRef.current);
+    if (!(slide instanceof HTMLElement)) return;
+
+    slide.scrollIntoView({
+      behavior: reducedMotionRef.current ? 'auto' : 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  };
+
+  const onKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+
+    const viewport = ref.current;
+    const target = event.target;
+    if (!viewport || !(target instanceof HTMLElement)) return;
+
+    const slide = target.closest(slideSelectorRef.current);
+    if (!(slide instanceof HTMLElement)) return;
+
+    const slides = getSlides(viewport, slideSelectorRef.current);
+    const index = slides.indexOf(slide);
+    if (index === -1) return;
+
+    const nextIndex = event.key === 'ArrowRight' ? index + 1 : index - 1;
+    const nextSlide = slides[nextIndex];
+    if (!nextSlide) return;
+
+    event.preventDefault();
+    nextSlide.querySelector<HTMLElement>('button, a')?.focus();
   };
 
   return {
@@ -170,6 +225,8 @@ export function useHorizontalDragScroll() {
       onPointerUp: endDrag,
       onPointerCancel: endDrag,
       onClickCapture,
+      onFocusIn,
+      onKeyDown,
     },
   };
 }
