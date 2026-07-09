@@ -99,10 +99,10 @@ export function ProjectCard({
         <dl className="mb-6 grid grid-cols-2 gap-x-8 gap-y-4 md:mb-7">
           {project.metrics.map((metric) => (
             <div key={metric.label} className="min-w-0">
-              <dt className="serif-headline text-[11px] leading-snug text-[var(--ink-muted)] md:text-xs">
+              <dt className="text-xs leading-snug text-[var(--ink-muted)] md:text-sm">
                 {metric.label}
               </dt>
-              <dd className="serif-headline mt-1 text-base font-medium leading-tight tracking-[-0.02em] text-[var(--ink)] tabular-nums md:text-lg">
+              <dd className="serif-headline mt-1.5 text-xl font-medium leading-tight tracking-[-0.02em] text-[var(--ink)] tabular-nums md:text-2xl">
                 {metric.value}
               </dd>
             </div>
