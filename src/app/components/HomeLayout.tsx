@@ -19,8 +19,12 @@ export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps
 
   return (
     <>
+      <a href="#main-content" className="skip-link">
+        Skip to content
+      </a>
       <SiteNav isHome />
       <main
+        id="main-content"
         className="home-main-canvas min-h-screen antialiased"
         style={{
           background: 'var(--home-canvas, var(--bg))',

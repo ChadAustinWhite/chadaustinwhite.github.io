@@ -29,14 +29,15 @@ function GridIcon() {
 export function DisplayToggle({ value, onChange }: DisplayToggleProps) {
   return (
     <div className="flex items-center gap-2.5">
-      <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
+      <span id="display-toggle-label" className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
         Display
       </span>
-      <div className="flex gap-1.5">
+      <div className="flex gap-1.5" role="group" aria-labelledby="display-toggle-label">
         <button
           type="button"
           onClick={() => onChange('grid')}
           aria-label="Grid layout"
+          aria-pressed={value === 'grid'}
           className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-normal transition-[background,color,border-color] duration-150 md:text-[13px] ${
             value === 'grid'
               ? 'border-[var(--nav-pill-bg)] bg-[var(--nav-pill-bg)] text-[var(--ink)]'
@@ -50,6 +51,7 @@ export function DisplayToggle({ value, onChange }: DisplayToggleProps) {
           type="button"
           onClick={() => onChange('stack')}
           aria-label="Stack layout"
+          aria-pressed={value === 'stack'}
           className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-normal transition-[background,color,border-color] duration-150 md:text-[13px] ${
             value === 'stack'
               ? 'border-[var(--nav-pill-bg)] bg-[var(--nav-pill-bg)] text-[var(--ink)]'

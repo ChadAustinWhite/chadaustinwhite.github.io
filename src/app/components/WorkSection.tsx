@@ -54,7 +54,9 @@ interface WorkSectionProps {
 
 export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }: WorkSectionProps) {
   const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('stack');
-  const { ref: stackRef, dragScrollProps } = useHorizontalDragScroll();
+  const { ref: stackRef, dragScrollProps } = useHorizontalDragScroll({
+    slideSelector: '.work-section-stack__slide',
+  });
 
   return (
     <SectionWrap
@@ -63,8 +65,7 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
     >
       <div
         className="relative -mx-5 mb-8 w-[calc(100%+2.5rem)] min-w-0 overflow-x-hidden md:-mx-10 md:w-[calc(100%+5rem)]"
-        role="region"
-        aria-label="Client and brand experience"
+        aria-hidden="true"
       >
         <div className="hero-brands-marquee__track text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           {renderWorkMarqueeItems('a')}
@@ -73,14 +74,12 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
           </span>
         </div>
       </div>
-      <div className="mb-8 flex items-center justify-between">
-        <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
-          Recent Projects ({projects.length})
-        </h2>
-        <div className="hidden md:block">
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+          <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
+            Recent Projects ({projects.length})
+          </h2>
           <DisplayToggle value={displayMode} onChange={setDisplayMode} />
         </div>
-      </div>
       {displayMode === 'grid' ? (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects.map((project) => (

@@ -14,6 +14,41 @@ body {
   transition: background-color 900ms cubic-bezier(0.33, 1, 0.68, 1);
 }
 
+/* Keyboard focus — visible rings for links and buttons across the site. */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 200;
+  border-radius: 9999px;
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+#main-content {
+  scroll-margin-top: 4.5rem;
+}
+
+#work {
+  scroll-margin-top: 4.5rem;
+}
+
 /* Home scroll canvas: subtle dark gradient while scrolling. */
 html.home-canvas-drive {
   transition: background-color 0.6s ease-out;
