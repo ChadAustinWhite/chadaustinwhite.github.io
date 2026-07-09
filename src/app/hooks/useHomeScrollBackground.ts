@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const HOME_CANVAS_BASE = '#f5f4f0';
+const HOME_CANVAS_BASE = '#ffffff';
 const HOME_CANVAS_DARK = '#1c1c1a';
 
 function applyCanvasColor(color: string) {

@@ -5,7 +5,7 @@
 :root {
   --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   /* Warm editorial palette (danrohr.com/work) */
-  --bg: #f5f4f0;
+  --bg: #ffffff;
   --ink: #2d2d2d;
   --ink-hover: #454545;
   /* #636363 ≈ 5.2:1 on #efeeea, 5.5:1 on #f5f4f0 (WCAG AA normal text) */
@@ -21,8 +21,8 @@
   --project-cta-bg-hover: var(--nav-pill-bg-hover);
   --accent: #2d2d2d;
   --logo-filter: invert(0);
-  --nav-bg: #f5f4f0;
-  --home-canvas-base: #f5f4f0;
+  --nav-bg: #ffffff;
+  --home-canvas-base: #ffffff;
   --experience-card-surface: #efeeea;
   --experience-card-ink: #2d2d2d;
   --experience-card-ink-muted: #636363;
@@ -35,7 +35,7 @@
 
 /* Homepage: always use warm editorial palette (matches reference), even in dark mode. */
 html:has(.home-main-canvas) {
-  --bg: #f5f4f0;
+  --bg: #ffffff;
   --ink: #2d2d2d;
   --ink-hover: #454545;
   /* #636363 ≈ 5.2:1 on #efeeea, 5.5:1 on #f5f4f0 (WCAG AA normal text) */
@@ -49,8 +49,8 @@ html:has(.home-main-canvas) {
   --nav-pill-bg-hover: #fdfdfc;
   --project-cta-bg: var(--nav-pill-bg);
   --project-cta-bg-hover: var(--nav-pill-bg-hover);
-  --nav-bg: #f5f4f0;
-  --home-canvas-base: #f5f4f0;
+  --nav-bg: #ffffff;
+  --home-canvas-base: #ffffff;
   --experience-card-surface: #efeeea;
   --experience-card-ink: #2d2d2d;
   --experience-card-ink-muted: #636363;
@@ -137,7 +137,7 @@ section[id] {
 
 /* Case study pages: locked to homepage warm editorial palette + typography */
 [data-case-study] {
-  --bg: #f5f4f0;
+  --bg: #ffffff;
   --ink: #2d2d2d;
   --ink-hover: #454545;
   --ink-muted: #636363;
@@ -147,8 +147,8 @@ section[id] {
   --card-bg-hover: #fdfdfc;
   --nav-pill-bg: #e8e7e3;
   --nav-pill-bg-hover: #fdfdfc;
-  --nav-bg: #f5f4f0;
-  --home-canvas-base: #f5f4f0;
+  --nav-bg: #ffffff;
+  --home-canvas-base: #ffffff;
   --cs-page-gutter: 1.25rem;
   --cs-carousel-gap: clamp(2.5rem, 5vw, 5.5rem);
   color-scheme: light;
@@ -160,7 +160,7 @@ section[id] {
 
 html:has([data-case-study]:not([data-scroll-gradient])),
 html:has([data-case-study]:not([data-scroll-gradient])) body {
-  background-color: #f5f4f0;
+  background-color: #ffffff;
 }
 
 /* Scroll-gradient case studies start dark (hook animates to warm editorial). */
@@ -355,7 +355,7 @@ html:has([data-case-study][data-scroll-gradient]) body {
 }
 
 html[data-theme="dark"] [data-case-study] {
-  --bg: #f5f4f0;
+  --bg: #ffffff;
   --ink: #2d2d2d;
   --ink-hover: #454545;
   --ink-muted: #636363;
@@ -365,7 +365,7 @@ html[data-theme="dark"] [data-case-study] {
   --card-bg-hover: #fdfdfc;
   --nav-pill-bg: #e8e7e3;
   --nav-pill-bg-hover: #fdfdfc;
-  --nav-bg: #f5f4f0;
+  --nav-bg: #ffffff;
   color-scheme: light;
 }
 
