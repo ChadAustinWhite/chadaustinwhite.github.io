@@ -64,6 +64,65 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
+/* Recent Projects — horizontal stack display */
+.work-section-stack {
+  margin-inline: -1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  padding-inline: 1.25rem;
+  cursor: grab;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.work-section-stack.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.work-section-stack.is-coasting {
+  scroll-snap-type: none;
+}
+
+.work-section-stack::-webkit-scrollbar {
+  display: none;
+}
+
+.work-section-stack__track {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  padding-inline-end: 1.25rem;
+}
+
+.work-section-stack__slide {
+  flex: 0 0 auto;
+  width: min(calc(100vw - 5rem), 36rem);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .work-section-stack {
+    margin-inline: -2.5rem;
+    scroll-padding-inline: 2.5rem;
+    padding-inline: 2.5rem;
+  }
+
+  .work-section-stack__track {
+    gap: 1.5rem;
+    padding-inline-end: 2.5rem;
+  }
+
+  .work-section-stack__slide {
+    width: min(calc(100vw - 10rem), 42rem);
+  }
+}
+
 .hero-brands-marquee__track {
   display: flex;
   width: max-content;
