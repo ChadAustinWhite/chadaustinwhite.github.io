@@ -143,11 +143,17 @@ export interface CaseStudyInstrumentChapter {
   stackedImages?: CaseStudyInstrumentImage[];
   /** Width of `stackedImages`; `prose` aligns with chapter copy (46rem). */
   stackedImagesWidth?: 'prose' | 'wide';
+  /** `carousel` = horizontal scroll gallery; default stacks vertically. */
+  stackedImagesLayout?: 'stack' | 'carousel';
   /** Bento grid directly under chapter lead (e.g. research synthesis gallery). */
   bentoGrid?: CaseStudyInstrumentBentoGrid;
   bentoGrids?: CaseStudyInstrumentBentoGrid[];
   testimonial?: { quote: string; name: string; role: string };
   metrics?: CaseStudySonosMetric[];
+  /** `strip` = compact table; `ticker` = slot reels; `highlight` = editorial count-up rows. */
+  metricsVariant?: 'kpi' | 'strip' | 'ticker' | 'highlight';
+  /** When `afterLead`, KPI row renders under chapter copy and before media. */
+  metricsPosition?: 'afterLead' | 'afterContent';
   /** KPI row beside a product UI image (e.g. rate plan types + launch metrics). */
   metricsPanel?: CaseStudyInstrumentMetricsPanel;
   /** Interactive product demo rendered after chapter lead. */

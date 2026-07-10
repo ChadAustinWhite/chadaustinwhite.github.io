@@ -12,6 +12,9 @@ import type { CaseStudyRoute } from '../../data/portfolioData';
 import { projects } from '../../data/portfolioData';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
 import { CaseStudyInstrumentBentoGrid } from './CaseStudyInstrumentBentoGrid';
+import { CaseStudyInstrumentImageCarousel } from './CaseStudyInstrumentImageCarousel';
+import { InstrumentMetricsHighlight } from './InstrumentMetricsHighlight';
+import { InstrumentMetricsTicker } from './InstrumentMetricsTicker';
 import { DisputeDefenderTableModalDemo } from './DisputeDefenderTableModalDemo';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
@@ -116,6 +119,57 @@ function InstrumentMetricsList({ metrics }: { metrics: CaseStudySonosMetric[] })
   );
 }
 
+function InstrumentMetricsStrip({ metrics }: { metrics: CaseStudySonosMetric[] }) {
+  const columns = `repeat(${metrics.length}, minmax(0, 1fr))`;
+
+  return (
+    <div className="case-study-instrument__metrics-strip">
+      <div
+        className="case-study-instrument__metrics-strip-row case-study-instrument__metrics-strip-row--head"
+        style={{ gridTemplateColumns: columns }}
+      >
+        {metrics.map((m) => (
+          <div key={`${m.label}-head`} className="case-study-instrument__metrics-strip-cell">
+            {m.label}
+          </div>
+        ))}
+      </div>
+      <div className="case-study-instrument__metrics-strip-row" style={{ gridTemplateColumns: columns }}>
+        {metrics.map((m) => (
+          <div
+            key={`${m.label}-value`}
+            className="case-study-instrument__metrics-strip-cell case-study-instrument__metrics-strip-cell--value serif-headline tabular-nums"
+          >
+            {m.value}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function InstrumentMetrics({
+  metrics,
+  variant = 'kpi',
+}: {
+  metrics: CaseStudySonosMetric[];
+  variant?: 'kpi' | 'strip' | 'ticker' | 'highlight';
+}) {
+  if (variant === 'highlight') {
+    return <InstrumentMetricsHighlight metrics={metrics} />;
+  }
+
+  if (variant === 'ticker') {
+    return <InstrumentMetricsTicker metrics={metrics} />;
+  }
+
+  if (variant === 'strip') {
+    return <InstrumentMetricsStrip metrics={metrics} />;
+  }
+
+  return <InstrumentMetricsList metrics={metrics} />;
+}
+
 function InstrumentMetricsPanel({ panel }: { panel: CaseStudyInstrumentMetricsPanel }) {
   const { image, metrics } = panel;
   const imgClass = `case-study-instrument__figure-img case-study-instrument__img--${image.objectFit ?? 'contain'}`;
@@ -170,6 +224,10 @@ function InstrumentSubsectionCopy({
 
 function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter }) {
   const hasAccordion = (chapter.accordion?.length ?? 0) > 0;
+  const metricsAfterLead =
+    chapter.metricsPosition === 'afterLead' && (chapter.metrics?.length ?? 0) > 0;
+  const metricsAfterContent =
+    chapter.metricsPosition !== 'afterLead' && (chapter.metrics?.length ?? 0) > 0;
 
   return (
     <section className={`${GUTTER} case-study-instrument__chapter-wrap`}>
@@ -193,6 +251,20 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         ) : null}
       </div>
 
+      {metricsAfterLead ? (
+        <div
+          className={`${CONTENT} mt-10 md:mt-12${
+            chapter.metricsVariant === 'strip' ||
+            chapter.metricsVariant === 'ticker' ||
+            chapter.metricsVariant === 'highlight'
+              ? ''
+              : ' case-study-instrument__metrics'
+          }`}
+        >
+          <InstrumentMetrics metrics={chapter.metrics!} variant={chapter.metricsVariant} />
+        </div>
+      ) : null}
+
       {chapter.chapterDemo === 'dispute-defender-table-modal' ? (
         <div className="case-study-instrument__chapter-demo mt-10 md:mt-14">
           <DisputeDefenderTableModalDemo />
@@ -200,6 +272,14 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.stackedImages && chapter.stackedImages.length > 0 ? (
+        chapter.stackedImagesLayout === 'carousel' ? (
+          <div className={GUTTER}>
+            <CaseStudyInstrumentImageCarousel
+              images={chapter.stackedImages}
+              width={chapter.stackedImagesWidth}
+            />
+          </div>
+        ) : (
         <div
           className={`case-study-instrument__stacked-figures${
             chapter.stackedImagesWidth === 'prose'
@@ -213,6 +293,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
             <InstrumentFigure key={`${chapter.title}-stack-${i}`} image={image} variant="content" />
           ))}
         </div>
+        )
       ) : null}
 
       {chapter.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={chapter.bentoGrid} /> : null}
@@ -242,9 +323,9 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
 
       {chapter.metricsPanel ? (
         <InstrumentMetricsPanel panel={chapter.metricsPanel} />
-      ) : chapter.metrics && chapter.metrics.length > 0 ? (
+      ) : metricsAfterContent ? (
         <div className={`${CONTENT} case-study-instrument__metrics mt-12 md:mt-16`}>
-          <InstrumentMetricsList metrics={chapter.metrics} />
+          <InstrumentMetrics metrics={chapter.metrics!} variant={chapter.metricsVariant} />
         </div>
       ) : null}
 
