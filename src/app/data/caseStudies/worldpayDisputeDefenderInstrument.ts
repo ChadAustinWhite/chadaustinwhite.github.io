@@ -70,6 +70,7 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
     },
     {
       title: 'From manual triage to automated defense',
+      chapterDemo: 'dispute-defender-table-modal',
       lead:
         'We paired qualitative merchant interviews with dispute-volume and win-rate data to define where automation could safely take over, and where human review still earned its place.',
       subsections: [

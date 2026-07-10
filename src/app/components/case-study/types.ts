@@ -150,6 +150,8 @@ export interface CaseStudyInstrumentChapter {
   metrics?: CaseStudySonosMetric[];
   /** KPI row beside a product UI image (e.g. rate plan types + launch metrics). */
   metricsPanel?: CaseStudyInstrumentMetricsPanel;
+  /** Interactive product demo rendered after chapter lead. */
+  chapterDemo?: 'dispute-defender-table-modal';
 }
 
 /** Instrument work page (instrument.com/work/servicenow-rebrand). */
