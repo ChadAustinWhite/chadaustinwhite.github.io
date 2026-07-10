@@ -141,10 +141,12 @@ export interface CaseStudyInstrumentChapter {
   accordion?: CaseStudySonosSubpoint[];
   /** Full-bleed images stacked vertically above chapter bento (in order). */
   stackedImages?: CaseStudyInstrumentImage[];
-  /** Width of `stackedImages`; `prose` aligns with chapter copy (46rem). */
-  stackedImagesWidth?: 'prose' | 'wide';
+  /** Width of `stackedImages`; `bleed` = full viewport carousel slides. */
+  stackedImagesWidth?: 'prose' | 'wide' | 'bleed';
   /** `carousel` = horizontal scroll gallery; default stacks vertically. */
   stackedImagesLayout?: 'stack' | 'carousel';
+  /** Slow continuous auto-scroll between carousel slides; pauses on interaction. */
+  stackedImagesAutoRotate?: boolean;
   /** Bento grid directly under chapter lead (e.g. research synthesis gallery). */
   bentoGrid?: CaseStudyInstrumentBentoGrid;
   bentoGrids?: CaseStudyInstrumentBentoGrid[];
