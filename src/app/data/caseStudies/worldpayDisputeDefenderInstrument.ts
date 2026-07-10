@@ -8,7 +8,7 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
   breadcrumb: 'Worldpay Dispute Defender',
   tags: ['Fintech', 'B2B', 'Product'],
   lead:
-    'Automated dispute resolution that protects merchant revenue, surfaces what matters in plain language, and gives operators confidence that chargebacks are handled without constant manual triage.',
+    'The Leaky Faucet: Disputes Are a Hidden Operational Tax on Merchants. A dripping faucet may seem insignificant at first, but over time the wasted water adds up.',
   leadImages: [
     {
       src: worldpayDisputesPerformance,
