@@ -6,6 +6,7 @@ import { CaseStudyPlaceholder } from './components/case-study/CaseStudyPlacehold
 import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
+  worldpayDisputeDefenderContent,
   worldpayMerchantOnboardingContent,
 } from './data/caseStudies';
 import type { CaseStudyRoute } from './data/portfolioData';
@@ -31,7 +32,7 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
     case 'case-study-worldpay-sso':
       return 'Worldpay SSO Management';
     case 'case-study-worldpay-disputes':
-      return 'Worldpay Dispute Defender';
+      return worldpayDisputeDefenderContent.title;
     default:
       return 'Case study';
   }
@@ -163,13 +164,14 @@ export default function App() {
         );
       case 'case-study-worldpay-disputes':
         return (
-          <CaseStudyPlaceholder
-            title="Worldpay Dispute Defender"
-            onBack={handleBackFromCaseStudy}
-            onNavigateHome={handleBackFromCaseStudy}
-            currentRoute={route}
-            onViewCaseStudy={handleViewCaseStudy}
-          />
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <CaseStudyPage
+              content={worldpayDisputeDefenderContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
+          </CaseStudyLayout>
         );
       default:
         return null;
