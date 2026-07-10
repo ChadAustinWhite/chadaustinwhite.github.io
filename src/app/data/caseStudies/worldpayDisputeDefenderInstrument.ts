@@ -1,16 +1,9 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
 import worldpayDisputesPerformance from '../../../assets/worldpay-disputes-experience.png';
-import stickyDonNorman from '../../../assets/worldpay-dispute-sticky-02.png';
-import stickyNewUser from '../../../assets/worldpay-dispute-sticky-01.png';
-import stickyLimitedHelp from '../../../assets/worldpay-dispute-sticky-03.png';
-import stickyMultipleDisputes from '../../../assets/worldpay-dispute-sticky-04.png';
-import stickyIqPortal from '../../../assets/worldpay-dispute-sticky-05.png';
-import stickySituationV1 from '../../../assets/worldpay-dispute-sticky-06.png';
-import stickySituationV2 from '../../../assets/worldpay-dispute-sticky-07.png';
-import stickySmbPortal from '../../../assets/worldpay-dispute-sticky-08.png';
-import stickyStripeExpectation from '../../../assets/worldpay-dispute-sticky-09.png';
-import stickyPersonalization from '../../../assets/worldpay-dispute-sticky-10.png';
-import stickyNoDocumentation from '../../../assets/worldpay-dispute-sticky-11.png';
+import worldpayDisputeDashboardOverview from '../../../assets/worldpay-dispute-dashboard-overview.png';
+import worldpayDisputeCaseWon from '../../../assets/worldpay-dispute-case-won.png';
+import worldpayDisputeSettings from '../../../assets/worldpay-dispute-settings.png';
+import worldpayDisputeDisableModal from '../../../assets/worldpay-dispute-disable-modal.png';
 
 /** Instrument-style narrative for Worldpay Dispute Defender. */
 export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
@@ -42,78 +35,37 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
       metricsVariant: 'highlight',
       metricsPosition: 'afterLead',
       subsections: [],
-      stackedImagesWidth: 'prose',
+      stackedImagesWidth: 'bleed',
       stackedImagesLayout: 'carousel',
+      stackedImagesAutoRotate: true,
       stackedImages: [
+        {
+          src: worldpayDisputeDashboardOverview,
+          alt: 'Worldpay Disputes dashboard overview with dispute list, filters, and Dispute Defender banner',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: worldpayDisputeCaseWon,
+          alt: 'Dispute case detail showing Won outcome, progress timeline, and dispute summary',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: worldpayDisputeSettings,
+          alt: 'Disputes settings with Dispute Defender and notifications toggles enabled',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: worldpayDisputeDisableModal,
+          alt: 'Disable Dispute Defender confirmation modal with billing and intervention notice',
+          objectFit: 'contain',
+          background: 'page',
+        },
         {
           src: worldpayDisputesPerformance,
           alt: 'Dispute Defender performance summary modal showing protected sales, time saved, and disputes handled',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyDonNorman,
-          alt: 'Research sticky note: design for the way people behave — Don Norman',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickySmbPortal,
-          alt: 'Research sticky note: small business users must leverage the IQ or Worldpay Dashboard portal',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyMultipleDisputes,
-          alt: 'Research sticky note: returning user wants understanding of dispute decisions behind the scenes',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyNewUser,
-          alt: 'Research sticky note: new user has no context for what disputes are and why they matter',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyStripeExpectation,
-          alt: 'Research sticky note: Stripe sets baseline expectation for a modern, intuitive experience',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyIqPortal,
-          alt: 'Research sticky note: IQ users must leave their portal and navigate a separate experience',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyLimitedHelp,
-          alt: 'Research sticky note: limited context, help, and documentation for returning users',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyNoDocumentation,
-          alt: 'Research sticky note: no easy way to access documentation from IQ or Worldpay Dashboard',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickySituationV1,
-          alt: 'Research sticky note: customers are not all walking the same road',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickySituationV2,
-          alt: 'Research sticky note: customers want speed, reassurance, control, or resolution',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: stickyPersonalization,
-          alt: 'Research sticky note: the experience must adapt through personalization',
           objectFit: 'contain',
           background: 'page',
         },

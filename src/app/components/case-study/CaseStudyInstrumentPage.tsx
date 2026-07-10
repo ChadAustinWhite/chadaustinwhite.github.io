@@ -273,12 +273,11 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
 
       {chapter.stackedImages && chapter.stackedImages.length > 0 ? (
         chapter.stackedImagesLayout === 'carousel' ? (
-          <div className={GUTTER}>
-            <CaseStudyInstrumentImageCarousel
-              images={chapter.stackedImages}
-              width={chapter.stackedImagesWidth}
-            />
-          </div>
+          <CaseStudyInstrumentImageCarousel
+            images={chapter.stackedImages}
+            width={chapter.stackedImagesWidth}
+            autoRotate={chapter.stackedImagesAutoRotate}
+          />
         ) : (
         <div
           className={`case-study-instrument__stacked-figures${

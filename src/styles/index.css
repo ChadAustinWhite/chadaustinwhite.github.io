@@ -496,6 +496,35 @@ html.home-canvas-interactive .site-nav-surface {
   width: min(calc(100vw - 2 * var(--cs-page-gutter)), 46rem);
 }
 
+.case-study-instrument__image-carousel--bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.case-study-instrument__image-carousel--bleed .case-study-instrument__image-carousel__stack.work-section-stack {
+  margin-inline: 0;
+  scroll-padding-inline: 0;
+  padding-inline: 0;
+}
+
+.case-study-instrument__image-carousel--bleed .case-study-instrument__image-carousel__stack .work-section-stack__track {
+  gap: 0;
+  padding-inline-end: 0;
+}
+
+.case-study-instrument__image-carousel--bleed .case-study-instrument__image-carousel__slide {
+  width: 100vw;
+  scroll-snap-align: start;
+}
+
+.case-study-instrument__image-carousel--bleed .case-study-instrument__image-carousel__frame {
+  border-radius: 0;
+}
+
+.case-study-instrument__image-carousel__stack--auto-scroll.work-section-stack {
+  scroll-snap-type: none;
+}
+
 .case-study-instrument__image-carousel__frame {
   display: flex;
   align-items: center;
