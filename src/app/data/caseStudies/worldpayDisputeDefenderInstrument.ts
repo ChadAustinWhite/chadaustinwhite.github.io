@@ -1,6 +1,7 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
 import worldpayDisputesPerformance from '../../../assets/worldpay-disputes-experience.png';
 import worldpayDisputeDashboardOverview from '../../../assets/worldpay-dispute-dashboard-overview.png';
+import worldpayDisputeOptOutOverview from '../../../assets/worldpay-dispute-opt-out-overview.png';
 import worldpayDisputeCaseWon from '../../../assets/worldpay-dispute-case-won.png';
 import worldpayDisputeSettings from '../../../assets/worldpay-dispute-settings.png';
 import worldpayDisputeDisableModal from '../../../assets/worldpay-dispute-disable-modal.png';
@@ -66,6 +67,12 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
         {
           src: worldpayDisputesPerformance,
           alt: 'Dispute Defender performance summary modal showing protected sales, time saved, and disputes handled',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: worldpayDisputeOptOutOverview,
+          alt: 'Disputes overview after opting out of Dispute Defender, with loss warning banner and dispute list',
           objectFit: 'contain',
           background: 'page',
         },
