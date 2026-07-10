@@ -8,7 +8,7 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
   breadcrumb: 'Worldpay Dispute Defender',
   tags: ['Fintech', 'B2B', 'Product'],
   lead:
-    'The Leaky Faucet: Disputes Are a Hidden Operational Tax on Merchants. A dripping faucet may seem insignificant at first, but over time the wasted water adds up.',
+    'The leaky faucet: disputes are a hidden operational tax on merchants. A dripping faucet may seem insignificant at first, but over time the wasted water adds up.',
   leadImages: [
     {
       src: worldpayDisputesPerformance,
@@ -20,8 +20,10 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
   chapters: [
     {
       title: 'Why It Matters',
-      lead:
-        'Chargebacks erode margin and pull merchants into reactive workflows. When dispute status, evidence, and outcomes are opaque, teams escalate to support instead of resolving cases in-product — and revenue stays at risk.',
+      lead: [
+        'Every day, merchants are focused on running their businesses: serving customers, managing operations, and driving growth. The last thing they need is another complex operational burden: navigating disputes.',
+        'For many merchants, especially smaller businesses, disputes are not a workflow problem; they are a capacity problem.',
+      ],
       subsections: [],
       stackedImagesWidth: 'prose',
       stackedImages: [
@@ -69,13 +71,13 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
     {
       title: 'From manual triage to automated defense',
       lead:
-        'We paired qualitative merchant interviews with dispute-volume and win-rate data to define where automation could safely take over — and where human review still earned its place.',
+        'We paired qualitative merchant interviews with dispute-volume and win-rate data to define where automation could safely take over, and where human review still earned its place.',
       subsections: [
         {
           title: 'Clarity before automation',
-          paragraphs: [
+          bullets: [
             'Before scaling auto-resolution, we redesigned how merchants see dispute status, deadlines, and recommended actions. Plain-language summaries replaced reason-code jargon so operators could trust what the system was doing on their behalf.',
-            'Performance roll-ups — protected sales, time saved, disputes handled — gave leadership a single view of program impact while preserving case-level detail for operators who needed it.',
+            'Performance roll-ups, including protected sales, time saved, and disputes handled, gave leadership a single view of program impact while preserving case-level detail for operators who needed it.',
           ],
         },
       ],

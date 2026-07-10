@@ -427,6 +427,18 @@ html.home-canvas-interactive .site-nav-surface {
   margin-top: 0.75rem;
 }
 
+.case-study-instrument__bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.case-study-instrument__bullet-list .case-study-instrument__body {
+  display: list-item;
+}
+
 /* Full-bleed breakout (Instrument work pages — text stays narrow, media spans viewport). */
 .case-study-instrument__stacked-figures {
   display: flex;
