@@ -99,8 +99,8 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
       ],
       testimonial: {
         quote:
-          'Merchants needed to see that disputes were being handled — not just that automation existed. When performance was visible and language was plain, adoption followed.',
-        name: 'Program leadership',
+          'Merchants needed to see that disputes were being handled, not just that automation existed. When performance was visible and language was plain, adoption followed.',
+        name: 'Product leadership',
         role: 'Worldpay — Dispute operations',
       },
     },

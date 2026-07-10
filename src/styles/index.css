@@ -613,9 +613,6 @@ html.home-canvas-interactive .site-nav-surface {
   gap: 2rem;
   width: fit-content;
   max-width: 100%;
-  padding-block: 1rem;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 
 @media (min-width: 768px) {

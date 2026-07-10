@@ -30,6 +30,18 @@ const ROLE_COLUMNS: {
 
 type InstrumentFigureVariant = 'hero' | 'content';
 
+/** Renders `**bold**` markers in instrument copy strings. */
+function renderInstrumentInlineText(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) =>
+    part.startsWith('**') && part.endsWith('**') ? (
+      <strong key={i}>{part.slice(2, -2)}</strong>
+    ) : (
+      part
+    ),
+  );
+}
+
 function instrumentMediaBackground(image: CaseStudyInstrumentImage): string {
   switch (image.background) {
     case 'charcoal':
@@ -168,7 +180,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
               key={`chapter-lead-${i}`}
               className={`case-study-instrument__chapter-lead serif-headline text-left${i > 0 ? ' mt-6' : ''}`}
             >
-              {text}
+              {renderInstrumentInlineText(text)}
             </p>
           ),
         )}
