@@ -70,6 +70,7 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
     },
     {
       title: 'From manual triage to automated defense',
+      chapterDemo: 'dispute-defender-table-modal',
       lead:
         'We paired qualitative merchant interviews with dispute-volume and win-rate data to define where automation could safely take over, and where human review still earned its place.',
       subsections: [
@@ -99,8 +100,8 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
       ],
       testimonial: {
         quote:
-          'Merchants needed to see that disputes were being handled — not just that automation existed. When performance was visible and language was plain, adoption followed.',
-        name: 'Program leadership',
+          'Merchants needed to see that disputes were being handled, not just that automation existed. When performance was visible and language was plain, adoption followed.',
+        name: 'Product leadership',
         role: 'Worldpay — Dispute operations',
       },
     },

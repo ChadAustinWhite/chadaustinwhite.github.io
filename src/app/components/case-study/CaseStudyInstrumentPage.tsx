@@ -12,6 +12,7 @@ import type { CaseStudyRoute } from '../../data/portfolioData';
 import { projects } from '../../data/portfolioData';
 import { CaseStudyWhoopNext } from './CaseStudyWhoopNext';
 import { CaseStudyInstrumentBentoGrid } from './CaseStudyInstrumentBentoGrid';
+import { DisputeDefenderTableModalDemo } from './DisputeDefenderTableModalDemo';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -29,6 +30,18 @@ const ROLE_COLUMNS: {
 ];
 
 type InstrumentFigureVariant = 'hero' | 'content';
+
+/** Renders `**bold**` markers in instrument copy strings. */
+function renderInstrumentInlineText(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) =>
+    part.startsWith('**') && part.endsWith('**') ? (
+      <strong key={i}>{part.slice(2, -2)}</strong>
+    ) : (
+      part
+    ),
+  );
+}
 
 function instrumentMediaBackground(image: CaseStudyInstrumentImage): string {
   switch (image.background) {
@@ -168,7 +181,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
               key={`chapter-lead-${i}`}
               className={`case-study-instrument__chapter-lead serif-headline text-left${i > 0 ? ' mt-6' : ''}`}
             >
-              {text}
+              {renderInstrumentInlineText(text)}
             </p>
           ),
         )}
@@ -179,6 +192,12 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
           />
         ) : null}
       </div>
+
+      {chapter.chapterDemo === 'dispute-defender-table-modal' ? (
+        <div className="case-study-instrument__chapter-demo mt-10 md:mt-14">
+          <DisputeDefenderTableModalDemo />
+        </div>
+      ) : null}
 
       {chapter.stackedImages && chapter.stackedImages.length > 0 ? (
         <div
