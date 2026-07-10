@@ -129,12 +129,22 @@ function InstrumentMetricsPanel({ panel }: { panel: CaseStudyInstrumentMetricsPa
 function InstrumentSubsectionCopy({
   title,
   paragraphs,
-}: Pick<CaseStudyInstrumentChapter['subsections'][number], 'title' | 'paragraphs'>) {
+  bullets,
+}: Pick<CaseStudyInstrumentChapter['subsections'][number], 'title' | 'paragraphs' | 'bullets'>) {
   return (
     <div className="case-study-instrument__subsection">
       <h3 className="case-study-instrument__subsection-title">{title}</h3>
       <div className="case-study-instrument__subsection-body">
-        {paragraphs.map((text, i) => (
+        {bullets?.length ? (
+          <ul className="case-study-instrument__bullet-list">
+            {bullets.map((text, i) => (
+              <li key={`${title}-bullet-${i}`} className="case-study-instrument__body">
+                {text}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {paragraphs?.map((text, i) => (
           <p key={`${title}-p-${i}`} className="case-study-instrument__body">
             {text}
           </p>
@@ -152,9 +162,16 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
     <section className={`${GUTTER} case-study-instrument__chapter-wrap`}>
       <div className={CONTENT} data-parallax data-parallax-speed="0.05">
         <h2 className="case-study-instrument__chapter serif-headline text-left">{chapter.title}</h2>
-        {chapter.lead ? (
-          <p className="case-study-instrument__chapter-lead serif-headline text-left">{chapter.lead}</p>
-        ) : null}
+        {(Array.isArray(chapter.lead) ? chapter.lead : chapter.lead ? [chapter.lead] : []).map(
+          (text, i) => (
+            <p
+              key={`chapter-lead-${i}`}
+              className={`case-study-instrument__chapter-lead serif-headline text-left${i > 0 ? ' mt-6' : ''}`}
+            >
+              {text}
+            </p>
+          ),
+        )}
         {hasAccordion ? (
           <CaseStudySonosSubpointAccordion
             items={chapter.accordion!}
@@ -187,7 +204,11 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       {chapter.subsections.map((sub) => (
         <div key={sub.title} className="case-study-instrument__subsection-block">
           <div className={CONTENT}>
-            <InstrumentSubsectionCopy title={sub.title} paragraphs={sub.paragraphs} />
+            <InstrumentSubsectionCopy
+              title={sub.title}
+              paragraphs={sub.paragraphs}
+              bullets={sub.bullets}
+            />
           </div>
           {sub.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={sub.bentoGrid} /> : null}
           {sub.bentoGrids?.map((grid, i) => (

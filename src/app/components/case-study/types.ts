@@ -119,7 +119,8 @@ export interface CaseStudyInstrumentBentoGrid {
 
 export interface CaseStudyInstrumentSubsection {
   title: string;
-  paragraphs: string[];
+  paragraphs?: string[];
+  bullets?: string[];
   image?: CaseStudyInstrumentImage;
   images?: CaseStudyInstrumentImage[];
   bentoGrid?: CaseStudyInstrumentBentoGrid;
@@ -134,7 +135,7 @@ export interface CaseStudyInstrumentMetricsPanel {
 
 export interface CaseStudyInstrumentChapter {
   title: string;
-  lead?: string;
+  lead?: string | string[];
   subsections: CaseStudyInstrumentSubsection[];
   /** Pill accordion rows (Sonos / Dan-style) after chapter lead. */
   accordion?: CaseStudySonosSubpoint[];
