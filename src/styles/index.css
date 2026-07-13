@@ -142,6 +142,11 @@ html.home-canvas-interactive .site-nav-surface {
   aspect-ratio: 16 / 10;
 }
 
+.project-card img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
 @media (min-width: 768px) {
   .work-section-stack {
     margin-inline: -2.5rem;
