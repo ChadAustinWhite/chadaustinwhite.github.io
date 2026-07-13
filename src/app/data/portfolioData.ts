@@ -1,5 +1,5 @@
 import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
-import expediaAdPortalImage from '../../assets/b49c7b7ab770e07828d62a9294af1b3f992959ec.png';
+import expediaAdPortalImage from '../../assets/expedia-ad-portal-card.png';
 import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -96,7 +96,8 @@ export const projects: ProjectItem[] = [
     description: 'Campaign & payment management',
     period: '2025',
     image: expediaAdPortalImage,
-    imageAlt: 'Expedia Group Ad Portal — campaign and payment management',
+    imageAlt:
+      'Expedia Group Partner Central — Create a campaign with name, property, goal, and campaign structure guidance',
     caseStudyRoute: 'case-study-expedia-ad-portal',
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
     metrics: [
