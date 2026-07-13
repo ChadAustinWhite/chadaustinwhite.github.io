@@ -65,6 +65,7 @@ export function ProjectCard({
               height={intrinsicH ?? undefined}
               loading="lazy"
               decoding="async"
+              draggable={false}
               sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
               style={{
                 maxWidth: `min(100%, ${intrinsicW}px)`,
@@ -79,6 +80,7 @@ export function ProjectCard({
             alt={project.imageAlt ?? ''}
             loading="lazy"
             decoding="async"
+            draggable={false}
             sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
             className={imgSizingClass}
           />
