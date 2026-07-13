@@ -50,20 +50,6 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
-    title: 'Worldpay Dispute Defender',
-    description: 'Automated dispute resolution',
-    period: '2026',
-    image: worldpayDisputesImage,
-    imageAlt:
-      'Worldpay Dispute Defender — performance summary with sales protected, time saved, and disputes handled',
-    caseStudyRoute: 'case-study-worldpay-disputes',
-    hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
-    metrics: [
-      { label: 'Protected revenue', value: '$44.6M annually' },
-      { label: 'Disputes automated', value: '147K/month' },
-    ],
-  },
-  {
     title: 'Expedia Group Accelerator',
     description: 'Campaign launch and tracking',
     period: '2023–2025',
@@ -75,6 +61,20 @@ export const projects: ProjectItem[] = [
     metrics: [
       { label: 'Gross revenue', value: '$300M' },
       { label: 'Active hotel partners', value: '72.4K' },
+    ],
+  },
+  {
+    title: 'Worldpay Dispute Defender',
+    description: 'Automated dispute resolution',
+    period: '2026',
+    image: worldpayDisputesImage,
+    imageAlt:
+      'Worldpay Dispute Defender — performance summary with sales protected, time saved, and disputes handled',
+    caseStudyRoute: 'case-study-worldpay-disputes',
+    hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
+    metrics: [
+      { label: 'Protected revenue', value: '$44.6M annually' },
+      { label: 'Disputes automated', value: '147K/month' },
     ],
   },
   {
