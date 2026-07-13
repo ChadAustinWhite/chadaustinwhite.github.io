@@ -103,7 +103,9 @@ html.home-canvas-interactive .site-nav-surface {
 .work-section-stack {
   margin-inline: -1.25rem;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  /* Snap is owned by useHorizontalDragScroll; CSS snap fights JS settle. */
+  scroll-snap-type: none;
+  scroll-behavior: auto;
   scroll-padding-inline: 1.25rem;
   padding-inline: 1.25rem;
   cursor: grab;
@@ -116,12 +118,7 @@ html.home-canvas-interactive .site-nav-surface {
 
 .work-section-stack.is-dragging {
   cursor: grabbing;
-  scroll-snap-type: none;
   user-select: none;
-}
-
-.work-section-stack.is-coasting {
-  scroll-snap-type: none;
 }
 
 .work-section-stack::-webkit-scrollbar {
