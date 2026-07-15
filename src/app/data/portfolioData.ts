@@ -53,7 +53,7 @@ export const projects: ProjectItem[] = [
     title: 'Expedia Group accelerator',
     description:
       'I led the redesign of Partner Central’s Accelerator experience so hotels could launch, measure, and optimize search visibility campaigns, driving $300M in gross revenue across 72.4K active partners.',
-    period: '2023–2025',
+    period: '2025–2026',
     image: expediaAcceleratorImage,
     imageAlt:
       'Expedia Group Partner Central — Performance and market trends, competitive set comparison, revenue and ADR summary',
