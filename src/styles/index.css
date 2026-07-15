@@ -582,6 +582,288 @@ html.home-canvas-interactive .site-nav-surface {
   width: 100%;
 }
 
+.case-study-instrument__chapter-visual {
+  width: 100%;
+}
+
+.merchant-emotion-map {
+  --merchant-emotion-alert: #c24b6e;
+  --merchant-emotion-alert-soft: color-mix(in srgb, var(--merchant-emotion-alert) 14%, var(--card-bg));
+  --merchant-emotion-success: #1f7a62;
+  --merchant-emotion-success-soft: color-mix(in srgb, var(--merchant-emotion-success) 12%, var(--card-bg));
+  margin: 0;
+}
+
+.merchant-emotion-map__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.9rem;
+}
+
+.merchant-emotion-map__title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif, "Source Serif 4", Georgia, serif);
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.merchant-emotion-map__frame {
+  position: relative;
+  display: grid;
+  gap: 0.65rem;
+  padding: 1rem 1rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--merchant-emotion-alert) 10%, transparent), transparent 55%),
+    radial-gradient(110% 85% at 100% 100%, color-mix(in srgb, var(--merchant-emotion-success) 11%, transparent), transparent 50%),
+    var(--card-bg);
+}
+
+.merchant-emotion-map__axis-y,
+.merchant-emotion-map__axis-x {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.merchant-emotion-map__axis-y {
+  flex-direction: column;
+  min-height: 0;
+  padding-left: 0.15rem;
+  position: absolute;
+  left: 0.65rem;
+  top: 2.6rem;
+  bottom: 2.4rem;
+  width: 1.1rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.merchant-emotion-map__axis-y span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.merchant-emotion-map__axis-x {
+  padding-inline: 2.4rem 0.4rem;
+}
+
+.merchant-emotion-map__plot {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.7rem;
+  min-height: clamp(16rem, 42vw, 22rem);
+  margin-left: 1.55rem;
+  padding: 0.2rem;
+}
+
+.merchant-emotion-map__crosshair {
+  position: absolute;
+  inset: 8% 10%;
+  border-radius: 999px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--border), var(--border)) center / 1px 100% no-repeat,
+    linear-gradient(var(--border), var(--border)) center / 100% 1px no-repeat;
+  opacity: 0.9;
+}
+
+.merchant-emotion-map__quad {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+  min-height: 7.5rem;
+  padding: 1.15rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--bg) 55%, var(--card-bg));
+  backdrop-filter: blur(6px);
+  transition: transform 280ms cubic-bezier(0.33, 1, 0.68, 1), border-color 220ms ease, box-shadow 280ms ease;
+}
+
+.merchant-emotion-map__quad--merchant {
+  background: linear-gradient(160deg, var(--merchant-emotion-alert-soft), color-mix(in srgb, var(--card-bg) 70%, transparent));
+  border-color: color-mix(in srgb, var(--merchant-emotion-alert) 28%, var(--border));
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--merchant-emotion-alert) 10%, transparent);
+  animation: merchant-emotion-pulse 4.5s ease-in-out infinite;
+}
+
+.merchant-emotion-map__quad--defender {
+  background: linear-gradient(200deg, var(--merchant-emotion-success-soft), color-mix(in srgb, var(--card-bg) 70%, transparent));
+  border-color: color-mix(in srgb, var(--merchant-emotion-success) 30%, var(--border));
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--merchant-emotion-success) 10%, transparent);
+  animation: merchant-emotion-rise 4.5s ease-in-out infinite;
+}
+
+.merchant-emotion-map__quad--muted {
+  opacity: 0.72;
+}
+
+.merchant-emotion-map__chip {
+  align-self: flex-start;
+  margin-bottom: 0.55rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.merchant-emotion-map__chip--alert {
+  color: #fff;
+  background: var(--merchant-emotion-alert);
+}
+
+.merchant-emotion-map__chip--success {
+  color: #fff;
+  background: var(--merchant-emotion-success);
+}
+
+.merchant-emotion-map__emotion {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-serif, "Source Serif 4", Georgia, serif);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.merchant-emotion-map__path {
+  position: absolute;
+  z-index: 2;
+  inset: 12% 14%;
+  width: auto;
+  height: auto;
+  pointer-events: none;
+}
+
+.merchant-emotion-map__path svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.merchant-emotion-map__path path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--ink) 55%, var(--merchant-emotion-success));
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  stroke-dasharray: 4 7;
+  animation: merchant-emotion-flow 2.4s linear infinite;
+}
+
+.merchant-emotion-map__path-dot {
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--card-bg) 70%, transparent);
+}
+
+.merchant-emotion-map__path-dot--start {
+  top: 12%;
+  left: 4%;
+  background: var(--merchant-emotion-alert);
+}
+
+.merchant-emotion-map__path-dot--end {
+  right: 4%;
+  bottom: 12%;
+  top: auto;
+  background: var(--merchant-emotion-success);
+}
+
+.merchant-emotion-map__caption {
+  margin: 0.9rem 0 0;
+  max-width: 40rem;
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+@keyframes merchant-emotion-flow {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes merchant-emotion-pulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes merchant-emotion-rise {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .merchant-emotion-map__quad--merchant,
+  .merchant-emotion-map__quad--defender,
+  .merchant-emotion-map__path path {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .merchant-emotion-map__frame {
+    padding: 0.85rem;
+  }
+
+  .merchant-emotion-map__axis-y {
+    display: none;
+  }
+
+  .merchant-emotion-map__plot {
+    gap: 0.55rem;
+    margin-left: 0;
+    min-height: 18rem;
+  }
+
+  .merchant-emotion-map__quad {
+    min-height: 6.5rem;
+    padding: 0.9rem;
+  }
+
+  .merchant-emotion-map__path {
+    inset: 14% 10%;
+  }
+
+  .merchant-emotion-map__axis-x {
+    padding-inline: 0.2rem;
+    font-size: 0.62rem;
+  }
+}
+
 .dd-table-demo {
   --dd-ink: #17171c;
   --dd-muted: #6a6e87;
@@ -1249,6 +1531,16 @@ html.home-canvas-interactive .site-nav-surface {
 
 .case-study-instrument__metrics-highlight {
   border-top: 1px solid var(--border);
+}
+
+.case-study-instrument__metrics-highlight-eyebrow {
+  margin: 0;
+  padding: 1rem 0 0.35rem;
+  color: var(--ink-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .case-study-instrument__metrics-highlight-row {

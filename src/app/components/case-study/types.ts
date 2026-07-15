@@ -154,12 +154,16 @@ export interface CaseStudyInstrumentChapter {
   metrics?: CaseStudySonosMetric[];
   /** `strip` = compact table; `ticker` = slot reels; `highlight` = editorial count-up rows. */
   metricsVariant?: 'kpi' | 'strip' | 'ticker' | 'highlight';
+  /** Small label above metrics (e.g. “Before Dispute Defender”). */
+  metricsEyebrow?: string;
   /** When `afterLead`, KPI row renders under chapter copy and before media. */
   metricsPosition?: 'afterLead' | 'afterContent';
   /** KPI row beside a product UI image (e.g. rate plan types + launch metrics). */
   metricsPanel?: CaseStudyInstrumentMetricsPanel;
   /** Interactive product demo rendered after chapter lead. */
   chapterDemo?: 'dispute-defender-table-modal';
+  /** Editorial diagram / visual after chapter lead and metrics. */
+  chapterVisual?: 'merchant-dispute-emotion-map';
 }
 
 /** Instrument work page (instrument.com/work/servicenow-rebrand). */

@@ -16,6 +16,7 @@ import { CaseStudyInstrumentImageCarousel } from './CaseStudyInstrumentImageCaro
 import { InstrumentMetricsHighlight } from './InstrumentMetricsHighlight';
 import { InstrumentMetricsTicker } from './InstrumentMetricsTicker';
 import { DisputeDefenderTableModalDemo } from './DisputeDefenderTableModalDemo';
+import { MerchantDisputeEmotionMap } from './MerchantDisputeEmotionMap';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -151,12 +152,14 @@ function InstrumentMetricsStrip({ metrics }: { metrics: CaseStudySonosMetric[] }
 function InstrumentMetrics({
   metrics,
   variant = 'kpi',
+  eyebrow,
 }: {
   metrics: CaseStudySonosMetric[];
   variant?: 'kpi' | 'strip' | 'ticker' | 'highlight';
+  eyebrow?: string;
 }) {
   if (variant === 'highlight') {
-    return <InstrumentMetricsHighlight metrics={metrics} />;
+    return <InstrumentMetricsHighlight metrics={metrics} eyebrow={eyebrow} />;
   }
 
   if (variant === 'ticker') {
@@ -261,7 +264,17 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
               : ' case-study-instrument__metrics'
           }`}
         >
-          <InstrumentMetrics metrics={chapter.metrics!} variant={chapter.metricsVariant} />
+          <InstrumentMetrics
+            metrics={chapter.metrics!}
+            variant={chapter.metricsVariant}
+            eyebrow={chapter.metricsEyebrow}
+          />
+        </div>
+      ) : null}
+
+      {chapter.chapterVisual === 'merchant-dispute-emotion-map' ? (
+        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14`}>
+          <MerchantDisputeEmotionMap />
         </div>
       ) : null}
 
@@ -324,7 +337,11 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         <InstrumentMetricsPanel panel={chapter.metricsPanel} />
       ) : metricsAfterContent ? (
         <div className={`${CONTENT} case-study-instrument__metrics mt-12 md:mt-16`}>
-          <InstrumentMetrics metrics={chapter.metrics!} variant={chapter.metricsVariant} />
+          <InstrumentMetrics
+            metrics={chapter.metrics!}
+            variant={chapter.metricsVariant}
+            eyebrow={chapter.metricsEyebrow}
+          />
         </div>
       ) : null}
 

@@ -50,7 +50,13 @@ function AnimatedPercent({
   );
 }
 
-export function InstrumentMetricsHighlight({ metrics }: { metrics: CaseStudySonosMetric[] }) {
+export function InstrumentMetricsHighlight({
+  metrics,
+  eyebrow,
+}: {
+  metrics: CaseStudySonosMetric[];
+  eyebrow?: string;
+}) {
   const rootRef = useRef<HTMLDivElement>(null);
   const inView = useInView(rootRef, { amount: 0.45, once: true });
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -60,38 +66,43 @@ export function InstrumentMetricsHighlight({ metrics }: { metrics: CaseStudySono
   }, []);
 
   return (
-    <div ref={rootRef} className="case-study-instrument__metrics-highlight" role="list">
-      {metrics.map((metric, index) => (
-        <motion.article
-          key={metric.label}
-          className="case-study-instrument__metrics-highlight-row"
-          role="listitem"
-          aria-label={`${metric.label} ${metric.value}`}
-          initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-          transition={
-            reducedMotion
-              ? { duration: 0 }
-              : {
-                  duration: 0.7,
-                  delay: index * 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }
-          }
-        >
-          <p className="case-study-instrument__metrics-highlight-value serif-headline tabular-nums">
-            <AnimatedPercent
-              value={metric.value}
-              active={inView}
-              reducedMotion={reducedMotion}
-              delay={0.15 + index * 0.14}
-            />
-          </p>
-          <p className="case-study-instrument__metrics-highlight-label serif-headline">
-            {metric.label}
-          </p>
-        </motion.article>
-      ))}
+    <div ref={rootRef} className="case-study-instrument__metrics-highlight">
+      {eyebrow ? (
+        <p className="case-study-instrument__metrics-highlight-eyebrow">{eyebrow}</p>
+      ) : null}
+      <div role="list">
+        {metrics.map((metric, index) => (
+          <motion.article
+            key={metric.label}
+            className="case-study-instrument__metrics-highlight-row"
+            role="listitem"
+            aria-label={`${eyebrow ? `${eyebrow}: ` : ''}${metric.label} ${metric.value}`}
+            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+            transition={
+              reducedMotion
+                ? { duration: 0 }
+                : {
+                    duration: 0.7,
+                    delay: index * 0.12,
+                    ease: [0.22, 1, 0.36, 1],
+                  }
+            }
+          >
+            <p className="case-study-instrument__metrics-highlight-value serif-headline tabular-nums">
+              <AnimatedPercent
+                value={metric.value}
+                active={inView}
+                reducedMotion={reducedMotion}
+                delay={0.15 + index * 0.14}
+              />
+            </p>
+            <p className="case-study-instrument__metrics-highlight-label serif-headline">
+              {metric.label}
+            </p>
+          </motion.article>
+        ))}
+      </div>
     </div>
   );
 }
