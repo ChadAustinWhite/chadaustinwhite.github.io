@@ -44,14 +44,15 @@ export interface ProjectItem {
    * `charcoal`: dark matte behind `contain` mockups so light UI contrasts (Expedia thumbnails use standard border tone).
    */
   imageMediaMatteTone?: 'default' | 'charcoal';
-  /** Two headline stats shown on the project card (label above value). */
+  /** Two headline stats shown on the project card (large value above label). */
   metrics: [ProjectMetric, ProjectMetric];
 }
 
 export const projects: ProjectItem[] = [
   {
-    title: 'Expedia Group Accelerator',
-    description: 'Campaign launch and tracking',
+    title: 'Expedia Group accelerator',
+    description:
+      'I led the redesign of Partner Central’s Accelerator experience so hotels could launch, measure, and optimize search visibility campaigns, driving $300M in gross revenue across 72.4K active partners.',
     period: '2023–2025',
     image: expediaAcceleratorImage,
     imageAlt:
@@ -59,13 +60,14 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-expedia-accelerator',
     hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
     metrics: [
-      { label: 'Gross revenue', value: '$300M' },
-      { label: 'Active hotel partners', value: '72.4K' },
+      { label: 'gross revenue', value: '$300M' },
+      { label: 'active hotel partners', value: '72.4K' },
     ],
   },
   {
-    title: 'Worldpay Dispute Defender',
-    description: 'Automated dispute resolution',
+    title: 'Worldpay dispute defender',
+    description:
+      'I designed automated dispute resolution that protects merchant revenue and replaces manual triage with clarity operators can trust, safeguarding $44.6M annually across 147K disputes each month.',
     period: '2026',
     image: worldpayDisputesImage,
     imageAlt:
@@ -73,13 +75,14 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-worldpay-disputes',
     hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
     metrics: [
-      { label: 'Protected revenue', value: '$44.6M annually' },
-      { label: 'Disputes automated', value: '147K/month' },
+      { label: 'protected annually', value: '$44.6M' },
+      { label: 'disputes automated', value: '147K/mo' },
     ],
   },
   {
-    title: 'Worldpay Merchant Onboarding',
-    description: 'Guided onboarding, verification, and compliance',
+    title: 'Worldpay merchant onboarding',
+    description:
+      'I reshaped merchant onboarding into a guided verification and compliance journey so partners reach first transaction with clarity, lifting completion 32% and cutting time to activate by 40%.',
     period: '2025',
     image: worldpayMerchantOnboardingCardImage,
     imageAlt:
@@ -87,13 +90,14 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
     metrics: [
-      { label: 'Onboarding completion', value: '+32%' },
-      { label: 'Time to activate', value: '-40%' },
+      { label: 'onboarding completion', value: '+32%' },
+      { label: 'time to activate', value: '-40%' },
     ],
   },
   {
-    title: 'Expedia Group Ad Portal',
-    description: 'Campaign & payment management',
+    title: 'Expedia Group ad portal',
+    description:
+      'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence, expanding into 12+ markets while reducing support escalations 28%.',
     period: '2025',
     image: expediaAdPortalImage,
     imageAlt:
@@ -101,8 +105,8 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-expedia-ad-portal',
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
     metrics: [
-      { label: 'Partner markets', value: '12+' },
-      { label: 'Support escalations', value: '-28%' },
+      { label: 'partner markets', value: '12+' },
+      { label: 'support escalations', value: '-28%' },
     ],
   },
 ];

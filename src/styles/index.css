@@ -138,7 +138,7 @@ html.home-canvas-interactive .site-nav-surface {
   scroll-snap-align: start;
 }
 
-.work-section-stack__slide .project-card > :first-child {
+.work-section-stack__slide .project-card__media {
   aspect-ratio: 16 / 10;
 }
 
@@ -160,17 +160,17 @@ html.home-canvas-interactive .site-nav-surface {
   }
 
   .work-section-stack__slide {
-    width: min(calc(100vw - 7rem), 54rem);
+    width: min(calc(100vw - 7rem), 42rem);
   }
 
-  .work-section-stack__slide .project-card > :first-child {
-    aspect-ratio: 16 / 9.5;
+  .work-section-stack__slide .project-card__media {
+    aspect-ratio: 16 / 10;
   }
 }
 
 @media (min-width: 1280px) {
   .work-section-stack__slide {
-    width: min(calc(100vw - 8rem), 58rem);
+    width: min(calc(100vw - 8rem), 44rem);
   }
 }
 
