@@ -40,13 +40,25 @@ function getSlides(viewport: HTMLDivElement, slideSelector: string) {
   return Array.from(viewport.querySelectorAll<HTMLElement>(slideSelector));
 }
 
+/** Leading inset before the first slide (spacer / track padding measured via first slide offset). */
+function getLeadingGutter(slides: HTMLElement[]) {
+  return slides[0]?.offsetLeft ?? 0;
+}
+
+function getSlideScrollLeft(slide: HTMLElement, slides: HTMLElement[]) {
+  const gutter = getLeadingGutter(slides);
+  return Math.max(0, slide.offsetLeft - gutter);
+}
+
 function getActiveSlideIndex(viewport: HTMLDivElement, slides: HTMLElement[]) {
   const scrollLeft = viewport.scrollLeft;
+  const gutter = getLeadingGutter(slides);
   let activeIndex = 0;
   let minDistance = Infinity;
 
   for (let i = 0; i < slides.length; i++) {
-    const distance = Math.abs(scrollLeft - slides[i].offsetLeft);
+    const target = slides[i].offsetLeft - gutter;
+    const distance = Math.abs(scrollLeft - target);
     if (distance < minDistance) {
       minDistance = distance;
       activeIndex = i;
@@ -163,7 +175,7 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
       const slides = getSlides(viewport, slideSelectorRef.current);
       if (!slides.length) return;
       const target = slides[clamp(index, 0, slides.length - 1)];
-      animateScrollTo(viewport, target.offsetLeft);
+      animateScrollTo(viewport, getSlideScrollLeft(target, slides));
     },
     [animateScrollTo],
   );
@@ -212,7 +224,7 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
         return;
       }
 
-      animateScrollTo(viewport, nextSlide.offsetLeft);
+      animateScrollTo(viewport, getSlideScrollLeft(nextSlide, slides));
     },
     [animateScrollTo, cancelSettle, setInteractionLock],
   );

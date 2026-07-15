@@ -116,6 +116,17 @@ html.home-canvas-interactive .site-nav-surface {
   -ms-overflow-style: none;
 }
 
+/* Homepage projects: leading/trailing spacers keep the first card inset by default. */
+.work-section-stack--projects {
+  padding-inline: 0;
+}
+
+.work-section-stack--projects .work-section-stack__track::before,
+.work-section-stack--projects .work-section-stack__track::after {
+  content: '';
+  flex: 0 0 1.25rem;
+}
+
 .work-section-stack.is-dragging {
   cursor: grabbing;
   user-select: none;
@@ -130,6 +141,10 @@ html.home-canvas-interactive .site-nav-surface {
   width: max-content;
   gap: 1.5rem;
   padding-inline-end: 1.25rem;
+}
+
+.work-section-stack--projects .work-section-stack__track {
+  padding-inline-end: 0;
 }
 
 .work-section-stack__slide {
@@ -154,9 +169,22 @@ html.home-canvas-interactive .site-nav-surface {
     padding-inline: 2.5rem;
   }
 
+  .work-section-stack--projects {
+    padding-inline: 0;
+  }
+
+  .work-section-stack--projects .work-section-stack__track::before,
+  .work-section-stack--projects .work-section-stack__track::after {
+    flex-basis: 2.5rem;
+  }
+
   .work-section-stack__track {
     gap: 1.5rem;
     padding-inline-end: 2.5rem;
+  }
+
+  .work-section-stack--projects .work-section-stack__track {
+    padding-inline-end: 0;
   }
 
   .work-section-stack__slide {
