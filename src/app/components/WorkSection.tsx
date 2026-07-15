@@ -142,7 +142,7 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
       <div className="hidden md:block">
         <div
           ref={stackRef}
-          className="work-section-stack touch-pan-x"
+          className="work-section-stack work-section-stack--projects touch-pan-x"
           role="region"
           aria-label="Recent projects, horizontal scroll"
           {...dragScrollProps}
