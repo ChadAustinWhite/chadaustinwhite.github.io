@@ -52,6 +52,13 @@ function getSlideScrollLeft(slide: HTMLElement, slides: HTMLElement[]) {
 
 function getActiveSlideIndex(viewport: HTMLDivElement, slides: HTMLElement[]) {
   const scrollLeft = viewport.scrollLeft;
+  const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+
+  // Last card often can't fully align to the leading edge; treat end scroll as last slide.
+  if (slides.length > 1 && maxScroll > 0 && scrollLeft >= maxScroll - 2) {
+    return slides.length - 1;
+  }
+
   const gutter = getLeadingGutter(slides);
   let activeIndex = 0;
   let minDistance = Infinity;
@@ -114,6 +121,7 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
   const [scrollState, setScrollState] = useState({
     canScrollPrev: false,
     canScrollNext: false,
+    activeIndex: 0,
   });
 
   const setInteractionLock = useCallback((viewport: HTMLDivElement, locked: boolean) => {
@@ -195,7 +203,7 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
 
     const slides = getSlides(viewport, slideSelectorRef.current);
     if (!slides.length) {
-      setScrollState({ canScrollPrev: false, canScrollNext: false });
+      setScrollState({ canScrollPrev: false, canScrollNext: false, activeIndex: 0 });
       return;
     }
 
@@ -203,6 +211,7 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
     setScrollState({
       canScrollPrev: index > 0,
       canScrollNext: index < slides.length - 1,
+      activeIndex: index,
     });
   }, []);
 
@@ -401,12 +410,27 @@ export function useHorizontalDragScroll(options: HorizontalDragScrollOptions = {
     nextSlide.querySelector<HTMLElement>('button, a')?.focus();
   };
 
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      const viewport = ref.current;
+      if (!viewport) return;
+      cancelSettle();
+      velocityRef.current = 0;
+      viewport.classList.remove('is-dragging');
+      setInteractionLock(viewport, true);
+      snapToIndex(viewport, index);
+    },
+    [cancelSettle, setInteractionLock, snapToIndex],
+  );
+
   return {
     ref,
     canScrollPrev: scrollState.canScrollPrev,
     canScrollNext: scrollState.canScrollNext,
+    activeIndex: scrollState.activeIndex,
     scrollPrev: () => scrollBySlide(-1),
     scrollNext: () => scrollBySlide(1),
+    scrollToIndex,
     dragScrollProps: {
       onPointerDown,
       onPointerMove,
