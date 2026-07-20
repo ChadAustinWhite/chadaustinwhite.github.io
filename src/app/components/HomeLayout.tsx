@@ -29,7 +29,7 @@ export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps
         style={{
           background: 'var(--home-canvas, var(--bg))',
           color: 'var(--ink)',
-          fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif',
+          fontFamily: 'var(--font-sans)',
           fontSize: '15px',
           lineHeight: 1.5,
         }}

@@ -604,7 +604,7 @@ html.home-canvas-interactive .site-nav-surface {
 .merchant-emotion-map__title {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-serif, "Source Serif 4", Georgia, serif);
+  font-family: var(--font-sans, 'Geist', Helvetica, Arial, sans-serif);
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -739,7 +739,7 @@ html.home-canvas-interactive .site-nav-surface {
 .merchant-emotion-map__emotion {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-serif, "Source Serif 4", Georgia, serif);
+  font-family: var(--font-sans, 'Geist', Helvetica, Arial, sans-serif);
   font-size: clamp(1.35rem, 2.5vw, 1.85rem);
   font-weight: 500;
   letter-spacing: -0.03em;

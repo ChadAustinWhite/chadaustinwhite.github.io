@@ -3,7 +3,10 @@
  * Theme is controlled by data-theme on <html> (e.g. next-themes with attribute="data-theme").
  */
 :root {
-  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  /* Primary sans from alexnguyen.online (Geist via Google Fonts). */
+  --font-sans: 'Geist', Helvetica, Arial, sans-serif;
+  /* Kept for existing class/token references; now sans across the site. */
+  --font-serif: var(--font-sans);
   /* Warm editorial palette (danrohr.com/work) */
   --bg: #f5f4f0;
   --ink: #2d2d2d;
@@ -130,7 +133,7 @@ section[id] {
 }
 
 .serif-headline {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
   letter-spacing: -0.03em;
 }
@@ -152,7 +155,7 @@ section[id] {
   --cs-page-gutter: 1.25rem;
   --cs-carousel-gap: clamp(2.5rem, 5vw, 5.5rem);
   color-scheme: light;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.5;
   font-weight: 400;
@@ -226,9 +229,9 @@ html:has([data-case-study][data-scroll-gradient]) body {
   font-weight: 400;
 }
 
-/* Serif titles — matches project card titles (text-lg / 22px). */
+/* Titles — matches project card titles (text-lg / 22px). */
 [data-case-study] .cs-text-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
   font-weight: 400;
   letter-spacing: -0.03em;
   font-size: 1.125rem;
