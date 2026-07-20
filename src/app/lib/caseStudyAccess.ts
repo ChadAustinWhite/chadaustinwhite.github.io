@@ -1,6 +1,6 @@
 import type { CaseStudyRoute } from '../data/portfolioData';
 
-export const CASE_STUDY_PASSWORD = 'Justenoughresearch';
+export const CASE_STUDY_PASSWORD = 'Livingwithcomplexity';
 
 const unlockStorageKey = (route: CaseStudyRoute) => `portfolio-case-study-unlocked:${route}`;
 
