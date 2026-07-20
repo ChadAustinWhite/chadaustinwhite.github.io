@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowLeft, Lock } from 'lucide-react';
 import type { CaseStudyRoute } from '../data/portfolioData';
 import {
-  CASE_STUDY_PASSWORD,
+  getCaseStudyPassword,
   isCaseStudyUnlocked,
   setCaseStudyUnlocked,
 } from '../lib/caseStudyAccess';
@@ -61,7 +61,7 @@ export function PasswordProtectedCaseStudy({
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    if (inputPassword === CASE_STUDY_PASSWORD) {
+    if (inputPassword === getCaseStudyPassword(route)) {
       setCaseStudyUnlocked(route);
       setIsUnlocked(true);
       setError('');
