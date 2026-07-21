@@ -9,11 +9,17 @@ interface ProjectCardProps {
 }
 
 const projectCtaClass =
-  'project-cta inline-flex items-center gap-2 rounded-full bg-[var(--bg)] px-4 py-2 text-xs font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:px-5 md:text-[13px]';
+  'project-cta inline-flex items-center gap-2.5 rounded-full bg-[var(--bg)] px-5 py-3 text-[15px] font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:gap-2 md:px-5 md:py-2 md:text-[13px]';
 
 function ArrowIcon() {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="flex-shrink-0">
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      className="h-3.5 w-3.5 flex-shrink-0 md:h-3 md:w-3"
+    >
       <path
         d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"
         stroke="currentColor"
@@ -53,7 +59,7 @@ export function ProjectCard({
           <span className="inline-flex rounded-full bg-[var(--bg)] px-3 py-1 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:text-[13px]">
             {project.period}
           </span>
-          <h3 className="serif-headline whitespace-nowrap text-[1.65rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] md:text-[2.15rem]">
+          <h3 className="serif-headline max-w-full text-[1.65rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.15rem]">
             {project.title}
           </h3>
         </header>
