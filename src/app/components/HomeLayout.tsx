@@ -9,10 +9,9 @@ import React from 'react';
 
 interface HomeLayoutProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
-  onRequestAccess: (route: CaseStudyRoute) => void;
 }
 
-export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps) {
+export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
   const [hoveredProjectRoute, setHoveredProjectRoute] = useState<CaseStudyRoute | null>(null);
 
   useHomeScrollBackground(hoveredProjectRoute !== null);
@@ -37,7 +36,6 @@ export function HomeLayout({ onViewCaseStudy, onRequestAccess }: HomeLayoutProps
         <HeroSection />
         <WorkSection
           onViewCaseStudy={onViewCaseStudy}
-          onRequestAccess={onRequestAccess}
           onProjectHover={setHoveredProjectRoute}
         />
         <Footer />

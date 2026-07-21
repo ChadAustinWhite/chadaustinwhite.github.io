@@ -3,7 +3,6 @@ import type { ProjectItem } from '../data/portfolioData';
 interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
-  onRequestAccess: (route: ProjectItem['caseStudyRoute']) => void;
   onCtaHoverStart?: () => void;
   onCtaHoverEnd?: () => void;
 }
@@ -34,7 +33,6 @@ function ArrowIcon() {
 export function ProjectCard({
   project,
   onViewCaseStudy,
-  onRequestAccess,
   onCtaHoverStart,
   onCtaHoverEnd,
 }: ProjectCardProps) {
@@ -120,12 +118,10 @@ export function ProjectCard({
             {project.comingSoon ? (
               <button
                 type="button"
-                onClick={() => onRequestAccess(project.caseStudyRoute)}
-                onMouseEnter={onCtaHoverStart}
-                onMouseLeave={onCtaHoverEnd}
-                className={projectCtaClass}
+                disabled
+                className={`${projectCtaClass} cursor-default opacity-100 hover:bg-[var(--bg)] disabled:opacity-100`}
               >
-                Request access
+                Coming soon
               </button>
             ) : (
               <button

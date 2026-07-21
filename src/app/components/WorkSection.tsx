@@ -53,11 +53,10 @@ const stackNavButtonClass =
 
 interface WorkSectionProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
-  onRequestAccess: (route: CaseStudyRoute) => void;
   onProjectHover: (route: CaseStudyRoute | null) => void;
 }
 
-export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }: WorkSectionProps) {
+export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const sectionInView = useInView(sectionRef, { amount: 0.15 });
   const [isPlaying, setIsPlaying] = useState(false);
@@ -196,7 +195,6 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
               key={project.title}
               project={project}
               onViewCaseStudy={onViewCaseStudy}
-              onRequestAccess={onRequestAccess}
               onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
               onCtaHoverEnd={() => onProjectHover(null)}
             />
@@ -216,7 +214,6 @@ export function WorkSection({ onViewCaseStudy, onRequestAccess, onProjectHover }
                   <ProjectCard
                     project={project}
                     onViewCaseStudy={onViewCaseStudy}
-                    onRequestAccess={onRequestAccess}
                     onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
                     onCtaHoverEnd={() => onProjectHover(null)}
                   />

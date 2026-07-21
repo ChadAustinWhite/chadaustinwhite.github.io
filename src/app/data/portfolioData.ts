@@ -30,7 +30,7 @@ export interface ProjectItem {
   image?: string;
   imageAlt?: string;
   caseStudyRoute: CaseStudyRoute;
-  /** When true, case study is not available; show "Request Access" and do not link. */
+  /** When true, case study is not available; show "Coming soon" and do not link. */
   comingSoon?: boolean;
   /** `contain` = full image visible in the tile; `cover` = fill 16:9 (default). */
   imageObjectFit?: 'cover' | 'contain';
@@ -88,6 +88,7 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Kinetic merchant onboarding mobile screens — welcome signup, prefilled information review, and bank location setup',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
+    comingSoon: true,
     hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
     metrics: [
       { label: 'onboarding completion', value: '+32%' },
@@ -103,6 +104,7 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Expedia Group Partner Central — Create a campaign with name, property, goal, and campaign structure guidance',
     caseStudyRoute: 'case-study-expedia-ad-portal',
+    comingSoon: true,
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
     metrics: [
       { label: 'partner markets', value: '12+' },
