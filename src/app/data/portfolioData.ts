@@ -52,7 +52,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'Expedia Group accelerator',
     description:
-      'I led the redesign of Partner Central’s Accelerator experience so hotels could launch, measure, and optimize search visibility campaigns, driving $300M in gross revenue across 72.4K active partners.',
+      'I led the redesign of Partner Central’s Accelerator so hotels could launch and optimize search visibility campaigns.',
     period: '2025–2026',
     image: expediaAcceleratorImage,
     imageAlt:
@@ -67,7 +67,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'Worldpay dispute defender',
     description:
-      'I designed automated dispute resolution that protects merchant revenue and replaces manual triage with clarity operators can trust, safeguarding $44.6M annually across 147K disputes each month.',
+      'I designed automated dispute resolution that protects merchant revenue and replaces manual triage with clarity operators can trust.',
     period: '2026',
     image: worldpayDisputesImage,
     imageAlt:
@@ -82,7 +82,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'Worldpay merchant onboarding',
     description:
-      'I reshaped merchant onboarding into a guided verification and compliance journey so partners reach first transaction with clarity, lifting completion 32% and cutting time to activate by 40%.',
+      'I reshaped merchant onboarding into a guided verification and compliance journey so partners reach first transaction with clarity.',
     period: '2025',
     image: worldpayMerchantOnboardingCardImage,
     imageAlt:
@@ -97,7 +97,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'Expedia Group ad portal',
     description:
-      'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence, expanding into 12+ markets while reducing support escalations 28%.',
+      'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence across markets.',
     period: '2025',
     image: expediaAdPortalImage,
     imageAlt:
