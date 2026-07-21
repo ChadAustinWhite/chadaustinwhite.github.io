@@ -56,9 +56,6 @@ export function ProjectCard({
     <article className="project-card overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]">
       <div className="flex flex-col gap-6 p-6 md:gap-8 md:p-10 md:pb-9">
         <header className="flex flex-col items-start gap-4 md:gap-5">
-          <span className="inline-flex rounded-full bg-[var(--bg)] px-3 py-1 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:text-[13px]">
-            {project.period}
-          </span>
           <h3 className="serif-headline max-w-full text-[1.65rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.15rem]">
             {project.title}
           </h3>
