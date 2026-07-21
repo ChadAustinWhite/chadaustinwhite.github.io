@@ -9,7 +9,7 @@ interface ProjectCardProps {
 }
 
 const projectCtaClass =
-  'project-cta inline-flex items-center gap-2.5 rounded-full bg-[var(--bg)] px-5 py-3 text-[15px] font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:gap-2 md:px-5 md:py-2 md:text-[13px]';
+  'project-cta inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--bg)] px-5 py-3.5 text-[15px] font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:w-auto md:justify-start md:gap-2 md:px-5 md:py-2 md:text-[13px]';
 
 function ArrowIcon() {
   return (
@@ -56,7 +56,10 @@ export function ProjectCard({
     <article className="project-card overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]">
       <div className="flex flex-col gap-6 p-6 md:gap-8 md:p-10 md:pb-9">
         <header className="flex flex-col items-start gap-4 md:gap-5">
-          <h3 className="serif-headline max-w-full text-[1.65rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.15rem]">
+          <span className="inline-flex rounded-full bg-[var(--bg)] px-3 py-1 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:text-[13px]">
+            {project.period}
+          </span>
+          <h3 className="serif-headline max-w-full text-[1.85rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.4rem]">
             {project.title}
           </h3>
         </header>
@@ -113,7 +116,7 @@ export function ProjectCard({
             ))}
           </div>
 
-          <div className="flex justify-start">
+          <div className="flex w-full justify-stretch md:justify-start">
             {project.comingSoon ? (
               <button
                 type="button"
