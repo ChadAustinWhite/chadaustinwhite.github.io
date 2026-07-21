@@ -116,15 +116,14 @@ html.home-canvas-interactive .site-nav-surface {
   -ms-overflow-style: none;
 }
 
-/* Homepage projects: leading/trailing spacers keep the first card inset by default. */
+/* Homepage projects: padding (not ::before) keeps the first card aligned with the section title.
+   Flex `gap` would sit between a ::before spacer and the first slide and throw off alignment. */
 .work-section-stack--projects {
   padding-inline: 0;
 }
 
-.work-section-stack--projects .work-section-stack__track::before,
-.work-section-stack--projects .work-section-stack__track::after {
-  content: '';
-  flex: 0 0 1.25rem;
+.work-section-stack--projects .work-section-stack__track {
+  padding-inline: 1.25rem;
 }
 
 .work-section-stack.is-dragging {
@@ -144,7 +143,7 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .work-section-stack--projects .work-section-stack__track {
-  padding-inline-end: 0;
+  padding-inline-end: 1.25rem;
 }
 
 .work-section-stack__slide {
@@ -173,9 +172,8 @@ html.home-canvas-interactive .site-nav-surface {
     padding-inline: 0;
   }
 
-  .work-section-stack--projects .work-section-stack__track::before,
-  .work-section-stack--projects .work-section-stack__track::after {
-    flex-basis: 2.5rem;
+  .work-section-stack--projects .work-section-stack__track {
+    padding-inline: 2.5rem;
   }
 
   .work-section-stack__track {
@@ -184,7 +182,7 @@ html.home-canvas-interactive .site-nav-surface {
   }
 
   .work-section-stack--projects .work-section-stack__track {
-    padding-inline-end: 0;
+    padding-inline-end: 2.5rem;
   }
 
   .work-section-stack__slide {
