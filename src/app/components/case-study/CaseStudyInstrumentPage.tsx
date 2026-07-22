@@ -17,6 +17,7 @@ import { InstrumentMetricsHighlight } from './InstrumentMetricsHighlight';
 import { InstrumentMetricsTicker } from './InstrumentMetricsTicker';
 import { DisputeDefenderTableModalDemo } from './DisputeDefenderTableModalDemo';
 import { MerchantDisputeEmotionMap } from './MerchantDisputeEmotionMap';
+import { AcceleratorSearchVisibilityDemo } from './AcceleratorSearchVisibilityDemo';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -278,6 +279,12 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         </div>
       ) : null}
 
+      {chapter.chapterVisual === 'accelerator-search-visibility' ? (
+        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14`}>
+          <AcceleratorSearchVisibilityDemo />
+        </div>
+      ) : null}
+
       {chapter.chapterDemo === 'dispute-defender-table-modal' ? (
         <div className="case-study-instrument__chapter-demo mt-10 md:mt-14">
           <DisputeDefenderTableModalDemo />
@@ -453,6 +460,12 @@ export function CaseStudyInstrumentPage({
         <InstrumentFigure key={`lead-hero-${i}`} image={image} variant="hero" />
       ))}
 
+      {instrument.chapters
+        .filter((chapter) => chapter.beforeLeadBento)
+        .map((chapter) => (
+          <InstrumentChapter key={chapter.title} chapter={chapter} />
+        ))}
+
       {instrument.leadBento ? (
         <CaseStudyInstrumentBentoGrid grid={instrument.leadBento} />
       ) : (
@@ -461,9 +474,11 @@ export function CaseStudyInstrumentPage({
         ))
       )}
 
-      {instrument.chapters.map((chapter) => (
-        <InstrumentChapter key={chapter.title} chapter={chapter} />
-      ))}
+      {instrument.chapters
+        .filter((chapter) => !chapter.beforeLeadBento)
+        .map((chapter) => (
+          <InstrumentChapter key={chapter.title} chapter={chapter} />
+        ))}
 
       {instrument.closing ? (
         <section className={`${GUTTER} case-study-instrument__chapter-wrap`}>

@@ -4,7 +4,6 @@ import expediaAcceleratorPerformanceMarketTrends from '../../../assets/expedia-a
 import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
 import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
 import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
-import expediaAcceleratorSearchVisibilityAd from '../../../assets/expedia-accelerator-search-visibility-ad.png';
 import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-accelerator-observations-create-flow.png';
 import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-accelerator-observations-impact-phases.png';
 import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
@@ -49,19 +48,11 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   chapters: [
     {
       title: 'Why It Matters',
+      beforeLeadBento: true,
       lead:
         "Search visibility directly impacts bookings and revenue. When hotel partners can't clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.",
       subsections: [],
-      stackedImagesWidth: 'prose',
-      stackedImages: [
-        {
-          src: expediaAcceleratorSearchVisibilityAd,
-          alt: 'Expedia search results wireframe highlighting sponsored Accelerator ad placement in the sort order',
-          objectFit: 'contain',
-          background: 'page',
-          parallaxSpeed: '0.14',
-        },
-      ],
+      chapterVisual: 'accelerator-search-visibility',
     },
     {
       title: 'Project complications',
