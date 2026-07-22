@@ -1,5 +1,4 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
-import expediaAcceleratorCreateAcceleratorHero from '../../../assets/expedia-accelerator-create-accelerator-hero.png';
 import expediaAcceleratorPerformanceMarketTrends from '../../../assets/expedia-accelerator-performance-market-trends.png';
 import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
 import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
@@ -18,11 +17,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   lead:
     'Empowering hotel partners to unlock stronger connections with travelers by helping them appear higher in search results.',
   leadImages: [
-    {
-      src: expediaAcceleratorCreateAcceleratorHero,
-      alt: 'Create an Accelerator in Partner Central with stay dates, blockout dates, and advanced visibility settings',
-      background: 'page',
-    },
     {
       src: expediaAcceleratorPerformanceMarketTrends,
       alt: 'Partner Central performance and market trends with date range selection and competitive set chart',
