@@ -1,8 +1,5 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
 import expediaAcceleratorPerformanceMarketTrends from '../../../assets/expedia-accelerator-performance-market-trends.png';
-import expediaAcceleratorCreateFlow from '../../../assets/expedia-accelerator-create-flow.png';
-import expediaAcceleratorOneKeyCash from '../../../assets/expedia-accelerator-onekeycash.png';
-import expediaAcceleratorUiRateSelection from '../../../assets/expedia-accelerator-ui-rate-selection.png';
 import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-accelerator-observations-create-flow.png';
 import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-accelerator-observations-impact-phases.png';
 import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
@@ -22,23 +19,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       alt: 'Partner Central performance and market trends with date range selection and competitive set chart',
     },
   ],
-  leadBento: {
-    primary: {
-      src: expediaAcceleratorUiRateSelection,
-      alt: 'Rate plan and marketplace selection with radio hierarchy and helper copy',
-      background: 'charcoal',
-    },
-    secondary: {
-      src: expediaAcceleratorOneKeyCash,
-      alt: 'OneKeyCash promotion qualification and preview in Partner Central',
-      background: 'page',
-    },
-    tertiary: {
-      src: expediaAcceleratorCreateFlow,
-      alt: 'Create an Accelerator flow in Partner Central',
-      background: 'page',
-    },
-  },
   chapters: [
     {
       title: 'Why It Matters',
