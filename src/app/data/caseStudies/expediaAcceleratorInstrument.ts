@@ -16,7 +16,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   breadcrumb: 'Expedia Group Accelerator',
   tags: ['Travel', 'B2B', 'Product'],
   lead:
-    'Empowering hotel partners across all Expedia entities to unlock stronger connections with travelers by helping them appear higher in search results.',
+    'Empowering hotel partners to unlock stronger connections with travelers by helping them appear higher in search results.',
   leadImages: [
     {
       src: expediaAcceleratorCreateAcceleratorHero,
@@ -50,7 +50,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       beforeLeadBento: true,
       lead:
-        "Search visibility directly impacts bookings and revenue. When hotel partners can't clearly understand or optimize their performance, they miss opportunities to reach travelers at the exact moment of intent.",
+        "Search visibility drives bookings and revenue. When partners can't optimize performance, they miss demand.",
       subsections: [],
       chapterVisual: 'accelerator-search-visibility',
     },
@@ -85,6 +85,13 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
           body: 'Time zone differences between colleagues in Southern California, Chicago, New York, Seattle, and India encouraged early and late syncs, improving collaboration and delivering value to hotel partners at velocity.',
         },
       ],
+    },
+    {
+      title: 'Partner journey',
+      lead:
+        'Journey mapping surfaced twelve moments from first find to ongoing management — and the friction partners hit at each step when creating an Accelerator.',
+      subsections: [],
+      chapterVisual: 'accelerator-partner-journey',
     },
     {
       title: 'Inductive vs. Deductive',
@@ -144,7 +151,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       ],
       testimonial: {
         quote:
-          'Transparency mattered more than granular control for most partners. When design and data moved together, partners finally trusted what they saw in Partner Central.',
+          'Transparency mattered more than granular control for most partners. When design and data moved together, partners finally trusted what they saw in Accelerator.',
         name: 'Program leadership',
         role: 'Expedia Group — Monetization',
       },

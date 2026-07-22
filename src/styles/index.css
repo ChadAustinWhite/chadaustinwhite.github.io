@@ -650,7 +650,7 @@ html.home-canvas-interactive .site-nav-surface {
 .accelerator-srp-rank__logo-img {
   display: block;
   width: auto;
-  height: clamp(1.05rem, 2.2vw, 1.35rem);
+  height: clamp(1.15rem, 2.4vw, 1.5rem);
   object-fit: contain;
   object-position: left center;
   user-select: none;
@@ -849,6 +849,384 @@ html.home-canvas-interactive .site-nav-surface {
   .accelerator-srp-rank__item {
     animation: none;
     transform: translateY(calc(var(--rank-to) * (var(--srp-slot) + var(--srp-gap))));
+  }
+}
+
+/* Expedia Accelerator — partner journey map */
+.accelerator-journey {
+  --journey-friction: #c45b6a;
+  --journey-discover: #2f6f7e;
+  --journey-configure: #b07a3a;
+  --journey-publish: #3d6b4f;
+  --journey-optimize: #5a5f78;
+  --journey-card-w: clamp(15.5rem, 42vw, 18.5rem);
+  margin: 0;
+  width: 100%;
+}
+
+.accelerator-journey__phases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.accelerator-journey__phase-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.32rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  background: color-mix(in srgb, var(--ink) 5%, var(--bg));
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 200ms ease;
+}
+
+.accelerator-journey__phase-chip:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 8%, var(--bg));
+}
+
+.accelerator-journey__phase-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.28rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-variant-numeric: tabular-nums;
+  color: inherit;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+
+.accelerator-journey__phase-chip--all.accelerator-journey__phase-chip--active {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 18%, var(--border));
+  background: color-mix(in srgb, var(--ink) 8%, var(--bg));
+  transform: translateY(-1px);
+}
+
+.accelerator-journey__phase-chip--discover.accelerator-journey__phase-chip--active {
+  color: var(--journey-discover);
+  border-color: color-mix(in srgb, var(--journey-discover) 35%, transparent);
+  background: color-mix(in srgb, var(--journey-discover) 14%, var(--bg));
+  transform: translateY(-1px);
+}
+.accelerator-journey__phase-chip--configure.accelerator-journey__phase-chip--active {
+  color: var(--journey-configure);
+  border-color: color-mix(in srgb, var(--journey-configure) 35%, transparent);
+  background: color-mix(in srgb, var(--journey-configure) 14%, var(--bg));
+  transform: translateY(-1px);
+}
+.accelerator-journey__phase-chip--publish.accelerator-journey__phase-chip--active {
+  color: var(--journey-publish);
+  border-color: color-mix(in srgb, var(--journey-publish) 35%, transparent);
+  background: color-mix(in srgb, var(--journey-publish) 14%, var(--bg));
+  transform: translateY(-1px);
+}
+.accelerator-journey__phase-chip--optimize.accelerator-journey__phase-chip--active {
+  color: var(--journey-optimize);
+  border-color: color-mix(in srgb, var(--journey-optimize) 35%, transparent);
+  background: color-mix(in srgb, var(--journey-optimize) 14%, var(--bg));
+  transform: translateY(-1px);
+}
+
+.accelerator-journey__viewport-wrap {
+  position: relative;
+}
+
+.accelerator-journey__fade {
+  position: absolute;
+  top: 0;
+  bottom: 0.35rem;
+  width: clamp(1.5rem, 4vw, 2.75rem);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.accelerator-journey__fade.is-visible {
+  opacity: 1;
+}
+
+.accelerator-journey__fade--left {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg), transparent);
+}
+
+.accelerator-journey__fade--right {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg), transparent);
+}
+
+.accelerator-journey__viewport {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  padding: 0.35rem 0 0.5rem;
+}
+
+.accelerator-journey__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.accelerator-journey__viewport.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.accelerator-journey__viewport.is-coasting {
+  scroll-snap-type: none;
+}
+
+.accelerator-journey__track {
+  display: flex;
+  gap: 0.85rem;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  padding: 0.15rem 0.15rem 0.15rem 0;
+  list-style: none;
+}
+
+.accelerator-journey__slide {
+  flex: 0 0 var(--journey-card-w);
+  min-width: 0;
+  scroll-snap-align: start;
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease;
+  opacity: 0.72;
+  transform: scale(0.98);
+}
+
+.accelerator-journey__slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.accelerator-journey__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  height: 100%;
+  min-height: 13rem;
+  padding: 1rem 1.05rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--ink) 3.5%, var(--bg)), var(--bg));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
+  transition: box-shadow 280ms ease, border-color 280ms ease;
+}
+
+.accelerator-journey__slide.is-active .accelerator-journey__card {
+  border-color: color-mix(in srgb, var(--journey-friction) 45%, var(--border));
+  box-shadow:
+    0 10px 28px rgb(0 0 0 / 0.07),
+    0 2px 6px rgb(0 0 0 / 0.04);
+}
+
+.accelerator-journey__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.accelerator-journey__num {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+
+.accelerator-journey__pain-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--journey-friction);
+  background: color-mix(in srgb, var(--journey-friction) 14%, var(--bg));
+}
+
+.accelerator-journey__phase-tag {
+  margin-top: auto;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--journey-discover);
+}
+
+.accelerator-journey__slide--configure .accelerator-journey__phase-tag {
+  color: var(--journey-configure);
+}
+.accelerator-journey__slide--publish .accelerator-journey__phase-tag {
+  color: var(--journey-publish);
+}
+.accelerator-journey__slide--optimize .accelerator-journey__phase-tag {
+  color: var(--journey-optimize);
+}
+
+.accelerator-journey__step-title {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.accelerator-journey__pain {
+  padding: 0.7rem 0.75rem;
+  border-radius: 0.7rem;
+  background: color-mix(in srgb, var(--journey-friction) 9%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--journey-friction) 22%, transparent);
+}
+
+.accelerator-journey__step-insight {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--journey-friction) 42%, var(--ink));
+  overflow-wrap: anywhere;
+}
+
+.accelerator-journey__live-pain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem 0.7rem;
+  margin: 0.95rem 0 0;
+  max-width: 46rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.accelerator-journey__live-pain-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--journey-friction);
+}
+
+.accelerator-journey__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.15rem;
+}
+
+.accelerator-journey__nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  transition:
+    opacity 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.accelerator-journey__nav-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 4%, var(--bg));
+}
+
+.accelerator-journey__nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.accelerator-journey__meter {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  height: 2.75rem;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+}
+
+.accelerator-journey__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--ink);
+  transition: opacity 160ms ease;
+}
+
+.accelerator-journey__play:hover {
+  opacity: 0.7;
+}
+
+.accelerator-journey__segments {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.accelerator-journey__segment {
+  position: relative;
+  width: 0.95rem;
+  height: 0.35rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+.accelerator-journey__segment-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: var(--ink);
+}
+
+@media (min-width: 768px) {
+  .accelerator-journey__segment {
+    width: 1.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accelerator-journey__slide,
+  .accelerator-journey__phase-chip,
+  .accelerator-journey__card {
+    transition: none;
   }
 }
 

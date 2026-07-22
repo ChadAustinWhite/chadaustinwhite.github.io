@@ -44,8 +44,8 @@ export function AcceleratorSearchVisibilityDemo() {
             src={expediaLogo}
             alt="Expedia"
             className="accelerator-srp-rank__logo-img"
-            width={119}
-            height={27}
+            width={849}
+            height={188}
             draggable={false}
           />
         </header>

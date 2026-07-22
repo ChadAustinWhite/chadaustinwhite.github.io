@@ -18,6 +18,7 @@ import { InstrumentMetricsTicker } from './InstrumentMetricsTicker';
 import { DisputeDefenderTableModalDemo } from './DisputeDefenderTableModalDemo';
 import { MerchantDisputeEmotionMap } from './MerchantDisputeEmotionMap';
 import { AcceleratorSearchVisibilityDemo } from './AcceleratorSearchVisibilityDemo';
+import { AcceleratorPartnerJourneyMap } from './AcceleratorPartnerJourneyMap';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -282,6 +283,14 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       {chapter.chapterVisual === 'accelerator-search-visibility' ? (
         <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14`}>
           <AcceleratorSearchVisibilityDemo />
+        </div>
+      ) : null}
+
+      {chapter.chapterVisual === 'accelerator-partner-journey' ? (
+        <div className={`${GUTTER} case-study-instrument__chapter-visual mt-10 md:mt-14`}>
+          <div className="mx-auto w-full max-w-[72rem]">
+            <AcceleratorPartnerJourneyMap />
+          </div>
         </div>
       ) : null}
 

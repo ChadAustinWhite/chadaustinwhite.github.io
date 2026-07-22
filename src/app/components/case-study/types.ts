@@ -163,7 +163,10 @@ export interface CaseStudyInstrumentChapter {
   /** Interactive product demo rendered after chapter lead. */
   chapterDemo?: 'dispute-defender-table-modal';
   /** Editorial diagram / visual after chapter lead and metrics. */
-  chapterVisual?: 'merchant-dispute-emotion-map' | 'accelerator-search-visibility';
+  chapterVisual?:
+    | 'merchant-dispute-emotion-map'
+    | 'accelerator-search-visibility'
+    | 'accelerator-partner-journey';
   /** Render this chapter after `leadImages` and before `leadBento` / hero images. */
   beforeLeadBento?: boolean;
 }
