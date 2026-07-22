@@ -89,7 +89,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     {
       title: 'Partner journey',
       lead:
-        'Journey mapping surfaced twelve moments from first find to ongoing management — and the friction partners hit at each step when creating an Accelerator.',
+        'Journey mapping showed twelve moments from first find to ongoing management, and the friction partners hit at each step when creating an Accelerator.',
       subsections: [],
       chapterVisual: 'accelerator-partner-journey',
     },
