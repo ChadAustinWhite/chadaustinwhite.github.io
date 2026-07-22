@@ -5,7 +5,7 @@ import { expediaAcceleratorInstrument } from './expediaAcceleratorInstrument';
 export const expediaAcceleratorContent: CaseStudyContent = {
   layout: 'instrument',
   scrollGradient: false,
-  parallax: true,
+  parallax: false,
   title: 'Expedia Group Accelerator',
   heroTitleLines: ['Expedia Group Accelerator'],
   meta: {

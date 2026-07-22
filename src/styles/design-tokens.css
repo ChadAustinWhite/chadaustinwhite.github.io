@@ -3,8 +3,9 @@
  * Theme is controlled by data-theme on <html> (e.g. next-themes with attribute="data-theme").
  */
 :root {
-  /* Primary sans from alexnguyen.online (Geist via Google Fonts). */
-  --font-sans: 'Geist', Helvetica, Arial, sans-serif;
+  /* San Francisco on Apple; system UI elsewhere. */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+    'Segoe UI', Helvetica, Arial, sans-serif;
   /* Kept for existing class/token references; now sans across the site. */
   --font-serif: var(--font-sans);
   /* Warm editorial palette (danrohr.com/work) */
