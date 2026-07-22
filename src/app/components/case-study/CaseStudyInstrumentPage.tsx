@@ -287,10 +287,8 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'accelerator-partner-journey' ? (
-        <div className={`${GUTTER} case-study-instrument__chapter-visual mt-10 md:mt-14`}>
-          <div className="mx-auto w-full max-w-[72rem]">
-            <AcceleratorPartnerJourneyMap />
-          </div>
+        <div className="case-study-instrument__chapter-visual mt-10 md:mt-14 w-full max-w-[72rem]">
+          <AcceleratorPartnerJourneyMap />
         </div>
       ) : null}
 
