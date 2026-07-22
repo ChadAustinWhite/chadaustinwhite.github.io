@@ -586,7 +586,7 @@ html.home-canvas-interactive .site-nav-surface {
 
 /* Expedia Accelerator — search visibility rank-up demo */
 .accelerator-srp-rank {
-  --srp-slot: clamp(3.4rem, 8.4vw, 5rem);
+  --srp-slot: clamp(4rem, 9.5vw, 5.75rem);
   --srp-gap: clamp(0.55rem, 1.2vw, 0.75rem);
   --srp-page: #ececec;
   --srp-card: #ffffff;
