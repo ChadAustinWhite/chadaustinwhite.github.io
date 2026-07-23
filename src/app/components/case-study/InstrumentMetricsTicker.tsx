@@ -73,7 +73,7 @@ function TickerReel({
   );
 }
 
-function TickerValue({
+export function TickerValue({
   value,
   active,
   reducedMotion,
