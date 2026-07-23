@@ -1,3 +1,6 @@
+/* Switzer — free neo-grotesque in the same lineage as BASIC HQ’s Söhne (Klim). */
+@import url('https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap');
+
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
