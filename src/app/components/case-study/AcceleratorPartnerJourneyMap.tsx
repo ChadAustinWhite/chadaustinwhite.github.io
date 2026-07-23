@@ -43,11 +43,11 @@ const PHASES = [
     tone: 'discover' as const,
     steps: [
       {
-        title: 'Find Accelerator',
+        title: 'Discover Accelerator',
         insight: 'Partners dig through left nav. The product is hard to locate.',
         friction: 4,
         facts: [
-          'Accelerator sits three levels deep under Marketing.',
+          'Accelerator is buried within the navigation.',
           'Partners often confuse it with Promotions and Travel ads.',
           'Discovery relied on customer success tip-offs more than IA.',
         ],

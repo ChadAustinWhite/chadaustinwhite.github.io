@@ -17,6 +17,8 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     {
       src: expediaAcceleratorPerformanceMarketTrends,
       alt: 'Partner Central performance and market trends with date range selection and competitive set chart',
+      padded: true,
+      background: 'page',
     },
   ],
   chapters: [
@@ -27,6 +29,13 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         "Search visibility drives bookings and revenue. When partners can't optimize performance, they miss demand.",
       subsections: [],
       chapterVisual: 'accelerator-search-visibility',
+    },
+    {
+      title: 'Partner journey',
+      lead:
+        'Journey mapping uncovered twelve moments from first find to ongoing management, and the friction partners hit at each step when creating an Accelerator.',
+      subsections: [],
+      chapterVisual: 'accelerator-partner-journey',
     },
     {
       title: 'Project complications',
@@ -59,13 +68,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
           body: 'Time zone differences between colleagues in Southern California, Chicago, New York, Seattle, and India encouraged early and late syncs, improving collaboration and delivering value to hotel partners at velocity.',
         },
       ],
-    },
-    {
-      title: 'Partner journey',
-      lead:
-        'Journey mapping showed twelve moments from first find to ongoing management, and the friction partners hit at each step when creating an Accelerator.',
-      subsections: [],
-      chapterVisual: 'accelerator-partner-journey',
     },
     {
       title: 'Inductive vs. Deductive',
@@ -123,6 +125,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         { value: '5.4%', label: 'Average Margin Spend' },
         { value: '72.4K', label: 'Active Hotel Partners' },
       ],
+      metricsVariant: 'highlight',
       testimonial: {
         quote:
           'Transparency mattered more than granular control for most partners. When design and data moved together, partners finally trusted what they saw in Accelerator.',

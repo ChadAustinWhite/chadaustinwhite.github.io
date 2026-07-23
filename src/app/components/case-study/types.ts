@@ -103,6 +103,8 @@ export interface CaseStudyInstrumentImage {
   objectFit?: 'cover' | 'contain';
   /** Frame behind the image; use `charcoal` for dark UI comps. */
   background?: 'page' | 'card' | 'charcoal';
+  /** Keep image within page gutters instead of full-bleed breakout. */
+  padded?: boolean;
   /** Scroll-linked parallax (`data-parallax-speed`). */
   parallaxSpeed?: string;
   parallaxMode?: 'scroll-lag' | 'viewport';

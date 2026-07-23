@@ -76,7 +76,11 @@ function InstrumentFigure({
 
   return (
     <figure
-      className={`case-study-instrument__figure case-study-instrument__figure--bleed case-study-instrument__figure--${variant}`}
+      className={`case-study-instrument__figure ${
+        image.padded
+          ? 'case-study-instrument__figure--padded'
+          : 'case-study-instrument__figure--bleed'
+      } case-study-instrument__figure--${variant}`}
     >
       <div
         className={`case-study-instrument__figure-media ${instrumentMediaBackground(image)}`}

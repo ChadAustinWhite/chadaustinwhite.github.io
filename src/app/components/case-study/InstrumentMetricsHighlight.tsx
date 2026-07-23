@@ -2,12 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 import { animate, motion, useInView } from 'motion/react';
 import type { CaseStudySonosMetric } from './types';
 
-function parsePercentValue(raw: string): number {
-  const parsed = Number.parseFloat(raw.replace(/[^\d.-]/g, ''));
-  return Number.isFinite(parsed) ? parsed : 0;
+function parseMetricValue(raw: string) {
+  const match = raw.trim().match(/^([^0-9.-]*)(-?\d+(?:\.\d+)?)(.*)$/);
+  if (!match) {
+    return { prefix: '', target: 0, suffix: raw, decimals: 0 };
+  }
+
+  const [, prefix, num, suffix] = match;
+  const decimals = num.includes('.') ? (num.split('.')[1]?.length ?? 0) : 0;
+
+  return {
+    prefix,
+    target: Number.parseFloat(num),
+    suffix,
+    decimals,
+  };
 }
 
-function AnimatedPercent({
+function AnimatedMetricValue({
   value,
   active,
   reducedMotion,
@@ -18,7 +30,7 @@ function AnimatedPercent({
   reducedMotion: boolean;
   delay: number;
 }) {
-  const target = parsePercentValue(value);
+  const { prefix, target, suffix, decimals } = parseMetricValue(value);
   const [display, setDisplay] = useState(reducedMotion ? target : 0);
 
   useEffect(() => {
@@ -40,11 +52,10 @@ function AnimatedPercent({
     return () => controls.stop();
   }, [active, delay, reducedMotion, target]);
 
-  const suffix = value.includes('%') ? '%' : '';
-
   return (
     <>
-      {display.toFixed(2)}
+      {prefix}
+      {display.toFixed(decimals)}
       {suffix}
     </>
   );
@@ -90,7 +101,7 @@ export function InstrumentMetricsHighlight({
             }
           >
             <p className="case-study-instrument__metrics-highlight-value serif-headline tabular-nums">
-              <AnimatedPercent
+              <AnimatedMetricValue
                 value={metric.value}
                 active={inView}
                 reducedMotion={reducedMotion}
