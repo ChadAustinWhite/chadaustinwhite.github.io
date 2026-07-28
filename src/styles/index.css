@@ -431,6 +431,16 @@ html.home-canvas-interactive .site-nav-surface {
   object-position: center;
 }
 
+/* Padded UI screenshots: show the full frame (no 112% parallax bleed crop). */
+.case-study-instrument__figure--padded .case-study-instrument__parallax-media .case-study-instrument__img--contain,
+.case-study-instrument__figure--padded .case-study-instrument__parallax-media .case-study-instrument__img--natural {
+  height: auto;
+  width: 100%;
+  max-height: none;
+  object-fit: contain;
+  object-position: top center;
+}
+
 .case-study-instrument__tag {
   display: inline-flex;
   align-items: center;
@@ -2194,8 +2204,14 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .case-study-instrument__figure--padded .case-study-instrument__figure-media {
-  border-radius: clamp(10px, 1.2vw, 14px);
-  overflow: hidden;
+  /* Screenshots already include rounded chrome; extra radius+clip crops the top bar. */
+  border-radius: 0;
+  overflow: visible;
+}
+
+.case-study-instrument__figure--padded .case-study-instrument__parallax-media--figure {
+  overflow: visible;
+  align-items: flex-start;
 }
 
 .case-study-instrument__bento-shell {
