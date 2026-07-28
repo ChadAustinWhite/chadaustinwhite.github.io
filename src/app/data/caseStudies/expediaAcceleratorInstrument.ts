@@ -19,6 +19,8 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       alt: 'Partner Central performance and market trends with date range selection and competitive set chart',
       padded: true,
       background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
     },
   ],
   chapters: [

@@ -39,7 +39,7 @@ export function ProjectCard({
   const hasMockup = Boolean(project.image);
   const fit = project.imageObjectFit ?? 'cover';
   const mediaBg =
-    project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2d2d2d]' : 'bg-[var(--border)]';
+    project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2d2d2d]' : 'bg-transparent';
   const intrinsicW = project.imageIntrinsicWidthPx;
   const intrinsicH = project.imageIntrinsicHeightPx;
   const cappedContain = hasMockup && fit === 'contain' && intrinsicW != null;

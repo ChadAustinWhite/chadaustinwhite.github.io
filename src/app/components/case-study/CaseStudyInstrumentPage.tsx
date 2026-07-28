@@ -68,11 +68,13 @@ function InstrumentFigure({
   variant?: InstrumentFigureVariant;
 }) {
   const isHero = variant === 'hero';
+  const fit = image.objectFit ?? (isHero ? 'natural' : 'cover');
   const figureImgClass =
-    isHero && !image.objectFit
+    fit === 'natural'
       ? 'case-study-instrument__figure-img case-study-instrument__img--natural'
-      : `case-study-instrument__figure-img case-study-instrument__img--${image.objectFit ?? 'cover'}`;
+      : `case-study-instrument__figure-img case-study-instrument__img--${fit}`;
   const parallaxSpeed = image.parallaxSpeed ?? (isHero ? '0.06' : '0.1');
+  const parallaxEnabled = parallaxSpeed !== '0' && Number.parseFloat(parallaxSpeed) !== 0;
 
   return (
     <figure
@@ -87,10 +89,14 @@ function InstrumentFigure({
       >
         <div
           className="case-study-instrument__parallax-media case-study-instrument__parallax-media--figure"
-          data-parallax
-          data-parallax-speed={parallaxSpeed}
-          {...(image.parallaxMode ? { 'data-parallax-mode': image.parallaxMode } : {})}
-          {...(image.parallaxDelay ? { 'data-parallax-delay': image.parallaxDelay } : {})}
+          {...(parallaxEnabled
+            ? {
+                'data-parallax': true,
+                'data-parallax-speed': parallaxSpeed,
+                ...(image.parallaxMode ? { 'data-parallax-mode': image.parallaxMode } : {}),
+                ...(image.parallaxDelay ? { 'data-parallax-delay': image.parallaxDelay } : {}),
+              }
+            : {})}
         >
           <img
             src={image.src}
