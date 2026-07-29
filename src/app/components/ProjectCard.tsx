@@ -45,9 +45,9 @@ export function ProjectCard({
   const cappedContain = hasMockup && fit === 'contain' && intrinsicW != null;
 
   const imgSizingClass = cappedContain
-    ? 'h-auto w-auto max-h-full bg-transparent object-contain [image-rendering:auto]'
+    ? 'h-auto w-auto max-h-full bg-transparent object-contain object-top [image-rendering:auto]'
     : `h-full w-full bg-transparent [transform:translateZ(0)] [image-rendering:auto] ${
-        fit === 'contain' ? 'object-contain object-center' : 'object-cover object-center'
+        fit === 'contain' ? 'object-contain object-top' : 'object-cover object-top'
       }`;
 
   return (
