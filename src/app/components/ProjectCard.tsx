@@ -57,7 +57,7 @@ export function ProjectCard({
           <span className="inline-flex rounded-full bg-[var(--bg)] px-5 py-3.5 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:px-5 md:py-2 md:text-[13px]">
             {project.period}
           </span>
-          <h3 className="serif-headline max-w-full text-[1.85rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.4rem]">
+          <h3 className="serif-headline max-w-full font-normal text-[1.85rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.4rem]">
             {project.title}
           </h3>
         </header>
@@ -104,7 +104,7 @@ export function ProjectCard({
           <div className="grid grid-cols-2 gap-x-8 gap-y-5">
             {project.metrics.map((metric) => (
               <div key={metric.label} className="min-w-0">
-                <p className="serif-headline text-[1.85rem] font-medium leading-none tracking-[-0.03em] text-[var(--ink)] tabular-nums md:text-[2.35rem]">
+                <p className="serif-headline text-[1.85rem] font-normal leading-none tracking-[-0.03em] text-[var(--ink)] tabular-nums md:text-[2.35rem]">
                   {metric.value}
                 </p>
                 <p className="mt-2 text-sm leading-snug text-[var(--ink-muted)] md:text-[0.95rem]">
