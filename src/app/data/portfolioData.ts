@@ -89,6 +89,7 @@ export const projects: ProjectItem[] = [
       'Kinetic merchant onboarding mobile screens — welcome signup, prefilled information review, and bank location setup',
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
+    imageObjectFit: 'contain',
     hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
     metrics: [
       { label: 'onboarding completion', value: '+32%' },
