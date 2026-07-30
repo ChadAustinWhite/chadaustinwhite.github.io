@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from 'react';
+import { useInView } from 'motion/react';
 import type { ProjectItem } from '../data/portfolioData';
 
 interface ProjectCardProps {
@@ -30,19 +32,68 @@ function ArrowIcon() {
   );
 }
 
+/** Silent looping recording sized exactly like a card screenshot. */
+function ProjectCardVideo({
+  src,
+  poster,
+  label,
+  className,
+}: {
+  src: string;
+  poster?: string;
+  label?: string;
+  className: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const inView = useInView(videoRef, { amount: 0.4 });
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || reducedMotion) return;
+
+    if (inView) {
+      void el.play().catch(() => {});
+    } else {
+      el.pause();
+    }
+  }, [inView, reducedMotion]);
+
+  return (
+    <video
+      ref={videoRef}
+      className={className}
+      poster={poster}
+      preload="none"
+      muted
+      loop
+      playsInline
+      controls={reducedMotion}
+      aria-label={label}
+    >
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}
+
 export function ProjectCard({
   project,
   onViewCaseStudy,
   onCtaHoverStart,
   onCtaHoverEnd,
 }: ProjectCardProps) {
-  const hasMockup = Boolean(project.image);
+  const hasVideo = Boolean(project.video);
+  const hasMockup = hasVideo || Boolean(project.image);
   const fit = project.imageObjectFit ?? 'cover';
   const mediaBg =
     project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2d2d2d]' : 'bg-transparent';
   const intrinsicW = project.imageIntrinsicWidthPx;
   const intrinsicH = project.imageIntrinsicHeightPx;
-  const cappedContain = hasMockup && fit === 'contain' && intrinsicW != null;
+  const cappedContain = hasMockup && !hasVideo && fit === 'contain' && intrinsicW != null;
 
   const imgSizingClass = cappedContain
     ? 'h-auto w-auto max-h-full bg-transparent object-contain object-top [image-rendering:auto]'
@@ -65,6 +116,13 @@ export function ProjectCard({
         <div className={`project-card__media overflow-hidden rounded-2xl ${mediaBg}`}>
           {!hasMockup ? (
             <div className="h-full min-h-0 w-full" aria-hidden />
+          ) : hasVideo ? (
+            <ProjectCardVideo
+              src={project.video!}
+              poster={project.videoPoster}
+              label={project.imageAlt}
+              className={imgSizingClass}
+            />
           ) : cappedContain ? (
             <div className="flex h-full min-h-0 w-full items-center justify-center p-3 md:p-5">
               <img

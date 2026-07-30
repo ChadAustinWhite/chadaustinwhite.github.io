@@ -1,4 +1,5 @@
-import expediaAcceleratorImage from '../../assets/db517be81379848d6a0f1ed778ec264c310085b8.png';
+import expediaAcceleratorWalkthrough from '../../assets/expedia-accelerator-walkthrough.mp4';
+import expediaAcceleratorWalkthroughPoster from '../../assets/expedia-accelerator-walkthrough-poster.jpg';
 import expediaAdPortalImage from '../../assets/expedia-ad-portal-card.png';
 import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
@@ -29,6 +30,10 @@ export interface ProjectItem {
   /** Omit when the tile has no screenshot (matte frame only). */
   image?: string;
   imageAlt?: string;
+  /** Silent looping recording shown in place of `image`; plays only while the card is in view. */
+  video?: string;
+  /** Still frame shown before the recording loads. */
+  videoPoster?: string;
   caseStudyRoute: CaseStudyRoute;
   /** When true, case study is not available; show "Coming soon" and do not link. */
   comingSoon?: boolean;
@@ -54,9 +59,10 @@ export const projects: ProjectItem[] = [
     description:
       'I led the redesign of Partner Central’s Accelerator so hotels could launch and optimize search visibility campaigns.',
     period: '2025–2026',
-    image: expediaAcceleratorImage,
-    imageAlt:
-      'Expedia Group Partner Central — Performance and market trends, competitive set comparison, revenue and ADR summary',
+    video: expediaAcceleratorWalkthrough,
+    videoPoster: expediaAcceleratorWalkthroughPoster,
+    imageAlt: 'Walkthrough of creating and managing an Accelerator in Expedia Group Partner Central',
+    imageObjectFit: 'contain',
     caseStudyRoute: 'case-study-expedia-accelerator',
     hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
     metrics: [
