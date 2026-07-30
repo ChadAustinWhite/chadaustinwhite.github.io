@@ -263,8 +263,13 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
   const hasAccordion = (chapter.accordion?.length ?? 0) > 0;
   const metricsAfterLead =
     chapter.metricsPosition === 'afterLead' && (chapter.metrics?.length ?? 0) > 0;
+  const metricsBeforeVideo =
+    chapter.metricsPosition === 'beforeVideo' && (chapter.metrics?.length ?? 0) > 0;
   const metricsAfterContent =
-    chapter.metricsPosition !== 'afterLead' && (chapter.metrics?.length ?? 0) > 0;
+    chapter.metricsPosition !== 'afterLead' &&
+    chapter.metricsPosition !== 'beforeVideo' &&
+    (chapter.metrics?.length ?? 0) > 0;
+  const firstVideoSubsectionIndex = chapter.subsections.findIndex((sub) => Boolean(sub.video));
 
   return (
     <section className={`${GUTTER} case-study-instrument__chapter-wrap`}>
@@ -359,7 +364,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         <CaseStudyInstrumentBentoGrid key={`${chapter.title}-bento-${i}`} grid={grid} />
       ))}
 
-      {chapter.subsections.map((sub) => {
+      {chapter.subsections.map((sub, subIndex) => {
         const hasCopy =
           (sub.paragraphs?.length ?? 0) > 0 || (sub.bullets?.length ?? 0) > 0;
 
@@ -371,6 +376,15 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
                 title={sub.title}
                 paragraphs={sub.paragraphs}
                 bullets={sub.bullets}
+              />
+            </div>
+          ) : null}
+          {metricsBeforeVideo && subIndex === firstVideoSubsectionIndex ? (
+            <div className={`${CONTENT} mt-10 md:mt-12`}>
+              <InstrumentMetrics
+                metrics={chapter.metrics!}
+                variant={chapter.metricsVariant}
+                eyebrow={chapter.metricsEyebrow}
               />
             </div>
           ) : null}

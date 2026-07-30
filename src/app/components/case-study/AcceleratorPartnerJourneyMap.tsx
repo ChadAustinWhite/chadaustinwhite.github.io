@@ -43,6 +43,16 @@ const PHASES = [
     tone: 'discover' as const,
     steps: [
       {
+        title: 'Accessibility compliance',
+        insight: 'Legacy screens missed WCAG marks, so some partners stalled at the door.',
+        friction: 4,
+        facts: [
+          'Color contrast and focus states fell short of WCAG 2.1 AA.',
+          'Keyboard and screen reader users could not complete the flow.',
+          'Compliance became a prerequisite for launch, not a follow-up.',
+        ],
+      },
+      {
         title: 'Discover Accelerator',
         insight: 'Partners dig through left nav. The product is hard to locate.',
         friction: 4,
