@@ -37,12 +37,12 @@ function ProjectCardVideo({
   src,
   poster,
   label,
-  className,
+  aspectRatio,
 }: {
   src: string;
   poster?: string;
   label?: string;
-  className: string;
+  aspectRatio?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const inView = useInView(videoRef, { amount: 0.4 });
@@ -64,19 +64,22 @@ function ProjectCardVideo({
   }, [inView, reducedMotion]);
 
   return (
-    <video
-      ref={videoRef}
-      className={className}
-      poster={poster}
-      preload="none"
-      muted
-      loop
-      playsInline
-      controls={reducedMotion}
-      aria-label={label}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    <div className="flex h-full min-h-0 w-full items-center justify-center">
+      <video
+        ref={videoRef}
+        className="m-auto max-h-full w-full overflow-hidden rounded-xl bg-transparent object-cover"
+        style={{ aspectRatio, maxWidth: aspectRatio ? undefined : '100%' }}
+        poster={poster}
+        preload="none"
+        muted
+        loop
+        playsInline
+        controls={reducedMotion}
+        aria-label={label}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    </div>
   );
 }
 
@@ -121,7 +124,7 @@ export function ProjectCard({
               src={project.video!}
               poster={project.videoPoster}
               label={project.imageAlt}
-              className={imgSizingClass}
+              aspectRatio={project.videoAspectRatio}
             />
           ) : cappedContain ? (
             <div className="flex h-full min-h-0 w-full items-center justify-center p-3 md:p-5">
