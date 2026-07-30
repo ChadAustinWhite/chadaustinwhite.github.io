@@ -167,8 +167,8 @@ export interface CaseStudyInstrumentChapter {
   metricsVariant?: 'kpi' | 'strip' | 'ticker' | 'highlight';
   /** Small label above metrics (e.g. “Before Dispute Defender”). */
   metricsEyebrow?: string;
-  /** When `afterLead`, KPI row renders under chapter copy and before media. */
-  metricsPosition?: 'afterLead' | 'afterContent';
+  /** Controls whether KPIs render after the lead, before the first video, or after all content. */
+  metricsPosition?: 'afterLead' | 'beforeVideo' | 'afterContent';
   /** KPI row beside a product UI image (e.g. rate plan types + launch metrics). */
   metricsPanel?: CaseStudyInstrumentMetricsPanel;
   /** Interactive product demo rendered after chapter lead. */
