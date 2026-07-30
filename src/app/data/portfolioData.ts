@@ -2,6 +2,7 @@ import expediaAcceleratorWalkthrough from '../../assets/expedia-accelerator-walk
 import expediaAcceleratorWalkthroughPoster from '../../assets/expedia-accelerator-walkthrough-poster.jpg';
 import expediaAdPortalWalkthrough from '../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../assets/expedia-ad-portal-walkthrough-poster.jpg';
+import illustrationsCafeRacerImage from '../../assets/illustrations-cafe-racer.png';
 import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -10,7 +11,8 @@ export type CaseStudyRoute =
   | 'case-study-expedia-accelerator'
   | 'case-study-expedia-ad-portal'
   | 'case-study-worldpay-merchant-onboarding'
-  | 'case-study-worldpay-sso';
+  | 'case-study-worldpay-sso'
+  | 'illustrations';
 
 export interface ProjectHoverCanvas {
   dark: string;
@@ -56,8 +58,8 @@ export interface ProjectItem {
    * `charcoal`: dark matte behind `contain` mockups so light UI contrasts (Expedia thumbnails use standard border tone).
    */
   imageMediaMatteTone?: 'default' | 'charcoal';
-  /** Two headline stats shown on the project card (large value above label). */
-  metrics: [ProjectMetric, ProjectMetric];
+  /** Two headline stats shown on the project card (large value above label). Omit for non-metric work. */
+  metrics?: [ProjectMetric, ProjectMetric];
 }
 
 export const projects: ProjectItem[] = [
@@ -127,6 +129,16 @@ export const projects: ProjectItem[] = [
       { label: 'partner markets', value: '12+' },
       { label: 'support escalations', value: '-28%' },
     ],
+  },
+  {
+    title: 'Selected visual work',
+    description:
+      'Visual work for brands and companies, spanning apparel graphics, campaign artwork, and custom illustration.',
+    period: '2022–Present',
+    image: illustrationsCafeRacerImage,
+    imageAlt: 'Line illustration of a rider leaning into a cafe racer motorcycle',
+    caseStudyRoute: 'illustrations',
+    hoverCanvas: { dark: '#232130', light: '#ebe9f1' },
   },
 ];
 

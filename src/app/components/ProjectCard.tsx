@@ -67,7 +67,7 @@ function ProjectCardVideo({
     <div className="flex h-full min-h-0 w-full items-center justify-center">
       <video
         ref={videoRef}
-        className="m-auto max-h-full w-full overflow-hidden rounded-xl bg-transparent object-cover"
+        className="m-auto max-h-full w-full overflow-hidden rounded-2xl bg-transparent object-cover"
         style={{ aspectRatio, maxWidth: aspectRatio ? undefined : '100%' }}
         poster={poster}
         preload="none"
@@ -105,8 +105,8 @@ export function ProjectCard({
       }`;
 
   return (
-    <article className="project-card overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]">
-      <div className="flex flex-col gap-6 p-6 md:gap-8 md:p-10 md:pb-9">
+    <article className="project-card h-full overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]">
+      <div className="flex h-full flex-col gap-6 p-6 md:gap-8 md:p-10 md:pb-9">
         <header className="flex flex-col items-start gap-4 md:gap-5">
           <span className="inline-flex rounded-full bg-[var(--bg)] px-5 py-3.5 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:px-5 md:py-2 md:text-[13px]">
             {project.period}
@@ -157,25 +157,27 @@ export function ProjectCard({
           )}
         </div>
 
-        <div className="flex flex-col gap-7 md:gap-8">
+        <div className="flex flex-1 flex-col gap-7 md:gap-8">
           <p className="max-w-[40rem] text-[0.95rem] leading-relaxed text-[var(--ink)] md:text-[1.05rem] md:leading-[1.55]">
             {project.description}
           </p>
 
-          <div className="grid grid-cols-2 gap-x-8 gap-y-5">
-            {project.metrics.map((metric) => (
-              <div key={metric.label} className="min-w-0">
-                <p className="serif-headline text-[1.85rem] font-normal leading-none tracking-[-0.03em] text-[var(--ink)] tabular-nums md:text-[2.35rem]">
-                  {metric.value}
-                </p>
-                <p className="mt-2 text-sm leading-snug text-[var(--ink-muted)] md:text-[0.95rem]">
-                  {metric.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          {project.metrics?.length ? (
+            <div className="grid grid-cols-2 gap-x-8 gap-y-5">
+              {project.metrics.map((metric) => (
+                <div key={metric.label} className="min-w-0">
+                  <p className="serif-headline text-[1.85rem] font-normal leading-none tracking-[-0.03em] text-[var(--ink)] tabular-nums md:text-[2.35rem]">
+                    {metric.value}
+                  </p>
+                  <p className="mt-2 text-sm leading-snug text-[var(--ink-muted)] md:text-[0.95rem]">
+                    {metric.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          ) : null}
 
-          <div className="flex w-full justify-stretch md:justify-start">
+          <div className="mt-auto flex w-full justify-stretch md:justify-start">
             {project.comingSoon ? (
               <button
                 type="button"

@@ -3,6 +3,7 @@ import { HomeLayout } from './components/HomeLayout';
 import { CaseStudyLayout } from './components/case-study/CaseStudyLayout';
 import { CaseStudyPage } from './components/case-study/CaseStudyPage';
 import { CaseStudyPlaceholder } from './components/case-study/CaseStudyPlaceholder';
+import { SelectedVisualWorkPage } from './components/case-study/SelectedVisualWorkPage';
 import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
@@ -23,6 +24,7 @@ const COMING_SOON_ROUTES: CaseStudyRoute[] = [
 const PUBLIC_CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-accelerator',
   'case-study-worldpay-disputes',
+  'illustrations',
 ];
 
 type PageType = 'home' | CaseStudyRoute;
@@ -43,6 +45,8 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
       return 'Worldpay SSO Management';
     case 'case-study-worldpay-disputes':
       return worldpayDisputeDefenderContent.title;
+    case 'illustrations':
+      return 'Selected visual work';
     default:
       return 'Case study';
   }
@@ -122,6 +126,12 @@ export default function App() {
               currentRoute={route}
               onViewCaseStudy={handleViewCaseStudy}
             />
+          </CaseStudyLayout>
+        );
+      case 'illustrations':
+        return (
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <SelectedVisualWorkPage onBack={handleBackFromCaseStudy} />
           </CaseStudyLayout>
         );
       default:
