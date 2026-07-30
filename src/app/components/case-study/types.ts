@@ -111,6 +111,13 @@ export interface CaseStudyInstrumentImage {
   parallaxDelay?: string;
 }
 
+export interface CaseStudyInstrumentVideo {
+  src: string;
+  poster?: string;
+  title: string;
+  caption?: string;
+}
+
 /** Instrument work page bento: tall primary left, two stacked right (servicenow-rebrand). */
 export interface CaseStudyInstrumentBentoGrid {
   primary: CaseStudyInstrumentImage;
@@ -123,6 +130,8 @@ export interface CaseStudyInstrumentSubsection {
   title: string;
   paragraphs?: string[];
   bullets?: string[];
+  /** Recording displayed directly under the subsection copy. */
+  video?: CaseStudyInstrumentVideo;
   image?: CaseStudyInstrumentImage;
   images?: CaseStudyInstrumentImage[];
   bentoGrid?: CaseStudyInstrumentBentoGrid;

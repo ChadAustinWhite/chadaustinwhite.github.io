@@ -5,6 +5,8 @@ import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-
 import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
 import expediaAcceleratorAffinityMapping from '../../../assets/expedia-accelerator-affinity-mapping.png';
 import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-data-analysis.png';
+import expediaAcceleratorWalkthrough from '../../../assets/expedia-accelerator-walkthrough.mp4';
+import expediaAcceleratorWalkthroughPoster from '../../../assets/expedia-accelerator-walkthrough-poster.jpg';
 /** Instrument ServiceNow-style narrative for Expedia Group Accelerator. */
 export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   clientName: 'Expedia Group Accelerator',
@@ -120,6 +122,11 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
             'Within three months of launch, partner visibility in search results rose roughly 30%. Campaign setup success reached 80% versus 54% with the previous solution. CSAT for the ads experience climbed 20 points; partner opt-in doubled in six months, contributing to a 15% lift in quarterly revenue from long-tail partners.',
             'CEO Ariane Gorin highlighted Accelerator as one of the company’s top-performing partner products at the Q1 2025 all-hands. The work was presented at an internal design summit and global partner forum, cited in QBR as a model for trust-first monetization, and reused as a template for next-gen partner tools.',
           ],
+          video: {
+            src: expediaAcceleratorWalkthrough,
+            poster: expediaAcceleratorWalkthroughPoster,
+            title: 'Accelerator product walkthrough',
+          },
         },
       ],
       metrics: [
