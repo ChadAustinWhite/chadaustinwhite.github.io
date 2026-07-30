@@ -6,6 +6,7 @@ import type {
   CaseStudyInstrumentChapter,
   CaseStudyInstrumentImage,
   CaseStudyInstrumentMetricsPanel,
+  CaseStudyInstrumentVideo,
   CaseStudySonosMetric,
 } from './types';
 import type { CaseStudyRoute } from '../../data/portfolioData';
@@ -237,6 +238,27 @@ function InstrumentSubsectionCopy({
 }
 
 
+function InstrumentVideo({ video }: { video: CaseStudyInstrumentVideo }) {
+  return (
+    <figure className="case-study-instrument__video">
+      <video
+        className="case-study-instrument__video-player"
+        controls
+        playsInline
+        preload="metadata"
+        poster={video.poster}
+        aria-label={video.title}
+      >
+        <source src={video.src} type="video/mp4" />
+        Your browser does not support embedded video.
+      </video>
+      {video.caption ? (
+        <figcaption className="case-study-instrument__caption mt-4">{video.caption}</figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter }) {
   const hasAccordion = (chapter.accordion?.length ?? 0) > 0;
   const metricsAfterLead =
@@ -346,6 +368,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
               bullets={sub.bullets}
             />
           </div>
+          {sub.video ? <InstrumentVideo video={sub.video} /> : null}
           {sub.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={sub.bentoGrid} /> : null}
           {sub.bentoGrids?.map((grid, i) => (
             <CaseStudyInstrumentBentoGrid key={`${sub.title}-bento-${i}`} grid={grid} />
