@@ -1,6 +1,7 @@
 import expediaAcceleratorWalkthrough from '../../assets/expedia-accelerator-walkthrough.mp4';
 import expediaAcceleratorWalkthroughPoster from '../../assets/expedia-accelerator-walkthrough-poster.jpg';
-import expediaAdPortalImage from '../../assets/expedia-ad-portal-card.png';
+import expediaAdPortalWalkthrough from '../../assets/expedia-ad-portal-walkthrough.mp4';
+import expediaAdPortalWalkthroughPoster from '../../assets/expedia-ad-portal-walkthrough-poster.jpg';
 import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -34,6 +35,12 @@ export interface ProjectItem {
   video?: string;
   /** Still frame shown before the recording loads. */
   videoPoster?: string;
+  /**
+   * Intrinsic ratio of `video` as a CSS `aspect-ratio`. The frame is sized to this so its
+   * rounded corners land on the recording's own edges, hiding the desktop wedges a screen
+   * recording leaves outside a rounded app window.
+   */
+  videoAspectRatio?: string;
   caseStudyRoute: CaseStudyRoute;
   /** When true, case study is not available; show "Coming soon" and do not link. */
   comingSoon?: boolean;
@@ -61,6 +68,7 @@ export const projects: ProjectItem[] = [
     period: '2025–2026',
     video: expediaAcceleratorWalkthrough,
     videoPoster: expediaAcceleratorWalkthroughPoster,
+    videoAspectRatio: '1920 / 1182',
     imageAlt: 'Walkthrough of creating and managing an Accelerator in Expedia Group Partner Central',
     imageObjectFit: 'contain',
     caseStudyRoute: 'case-study-expedia-accelerator',
@@ -107,9 +115,11 @@ export const projects: ProjectItem[] = [
     description:
       'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence across markets.',
     period: '2025',
-    image: expediaAdPortalImage,
-    imageAlt:
-      'Expedia Group Partner Central — Create a campaign with name, property, goal, and campaign structure guidance',
+    video: expediaAdPortalWalkthrough,
+    videoPoster: expediaAdPortalWalkthroughPoster,
+    videoAspectRatio: '1920 / 1128',
+    imageAlt: 'Walkthrough of creating a campaign in the Expedia Group Ad Portal',
+    imageObjectFit: 'contain',
     caseStudyRoute: 'case-study-expedia-ad-portal',
     comingSoon: true,
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
