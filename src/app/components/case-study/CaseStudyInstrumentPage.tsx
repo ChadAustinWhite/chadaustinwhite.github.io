@@ -359,26 +359,37 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         <CaseStudyInstrumentBentoGrid key={`${chapter.title}-bento-${i}`} grid={grid} />
       ))}
 
-      {chapter.subsections.map((sub) => (
+      {chapter.subsections.map((sub) => {
+        const hasCopy =
+          (sub.paragraphs?.length ?? 0) > 0 || (sub.bullets?.length ?? 0) > 0;
+
+        return (
         <div key={sub.title} className="case-study-instrument__subsection-block">
-          <div className={CONTENT}>
-            <InstrumentSubsectionCopy
-              title={sub.title}
-              paragraphs={sub.paragraphs}
-              bullets={sub.bullets}
-            />
-          </div>
+          {hasCopy ? (
+            <div className={CONTENT}>
+              <InstrumentSubsectionCopy
+                title={sub.title}
+                paragraphs={sub.paragraphs}
+                bullets={sub.bullets}
+              />
+            </div>
+          ) : null}
           {sub.video ? <InstrumentVideo video={sub.video} /> : null}
           {sub.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={sub.bentoGrid} /> : null}
           {sub.bentoGrids?.map((grid, i) => (
             <CaseStudyInstrumentBentoGrid key={`${sub.title}-bento-${i}`} grid={grid} />
           ))}
           {sub.image ? <InstrumentFigure image={sub.image} variant="content" /> : null}
-          {sub.images?.map((img, i) => (
-            <InstrumentFigure key={`${sub.title}-img-${i}`} image={img} variant="content" />
-          ))}
+          {sub.images?.length ? (
+            <div className="case-study-instrument__figure-row">
+              {sub.images.map((img, i) => (
+                <InstrumentFigure key={`${sub.title}-img-${i}`} image={img} variant="content" />
+              ))}
+            </div>
+          ) : null}
         </div>
-      ))}
+        );
+      })}
 
       {chapter.metricsPanel ? (
         <InstrumentMetricsPanel panel={chapter.metricsPanel} />

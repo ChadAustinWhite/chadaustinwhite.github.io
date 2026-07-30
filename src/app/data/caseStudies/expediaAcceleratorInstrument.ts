@@ -2,9 +2,10 @@ import type { CaseStudyInstrumentContent } from '../../components/case-study/typ
 import expediaAcceleratorPerformanceMarketTrends from '../../../assets/expedia-accelerator-performance-market-trends.png';
 import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-accelerator-observations-create-flow.png';
 import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-accelerator-observations-impact-phases.png';
-import expediaAcceleratorNorthstarVisionMiro from '../../../assets/expedia-accelerator-northstar-vision-miro.png';
-import expediaAcceleratorAffinityMapping from '../../../assets/expedia-accelerator-affinity-mapping.png';
-import expediaAcceleratorDataAnalysis from '../../../assets/expedia-accelerator-data-analysis.png';
+import expediaAcceleratorUiRatePlanMarketplace from '../../../assets/expedia-accelerator-ui-rate-plan-marketplace.png';
+import expediaAcceleratorUiMetricCardsLift from '../../../assets/expedia-accelerator-ui-metric-cards-lift.png';
+import expediaAcceleratorProductUiCreate from '../../../assets/expedia-accelerator-product-ui-create.png';
+import expediaAcceleratorProductUiPerformance from '../../../assets/expedia-accelerator-product-ui-performance.png';
 import expediaAcceleratorWalkthrough from '../../../assets/expedia-accelerator-walkthrough.mp4';
 import expediaAcceleratorWalkthroughPoster from '../../../assets/expedia-accelerator-walkthrough-poster.jpg';
 /** Instrument ServiceNow-style narrative for Expedia Group Accelerator. */
@@ -77,7 +78,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Inductive vs. Deductive',
       lead:
         'We paired inductive discovery (journey mapping and heuristic synthesis from partner feedback) with deductive validation through loyalty and performance data, so every design bet was grounded in what partners said and what the numbers showed.',
-      subsections: [],
       stackedImages: [
         {
           src: expediaAcceleratorObservationsCreateFlow,
@@ -92,26 +92,41 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
           background: 'page',
         },
       ],
-      bentoGrid: {
-        primary: {
-          src: expediaAcceleratorNorthstarVisionMiro,
-          alt: 'Accelerator Northstar Vision collaboration journey map on Miro',
-          objectFit: 'contain',
-          background: 'page',
+      subsections: [
+        {
+          title: 'Product UI',
+          images: [
+            {
+              src: expediaAcceleratorUiRatePlanMarketplace,
+              alt: 'Accelerator rate plan and marketplace targeting options with radio selections',
+              objectFit: 'contain',
+              background: 'page',
+              padded: true,
+            },
+            {
+              src: expediaAcceleratorUiMetricCardsLift,
+              alt: 'Accelerator performance metric cards for sort order, page views, and search impressions',
+              objectFit: 'contain',
+              background: 'page',
+              padded: true,
+            },
+            {
+              src: expediaAcceleratorProductUiCreate,
+              alt: 'Legacy Partner Central Create an Accelerator form',
+              objectFit: 'contain',
+              background: 'page',
+              padded: true,
+            },
+            {
+              src: expediaAcceleratorProductUiPerformance,
+              alt: 'Legacy Partner Central Accelerator performance report',
+              objectFit: 'contain',
+              background: 'page',
+              padded: true,
+            },
+          ],
         },
-        secondary: {
-          src: expediaAcceleratorAffinityMapping,
-          alt: 'XLR and OneKeyCash heuristic evaluation affinity mapping on Miro',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        tertiary: {
-          src: expediaAcceleratorDataAnalysis,
-          alt: 'XLR loyalty OneKeyCash Looker dashboard with spend, GBV, and booking metrics',
-          objectFit: 'contain',
-          background: 'page',
-        },
-      },
+      ],
     },
     {
       title: 'The Result',

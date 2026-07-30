@@ -309,28 +309,41 @@ html.home-canvas-interactive .site-nav-surface {
   outline-offset: 3px;
 }
 
+.sonos-subpoint-accordion {
+  --sonos-accordion-ease: cubic-bezier(0.65, 0, 0.35, 1);
+  --sonos-accordion-duration: 620ms;
+}
+
 .sonos-subpoint-accordion__item {
   transition:
-    border-radius 420ms cubic-bezier(0.33, 1, 0.68, 1),
+    border-radius var(--sonos-accordion-duration) var(--sonos-accordion-ease),
     background-color 280ms ease-out;
 }
 
 .sonos-subpoint-accordion__panel {
-  transition: grid-template-rows 420ms cubic-bezier(0.33, 1, 0.68, 1);
+  overflow: hidden;
+  transition: height var(--sonos-accordion-duration) var(--sonos-accordion-ease);
+  will-change: height;
 }
 
 .sonos-subpoint-accordion__panel-body {
   opacity: 0;
-  transition: opacity 320ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition: opacity 200ms ease-out;
 }
 
 .sonos-subpoint-accordion__item.is-open .sonos-subpoint-accordion__panel-body {
   opacity: 1;
-  transition-delay: 120ms;
+  transition: opacity 460ms ease-out 80ms;
 }
 
 .sonos-subpoint-accordion__icon-vertical {
-  transition: opacity 280ms cubic-bezier(0.33, 1, 0.68, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--sonos-accordion-duration) var(--sonos-accordion-ease);
+}
+
+.sonos-subpoint-accordion__item.is-open .sonos-subpoint-accordion__icon-vertical {
+  transform: scaleY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2184,6 +2197,36 @@ html.home-canvas-interactive .site-nav-surface {
 
 .case-study-instrument__subsection-block {
   margin-top: clamp(2.5rem, 6vw, 3.5rem);
+}
+
+/* Two-up figure row (e.g. paired product UI screens). */
+.case-study-instrument__figure-row {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  width: 100%;
+  max-width: 72rem;
+  margin-block: clamp(1.5rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .case-study-instrument__figure-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.case-study-instrument__figure-row .case-study-instrument__figure {
+  margin-block: 0;
+  padding-inline: 0;
+}
+
+.case-study-instrument__figure-row .case-study-instrument__figure-media {
+  height: 100%;
+}
+
+.case-study-instrument__figure-row .case-study-instrument__figure-img {
+  border-radius: clamp(10px, 1.2vw, 14px);
 }
 
 .case-study-instrument__figure--bleed,
