@@ -57,7 +57,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'Expedia Group accelerator',
     description:
-      'I led the redesign of Partner Central’s Accelerator so hotels could launch and optimize search visibility campaigns.',
+      'I led the redesign of Expedia Group’s Accelerator so hotels could launch and optimize search visibility campaigns.',
     period: '2025–2026',
     video: expediaAcceleratorWalkthrough,
     videoPoster: expediaAcceleratorWalkthroughPoster,
