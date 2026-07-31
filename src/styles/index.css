@@ -544,7 +544,7 @@ html.home-canvas-interactive .site-nav-surface {
 .case-study-instrument__stacked-figures {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.25rem, 3vw, 2rem);
+  gap: clamp(0.5rem, 1.2vw, 0.75rem);
   width: 100%;
   max-width: 90rem;
   margin-top: clamp(2rem, 5vw, 3rem);
@@ -554,17 +554,24 @@ html.home-canvas-interactive .site-nav-surface {
   max-width: 46rem;
 }
 
-.case-study-instrument__stacked-figures .case-study-instrument__figure--bleed {
+.case-study-instrument__stacked-figures .case-study-instrument__figure--bleed,
+.case-study-instrument__stacked-figures .case-study-instrument__figure--padded {
   width: 100%;
   max-width: 100%;
   margin-inline: 0;
   margin-block: 0;
+  padding-inline: 0;
 }
 
 .case-study-instrument__stacked-figures .case-study-instrument__figure-media {
   border-radius: clamp(10px, 1.2vw, 14px);
   overflow: hidden;
   min-height: clamp(14rem, 36vw, 22rem);
+}
+
+.case-study-instrument__stacked-figures .case-study-instrument__figure--padded .case-study-instrument__figure-media {
+  border-radius: clamp(10px, 1.2vw, 14px);
+  overflow: hidden;
 }
 
 .case-study-instrument__stacked-figures .case-study-instrument__parallax-media--figure {

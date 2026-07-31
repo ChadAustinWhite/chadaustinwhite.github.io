@@ -116,6 +116,18 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
           objectFit: 'contain',
           background: 'page',
         },
+        {
+          src: expediaAcceleratorProductUiCreate,
+          alt: 'Partner Central Create an Accelerator form',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: expediaAcceleratorProductUiPerformance,
+          alt: 'Partner Central Accelerator performance report',
+          objectFit: 'contain',
+          background: 'page',
+        },
       ],
       subsections: [
         {
@@ -131,20 +143,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
             {
               src: expediaAcceleratorUiMetricCardsLift,
               alt: 'Accelerator performance metric cards for sort order, page views, and search impressions',
-              objectFit: 'contain',
-              background: 'page',
-              padded: true,
-            },
-            {
-              src: expediaAcceleratorProductUiCreate,
-              alt: 'Legacy Partner Central Create an Accelerator form',
-              objectFit: 'contain',
-              background: 'page',
-              padded: true,
-            },
-            {
-              src: expediaAcceleratorProductUiPerformance,
-              alt: 'Legacy Partner Central Accelerator performance report',
               objectFit: 'contain',
               background: 'page',
               padded: true,
@@ -204,7 +202,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   ],
   closing: {
     paragraphs: [
-      'Much like Expedia’s ambitions for Accelerator, the work is far from done. What began as a redesign of a legacy partner tool has become an ongoing playbook for trust-first monetization—from predictive campaign insights to personalized suggestions from performance and market signals, and expansion across email, retargeting, and in-app placements.',
+      'Much like Expedia’s ambitions for Accelerator, the work is far from done. What began as a redesign of a legacy partner tool has become an ongoing playbook for trust-first monetization, from predictive campaign insights to personalized suggestions from performance and market signals, and expansion across email, retargeting, and in-app placements.',
     ],
   },
 };
