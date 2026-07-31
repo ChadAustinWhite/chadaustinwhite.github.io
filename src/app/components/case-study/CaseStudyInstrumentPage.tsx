@@ -21,6 +21,7 @@ import { MerchantDisputeEmotionMap } from './MerchantDisputeEmotionMap';
 import { AcceleratorSearchVisibilityDemo } from './AcceleratorSearchVisibilityDemo';
 import { AcceleratorPartnerJourneyMap } from './AcceleratorPartnerJourneyMap';
 import { AcceleratorHookModelFlow } from './AcceleratorHookModelFlow';
+import { AdPortalPaymentArchitecture } from './AdPortalPaymentArchitecture';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -337,6 +338,12 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       {chapter.chapterVisual === 'accelerator-hook-model' ? (
         <div className="case-study-instrument__chapter-visual mt-8 md:mt-10 w-full max-w-[90rem]">
           <AcceleratorHookModelFlow />
+        </div>
+      ) : null}
+
+      {chapter.chapterVisual === 'ad-portal-payment-architecture' ? (
+        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14 md:max-w-[72rem]`}>
+          <AdPortalPaymentArchitecture />
         </div>
       ) : null}
 

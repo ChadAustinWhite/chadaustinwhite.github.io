@@ -178,7 +178,8 @@ export interface CaseStudyInstrumentChapter {
     | 'merchant-dispute-emotion-map'
     | 'accelerator-search-visibility'
     | 'accelerator-partner-journey'
-    | 'accelerator-hook-model';
+    | 'accelerator-hook-model'
+    | 'ad-portal-payment-architecture';
   /** Render this chapter after `leadImages` and before `leadBento` / hero images. */
   beforeLeadBento?: boolean;
   /** When set, scroll background stays at its start color until this chapter has scrolled past. */
