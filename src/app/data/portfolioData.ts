@@ -84,6 +84,23 @@ export const projects: ProjectItem[] = [
     ],
   },
   {
+    title: 'Expedia Group ad portal',
+    description:
+      'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence across markets.',
+    period: '2025',
+    video: expediaAdPortalWalkthrough,
+    videoPoster: expediaAdPortalWalkthroughPoster,
+    videoAspectRatio: '1920 / 1128',
+    imageAlt: 'Walkthrough of creating a campaign in the Expedia Group Ad Portal',
+    imageObjectFit: 'contain',
+    caseStudyRoute: 'case-study-expedia-ad-portal',
+    hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
+    metrics: [
+      { label: 'partner markets', value: '12+' },
+      { label: 'support escalations', value: '-28%' },
+    ],
+  },
+  {
     title: 'Worldpay dispute defender',
     description:
       'I designed automated dispute resolution that protects merchant revenue and replaces manual triage with clarity operators can trust.',
@@ -113,23 +130,6 @@ export const projects: ProjectItem[] = [
     metrics: [
       { label: 'onboarding completion', value: '+32%' },
       { label: 'time to activate', value: '-40%' },
-    ],
-  },
-  {
-    title: 'Expedia Group ad portal',
-    description:
-      'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence across markets.',
-    period: '2025',
-    video: expediaAdPortalWalkthrough,
-    videoPoster: expediaAdPortalWalkthroughPoster,
-    videoAspectRatio: '1920 / 1128',
-    imageAlt: 'Walkthrough of creating a campaign in the Expedia Group Ad Portal',
-    imageObjectFit: 'contain',
-    caseStudyRoute: 'case-study-expedia-ad-portal',
-    hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
-    metrics: [
-      { label: 'partner markets', value: '12+' },
-      { label: 'support escalations', value: '-28%' },
     ],
   },
   {

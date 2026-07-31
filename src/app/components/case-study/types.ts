@@ -202,6 +202,11 @@ export interface CaseStudyInstrumentContent {
   projectName: string;
   breadcrumb?: string;
   tags?: string[];
+  /**
+   * When true, all figures and video frames use rounded corners (including padded
+   * screenshots that otherwise skip radius to avoid cropping baked-in chrome).
+   */
+  roundedMedia?: boolean;
   lead: string;
   /** ROLE / COMPANY / STAKEHOLDER / DEVICE-style columns under the headline. */
   overviewCategories?: CaseStudyInstrumentOverviewCategory[];

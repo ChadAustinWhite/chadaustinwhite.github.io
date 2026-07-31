@@ -15,7 +15,7 @@ export const expediaAdPortalContent: CaseStudyContent = {
     duration: '2025',
   },
   tagline:
-    'A unified, modern portal for advertising partners to manage campaigns, payments, and access with confidence.',
+    'A unified, modern portal for partners working with Expedia to manage campaigns, payments, and access with confidence.',
   projectFocus: ['Travel', 'B2B', 'Advertising'],
   images: expediaAdPortalImage,
   instrument: expediaAdPortalInstrument,

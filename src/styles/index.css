@@ -2622,6 +2622,29 @@ html.home-canvas-interactive .site-nav-surface {
   align-items: flex-start;
 }
 
+/* Soften square UI frames (e.g. Ad Portal) without cropping Accelerator chrome screenshots. */
+.case-study-instrument--rounded-media .case-study-instrument__figure-media,
+.case-study-instrument--rounded-media .case-study-instrument__figure--padded .case-study-instrument__figure-media,
+.case-study-instrument--rounded-media .case-study-instrument__figure-row .case-study-instrument__figure-media {
+  border-radius: clamp(10px, 1.2vw, 14px);
+  overflow: hidden;
+}
+
+.case-study-instrument--rounded-media .case-study-instrument__figure--padded .case-study-instrument__parallax-media--figure,
+.case-study-instrument--rounded-media .case-study-instrument__parallax-media--figure {
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.case-study-instrument--rounded-media .case-study-instrument__figure-img,
+.case-study-instrument--rounded-media .case-study-instrument__figure-row .case-study-instrument__figure-img {
+  border-radius: clamp(10px, 1.2vw, 14px);
+}
+
+.case-study-instrument--rounded-media .case-study-instrument__video-player {
+  border-radius: clamp(10px, 1.2vw, 14px);
+}
+
 .case-study-instrument__bento-shell {
   margin-inline: auto;
   max-width: 90rem;
