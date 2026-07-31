@@ -126,7 +126,6 @@ export const projects: ProjectItem[] = [
     imageAlt: 'Walkthrough of creating a campaign in the Expedia Group Ad Portal',
     imageObjectFit: 'contain',
     caseStudyRoute: 'case-study-expedia-ad-portal',
-    comingSoon: true,
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
     metrics: [
       { label: 'partner markets', value: '12+' },
