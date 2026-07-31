@@ -25,15 +25,15 @@ type JourneyStep = {
 };
 
 /**
- * Cool → warm sequential scale (color theory / arousal encoding):
- * cooler hues read as calmer / lower urgency; warmer hues advance and signal higher friction.
+ * Editorial friction scale: cool calm → warm urgency.
+ * Muted earth tones read as agency research viz, not default chart chrome.
  */
 const FRICTION_COLORS = {
-  1: '#4A7085',
-  2: '#3F8A7A',
-  3: '#C49A3C',
-  4: '#D06A32',
-  5: '#B83A3A',
+  1: '#6A8794',
+  2: '#5E8C81',
+  3: '#C9A04A',
+  4: '#D07A45',
+  5: '#C0453E',
 } as const;
 
 const PHASES = [
@@ -439,7 +439,7 @@ export function AcceleratorPartnerJourneyMap() {
                       className="accelerator-journey__grid-line"
                       style={{
                         top: `${((FRICTION_MAX - tick) / (FRICTION_MAX - 1)) * 100}%`,
-                        background: `color-mix(in srgb, ${frictionColor(tick)} 22%, transparent)`,
+                        background: `color-mix(in srgb, ${frictionColor(tick)} 28%, transparent)`,
                       }}
                     />
                   ))}
@@ -476,7 +476,7 @@ export function AcceleratorPartnerJourneyMap() {
                   <polyline
                     fill="none"
                     stroke={`url(#${trendGradientId})`}
-                    strokeWidth="2"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     vectorEffect="non-scaling-stroke"

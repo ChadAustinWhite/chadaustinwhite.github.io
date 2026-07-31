@@ -57,7 +57,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       beforeLeadBento: true,
       lead:
-        "Search visibility drives bookings and revenue. When partners can't optimize performance, they miss demand.",
+        'Search visibility drives bookings and revenue. Accelerator runs on a cost-per-click model, so Expedia earns a share when a traveler engages with the ad.',
       subsections: [],
       chapterVisual: 'accelerator-search-visibility',
     },
@@ -103,7 +103,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       ],
     },
     {
-      title: 'Inductive vs. Deductive',
+      title: 'Evidence-led design',
       lead:
         'We combined partner feedback, heuristics, and behavioral data to guide every design decision.',
       chapterVisual: 'accelerator-hook-model',
