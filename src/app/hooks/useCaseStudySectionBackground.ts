@@ -15,7 +15,7 @@ const CARD_BG_ON_LIGHT = '#efeeea';
 const NAV_PILL_ON_DARK = '#2a2a28';
 const NAV_PILL_ON_LIGHT = '#e8e7e3';
 
-const TRANSITION = 'background-color 0.4s ease-out, color 0.4s ease-out';
+const TRANSITION = 'background-color 0.2s ease-out, color 0.2s ease-out';
 
 export type CaseStudyScrollGradientMode = 'to-light' | 'to-dark';
 
@@ -38,16 +38,41 @@ function interpolateHex(hexStart: string, hexEnd: string, t: number): string {
   return rgbToHex(lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t));
 }
 
-/** Fraction of total scroll over which the transition completes (e.g. 0.35 = done by 35% scroll). */
+/** Fraction of total scroll used when no end marker is present. */
 const TRANSITION_SCROLL_FRACTION = 0.35;
 
-/** Ease t so we linger at the start color, then commit — reduces time in gray. Cubic ease-in. */
+/** Ease so we linger at the start color, then commit near the end marker. */
 function easeInCubic(t: number): number {
   return t * t * t;
 }
 
+/**
+ * Progress 0→1 for the scroll gradient.
+ * - `[data-scroll-gradient-start]`: stay at 0 until that section has scrolled past.
+ * - `[data-scroll-gradient-end]`: reach 1 as that section enters the upper viewport.
+ */
 function getScrollProgress(): number {
   const scrollY = window.scrollY;
+  const start = document.querySelector('[data-scroll-gradient-start]') as HTMLElement | null;
+  const end = document.querySelector('[data-scroll-gradient-end]') as HTMLElement | null;
+
+  if (start || end) {
+    const beginAt = start
+      ? start.getBoundingClientRect().bottom + scrollY
+      : 0;
+    const completeAt = end
+      ? Math.max(
+          beginAt + 1,
+          end.getBoundingClientRect().top + scrollY - window.innerHeight * 0.55,
+        )
+      : beginAt + Math.max(window.innerHeight, 1);
+
+    if (scrollY <= beginAt) return 0;
+    const range = Math.max(1, completeAt - beginAt);
+    const linear = Math.min(1, Math.max(0, (scrollY - beginAt) / range));
+    return easeInCubic(linear);
+  }
+
   const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   if (maxScroll <= 0) return 0;
   const raw = Math.max(0, scrollY / maxScroll);

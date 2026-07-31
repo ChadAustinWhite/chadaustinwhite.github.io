@@ -311,6 +311,14 @@ export function AcceleratorHookModelFlow() {
                     mode: 'inform',
                   }}
                 />
+                <Node
+                  node={{
+                    id: 'guidance',
+                    label: 'Guidance and coaching',
+                    kind: 'step',
+                    mode: 'inform',
+                  }}
+                />
               </div>
             </section>
 

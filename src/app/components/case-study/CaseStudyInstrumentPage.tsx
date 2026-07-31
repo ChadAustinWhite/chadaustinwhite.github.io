@@ -273,7 +273,11 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
   const firstVideoSubsectionIndex = chapter.subsections.findIndex((sub) => Boolean(sub.video));
 
   return (
-    <section className={`${GUTTER} case-study-instrument__chapter-wrap`}>
+    <section
+      className={`${GUTTER} case-study-instrument__chapter-wrap`}
+      {...(chapter.scrollGradientStart ? { 'data-scroll-gradient-start': '' } : {})}
+      {...(chapter.scrollGradientEnd ? { 'data-scroll-gradient-end': '' } : {})}
+    >
       <div className={CONTENT} data-parallax data-parallax-speed="0.05">
         <h2 className="case-study-instrument__chapter serif-headline text-left">{chapter.title}</h2>
         {(Array.isArray(chapter.lead) ? chapter.lead : chapter.lead ? [chapter.lead] : []).map(

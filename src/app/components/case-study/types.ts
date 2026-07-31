@@ -181,6 +181,10 @@ export interface CaseStudyInstrumentChapter {
     | 'accelerator-hook-model';
   /** Render this chapter after `leadImages` and before `leadBento` / hero images. */
   beforeLeadBento?: boolean;
+  /** When set, scroll background stays at its start color until this chapter has scrolled past. */
+  scrollGradientStart?: boolean;
+  /** When set, scroll background reaches its end color as this chapter enters view. */
+  scrollGradientEnd?: boolean;
 }
 
 /** Instrument work page (instrument.com/work/servicenow-rebrand). */
