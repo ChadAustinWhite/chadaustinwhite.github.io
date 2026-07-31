@@ -177,7 +177,8 @@ export interface CaseStudyInstrumentChapter {
   chapterVisual?:
     | 'merchant-dispute-emotion-map'
     | 'accelerator-search-visibility'
-    | 'accelerator-partner-journey';
+    | 'accelerator-partner-journey'
+    | 'accelerator-hook-model';
   /** Render this chapter after `leadImages` and before `leadBento` / hero images. */
   beforeLeadBento?: boolean;
 }
