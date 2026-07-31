@@ -345,7 +345,7 @@ interface CaseStudySonosPageProps {
 }
 
 export function CaseStudySonosPage({ content, onBack }: CaseStudySonosPageProps) {
-  useCaseStudySectionBackground(Boolean(content.scrollGradient));
+  useCaseStudySectionBackground(content.scrollGradient ?? false);
 
   const sonos = content.sonos;
   const sections = getSonosSections(content);

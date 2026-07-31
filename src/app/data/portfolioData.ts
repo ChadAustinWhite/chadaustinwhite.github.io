@@ -43,6 +43,8 @@ export interface ProjectItem {
    * recording leaves outside a rounded app window.
    */
   videoAspectRatio?: string;
+  /** Seconds into `video` to begin playback (and restart on loop). */
+  videoStartSeconds?: number;
   caseStudyRoute: CaseStudyRoute;
   /** When true, case study is not available; show "Coming soon" and do not link. */
   comingSoon?: boolean;
@@ -71,6 +73,7 @@ export const projects: ProjectItem[] = [
     video: expediaAcceleratorWalkthrough,
     videoPoster: expediaAcceleratorWalkthroughPoster,
     videoAspectRatio: '1920 / 1182',
+    videoStartSeconds: 4.4,
     imageAlt: 'Walkthrough of creating and managing an Accelerator in Expedia Group Partner Central',
     imageObjectFit: 'contain',
     caseStudyRoute: 'case-study-expedia-accelerator',

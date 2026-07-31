@@ -6,6 +6,7 @@ import expediaAcceleratorUiRatePlanMarketplace from '../../../assets/expedia-acc
 import expediaAcceleratorUiMetricCardsLift from '../../../assets/expedia-accelerator-ui-metric-cards-lift.png';
 import expediaAcceleratorProductUiCreate from '../../../assets/expedia-accelerator-product-ui-create.png';
 import expediaAcceleratorProductUiPerformance from '../../../assets/expedia-accelerator-product-ui-performance.png';
+import expediaAcceleratorUiCreateStayDatesRedesign from '../../../assets/expedia-accelerator-ui-create-stay-dates-redesign.png';
 import expediaAcceleratorWalkthrough from '../../../assets/expedia-accelerator-walkthrough.mp4';
 import expediaAcceleratorWalkthroughPoster from '../../../assets/expedia-accelerator-walkthrough-poster.jpg';
 /** Instrument ServiceNow-style narrative for Expedia Group Accelerator. */
@@ -126,6 +127,12 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         {
           src: expediaAcceleratorObservationsImpactPhases,
           alt: 'Figma observations linking discovery insights and UX requirements on Create an Accelerator impact phases',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: expediaAcceleratorUiCreateStayDatesRedesign,
+          alt: 'Redesigned Partner Central Create an Accelerator page with stay dates and blockout dates',
           objectFit: 'contain',
           background: 'page',
         },

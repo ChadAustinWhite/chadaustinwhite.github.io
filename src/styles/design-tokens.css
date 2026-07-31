@@ -166,12 +166,14 @@ section[id] {
 }
 
 html:has([data-case-study]:not([data-scroll-gradient])),
-html:has([data-case-study]:not([data-scroll-gradient])) body {
+html:has([data-case-study]:not([data-scroll-gradient])) body,
+html:has([data-case-study][data-scroll-gradient='to-dark']),
+html:has([data-case-study][data-scroll-gradient='to-dark']) body {
   background-color: #f5f4f0;
 }
 
-/* Scroll-gradient case studies start dark (hook animates to warm editorial). */
-[data-case-study][data-scroll-gradient] {
+/* Scroll-gradient: dark → warm editorial (hook animates to light). */
+[data-case-study][data-scroll-gradient='to-light'] {
   --bg: #0a0a0a;
   --ink: #f0f0ee;
   --ink-muted: #9c9890;
@@ -184,9 +186,23 @@ html:has([data-case-study]:not([data-scroll-gradient])) body {
   color-scheme: dark;
 }
 
-html:has([data-case-study][data-scroll-gradient]),
-html:has([data-case-study][data-scroll-gradient]) body {
+html:has([data-case-study][data-scroll-gradient='to-light']),
+html:has([data-case-study][data-scroll-gradient='to-light']) body {
   background-color: #0a0a0a;
+}
+
+/* Scroll-gradient: warm editorial → black (hook animates to dark). */
+[data-case-study][data-scroll-gradient='to-dark'] {
+  --bg: #f5f4f0;
+  --ink: #2d2d2d;
+  --ink-muted: #636363;
+  --ink-subtle: #8a8a8a;
+  --border: #e8e7e3;
+  --card-bg: #efeeea;
+  --nav-pill-bg: #e8e7e3;
+  --nav-bg: #f5f4f0;
+  --home-canvas-base: #f5f4f0;
+  color-scheme: light;
 }
 
 /* Case study body copy: match homepage 15px / 17px (Tailwind `text-base` is 16px). */

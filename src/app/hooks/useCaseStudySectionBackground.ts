@@ -1,21 +1,23 @@
 import { useEffect } from 'react';
 
-const BG_START = '#0a0a0a';
-const BG_END = '#f4f4f2';
-const INK_START = '#f0f0ee';
-const INK_END = '#2d2d2d';
-const INK_MUTED_START = '#9c9890';
-const INK_MUTED_END = '#636363';
-const INK_SUBTLE_START = '#7a7670';
-const INK_SUBTLE_END = '#8a8a8a';
-const BORDER_START = '#2a2a28';
-const BORDER_END = '#e8e7e3';
-const CARD_BG_START = '#1c1c1a';
-const CARD_BG_END = '#efeeea';
-const NAV_PILL_START = '#2a2a28';
-const NAV_PILL_END = '#e8e7e3';
+const BG_DARK = '#0a0a0a';
+const BG_LIGHT = '#f5f4f0';
+const INK_ON_DARK = '#f0f0ee';
+const INK_ON_LIGHT = '#2d2d2d';
+const INK_MUTED_ON_DARK = '#9c9890';
+const INK_MUTED_ON_LIGHT = '#636363';
+const INK_SUBTLE_ON_DARK = '#7a7670';
+const INK_SUBTLE_ON_LIGHT = '#8a8a8a';
+const BORDER_ON_DARK = '#2a2a28';
+const BORDER_ON_LIGHT = '#e8e7e3';
+const CARD_BG_ON_DARK = '#1c1c1a';
+const CARD_BG_ON_LIGHT = '#efeeea';
+const NAV_PILL_ON_DARK = '#2a2a28';
+const NAV_PILL_ON_LIGHT = '#e8e7e3';
 
 const TRANSITION = 'background-color 0.4s ease-out, color 0.4s ease-out';
+
+export type CaseStudyScrollGradientMode = 'to-light' | 'to-dark';
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t;
@@ -36,10 +38,10 @@ function interpolateHex(hexStart: string, hexEnd: string, t: number): string {
   return rgbToHex(lerp(r1, r2, t), lerp(g1, g2, t), lerp(b1, b2, t));
 }
 
-/** Fraction of total scroll over which the black→white transition completes (e.g. 0.35 = done by 35% scroll). */
+/** Fraction of total scroll over which the transition completes (e.g. 0.35 = done by 35% scroll). */
 const TRANSITION_SCROLL_FRACTION = 0.35;
 
-/** Ease t so we stay dark then snap to light—reduces time in gray. Cubic ease-in. */
+/** Ease t so we linger at the start color, then commit — reduces time in gray. Cubic ease-in. */
 function easeInCubic(t: number): number {
   return t * t * t;
 }
@@ -53,15 +55,38 @@ function getScrollProgress(): number {
   return easeInCubic(linear);
 }
 
-function applyScrollGradient(t: number) {
-  const bg = interpolateHex(BG_START, BG_END, t);
-  const ink = interpolateHex(INK_START, INK_END, t);
-  const inkMuted = interpolateHex(INK_MUTED_START, INK_MUTED_END, t);
-  const inkSubtle = interpolateHex(INK_SUBTLE_START, INK_SUBTLE_END, t);
-  const border = interpolateHex(BORDER_START, BORDER_END, t);
-  const cardBg = interpolateHex(CARD_BG_START, CARD_BG_END, t);
-  const navPillBg = interpolateHex(NAV_PILL_START, NAV_PILL_END, t);
+function resolveMode(mode: boolean | CaseStudyScrollGradientMode): CaseStudyScrollGradientMode | null {
+  if (!mode) return null;
+  if (mode === 'to-dark') return 'to-dark';
+  return 'to-light';
+}
 
+function applyScrollGradient(t: number, direction: CaseStudyScrollGradientMode) {
+  const fromBg = direction === 'to-dark' ? BG_LIGHT : BG_DARK;
+  const toBg = direction === 'to-dark' ? BG_DARK : BG_LIGHT;
+  const fromInk = direction === 'to-dark' ? INK_ON_LIGHT : INK_ON_DARK;
+  const toInk = direction === 'to-dark' ? INK_ON_DARK : INK_ON_LIGHT;
+  const fromInkMuted = direction === 'to-dark' ? INK_MUTED_ON_LIGHT : INK_MUTED_ON_DARK;
+  const toInkMuted = direction === 'to-dark' ? INK_MUTED_ON_DARK : INK_MUTED_ON_LIGHT;
+  const fromInkSubtle = direction === 'to-dark' ? INK_SUBTLE_ON_LIGHT : INK_SUBTLE_ON_DARK;
+  const toInkSubtle = direction === 'to-dark' ? INK_SUBTLE_ON_DARK : INK_SUBTLE_ON_LIGHT;
+  const fromBorder = direction === 'to-dark' ? BORDER_ON_LIGHT : BORDER_ON_DARK;
+  const toBorder = direction === 'to-dark' ? BORDER_ON_DARK : BORDER_ON_LIGHT;
+  const fromCardBg = direction === 'to-dark' ? CARD_BG_ON_LIGHT : CARD_BG_ON_DARK;
+  const toCardBg = direction === 'to-dark' ? CARD_BG_ON_DARK : CARD_BG_ON_LIGHT;
+  const fromNavPill = direction === 'to-dark' ? NAV_PILL_ON_LIGHT : NAV_PILL_ON_DARK;
+  const toNavPill = direction === 'to-dark' ? NAV_PILL_ON_DARK : NAV_PILL_ON_LIGHT;
+
+  const bg = interpolateHex(fromBg, toBg, t);
+  const ink = interpolateHex(fromInk, toInk, t);
+  const inkMuted = interpolateHex(fromInkMuted, toInkMuted, t);
+  const inkSubtle = interpolateHex(fromInkSubtle, toInkSubtle, t);
+  const border = interpolateHex(fromBorder, toBorder, t);
+  const cardBg = interpolateHex(fromCardBg, toCardBg, t);
+  const navPillBg = interpolateHex(fromNavPill, toNavPill, t);
+
+  document.documentElement.style.transition = TRANSITION;
+  document.documentElement.style.backgroundColor = bg;
   document.body.style.transition = TRANSITION;
   document.body.style.backgroundColor = bg;
 
@@ -82,10 +107,15 @@ function applyScrollGradient(t: number) {
     wrapper.style.setProperty('--nav-pill-bg', navPillBg);
     wrapper.style.setProperty('--nav-bg', bg);
     wrapper.style.setProperty('--home-canvas-base', bg);
+    const preferDark =
+      (direction === 'to-dark' && t > 0.5) || (direction === 'to-light' && t < 0.5);
+    wrapper.style.colorScheme = preferDark ? 'dark' : 'light';
   }
 }
 
 function clearScrollGradient() {
+  document.documentElement.style.backgroundColor = '';
+  document.documentElement.style.transition = '';
   document.body.style.backgroundColor = '';
   document.body.style.transition = '';
   const nav = document.getElementById('site-nav');
@@ -105,21 +135,27 @@ function clearScrollGradient() {
     wrapper.style.removeProperty('--nav-pill-bg');
     wrapper.style.removeProperty('--nav-bg');
     wrapper.style.removeProperty('--home-canvas-base');
+    wrapper.style.removeProperty('color-scheme');
   }
 }
 
-/** Dark → warm editorial gradient driven by vertical scroll on case study pages. */
-export function useCaseStudySectionBackground(enabled: boolean) {
+/**
+ * Scroll-driven case study background.
+ * - `true` / `'to-light'`: black → warm editorial
+ * - `'to-dark'`: warm editorial → black
+ */
+export function useCaseStudySectionBackground(mode: boolean | CaseStudyScrollGradientMode) {
   useEffect(() => {
-    if (!enabled) return;
+    const direction = resolveMode(mode);
+    if (!direction) return;
 
     const wrapper = document.querySelector('[data-case-study]') as HTMLElement | null;
-    wrapper?.setAttribute('data-scroll-gradient', '');
+    wrapper?.setAttribute('data-scroll-gradient', direction);
 
     let rafId = 0;
 
     const update = () => {
-      applyScrollGradient(getScrollProgress());
+      applyScrollGradient(getScrollProgress(), direction);
     };
 
     const onScroll = () => {
@@ -134,5 +170,5 @@ export function useCaseStudySectionBackground(enabled: boolean) {
       cancelAnimationFrame(rafId);
       clearScrollGradient();
     };
-  }, [enabled]);
+  }, [mode]);
 }
