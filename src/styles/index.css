@@ -1234,18 +1234,20 @@ html.home-canvas-interactive .site-nav-surface {
 
 /* Expedia Accelerator — partner journey friction timeline */
 .accelerator-journey {
-  /* Cool → warm sequential friction scale (arousal / urgency encoding) */
-  --friction-1: #4a7085;
-  --friction-2: #3f8a7a;
-  --friction-3: #c49a3c;
-  --friction-4: #d06a32;
-  --friction-5: #b83a3a;
-  --journey-discover: #2a5f6c;
-  --journey-configure: #9a6430;
-  --journey-publish: #2f5c42;
-  --journey-optimize: #4a5168;
-  --journey-plot-w: clamp(5.75rem, 14vw, 7.25rem);
-  --journey-chart-h: clamp(11.5rem, 28vw, 15.5rem);
+  /* Editorial friction scale: cool calm → warm urgency */
+  --friction-1: #6a8794;
+  --friction-2: #5e8c81;
+  --friction-3: #c9a04a;
+  --friction-4: #d07a45;
+  --friction-5: #c0453e;
+  --journey-discover: #8a7360;
+  --journey-configure: #b07a3c;
+  --journey-publish: #8a6a4a;
+  --journey-optimize: #7a6558;
+  --journey-plot-w: clamp(5.75rem, 14vw, 7.5rem);
+  --journey-chart-h: clamp(12rem, 30vw, 16.5rem);
+  --journey-panel: color-mix(in srgb, var(--ink) 2.5%, var(--bg));
+  --journey-rule: color-mix(in srgb, var(--ink) 10%, transparent);
   margin: 0;
   width: 100%;
 }
@@ -1256,30 +1258,30 @@ html.home-canvas-interactive .site-nav-surface {
   align-items: flex-end;
   justify-content: space-between;
   gap: 0.85rem 1.5rem;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.85rem;
 }
 
 .accelerator-journey__phases {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.15rem 0.1rem;
-  border-bottom: 1px solid var(--border);
+  gap: 0;
+  border-bottom: 1px solid var(--journey-rule);
 }
 
 .accelerator-journey__phase-chip {
   margin: 0 0 -1px;
-  padding: 0.55rem 0.8rem 0.65rem;
+  padding: 0.65rem 0.95rem 0.75rem;
   border: 0;
-  border-bottom: 2px solid transparent;
+  border-bottom: 1px solid transparent;
   border-radius: 0;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted);
   background: transparent;
   cursor: pointer;
-  transition: color 180ms ease, border-color 180ms ease;
+  transition: color 200ms ease, border-color 200ms ease;
 }
 
 .accelerator-journey__phase-chip:hover {
@@ -1289,48 +1291,40 @@ html.home-canvas-interactive .site-nav-surface {
 .accelerator-journey__phase-chip.is-active {
   color: var(--ink);
   border-bottom-color: var(--ink);
+  font-weight: 600;
 }
 
-.accelerator-journey__phase-chip--discover.is-active {
-  color: var(--journey-discover);
-  border-bottom-color: var(--journey-discover);
-}
-.accelerator-journey__phase-chip--configure.is-active {
-  color: var(--journey-configure);
-  border-bottom-color: var(--journey-configure);
-}
-.accelerator-journey__phase-chip--publish.is-active {
-  color: var(--journey-publish);
-  border-bottom-color: var(--journey-publish);
-}
+.accelerator-journey__phase-chip--discover.is-active,
+.accelerator-journey__phase-chip--configure.is-active,
+.accelerator-journey__phase-chip--publish.is-active,
 .accelerator-journey__phase-chip--optimize.is-active {
-  color: var(--journey-optimize);
-  border-bottom-color: var(--journey-optimize);
+  color: var(--ink);
+  border-bottom-color: var(--ink);
 }
 
 .accelerator-journey__chart {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.55rem 0.65rem;
-  padding: 1.25rem 1.15rem 1.15rem;
-  border-radius: 0.35rem;
-  background: color-mix(in srgb, var(--ink) 3%, var(--bg));
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 8%, transparent);
+  gap: 0.75rem 1rem;
+  padding: 1.5rem 1.35rem 1.35rem;
+  border-radius: 2px;
+  background: var(--journey-panel);
+  box-shadow: inset 0 0 0 1px var(--journey-rule);
 }
 
 .accelerator-journey__y-axis {
   display: flex;
   align-items: stretch;
-  gap: 0.4rem;
-  padding: 1.7rem 0 4.6rem;
-  min-width: 2.15rem;
+  gap: 0.5rem;
+  padding: 1.85rem 0 4.8rem;
+  min-width: 2.35rem;
 }
 
 .accelerator-journey__y-label {
   align-self: center;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-muted);
   writing-mode: vertical-rl;
@@ -1350,10 +1344,12 @@ html.home-canvas-interactive .site-nav-surface {
 
 .accelerator-journey__y-ticks span {
   display: block;
-  font-size: 0.68rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
   text-align: right;
+  opacity: 0.92;
 }
 
 .accelerator-journey__viewport-wrap {
@@ -1367,7 +1363,7 @@ html.home-canvas-interactive .site-nav-surface {
   scrollbar-width: none;
   -ms-overflow-style: none;
   cursor: grab;
-  padding: 0 0.35rem 0.15rem;
+  padding: 0 0.25rem 0.2rem;
 }
 
 .accelerator-journey__viewport::-webkit-scrollbar {
@@ -1387,7 +1383,7 @@ html.home-canvas-interactive .site-nav-surface {
 .accelerator-journey__track {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
+  gap: 0.65rem;
   width: max-content;
   min-width: 100%;
 }
@@ -1397,7 +1393,7 @@ html.home-canvas-interactive .site-nav-surface {
   width: calc(var(--journey-count) * var(--journey-plot-w));
   min-width: 100%;
   margin: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-bottom: 1px solid var(--journey-rule);
 }
 
 .accelerator-journey__band {
@@ -1405,8 +1401,8 @@ html.home-canvas-interactive .site-nav-surface {
   align-items: center;
   justify-content: center;
   min-width: 0;
-  padding: 0.35rem 0.4rem 0.55rem;
-  border-right: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  padding: 0.2rem 0.45rem 0.7rem;
+  border-right: 1px solid var(--journey-rule);
 }
 
 .accelerator-journey__band:last-child {
@@ -1414,34 +1410,29 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .accelerator-journey__band span {
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  color: color-mix(in srgb, var(--friction-4) 72%, var(--ink-muted));
 }
 
-.accelerator-journey__band--discover span {
-  color: var(--journey-discover);
-}
-.accelerator-journey__band--configure span {
-  color: var(--journey-configure);
-}
-.accelerator-journey__band--publish span {
-  color: var(--journey-publish);
-}
+.accelerator-journey__band--discover span,
+.accelerator-journey__band--configure span,
+.accelerator-journey__band--publish span,
 .accelerator-journey__band--optimize span {
-  color: var(--journey-optimize);
+  color: color-mix(in srgb, var(--friction-4) 68%, var(--ink-muted));
 }
 
 .accelerator-journey__plot-area {
   position: relative;
   width: calc(var(--journey-count) * var(--journey-plot-w));
   min-width: 100%;
-  height: calc(var(--journey-chart-h) + 4.4rem);
+  height: calc(var(--journey-chart-h) + 4.6rem);
 }
 
 .accelerator-journey__grid {
@@ -1458,7 +1449,7 @@ html.home-canvas-interactive .site-nav-surface {
   left: 0;
   right: 0;
   height: 1px;
-  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  opacity: 0.9;
 }
 
 .accelerator-journey__trend {
@@ -1491,10 +1482,10 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .accelerator-journey__plot.is-open .accelerator-journey__dot {
-  transform: translate(-50%, -45%) scale(1.22);
+  transform: translate(-50%, -45%) scale(1.18);
   box-shadow:
-    0 0 0 3px color-mix(in srgb, var(--bg) 88%, transparent),
-    0 0 0 7px color-mix(in srgb, var(--journey-friction) 28%, transparent);
+    0 0 0 4px color-mix(in srgb, var(--bg) 82%, transparent),
+    0 0 0 9px color-mix(in srgb, var(--journey-friction) 22%, transparent);
 }
 
 .accelerator-journey__popover {
@@ -1696,75 +1687,79 @@ html.home-canvas-interactive .site-nav-surface {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  width: 2px;
+  width: 1px;
   align-self: end;
-  background: color-mix(in srgb, var(--journey-friction) 55%, transparent);
+  background: color-mix(in srgb, var(--journey-friction) 48%, transparent);
   transition:
-    height 220ms ease,
-    background-color 180ms ease,
-    width 180ms ease;
+    height 240ms ease,
+    background-color 200ms ease,
+    width 200ms ease;
 }
 
 .accelerator-journey__dot {
   position: absolute;
   top: 0;
   left: 50%;
-  width: 0.7rem;
-  height: 0.7rem;
+  width: 0.62rem;
+  height: 0.62rem;
   border-radius: 999px;
   transform: translate(-50%, -45%);
   background: var(--journey-friction);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--bg) 80%, transparent);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--bg) 88%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--journey-friction) 18%, transparent);
   transition:
-    transform 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease;
+    transform 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .accelerator-journey__plot.is-active .accelerator-journey__dot {
-  transform: translate(-50%, -45%) scale(1.18);
+  transform: translate(-50%, -45%) scale(1.2);
   box-shadow:
-    0 0 0 3px color-mix(in srgb, var(--bg) 88%, transparent),
-    0 0 0 6px color-mix(in srgb, var(--journey-friction) 22%, transparent);
+    0 0 0 3px color-mix(in srgb, var(--bg) 86%, transparent),
+    0 0 0 8px color-mix(in srgb, var(--journey-friction) 20%, transparent);
 }
 
 .accelerator-journey__plot.is-active .accelerator-journey__stem {
-  width: 3px;
-  background: var(--journey-friction);
+  width: 2px;
+  background: color-mix(in srgb, var(--journey-friction) 78%, transparent);
 }
 
 .accelerator-journey__x-label {
   display: grid;
-  gap: 0.2rem;
+  gap: 0.28rem;
   justify-items: center;
   width: 100%;
-  padding: 0.85rem 0.35rem 0.2rem;
+  padding: 0.95rem 0.35rem 0.15rem;
   text-align: center;
 }
 
 .accelerator-journey__x-num {
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: 0.62rem;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   color: var(--ink-muted);
 }
 
 .accelerator-journey__plot.is-active .accelerator-journey__x-num {
   color: var(--journey-friction);
+  font-weight: 600;
 }
 
 .accelerator-journey__x-title {
-  max-width: 6.4rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
+  max-width: 6.5rem;
+  font-size: 0.74rem;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
   color: var(--ink-muted);
 }
 
 .accelerator-journey__plot.is-active .accelerator-journey__x-title {
   color: var(--ink);
+  font-weight: 500;
 }
 
 .accelerator-journey__readout {
@@ -1772,50 +1767,54 @@ html.home-canvas-interactive .site-nav-surface {
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 1rem 1.5rem;
-  margin-top: 1rem;
-  padding-top: 1.15rem;
+  gap: 1.1rem 1.75rem;
+  margin-top: 1.15rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--journey-rule);
 }
 
 .accelerator-journey__readout-copy {
   display: grid;
-  gap: 0.35rem;
-  max-width: 40rem;
+  gap: 0.4rem;
+  max-width: 42rem;
 }
 
 .accelerator-journey__readout-title {
   margin: 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
   color: var(--ink);
 }
 
 .accelerator-journey__readout-insight {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.92rem;
+  line-height: 1.55;
   color: var(--ink-muted);
 }
 
 .accelerator-journey__controls {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.55rem;
 }
 
 .accelerator-journey__nav-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.65rem;
-  height: 2.65rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: 1px solid var(--journey-rule);
+  background: transparent;
   color: var(--ink);
   transition:
     opacity 160ms ease,
+    border-color 160ms ease,
     background-color 160ms ease;
 }
 
@@ -1831,20 +1830,20 @@ html.home-canvas-interactive .site-nav-surface {
 .accelerator-journey__position {
   display: inline-flex;
   align-items: baseline;
-  gap: 0.2rem;
+  gap: 0.25rem;
   margin: 0;
-  min-width: 3.4rem;
+  min-width: 3.6rem;
   justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.72rem;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.1em;
   color: var(--ink);
 }
 
 .accelerator-journey__position span {
   color: var(--ink-muted);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 @media (prefers-reduced-motion: reduce) {
