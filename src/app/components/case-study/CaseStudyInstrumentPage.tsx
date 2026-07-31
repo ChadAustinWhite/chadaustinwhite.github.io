@@ -20,6 +20,7 @@ import { DisputeDefenderTableModalDemo } from './DisputeDefenderTableModalDemo';
 import { MerchantDisputeEmotionMap } from './MerchantDisputeEmotionMap';
 import { AcceleratorSearchVisibilityDemo } from './AcceleratorSearchVisibilityDemo';
 import { AcceleratorPartnerJourneyMap } from './AcceleratorPartnerJourneyMap';
+import { AcceleratorHookModelFlow } from './AcceleratorHookModelFlow';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -326,6 +327,12 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       {chapter.chapterVisual === 'accelerator-partner-journey' ? (
         <div className="case-study-instrument__chapter-visual mt-6 md:mt-8 w-full max-w-[72rem]">
           <AcceleratorPartnerJourneyMap />
+        </div>
+      ) : null}
+
+      {chapter.chapterVisual === 'accelerator-hook-model' ? (
+        <div className="case-study-instrument__chapter-visual mt-8 md:mt-10 w-full max-w-[90rem]">
+          <AcceleratorHookModelFlow />
         </div>
       ) : null}
 

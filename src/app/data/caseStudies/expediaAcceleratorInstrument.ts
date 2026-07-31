@@ -64,7 +64,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     {
       title: 'Partner journey',
       lead:
-        'Journey mapping uncovered twelve moments from first find to ongoing management, and the friction partners hit at each step when creating an Accelerator.',
+        'Journey mapping surfaced twelve pain points from first find to ongoing management—where partners stalled, guessed, or lost trust while creating an Accelerator.',
       subsections: [],
       chapterVisual: 'accelerator-partner-journey',
     },
@@ -104,6 +104,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Inductive vs. Deductive',
       lead:
         'We combined partner feedback, heuristics, and behavioral data to guide every design decision.',
+      chapterVisual: 'accelerator-hook-model',
       stackedImages: [
         {
           src: expediaAcceleratorProductUiCreate,
