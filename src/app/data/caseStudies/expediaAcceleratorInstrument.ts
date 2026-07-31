@@ -24,6 +24,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         'User journey and flow',
         'Wireframing',
         'Prototyping',
+        'Accessibility annotations',
       ],
     },
     {
