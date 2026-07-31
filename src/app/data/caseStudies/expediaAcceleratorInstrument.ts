@@ -11,7 +11,6 @@ import expediaAcceleratorWalkthrough from '../../../assets/expedia-accelerator-w
 import expediaAcceleratorWalkthroughPoster from '../../../assets/expedia-accelerator-walkthrough-poster.jpg';
 /** Instrument ServiceNow-style narrative for Expedia Group Accelerator. */
 export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
-  clientName: 'Expedia Group Accelerator',
   projectName: 'Accelerator',
   breadcrumb: 'Expedia Group Accelerator',
   tags: ['Travel', 'B2B', 'Product'],
@@ -42,7 +41,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Empowering hotel partners to unlock stronger connections with travelers by helping them appear higher in search results.',
+    'Accelerator empowers hotel partners to unlock stronger connections with travelers by helping them appear higher in search results.',
   leadImages: [
     {
       src: expediaAcceleratorPerformanceMarketTrends,
