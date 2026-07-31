@@ -6,9 +6,7 @@ const HOME_OVERVIEW = [
     values: [
       'Product strategy',
       '0→1 product design',
-      'Enterprise SaaS',
       'Design systems',
-      'Cross-functional leadership',
       'Accessibility',
     ],
   },
@@ -18,7 +16,7 @@ const HOME_OVERVIEW = [
   },
   {
     label: 'Location',
-    values: ['Southern California'],
+    values: ['Los Angeles, Ca.'],
   },
   {
     label: 'Focus',

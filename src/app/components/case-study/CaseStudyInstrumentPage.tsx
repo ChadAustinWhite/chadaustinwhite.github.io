@@ -474,7 +474,7 @@ export function CaseStudyInstrumentPage({
   return (
     <article
       ref={articleRef}
-      className={`case-study-instrument bg-[var(--bg)] pb-16 text-[var(--ink)] md:pb-24${parallaxEnabled ? ' case-study-instrument--parallax' : ''}`}
+      className={`case-study-instrument bg-[var(--bg)] pb-16 text-[var(--ink)] md:pb-24${parallaxEnabled ? ' case-study-instrument--parallax' : ''}${instrument.roundedMedia ? ' case-study-instrument--rounded-media' : ''}`}
     >
       <header className={`${GUTTER} pt-[7.5rem] pb-10 md:pb-14`}>
         <button

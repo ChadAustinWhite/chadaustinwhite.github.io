@@ -18,6 +18,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
   projectName: 'Ad Portal',
   breadcrumb: 'Expedia Group Ad Portal',
   tags: ['Travel', 'B2B', 'Advertising'],
+  roundedMedia: true,
   overviewCategories: [
     {
       label: 'Role',
@@ -44,7 +45,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Ad Portal gives advertising partners one place to manage campaigns, payments, and access with clarity across markets.',
+    'Ad Portal gives partners working with Expedia one place to manage campaigns, payments, and access with clarity across markets.',
   leadImages: [
     {
       src: expediaAdPortalPartnerAccount,
