@@ -183,12 +183,22 @@ export interface CaseStudyInstrumentChapter {
 }
 
 /** Instrument work page (instrument.com/work/servicenow-rebrand). */
+export interface CaseStudyInstrumentOverviewCategory {
+  label: string;
+  /** One or more values listed under the label (e.g. Role skills). */
+  values: string[];
+  /** Optional link (e.g. device prototype); shows an outbound arrow. */
+  href?: string;
+}
+
 export interface CaseStudyInstrumentContent {
   clientName: string;
   projectName: string;
   breadcrumb?: string;
   tags?: string[];
   lead: string;
+  /** ROLE / COMPANY / STAKEHOLDER / DEVICE-style columns under the headline. */
+  overviewCategories?: CaseStudyInstrumentOverviewCategory[];
   /** Full-bleed images directly under the lead paragraph (in order). */
   leadImages?: CaseStudyInstrumentImage[];
   /** Single lead image when only one hero frame is needed. */

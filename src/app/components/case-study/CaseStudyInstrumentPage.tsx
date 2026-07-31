@@ -460,8 +460,6 @@ export function CaseStudyInstrumentPage({
     .filter((p) => p.caseStudyRoute !== currentRoute && !p.comingSoon)
     .slice(0, 3);
 
-  const breadcrumb = instrument.breadcrumb ?? `${instrument.clientName} ${instrument.projectName}`;
-
   return (
     <article
       ref={articleRef}
@@ -489,31 +487,55 @@ export function CaseStudyInstrumentPage({
         <p className="case-study-instrument__client serif-headline text-[var(--ink)]">
           {instrument.clientName}
         </p>
-        <p className="case-study-instrument__breadcrumb mt-2 text-[11px] uppercase tracking-[0.12em] text-[var(--ink-muted)]">
-          Work
-          <span className="mx-2 opacity-40" aria-hidden>
-            /
-          </span>
-          {breadcrumb}
-        </p>
-
-        {instrument.tags && instrument.tags.length > 0 ? (
-          <ul className="mt-6 flex flex-wrap gap-2" aria-label="Project tags">
-            {instrument.tags.map((tag) => (
-              <li key={tag}>
-                <span className="case-study-instrument__tag">#{tag.toLowerCase().replace(/\s+/g, '')}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
 
         <p
-          className="case-study-instrument__lead serif-headline mt-10 max-w-[48rem] text-[var(--ink)] md:mt-12"
+          className="case-study-instrument__lead serif-headline mt-6 max-w-[48rem] text-[var(--ink)] md:mt-8"
           data-parallax
           data-parallax-speed="0.04"
         >
           {instrument.lead}
         </p>
+
+        {instrument.overviewCategories && instrument.overviewCategories.length > 0 ? (
+          <dl
+            className="case-study-instrument__overview-categories mt-10 grid grid-cols-2 gap-x-8 gap-y-8 md:mt-14 md:grid-cols-4 md:gap-x-10"
+            aria-label="Project overview"
+          >
+            {instrument.overviewCategories.map((category) => (
+              <div key={category.label} className="min-w-0">
+                <dt className="case-study-instrument__overview-label">{category.label}</dt>
+                <dd className="case-study-instrument__overview-values">
+                  {category.values.map((value) =>
+                    category.href ? (
+                      <a
+                        key={value}
+                        href={category.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="case-study-instrument__overview-value case-study-instrument__overview-value--link"
+                      >
+                        <span>{value}</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
+                          <path
+                            d="M3.5 8.5L8.5 3.5M8.5 3.5H4.5M8.5 3.5V7.5"
+                            stroke="currentColor"
+                            strokeWidth="1.3"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </a>
+                    ) : (
+                      <span key={value} className="case-study-instrument__overview-value">
+                        {value}
+                      </span>
+                    ),
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        ) : null}
       </header>
 
       {(instrument.leadImages?.length
