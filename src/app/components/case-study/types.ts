@@ -192,7 +192,8 @@ export interface CaseStudyInstrumentOverviewCategory {
 }
 
 export interface CaseStudyInstrumentContent {
-  clientName: string;
+  /** Optional brand/product headline above the lead. */
+  clientName?: string;
   projectName: string;
   breadcrumb?: string;
   tags?: string[];

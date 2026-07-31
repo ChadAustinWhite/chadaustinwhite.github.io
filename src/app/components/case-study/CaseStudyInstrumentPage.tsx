@@ -484,12 +484,16 @@ export function CaseStudyInstrumentPage({
           Work
         </button>
 
-        <p className="case-study-instrument__client serif-headline text-[var(--ink)]">
-          {instrument.clientName}
-        </p>
+        {instrument.clientName ? (
+          <p className="case-study-instrument__client serif-headline text-[var(--ink)]">
+            {instrument.clientName}
+          </p>
+        ) : null}
 
         <p
-          className="case-study-instrument__lead serif-headline mt-6 max-w-[48rem] text-[var(--ink)] md:mt-8"
+          className={`case-study-instrument__lead serif-headline max-w-[48rem] text-[var(--ink)]${
+            instrument.clientName ? ' mt-6 md:mt-8' : ''
+          }`}
           data-parallax
           data-parallax-speed="0.04"
         >
