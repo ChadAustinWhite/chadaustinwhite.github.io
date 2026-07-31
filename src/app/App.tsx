@@ -17,7 +17,6 @@ import { PasswordProtectedCaseStudy } from './components/PasswordProtectedCaseSt
 const COMING_SOON_ROUTES: CaseStudyRoute[] = [
   'case-study-worldpay-sso',
   'case-study-worldpay-merchant-onboarding',
-  'case-study-expedia-ad-portal',
 ];
 
 /** Case studies that open without a password gate. */
