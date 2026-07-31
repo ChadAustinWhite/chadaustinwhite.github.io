@@ -448,7 +448,7 @@ export function CaseStudyInstrumentPage({
   const articleRef = useRef<HTMLElement>(null);
   const parallaxEnabled = content.parallax !== false;
 
-  useCaseStudySectionBackground(false);
+  useCaseStudySectionBackground(content.scrollGradient ?? false);
   useCaseStudyParallax(articleRef, parallaxEnabled);
 
   const instrument = content.instrument;

@@ -362,8 +362,12 @@ export interface CaseStudyContent {
   instrument?: CaseStudyInstrumentContent;
   /** Sonos-style Instrument work page content. */
   sonos?: CaseStudySonosContent;
-  /** Scroll-driven dark → light background on the case study page. */
-  scrollGradient?: boolean;
+  /**
+   * Scroll-driven background on the case study page.
+   * `true` / `'to-light'`: black → warm editorial.
+   * `'to-dark'`: warm editorial → black.
+   */
+  scrollGradient?: boolean | 'to-light' | 'to-dark';
   /** Scroll-linked parallax on media (Instrument layout). Defaults to on for `instrument`. */
   parallax?: boolean;
   /** Editorial-only overrides (lucid-motors-style). */

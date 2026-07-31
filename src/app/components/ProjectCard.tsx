@@ -38,11 +38,13 @@ function ProjectCardVideo({
   poster,
   label,
   aspectRatio,
+  startSeconds = 0,
 }: {
   src: string;
   poster?: string;
   label?: string;
   aspectRatio?: string;
+  startSeconds?: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const inView = useInView(videoRef, { amount: 0.4 });
@@ -54,14 +56,37 @@ function ProjectCardVideo({
 
   useEffect(() => {
     const el = videoRef.current;
+    if (!el || startSeconds <= 0) return;
+
+    const clampToStart = () => {
+      if (el.currentTime < startSeconds) {
+        el.currentTime = startSeconds;
+      }
+    };
+
+    el.addEventListener('loadedmetadata', clampToStart);
+    el.addEventListener('timeupdate', clampToStart);
+    clampToStart();
+
+    return () => {
+      el.removeEventListener('loadedmetadata', clampToStart);
+      el.removeEventListener('timeupdate', clampToStart);
+    };
+  }, [src, startSeconds]);
+
+  useEffect(() => {
+    const el = videoRef.current;
     if (!el || reducedMotion) return;
 
     if (inView) {
+      if (startSeconds > 0 && el.currentTime < startSeconds) {
+        el.currentTime = startSeconds;
+      }
       void el.play().catch(() => {});
     } else {
       el.pause();
     }
-  }, [inView, reducedMotion]);
+  }, [inView, reducedMotion, startSeconds]);
 
   return (
     <div className="flex h-full min-h-0 w-full items-center justify-center">
@@ -70,7 +95,7 @@ function ProjectCardVideo({
         className="m-auto max-h-full w-full overflow-hidden rounded-2xl bg-transparent object-cover"
         style={{ aspectRatio, maxWidth: aspectRatio ? undefined : '100%' }}
         poster={poster}
-        preload="none"
+        preload="metadata"
         muted
         loop
         playsInline
@@ -125,6 +150,7 @@ export function ProjectCard({
               poster={project.videoPoster}
               label={project.imageAlt}
               aspectRatio={project.videoAspectRatio}
+              startSeconds={project.videoStartSeconds}
             />
           ) : cappedContain ? (
             <div className="flex h-full min-h-0 w-full items-center justify-center p-3 md:p-5">

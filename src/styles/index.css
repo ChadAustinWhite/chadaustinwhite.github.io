@@ -2256,12 +2256,21 @@ html.home-canvas-interactive .site-nav-surface {
   margin-top: clamp(2.5rem, 6vw, 3.5rem);
 }
 
+/* Image-only figure rows that follow a stacked gallery sit in the same tight rhythm. */
+.case-study-instrument__stacked-figures + .case-study-instrument__subsection-block {
+  margin-top: clamp(0.5rem, 1.2vw, 0.75rem);
+}
+
+.case-study-instrument__stacked-figures + .case-study-instrument__subsection-block .case-study-instrument__figure-row {
+  margin-block: 0;
+}
+
 /* Two-up figure row (e.g. paired product UI screens). */
 .case-study-instrument__figure-row {
   display: grid;
-  gap: clamp(1rem, 3vw, 1.75rem);
+  gap: clamp(0.5rem, 1.2vw, 0.75rem);
   width: 100%;
-  max-width: 72rem;
+  max-width: 90rem;
   margin-block: clamp(1.5rem, 4vw, 2.5rem);
   box-sizing: border-box;
 }
