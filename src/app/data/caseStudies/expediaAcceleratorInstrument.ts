@@ -14,6 +14,30 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
   projectName: 'Accelerator',
   breadcrumb: 'Expedia Group Accelerator',
   tags: ['Travel', 'B2B', 'Product'],
+  overviewCategories: [
+    {
+      label: 'Role',
+      values: [
+        'Product strategy',
+        'Product design',
+        'User journey and flow',
+        'Wireframing',
+        'Prototyping',
+      ],
+    },
+    {
+      label: 'Company',
+      values: ['Expedia Group'],
+    },
+    {
+      label: 'Stakeholder',
+      values: ['Product leadership'],
+    },
+    {
+      label: 'Device',
+      values: ['Desktop'],
+    },
+  ],
   lead:
     'Empowering hotel partners to unlock stronger connections with travelers by helping them appear higher in search results.',
   leadImages: [

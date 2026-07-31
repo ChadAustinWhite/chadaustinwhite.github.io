@@ -12,6 +12,24 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
   projectName: 'Dispute Defender',
   breadcrumb: 'Worldpay Dispute Defender',
   tags: ['Fintech', 'B2B', 'Product'],
+  overviewCategories: [
+    {
+      label: 'Role',
+      values: ['Product Design', 'UX Research', 'Wireframing', 'Prototyping'],
+    },
+    {
+      label: 'Company',
+      values: ['Worldpay'],
+    },
+    {
+      label: 'Stakeholder',
+      values: ['Product leadership'],
+    },
+    {
+      label: 'Device',
+      values: ['Desktop'],
+    },
+  ],
   lead:
     'The leaky faucet: disputes are a hidden operational tax on merchants. A dripping faucet may seem insignificant at first, but over time the wasted water adds up.',
   leadImages: [
