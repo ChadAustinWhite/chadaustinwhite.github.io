@@ -62,14 +62,16 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       chapterVisual: 'accelerator-search-visibility',
     },
     {
-      title: 'Partner journey',
+      title: 'Pain points identified',
+      scrollGradientStart: true,
       lead:
-        'Journey mapping surfaced twelve pain points from first find to ongoing management—where partners stalled, guessed, or lost trust while creating an Accelerator.',
+        'Twelve friction points emerged across discovery, setup, launch, and ongoing management, moments where partners stalled, guessed, or lost trust in Accelerator.',
       subsections: [],
       chapterVisual: 'accelerator-partner-journey',
     },
     {
       title: 'Project complications',
+      scrollGradientEnd: true,
       lead:
         'A quick look at the main challenges and roadblocks the team faced during the initiative, and how we tackled them with perseverance and flexibility.',
       subsections: [],
