@@ -1,5 +1,4 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
-import expediaAdPortalPartnerAccount from '../../../assets/expedia-ad-portal-payment-architecture.png';
 import expediaAdPortalPaymentProfiles from '../../../assets/expedia-ad-portal-payment-profiles.png';
 import expediaAdPortalPaymentProfileForm from '../../../assets/expedia-ad-portal-payment-profile-form.png';
 import expediaAdPortalTaxProfile from '../../../assets/expedia-ad-portal-tax-profile.png';
@@ -48,8 +47,8 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
     'Ad Portal gives partners working with Expedia one place to manage campaigns, payments, and access with clarity across markets.',
   leadImages: [
     {
-      src: expediaAdPortalPartnerAccount,
-      alt: 'Expedia Group Advertising partner account page with Hilton NYC settings and navigation',
+      src: expediaAdPortalPaymentProfileForm,
+      alt: 'Expedia Group Advertising payment profile information form with billing address and primary billing contact',
       padded: true,
       background: 'page',
       objectFit: 'contain',
@@ -61,7 +60,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       beforeLeadBento: true,
       lead:
-        'When campaigns, billing, and access live in separate tools, partners lose confidence and spend slows. A unified portal restores control and makes every advertising decision easier to trust.',
+        'Different users need different access to campaigns, billing, and settings. A unified portal keeps those permissions clear so the right people see the right information and can take action with their campaigns.',
       subsections: [],
     },
     {
