@@ -156,6 +156,14 @@ html.home-canvas-interactive .site-nav-surface {
   aspect-ratio: 16 / 10;
 }
 
+.work-section-stack-list__item .project-card__media {
+  aspect-ratio: 16 / 10;
+}
+
+#work .grid .project-card__media {
+  aspect-ratio: 16 / 10;
+}
+
 .project-card img {
   -webkit-user-drag: none;
   user-select: none;
