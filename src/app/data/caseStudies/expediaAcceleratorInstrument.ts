@@ -73,7 +73,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Project complications',
       scrollGradientEnd: true,
       lead:
-        'A quick look at the main challenges and roadblocks the team faced during the initiative, and how we tackled them with perseverance and flexibility.',
+        'The main challenges and roadblocks the team faced, and how we tackled them with perseverance and flexibility.',
       subsections: [],
       accordion: [
         {
