@@ -20,6 +20,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       values: [
         'Product strategy',
         'Product design',
+        'Workshop facilitator',
         'User journey and flow',
         'Wireframing',
         'Prototyping',
