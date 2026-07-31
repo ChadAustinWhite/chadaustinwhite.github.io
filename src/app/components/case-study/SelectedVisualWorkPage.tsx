@@ -1,5 +1,6 @@
 import stateDeerImage from '../../../assets/visual-work-state-deer.png';
 import levisRivetedImage from '../../../assets/visual-work-levis-riveted.png';
+import levisDenimSupplyImage from '../../../assets/visual-work-levis-denim-supply.png';
 import cafeRacerImage from '../../../assets/visual-work-cafe-racer.png';
 import twoHorseDenimImage from '../../../assets/visual-work-two-horse-denim.png';
 import birdStudiesImage from '../../../assets/visual-work-bird-studies.png';
@@ -16,6 +17,10 @@ const gallery = [
   {
     src: levisRivetedImage,
     alt: 'Levi’s Original Riveted heritage badge illustration',
+  },
+  {
+    src: levisDenimSupplyImage,
+    alt: 'Levi Strauss and Co Denim Supply Co diamond badge on a mustard field',
   },
   {
     src: twoHorseDenimImage,
