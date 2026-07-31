@@ -105,18 +105,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         'We combined partner feedback, heuristics, and behavioral data to guide every design decision.',
       stackedImages: [
         {
-          src: expediaAcceleratorObservationsCreateFlow,
-          alt: 'Figma observations and recommendations for Create an Accelerator impact phases',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: expediaAcceleratorObservationsImpactPhases,
-          alt: 'Figma observations linking discovery insights and UX requirements on Create an Accelerator impact phases',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
           src: expediaAcceleratorProductUiCreate,
           alt: 'Partner Central Create an Accelerator form',
           objectFit: 'contain',
@@ -125,6 +113,18 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         {
           src: expediaAcceleratorProductUiPerformance,
           alt: 'Partner Central Accelerator performance report',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: expediaAcceleratorObservationsCreateFlow,
+          alt: 'Figma observations and recommendations for Create an Accelerator impact phases',
+          objectFit: 'contain',
+          background: 'page',
+        },
+        {
+          src: expediaAcceleratorObservationsImpactPhases,
+          alt: 'Figma observations linking discovery insights and UX requirements on Create an Accelerator impact phases',
           objectFit: 'contain',
           background: 'page',
         },
