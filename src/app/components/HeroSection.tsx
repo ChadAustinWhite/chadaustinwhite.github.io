@@ -5,24 +5,28 @@ const HOME_OVERVIEW = [
     label: 'Expertise',
     values: [
       'Product strategy',
-      'Product design',
+      '0→1 product design',
+      'Enterprise SaaS',
       'Design systems',
-      'Workshop facilitation',
-      'Prototyping',
+      'Cross-functional leadership',
       'Accessibility',
     ],
   },
   {
-    label: 'Currently',
-    values: ['Principal UX Designer'],
+    label: 'Organization',
+    values: ['Expedia Group'],
   },
   {
     label: 'Location',
     values: ['Southern California'],
   },
   {
-    label: 'Domain',
-    values: ['Travel & payments'],
+    label: 'Focus',
+    values: [
+      'Enterprise products',
+      'Complex workflows',
+      'AI-powered tooling',
+    ],
   },
 ] as const;
 
@@ -33,7 +37,7 @@ export function HeroSection() {
         <h1 className="serif-headline max-w-full font-normal text-[clamp(28px,7.2vw,64px)] leading-[1.12] text-[var(--ink)] [overflow-wrap:anywhere]">
           <span className="block">I'm Chad 👋</span>
           <span className="block">
-            Product designer crafting intuitive experiences that solve customer
+            Product designer crafting intuitive experiences that solve user
             problems and drive business growth.
           </span>
         </h1>
