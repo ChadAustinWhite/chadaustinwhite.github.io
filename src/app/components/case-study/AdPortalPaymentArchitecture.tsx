@@ -1,108 +1,128 @@
-const USER_TYPES = [
-  {
-    role: 'Profile owner',
-    access: 'Owns the payment profile, manages billing settings, and controls who is on the access list.',
-  },
-  {
-    role: 'Administrator',
-    access: 'Edits payment details, campaigns, and users. Cannot remove other administrators or the owner.',
-  },
-  {
-    role: 'User',
-    access: 'Works with campaigns and payments tied to the profile. Can be added or removed by admins.',
-  },
-  {
-    role: 'Viewer',
-    access: 'Sees campaign and billing information without editing profiles, payments, or access.',
-  },
-] as const;
+type AccessLevel = 'Full' | 'Edit' | 'Act' | 'View' | '—';
 
-/** Modern payment architecture diagram for Ad Portal Evidence-led design. */
+const CAPABILITIES = ['Campaigns', 'Billing', 'Access list', 'Stored cards'] as const;
+
+const ROLES: {
+  role: string;
+  summary: string;
+  access: AccessLevel[];
+}[] = [
+  {
+    role: 'Advertiser Admin',
+    summary: 'The advertiser contracted to work with Expedia Group.',
+    access: ['Full', 'Full', 'Full', 'Full'],
+  },
+  {
+    role: 'Payment profile owner',
+    summary:
+      'Manages payment profile information and which campaigns are tied to which payment methods and accounts.',
+    access: ['Edit', 'Full', 'Full', 'Full'],
+  },
+  {
+    role: 'Advertiser user',
+    summary:
+      'Can be an agency consulting on behalf of the Advertiser Admin. Cannot see payment information.',
+    access: ['Act', '—', '—', '—'],
+  },
+  {
+    role: 'View-only',
+    summary:
+      'Internal Expedia employee who can view some information on behalf of the advertiser.',
+    access: ['View', '—', '—', '—'],
+  },
+];
+
+const SYSTEM_STRIP = ['Partner account', 'Payment profile', 'Campaigns', 'Stored cards'] as const;
+
+/** Access-first permission model for Ad Portal Why It Matters. */
 export function AdPortalPaymentArchitecture() {
   return (
     <figure
       className="ad-portal-arch"
-      aria-label="Payment architecture and user access across payment profiles"
+      aria-label="Access model showing what each user type can do on a payment profile"
     >
       <div className="ad-portal-arch__top">
         <div>
-          <p className="ad-portal-arch__eyebrow">Payment architecture</p>
-          <p className="ad-portal-arch__title">Profiles carry identity. Cards stay reusable.</p>
-        </div>
-        <ul className="ad-portal-arch__legend" aria-label="Phase legend">
-          <li>
-            <span className="ad-portal-arch__swatch ad-portal-arch__swatch--existing" />
-            Existing
-          </li>
-          <li>
-            <span className="ad-portal-arch__swatch ad-portal-arch__swatch--new" />
-            New for this phase
-          </li>
-        </ul>
-      </div>
-
-      <div className="ad-portal-arch__board">
-        <div className="ad-portal-arch__column ad-portal-arch__column--existing">
-          <div className="ad-portal-arch__row ad-portal-arch__row--top">
-            <div className="ad-portal-arch__node ad-portal-arch__node--existing">Campaign</div>
-            <span className="ad-portal-arch__link" aria-hidden />
-            <div className="ad-portal-arch__node ad-portal-arch__node--existing">Partner account</div>
-          </div>
-
-          <div className="ad-portal-arch__stem" aria-hidden />
-
-          <div className="ad-portal-arch__node ad-portal-arch__node--existing ad-portal-arch__node--primary">
-            Payment profile
-          </div>
-
-          <div className="ad-portal-arch__fork" aria-hidden />
-
-          <div className="ad-portal-arch__row ad-portal-arch__row--split">
-            <div className="ad-portal-arch__node ad-portal-arch__node--existing ad-portal-arch__node--detail">
-              <span className="ad-portal-arch__node-label">Beneficiary</span>
-              <span className="ad-portal-arch__node-meta">Company, address, billing contact</span>
-            </div>
-            <div className="ad-portal-arch__node ad-portal-arch__node--existing ad-portal-arch__node--detail">
-              <span className="ad-portal-arch__node-label">Payment setting</span>
-              <span className="ad-portal-arch__node-meta">Manual or autopay with bank details</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="ad-portal-arch__divider" aria-hidden>
-          <span>Phase 2</span>
-        </div>
-
-        <div className="ad-portal-arch__column ad-portal-arch__column--new">
-          <div className="ad-portal-arch__node ad-portal-arch__node--new ad-portal-arch__node--primary">
-            Stored payment methods
-          </div>
-          <div className="ad-portal-arch__fork ad-portal-arch__fork--new" aria-hidden />
-          <div className="ad-portal-arch__row ad-portal-arch__row--split">
-            <div className="ad-portal-arch__node ad-portal-arch__node--new">Credit card 1</div>
-            <div className="ad-portal-arch__node ad-portal-arch__node--new">Credit card 2</div>
-          </div>
-          <p className="ad-portal-arch__note">
-            Partners save a card once, then reuse it across invoices without rebuilding billing identity.
+          <p className="ad-portal-arch__eyebrow">Access model</p>
+          <p className="ad-portal-arch__title">The right people see the right controls.</p>
+          <p className="ad-portal-arch__lead">
+            Each payment profile has a clear access list, so billing stays shared without exposing every setting to every teammate.
           </p>
         </div>
       </div>
 
-      <div className="ad-portal-arch__access">
-        <div className="ad-portal-arch__access-head">
-          <p className="ad-portal-arch__access-eyebrow">Access by user type</p>
-          <p className="ad-portal-arch__access-lead">
-            Each payment profile has a clear access list so the right people can see or change billing without exposing everything to everyone.
-          </p>
-        </div>
-        <ul className="ad-portal-arch__roles">
-          {USER_TYPES.map((item) => (
-            <li key={item.role} className="ad-portal-arch__role">
-              <span className="ad-portal-arch__role-name">{item.role}</span>
-              <span className="ad-portal-arch__role-access">{item.access}</span>
+      <div className="ad-portal-arch__matrix-wrap">
+        <table className="ad-portal-arch__matrix">
+          <caption className="sr-only">
+            Permission levels by user type across campaigns, billing, access list, and stored cards
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" className="ad-portal-arch__matrix-corner">
+                User type
+              </th>
+              {CAPABILITIES.map((capability) => (
+                <th key={capability} scope="col">
+                  {capability}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {ROLES.map((row) => (
+              <tr key={row.role}>
+                <th scope="row">
+                  <span className="ad-portal-arch__role-name">{row.role}</span>
+                  <span className="ad-portal-arch__role-summary">{row.summary}</span>
+                </th>
+                {row.access.map((level, i) => (
+                  <td key={`${row.role}-${CAPABILITIES[i]}`}>
+                    <span
+                      className={`ad-portal-arch__level ad-portal-arch__level--${level === '—' ? 'none' : level.toLowerCase()}`}
+                    >
+                      {level}
+                    </span>
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <ul className="ad-portal-arch__mobile-roles">
+        {ROLES.map((row) => (
+          <li key={row.role} className="ad-portal-arch__mobile-role">
+            <div className="ad-portal-arch__mobile-role-head">
+              <span className="ad-portal-arch__role-name">{row.role}</span>
+              <span className="ad-portal-arch__role-summary">{row.summary}</span>
+            </div>
+            <ul className="ad-portal-arch__chips">
+              {row.access.map((level, i) => (
+                <li key={`${row.role}-chip-${CAPABILITIES[i]}`} className="ad-portal-arch__chip">
+                  <span className="ad-portal-arch__chip-label">{CAPABILITIES[i]}</span>
+                  <span
+                    className={`ad-portal-arch__level ad-portal-arch__level--${level === '—' ? 'none' : level.toLowerCase()}`}
+                  >
+                    {level}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+
+      <div className="ad-portal-arch__strip" aria-label="System context">
+        <p className="ad-portal-arch__strip-eyebrow">System context</p>
+        <ol className="ad-portal-arch__strip-flow">
+          {SYSTEM_STRIP.map((item, i) => (
+            <li key={item} className="ad-portal-arch__strip-item">
+              {i > 0 ? <span className="ad-portal-arch__strip-arrow" aria-hidden /> : null}
+              <span className="ad-portal-arch__strip-node">{item}</span>
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </figure>
   );

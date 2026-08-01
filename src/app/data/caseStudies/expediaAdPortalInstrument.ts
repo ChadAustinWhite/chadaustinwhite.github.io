@@ -27,6 +27,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
         'Wireframing',
         'Prototyping',
         'Design system adoption',
+        'Accessibility annotations',
       ],
     },
     {
@@ -35,7 +36,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
     },
     {
       label: 'Stakeholder',
-      values: ['Product leadership'],
+      values: ['Product leadership', 'Design', 'Engineering'],
     },
     {
       label: 'Device',
@@ -43,7 +44,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Ad Portal gives partners working with Expedia one place to manage campaigns, payments, and access with clarity across markets.',
+    'Expedia ad portal gives advertising partners one place to manage campaigns, payments, and access with clarity across markets.',
   leadImages: [
     {
       src: expediaAdPortalPaymentProfileForm,
@@ -61,6 +62,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       lead:
         'Different user types need different access to campaigns, billing, and settings. A unified portal keeps those permissions clear so the right people see the right information and can take action with their campaigns.',
       subsections: [],
+      chapterVisual: 'ad-portal-payment-architecture',
     },
     {
       title: 'Pain points identified',
@@ -106,7 +108,6 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Evidence-led design',
       lead:
         'We grounded every flow in partner workflows, from payment profiles and tax compliance to campaign review and shared access.',
-      chapterVisual: 'ad-portal-payment-architecture',
       stackedImages: [
         {
           src: expediaAdPortalCreateCampaign,
