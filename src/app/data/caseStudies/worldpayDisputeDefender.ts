@@ -15,7 +15,7 @@ export const worldpayDisputeDefenderContent: CaseStudyContent = {
     duration: '12 Months',
   },
   tagline:
-    'Dispute Defender protects merchant revenue by automatically collecting the right evidence and submitting it on their behalf.',
+    'Dispute Defender is an AI-powered automation tool that protects merchant revenue by gathering and submitting evidence on their behalf.',
   projectFocus: ['Fintech', 'B2B', 'Product'],
   images: worldpayDisputesImage,
   instrument: worldpayDisputeDefenderInstrument,
