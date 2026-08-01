@@ -8,9 +8,8 @@ import worldpayDisputeDisableModal from '../../../assets/worldpay-dispute-disabl
 
 /** Instrument-style narrative for Worldpay Dispute Defender. */
 export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
-  clientName: 'Worldpay Dispute Defender',
   projectName: 'Dispute Defender',
-  breadcrumb: 'Worldpay Dispute Defender',
+  breadcrumb: 'Dispute Defender',
   tags: ['Fintech', 'B2B', 'Product'],
   overviewCategories: [
     {
@@ -31,7 +30,7 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'The leaky faucet: disputes are a hidden operational tax on merchants. A dripping faucet may seem insignificant at first, but over time the wasted water adds up.',
+    'Dispute Defender protects merchant revenue by automatically collecting the right evidence and submitting it on their behalf.',
   leadImages: [
     {
       src: worldpayDisputesPerformance,
