@@ -12,20 +12,20 @@ const HOME_OVERVIEW = [
     ],
   },
   {
-    label: 'Organization',
-    values: ['Expedia Group'],
-  },
-  {
-    label: 'Location',
-    values: ['Los Angeles, Ca.'],
-  },
-  {
     label: 'Focus',
     values: [
       'Enterprise products',
       'Complex workflows',
       'AI-powered tooling',
     ],
+  },
+  {
+    label: 'Organization',
+    values: ['Expedia Group'],
+  },
+  {
+    label: 'Location',
+    values: ['Los Angeles, Ca.'],
   },
 ] as const;
 
