@@ -63,6 +63,7 @@ html.home-canvas-drive .home-main-canvas {
 }
 
 .site-nav-surface {
+  background-color: var(--home-canvas, var(--nav-bg));
   transition-property: border-bottom-color, background-color;
   transition-duration: 900ms, 220ms;
   transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1), ease-out;
