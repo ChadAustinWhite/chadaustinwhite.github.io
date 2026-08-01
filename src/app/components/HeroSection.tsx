@@ -63,8 +63,8 @@ function CascadingWords({
             reduce
               ? { duration: 0 }
               : {
-                  duration: 0.55,
-                  delay: delay + index * 0.045,
+                  duration: 0.7,
+                  delay: delay + index * 0.06,
                   ease: easeOut,
                 }
           }
@@ -96,7 +96,7 @@ function OverviewItem({
       initial={reduce ? false : { opacity: 0, y: 10 }}
       animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
       transition={
-        reduce ? { duration: 0 } : { duration: 0.5, delay, ease: easeOut }
+        reduce ? { duration: 0 } : { duration: 0.6, delay, ease: easeOut }
       }
     >
       {children}
@@ -123,14 +123,14 @@ export function HeroSection() {
           <CascadingWords
             className="block"
             text="I'm Chad 👋"
-            delay={0.04}
+            delay={0.06}
             reduce={reduce}
             show={show}
           />
           <CascadingWords
             className="block"
             text="Product designer crafting intuitive experiences that solve user problems and drive business growth."
-            delay={0.28}
+            delay={0.38}
             reduce={reduce}
             show={show}
           />
@@ -148,7 +148,7 @@ export function HeroSection() {
               <OverviewItem
                 key={category.label}
                 className={`min-w-0 md:shrink-0${hideOnMobile ? ' max-md:hidden' : ''}`}
-                delay={0.95 + index * 0.08}
+                delay={1.2 + index * 0.1}
                 reduce={reduce}
                 show={show}
               >

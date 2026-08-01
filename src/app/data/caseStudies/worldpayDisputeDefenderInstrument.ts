@@ -30,7 +30,7 @@ export const worldpayDisputeDefenderInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Dispute Defender protects merchant revenue by automatically collecting the right evidence and submitting it on their behalf.',
+    'Dispute Defender is an AI-powered automation tool that protects merchant revenue by gathering and submitting evidence on their behalf.',
   leadImages: [
     {
       src: worldpayDisputesPerformance,
