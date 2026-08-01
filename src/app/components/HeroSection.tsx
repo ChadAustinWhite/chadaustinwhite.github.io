@@ -6,8 +6,9 @@ const HOME_OVERVIEW = [
     values: [
       'Product strategy',
       '0→1 product design',
-      'Design systems',
       'Accessibility',
+      'Collaboration',
+      'Systems thinking',
     ],
   },
   {
@@ -44,8 +45,15 @@ export function HeroSection() {
           className="case-study-instrument__overview-categories mt-10 grid grid-cols-1 gap-y-8 md:mt-14 md:grid-cols-4 md:gap-x-10 md:gap-y-8"
           aria-label="Profile overview"
         >
-          {HOME_OVERVIEW.map((category) => (
-            <div key={category.label} className="min-w-0">
+          {HOME_OVERVIEW.map((category) => {
+            const hideOnMobile =
+              category.label.toLowerCase() === 'location' ||
+              category.label.toLowerCase() === 'focus';
+            return (
+            <div
+              key={category.label}
+              className={`min-w-0${hideOnMobile ? ' max-md:hidden' : ''}`}
+            >
               <dt className="case-study-instrument__overview-label">{category.label}</dt>
               <dd className="case-study-instrument__overview-values">
                 {category.values.map((value) => (
@@ -55,7 +63,8 @@ export function HeroSection() {
                 ))}
               </dd>
             </div>
-          ))}
+            );
+          })}
         </dl>
       </div>
     </section>
