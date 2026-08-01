@@ -10,16 +10,16 @@ interface ProjectCardProps {
 }
 
 const projectCtaClass =
-  'project-cta inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--bg)] px-5 py-3.5 text-[15px] font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:w-auto md:justify-start md:gap-2 md:px-5 md:py-2 md:text-[13px]';
+  'project-cta inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--bg)] px-6 py-4 text-[16px] font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:w-auto md:justify-start md:gap-2.5 md:px-6 md:py-3 md:text-[15px]';
 
 function ArrowIcon() {
   return (
     <svg
-      width="12"
-      height="12"
+      width="14"
+      height="14"
       viewBox="0 0 12 12"
       fill="none"
-      className="h-3.5 w-3.5 flex-shrink-0 md:h-3 md:w-3"
+      className="h-3.5 w-3.5 flex-shrink-0"
     >
       <path
         d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8"
