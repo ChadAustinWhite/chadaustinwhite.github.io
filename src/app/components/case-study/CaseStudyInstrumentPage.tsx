@@ -523,8 +523,15 @@ export function CaseStudyInstrumentPage({
             className="case-study-instrument__overview-categories mt-10 grid grid-cols-2 gap-x-8 gap-y-8 md:mt-14 md:grid-cols-4 md:gap-x-10"
             aria-label="Project overview"
           >
-            {instrument.overviewCategories.map((category) => (
-              <div key={category.label} className="min-w-0">
+            {instrument.overviewCategories.map((category) => {
+              const hideOnMobile =
+                category.label.toLowerCase() === 'stakeholder' ||
+                category.label.toLowerCase() === 'device';
+              return (
+              <div
+                key={category.label}
+                className={`min-w-0${hideOnMobile ? ' max-md:hidden' : ''}`}
+              >
                 <dt className="case-study-instrument__overview-label">{category.label}</dt>
                 <dd className="case-study-instrument__overview-values">
                   {category.values.map((value) =>
@@ -555,7 +562,8 @@ export function CaseStudyInstrumentPage({
                   )}
                 </dd>
               </div>
-            ))}
+              );
+            })}
           </dl>
         ) : null}
       </header>

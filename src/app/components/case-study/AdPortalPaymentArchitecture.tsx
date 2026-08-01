@@ -1,9 +1,28 @@
+const USER_TYPES = [
+  {
+    role: 'Profile owner',
+    access: 'Owns the payment profile, manages billing settings, and controls who is on the access list.',
+  },
+  {
+    role: 'Administrator',
+    access: 'Edits payment details, campaigns, and users. Cannot remove other administrators or the owner.',
+  },
+  {
+    role: 'User',
+    access: 'Works with campaigns and payments tied to the profile. Can be added or removed by admins.',
+  },
+  {
+    role: 'Viewer',
+    access: 'Sees campaign and billing information without editing profiles, payments, or access.',
+  },
+] as const;
+
 /** Modern payment architecture diagram for Ad Portal Evidence-led design. */
 export function AdPortalPaymentArchitecture() {
   return (
     <figure
       className="ad-portal-arch"
-      aria-label="Payment architecture separating payment profiles from stored payment methods"
+      aria-label="Payment architecture and user access across payment profiles"
     >
       <div className="ad-portal-arch__top">
         <div>
@@ -67,6 +86,23 @@ export function AdPortalPaymentArchitecture() {
             Partners save a card once, then reuse it across invoices without rebuilding billing identity.
           </p>
         </div>
+      </div>
+
+      <div className="ad-portal-arch__access">
+        <div className="ad-portal-arch__access-head">
+          <p className="ad-portal-arch__access-eyebrow">Access by user type</p>
+          <p className="ad-portal-arch__access-lead">
+            Each payment profile has a clear access list so the right people can see or change billing without exposing everything to everyone.
+          </p>
+        </div>
+        <ul className="ad-portal-arch__roles">
+          {USER_TYPES.map((item) => (
+            <li key={item.role} className="ad-portal-arch__role">
+              <span className="ad-portal-arch__role-name">{item.role}</span>
+              <span className="ad-portal-arch__role-access">{item.access}</span>
+            </li>
+          ))}
+        </ul>
       </div>
     </figure>
   );

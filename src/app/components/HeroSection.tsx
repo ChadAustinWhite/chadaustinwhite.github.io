@@ -41,7 +41,7 @@ export function HeroSection() {
         </h1>
 
         <dl
-          className="case-study-instrument__overview-categories mt-10 grid grid-cols-2 gap-x-8 gap-y-8 md:mt-14 md:grid-cols-4 md:gap-x-10"
+          className="case-study-instrument__overview-categories mt-10 grid grid-cols-1 gap-y-8 md:mt-14 md:grid-cols-4 md:gap-x-10 md:gap-y-8"
           aria-label="Profile overview"
         >
           {HOME_OVERVIEW.map((category) => (
