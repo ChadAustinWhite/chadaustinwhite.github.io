@@ -5,7 +5,6 @@ const HOME_OVERVIEW = [
     label: 'Expertise',
     values: [
       'Product strategy',
-      '0→1 product design',
       'Accessibility',
       'Collaboration',
       'Systems thinking',
