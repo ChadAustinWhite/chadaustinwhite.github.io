@@ -7,7 +7,6 @@ import expediaAdPortalAccessListCard from '../../../assets/expedia-ad-portal-acc
 import expediaAdPortalAddUsersStates from '../../../assets/expedia-ad-portal-add-users-states.png';
 import expediaAdPortalAddUsersSearch from '../../../assets/expedia-ad-portal-add-users-search.png';
 import expediaAdPortalReviewCampaigns from '../../../assets/expedia-ad-portal-review-campaigns.png';
-import expediaAdPortalPaymentArchitecture from '../../../assets/expedia-ad-portal-access-list-page.png';
 import expediaAdPortalCreateCampaign from '../../../assets/expedia-ad-portal-card.png';
 import expediaAdPortalWalkthrough from '../../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../../assets/expedia-ad-portal-walkthrough-poster.jpg';
@@ -60,7 +59,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       beforeLeadBento: true,
       lead:
-        'Different users need different access to campaigns, billing, and settings. A unified portal keeps those permissions clear so the right people see the right information and can take action with their campaigns.',
+        'Different user types need different access to campaigns, billing, and settings. A unified portal keeps those permissions clear so the right people see the right information and can take action with their campaigns.',
       subsections: [],
     },
     {
@@ -107,6 +106,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Evidence-led design',
       lead:
         'We grounded every flow in partner workflows, from payment profiles and tax compliance to campaign review and shared access.',
+      chapterVisual: 'ad-portal-payment-architecture',
       stackedImages: [
         {
           src: expediaAdPortalCreateCampaign,
@@ -170,19 +170,6 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
           image: {
             src: expediaAdPortalAddUsersStates,
             alt: 'Add users modal states covering search, selection, recommended users, and done actions',
-            objectFit: 'contain',
-            background: 'page',
-            padded: true,
-          },
-        },
-        {
-          title: 'Payment architecture',
-          paragraphs: [
-            'Phase work separated stored payment methods from payment profiles so partners could reuse cards without rebuilding billing identity each time.',
-          ],
-          image: {
-            src: expediaAdPortalPaymentArchitecture,
-            alt: 'Miro diagram of CAP payment profiles, stored payment methods, and phase boundaries',
             objectFit: 'contain',
             background: 'page',
             padded: true,

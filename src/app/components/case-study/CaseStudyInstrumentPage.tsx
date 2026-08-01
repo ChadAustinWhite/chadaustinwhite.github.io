@@ -21,6 +21,7 @@ import { MerchantDisputeEmotionMap } from './MerchantDisputeEmotionMap';
 import { AcceleratorSearchVisibilityDemo } from './AcceleratorSearchVisibilityDemo';
 import { AcceleratorPartnerJourneyMap } from './AcceleratorPartnerJourneyMap';
 import { AcceleratorHookModelFlow } from './AcceleratorHookModelFlow';
+import { AdPortalPaymentArchitecture } from './AdPortalPaymentArchitecture';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -340,6 +341,12 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         </div>
       ) : null}
 
+      {chapter.chapterVisual === 'ad-portal-payment-architecture' ? (
+        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14 md:max-w-[72rem]`}>
+          <AdPortalPaymentArchitecture />
+        </div>
+      ) : null}
+
       {chapter.chapterDemo === 'dispute-defender-table-modal' ? (
         <div className="case-study-instrument__chapter-demo mt-10 md:mt-14">
           <DisputeDefenderTableModalDemo />
@@ -516,8 +523,15 @@ export function CaseStudyInstrumentPage({
             className="case-study-instrument__overview-categories mt-10 grid grid-cols-2 gap-x-8 gap-y-8 md:mt-14 md:grid-cols-4 md:gap-x-10"
             aria-label="Project overview"
           >
-            {instrument.overviewCategories.map((category) => (
-              <div key={category.label} className="min-w-0">
+            {instrument.overviewCategories.map((category) => {
+              const hideOnMobile =
+                category.label.toLowerCase() === 'stakeholder' ||
+                category.label.toLowerCase() === 'device';
+              return (
+              <div
+                key={category.label}
+                className={`min-w-0${hideOnMobile ? ' max-md:hidden' : ''}`}
+              >
                 <dt className="case-study-instrument__overview-label">{category.label}</dt>
                 <dd className="case-study-instrument__overview-values">
                   {category.values.map((value) =>
@@ -548,7 +562,8 @@ export function CaseStudyInstrumentPage({
                   )}
                 </dd>
               </div>
-            ))}
+              );
+            })}
           </dl>
         ) : null}
       </header>
