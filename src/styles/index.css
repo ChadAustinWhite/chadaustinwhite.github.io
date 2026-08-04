@@ -669,6 +669,10 @@ html.home-canvas-interactive .site-nav-surface {
   margin-inline: auto;
 }
 
+.case-study-instrument__chapter-visual--start {
+  margin-inline: 0;
+}
+
 /* Expedia Accelerator — search visibility rank-up demo */
 .accelerator-srp-rank {
   --srp-slot: clamp(4rem, 9.5vw, 5.75rem);

@@ -325,7 +325,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'accelerator-search-visibility' ? (
-        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14`}>
+        <div className={`${CONTENT} case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-10 md:mt-14`}>
           <AcceleratorSearchVisibilityDemo />
         </div>
       ) : null}
@@ -337,7 +337,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'accelerator-hook-model' ? (
-        <div className="case-study-instrument__chapter-visual mt-8 md:mt-10 w-full max-w-[90rem] mx-auto">
+        <div className="case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-8 md:mt-10 w-full max-w-[90rem]">
           <AcceleratorHookModelFlow />
         </div>
       ) : null}
@@ -349,7 +349,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'ad-portal-access-paths' ? (
-        <div className="case-study-instrument__chapter-visual mt-10 md:mt-14 w-full max-w-[72rem] mx-auto">
+        <div className="case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-10 md:mt-14 w-full max-w-[72rem]">
           <AdPortalAccessPaths />
         </div>
       ) : null}
