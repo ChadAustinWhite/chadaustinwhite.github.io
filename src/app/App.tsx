@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { HomeLayout } from './components/HomeLayout';
 import { CaseStudyLayout } from './components/case-study/CaseStudyLayout';
 import { CaseStudyPage } from './components/case-study/CaseStudyPage';
@@ -9,6 +9,7 @@ import {
   PageTransitionProvider,
   usePageTransition,
 } from './components/PageTransition';
+import { SplashScreen, hasCompletedSplash } from './components/SplashScreen';
 import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
@@ -58,8 +59,25 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
 }
 
 function AppRoutes() {
+  const [showSplash, setShowSplash] = useState(() => !hasCompletedSplash());
+  const [homeReady, setHomeReady] = useState(() => hasCompletedSplash());
   const [currentPage, setCurrentPage] = useState<PageType>('home');
   const { overlayRef, surfaceRef, transitionTo } = usePageTransition();
+
+  // Mount home under splash so the exit uncovers a live hero.
+  const handleSplashReveal = useCallback(() => {
+    setHomeReady(true);
+  }, []);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+  }, []);
+
+  useEffect(() => {
+    if (!showSplash) return;
+    document.documentElement.classList.add('splash-active');
+    return () => document.documentElement.classList.remove('splash-active');
+  }, [showSplash]);
 
   const handleViewCaseStudy = useCallback(
     (route: CaseStudyRoute) => {
@@ -152,13 +170,18 @@ function AppRoutes() {
     }
   };
 
+  const showHome = homeReady && currentPage === 'home';
+  const showCase = homeReady && !showSplash && isCaseStudyRoute(currentPage);
+
   return (
     <>
+      {showSplash ? (
+        <SplashScreen onReveal={handleSplashReveal} onComplete={handleSplashComplete} />
+      ) : null}
       <PageTransitionOverlay overlayRef={overlayRef} />
       <div ref={surfaceRef} className="page-transition-surface min-h-screen bg-[var(--bg)]">
-        {currentPage === 'home' ? (
-          <HomeLayout onViewCaseStudy={handleViewCaseStudy} />
-        ) : isCaseStudyRoute(currentPage) ? (
+        {showHome ? <HomeLayout onViewCaseStudy={handleViewCaseStudy} /> : null}
+        {showCase ? (
           PUBLIC_CASE_STUDY_ROUTES.includes(currentPage) ? (
             <React.Fragment key={currentPage}>{renderCaseStudy(currentPage)}</React.Fragment>
           ) : (
