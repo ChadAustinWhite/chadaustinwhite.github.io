@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { HomeLayout } from './components/HomeLayout';
 import { CaseStudyLayout } from './components/case-study/CaseStudyLayout';
 import { CaseStudyPage } from './components/case-study/CaseStudyPage';
 import { CaseStudyPlaceholder } from './components/case-study/CaseStudyPlaceholder';
 import { SelectedVisualWorkPage } from './components/case-study/SelectedVisualWorkPage';
+import {
+  PageTransitionOverlay,
+  PageTransitionProvider,
+  usePageTransition,
+} from './components/PageTransition';
 import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
@@ -52,25 +57,33 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
   }
 }
 
-export default function App() {
+function AppRoutes() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const { overlayRef, surfaceRef, transitionTo } = usePageTransition();
 
-  const goToRoute = (route: CaseStudyRoute) => {
-    setCurrentPage(route);
-    window.scrollTo(0, 0);
-  };
+  const handleViewCaseStudy = useCallback(
+    (route: CaseStudyRoute) => {
+      if (COMING_SOON_ROUTES.includes(route)) return;
+      const project = projects.find((item) => item.caseStudyRoute === route);
+      if (project?.comingSoon) return;
+      if (currentPage === route) {
+        window.scrollTo(0, 0);
+        return;
+      }
 
-  const handleViewCaseStudy = (route: CaseStudyRoute) => {
-    if (COMING_SOON_ROUTES.includes(route)) return;
-    const project = projects.find((item) => item.caseStudyRoute === route);
-    if (project?.comingSoon) return;
-    goToRoute(route);
-  };
+      transitionTo(() => {
+        setCurrentPage(route);
+      });
+    },
+    [currentPage, transitionTo],
+  );
 
-  const handleBackFromCaseStudy = () => {
-    setCurrentPage('home');
-    window.scrollTo(0, 0);
-  };
+  const handleBackFromCaseStudy = useCallback(() => {
+    if (currentPage === 'home') return;
+    transitionTo(() => {
+      setCurrentPage('home');
+    });
+  }, [currentPage, transitionTo]);
 
   const renderCaseStudy = (route: CaseStudyRoute) => {
     switch (route) {
@@ -140,23 +153,34 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen">
-      {currentPage === 'home' ? (
-        <HomeLayout onViewCaseStudy={handleViewCaseStudy} />
-      ) : isCaseStudyRoute(currentPage) ? (
-        PUBLIC_CASE_STUDY_ROUTES.includes(currentPage) ? (
-          <React.Fragment key={currentPage}>{renderCaseStudy(currentPage)}</React.Fragment>
-        ) : (
-          <PasswordProtectedCaseStudy
-            key={currentPage}
-            route={currentPage}
-            title={getCaseStudyTitle(currentPage)}
-            onBack={handleBackFromCaseStudy}
-          >
-            {renderCaseStudy(currentPage)}
-          </PasswordProtectedCaseStudy>
-        )
-      ) : null}
-    </div>
+    <>
+      <PageTransitionOverlay overlayRef={overlayRef} />
+      <div ref={surfaceRef} className="page-transition-surface min-h-screen bg-[var(--bg)]">
+        {currentPage === 'home' ? (
+          <HomeLayout onViewCaseStudy={handleViewCaseStudy} />
+        ) : isCaseStudyRoute(currentPage) ? (
+          PUBLIC_CASE_STUDY_ROUTES.includes(currentPage) ? (
+            <React.Fragment key={currentPage}>{renderCaseStudy(currentPage)}</React.Fragment>
+          ) : (
+            <PasswordProtectedCaseStudy
+              key={currentPage}
+              route={currentPage}
+              title={getCaseStudyTitle(currentPage)}
+              onBack={handleBackFromCaseStudy}
+            >
+              {renderCaseStudy(currentPage)}
+            </PasswordProtectedCaseStudy>
+          )
+        ) : null}
+      </div>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <PageTransitionProvider>
+      <AppRoutes />
+    </PageTransitionProvider>
   );
 }

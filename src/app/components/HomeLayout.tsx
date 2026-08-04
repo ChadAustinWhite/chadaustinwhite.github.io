@@ -5,7 +5,6 @@ import { WorkSection } from './WorkSection';
 import { Footer } from './Footer';
 import { useHomeScrollBackground } from '../hooks/useHomeScrollBackground';
 import type { CaseStudyRoute } from '../data/portfolioData';
-import React from 'react';
 
 interface HomeLayoutProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
