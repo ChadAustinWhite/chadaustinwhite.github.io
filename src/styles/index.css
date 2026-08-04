@@ -1233,26 +1233,20 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
-/* Expedia Ad Portal — access model (permission matrix) */
+/* Expedia Ad Portal — simplified payment architecture graph */
 .ad-portal-arch {
   --arch-bg: #f5f4f0;
   --arch-ink: #2d2d2d;
   --arch-muted: #636363;
-  --arch-line: color-mix(in srgb, #2d2d2d 10%, transparent);
+  --arch-line: color-mix(in srgb, #2d2d2d 14%, transparent);
+  --arch-core-bg: #ecebe7;
+  --arch-core-ink: #2d2d2d;
+  --arch-new-bg: #e2dcf0;
+  --arch-new-ink: #2f2748;
   --arch-panel: #faf9f6;
-  --arch-full: #2f4a38;
-  --arch-full-bg: #dce8e0;
-  --arch-edit: #3b3658;
-  --arch-edit-bg: #e3e0ef;
-  --arch-act: #3d4a5c;
-  --arch-act-bg: #dde4ec;
-  --arch-view: #5a5248;
-  --arch-view-bg: #ebe6df;
-  --arch-none: #8a8a8a;
-  --arch-none-bg: #efeeea;
   width: 100%;
   margin: 0;
-  padding: clamp(1.15rem, 2.8vw, 1.75rem);
+  padding: clamp(1.15rem, 2.8vw, 1.65rem);
   border-radius: clamp(12px, 1.4vw, 18px);
   background: var(--arch-bg);
   color: var(--arch-ink);
@@ -1260,7 +1254,7 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .ad-portal-arch__top {
-  margin-bottom: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .ad-portal-arch__eyebrow {
@@ -1274,8 +1268,8 @@ html.home-canvas-interactive .site-nav-surface {
 
 .ad-portal-arch__title {
   margin: 0;
-  max-width: 32rem;
-  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  max-width: 28rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.25;
@@ -1283,234 +1277,107 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .ad-portal-arch__lead {
-  margin: 0.55rem 0 0;
-  max-width: 40rem;
+  margin: 0.5rem 0 0;
+  max-width: 36rem;
   font-size: 0.9rem;
   line-height: 1.45;
   color: var(--arch-muted);
 }
 
-.ad-portal-arch__matrix-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--arch-line);
+.ad-portal-arch__board {
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem);
   border-radius: clamp(10px, 1.2vw, 14px);
+  border: 1px solid var(--arch-line);
   background: var(--arch-panel);
-  -webkit-overflow-scrolling: touch;
 }
 
-.ad-portal-arch__matrix {
+.ad-portal-arch__tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  min-width: 36rem;
-  border-collapse: collapse;
-  table-layout: fixed;
 }
 
-.ad-portal-arch__matrix th,
-.ad-portal-arch__matrix td {
-  padding: 0.85rem 0.9rem;
-  border-bottom: 1px solid var(--arch-line);
-  text-align: left;
-  vertical-align: middle;
-}
-
-.ad-portal-arch__matrix thead th {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--arch-muted);
-  background: color-mix(in srgb, #2d2d2d 3%, var(--arch-panel));
-}
-
-.ad-portal-arch__matrix-corner {
-  width: 30%;
-}
-
-.ad-portal-arch__matrix tbody th {
-  font-weight: 500;
-}
-
-.ad-portal-arch__matrix tbody tr:last-child th,
-.ad-portal-arch__matrix tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-.ad-portal-arch__matrix td {
-  text-align: center;
-}
-
-.ad-portal-arch__role-name {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--arch-ink);
-}
-
-.ad-portal-arch__role-summary {
-  display: block;
-  margin-top: 0.2rem;
-  font-size: 0.74rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--arch-muted);
-}
-
-.ad-portal-arch__level {
+.ad-portal-arch__node {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 3.25rem;
-  padding: 0.28rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-
-.ad-portal-arch__level--full {
-  color: var(--arch-full);
-  background: var(--arch-full-bg);
-}
-
-.ad-portal-arch__level--edit {
-  color: var(--arch-edit);
-  background: var(--arch-edit-bg);
-}
-
-.ad-portal-arch__level--act {
-  color: var(--arch-act);
-  background: var(--arch-act-bg);
-}
-
-.ad-portal-arch__level--view {
-  color: var(--arch-view);
-  background: var(--arch-view-bg);
-}
-
-.ad-portal-arch__level--none {
-  color: var(--arch-none);
-  background: var(--arch-none-bg);
-}
-
-.ad-portal-arch__mobile-roles {
-  display: none;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ad-portal-arch__mobile-role {
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--arch-line);
-}
-
-.ad-portal-arch__mobile-role:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.ad-portal-arch__mobile-role-head {
-  margin-bottom: 0.65rem;
-}
-
-.ad-portal-arch__chips {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 0.45rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ad-portal-arch__chip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.55rem 0.65rem;
-  border-radius: 0.6rem;
-  border: 1px solid var(--arch-line);
-  background: #ffffff;
-}
-
-.ad-portal-arch__chip-label {
-  font-size: 0.72rem;
-  color: var(--arch-muted);
-}
-
-.ad-portal-arch__strip {
-  margin-top: 1.15rem;
-  padding-top: 1.05rem;
-  border-top: 1px solid var(--arch-line);
-}
-
-.ad-portal-arch__strip-eyebrow {
-  margin: 0 0 0.55rem;
-  font-size: 0.68rem;
+  min-height: 2.55rem;
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, #2d2d2d 10%, transparent);
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--arch-muted);
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.ad-portal-arch__strip-flow {
+.ad-portal-arch__node--core {
+  color: var(--arch-core-ink);
+  background: var(--arch-core-bg);
+}
+
+.ad-portal-arch__node--hub {
+  min-width: 10.5rem;
+}
+
+.ad-portal-arch__node--new {
+  color: var(--arch-new-ink);
+  background: var(--arch-new-bg);
+  border-color: color-mix(in srgb, #2f2748 14%, transparent);
+}
+
+.ad-portal-arch__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--arch-new-ink);
+  background: color-mix(in srgb, #ffffff 55%, transparent);
+}
+
+.ad-portal-arch__vline {
+  display: block;
+  width: 1px;
+  height: 0.9rem;
+  background: color-mix(in srgb, #2d2d2d 32%, transparent);
+  flex-shrink: 0;
+}
+
+.ad-portal-arch__split {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 18rem);
+}
+
+.ad-portal-arch__hbar {
+  display: block;
+  width: 70%;
+  height: 1px;
+  background: color-mix(in srgb, #2d2d2d 32%, transparent);
+}
+
+.ad-portal-arch__leaves {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  width: 100%;
+  max-width: 22rem;
+}
+
+.ad-portal-arch__leaf {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.35rem 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ad-portal-arch__strip-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.ad-portal-arch__strip-node {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--arch-line);
-  background: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--arch-ink);
-}
-
-.ad-portal-arch__strip-arrow {
-  width: 0.85rem;
-  height: 1px;
-  background: color-mix(in srgb, #2d2d2d 28%, transparent);
-  position: relative;
-}
-
-.ad-portal-arch__strip-arrow::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0.3rem;
-  height: 0.3rem;
-  border-right: 1px solid color-mix(in srgb, #2d2d2d 28%, transparent);
-  border-top: 1px solid color-mix(in srgb, #2d2d2d 28%, transparent);
-  transform: translateY(-50%) rotate(45deg);
-}
-
-@media (max-width: 767px) {
-  .ad-portal-arch__matrix-wrap {
-    display: none;
-  }
-
-  .ad-portal-arch__mobile-roles {
-    display: block;
-  }
+  flex: 1 1 8rem;
 }
 
 /* Expedia Accelerator — partner journey friction timeline */
