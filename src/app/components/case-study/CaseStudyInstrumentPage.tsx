@@ -331,7 +331,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'accelerator-partner-journey' ? (
-        <div className="case-study-instrument__chapter-visual mt-6 md:mt-8 w-full max-w-[72rem] mx-auto">
+        <div className="case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-6 md:mt-8 w-full max-w-[72rem]">
           <AcceleratorPartnerJourneyMap />
         </div>
       ) : null}
@@ -343,7 +343,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'ad-portal-payment-architecture' ? (
-        <div className="case-study-instrument__chapter-visual mt-10 md:mt-14 w-full max-w-[72rem] mx-auto">
+        <div className="case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-10 md:mt-14 w-full max-w-[72rem]">
           <AdPortalPaymentArchitecture />
         </div>
       ) : null}
