@@ -39,7 +39,19 @@ export function CaseStudyWhoopNext({ relatedProjects, onViewCaseStudy }: CaseStu
                 key={project.caseStudyRoute}
                 className="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--card-bg)] transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)]"
               >
-                <div className="aspect-[16/10] w-full overflow-hidden bg-[var(--border)]">
+                <div
+                  className="aspect-[16/10] w-full cursor-pointer overflow-hidden bg-[var(--border)]"
+                  role="link"
+                  tabIndex={0}
+                  aria-label={`View case study: ${project.title}`}
+                  onClick={() => onViewCaseStudy(project.caseStudyRoute)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      onViewCaseStudy(project.caseStudyRoute);
+                    }
+                  }}
+                >
                   {project.image ? (
                     <ImageWithFallback
                       src={project.image}

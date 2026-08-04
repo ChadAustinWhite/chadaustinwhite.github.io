@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { useInView } from 'motion/react';
 import type { ProjectItem } from '../data/portfolioData';
 
@@ -122,6 +122,12 @@ export function ProjectCard({
   const intrinsicW = project.imageIntrinsicWidthPx;
   const intrinsicH = project.imageIntrinsicHeightPx;
   const cappedContain = hasMockup && !hasVideo && fit === 'contain' && intrinsicW != null;
+  const canOpen = !project.comingSoon;
+
+  const openCaseStudy = () => {
+    if (!canOpen) return;
+    onViewCaseStudy(project.caseStudyRoute);
+  };
 
   const imgSizingClass = cappedContain
     ? 'h-auto w-auto max-h-full bg-transparent object-contain object-top [image-rendering:auto]'
@@ -141,7 +147,27 @@ export function ProjectCard({
           </h3>
         </header>
 
-        <div className={`project-card__media overflow-hidden rounded-2xl ${mediaBg}`}>
+        <div
+          className={`project-card__media overflow-hidden rounded-2xl ${mediaBg}${
+            canOpen && hasMockup ? ' project-card__media--openable cursor-pointer' : ''
+          }`}
+          {...(canOpen && hasMockup
+            ? {
+                role: 'link',
+                tabIndex: 0,
+                'aria-label': `View case study: ${project.title}`,
+                onClick: openCaseStudy,
+                onKeyDown: (event: KeyboardEvent) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openCaseStudy();
+                  }
+                },
+                onMouseEnter: onCtaHoverStart,
+                onMouseLeave: onCtaHoverEnd,
+              }
+            : {})}
+        >
           {!hasMockup ? (
             <div className="h-full min-h-0 w-full" aria-hidden />
           ) : hasVideo ? (
@@ -215,7 +241,7 @@ export function ProjectCard({
             ) : (
               <button
                 type="button"
-                onClick={() => onViewCaseStudy(project.caseStudyRoute)}
+                onClick={openCaseStudy}
                 onMouseEnter={onCtaHoverStart}
                 onMouseLeave={onCtaHoverEnd}
                 className={projectCtaClass}

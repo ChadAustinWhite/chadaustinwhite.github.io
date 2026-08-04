@@ -90,6 +90,30 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
+/* Case study open / close — soft wipe reveal */
+html.page-transition-active,
+html.page-transition-active body {
+  overflow: hidden;
+}
+
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  display: none;
+  pointer-events: none;
+  /* Warm wash close to the portfolio canvas so the wipe feels intentional */
+  background: color-mix(in srgb, var(--bg, #f5f4f0) 92%, #1c1c1a);
+}
+
+.page-transition-surface {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: var(--bg);
+  backface-visibility: hidden;
+}
+
 /* Infinite horizontal marquee (hero brands strip) */
 @keyframes hero-brands-marquee {
   from {
