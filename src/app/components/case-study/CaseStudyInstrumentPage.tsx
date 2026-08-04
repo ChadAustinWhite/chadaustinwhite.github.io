@@ -331,25 +331,25 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       ) : null}
 
       {chapter.chapterVisual === 'accelerator-partner-journey' ? (
-        <div className="case-study-instrument__chapter-visual mt-6 md:mt-8 w-full max-w-[72rem]">
+        <div className="case-study-instrument__chapter-visual mt-6 md:mt-8 w-full max-w-[72rem] mx-auto">
           <AcceleratorPartnerJourneyMap />
         </div>
       ) : null}
 
       {chapter.chapterVisual === 'accelerator-hook-model' ? (
-        <div className="case-study-instrument__chapter-visual mt-8 md:mt-10 w-full max-w-[90rem]">
+        <div className="case-study-instrument__chapter-visual mt-8 md:mt-10 w-full max-w-[90rem] mx-auto">
           <AcceleratorHookModelFlow />
         </div>
       ) : null}
 
       {chapter.chapterVisual === 'ad-portal-payment-architecture' ? (
-        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14 md:max-w-[72rem]`}>
+        <div className="case-study-instrument__chapter-visual mt-10 md:mt-14 w-full max-w-[72rem] mx-auto">
           <AdPortalPaymentArchitecture />
         </div>
       ) : null}
 
       {chapter.chapterVisual === 'ad-portal-access-paths' ? (
-        <div className={`${CONTENT} case-study-instrument__chapter-visual mt-10 md:mt-14 md:max-w-[72rem]`}>
+        <div className="case-study-instrument__chapter-visual mt-10 md:mt-14 w-full max-w-[72rem] mx-auto">
           <AdPortalAccessPaths />
         </div>
       ) : null}
