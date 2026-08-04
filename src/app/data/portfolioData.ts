@@ -2,7 +2,6 @@ import expediaAcceleratorWalkthrough from '../../assets/expedia-accelerator-walk
 import expediaAcceleratorWalkthroughPoster from '../../assets/expedia-accelerator-walkthrough-poster.jpg';
 import expediaAdPortalWalkthrough from '../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../assets/expedia-ad-portal-walkthrough-poster.jpg';
-import illustrationsCafeRacerImage from '../../assets/illustrations-cafe-racer.png';
 import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -131,16 +130,6 @@ export const projects: ProjectItem[] = [
       { label: 'onboarding completion', value: '+32%' },
       { label: 'time to activate', value: '-40%' },
     ],
-  },
-  {
-    title: 'Selected visual work',
-    description:
-      'Visual work for brands and companies, spanning apparel graphics, campaign artwork, and custom illustration.',
-    period: '2022–Present',
-    image: illustrationsCafeRacerImage,
-    imageAlt: 'Line illustration of a rider leaning into a cafe racer motorcycle',
-    caseStudyRoute: 'illustrations',
-    hoverCanvas: { dark: '#232130', light: '#ebe9f1' },
   },
 ];
 
