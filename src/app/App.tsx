@@ -22,6 +22,7 @@ const COMING_SOON_ROUTES: CaseStudyRoute[] = [
 /** Case studies that open without a password gate. */
 const PUBLIC_CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-accelerator',
+  'case-study-expedia-ad-portal',
   'case-study-worldpay-disputes',
   'illustrations',
 ];

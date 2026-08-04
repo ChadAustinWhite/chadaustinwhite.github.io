@@ -7,7 +7,6 @@ import expediaAdPortalAccessListCard from '../../../assets/expedia-ad-portal-acc
 import expediaAdPortalAddUsersStates from '../../../assets/expedia-ad-portal-add-users-states.png';
 import expediaAdPortalAddUsersSearch from '../../../assets/expedia-ad-portal-add-users-search.png';
 import expediaAdPortalReviewCampaigns from '../../../assets/expedia-ad-portal-review-campaigns.png';
-import expediaAdPortalCreateCampaign from '../../../assets/expedia-ad-portal-card.png';
 import expediaAdPortalWalkthrough from '../../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../../assets/expedia-ad-portal-walkthrough-poster.jpg';
 
@@ -109,12 +108,6 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       lead:
         'We grounded every flow in partner workflows, from payment profiles and tax compliance to campaign review and shared access.',
       stackedImages: [
-        {
-          src: expediaAdPortalCreateCampaign,
-          alt: 'Create a campaign flow with name, property, goal, and market goal sections',
-          objectFit: 'contain',
-          background: 'page',
-        },
         {
           src: expediaAdPortalPaymentProfiles,
           alt: 'Payment profiles list with tax profile missing status and add another payment profile action',
