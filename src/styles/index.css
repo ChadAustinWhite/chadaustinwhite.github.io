@@ -1233,6 +1233,187 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
+/* Expedia Ad Portal — role-based access matrix */
+.ad-portal-access {
+  --access-bg: #f5f4f0;
+  --access-ink: #2d2d2d;
+  --access-muted: #636363;
+  --access-line: color-mix(in srgb, #2d2d2d 10%, transparent);
+  --access-panel: #faf9f6;
+  --access-yes-bg: #dce8e0;
+  --access-yes-ink: #2f4a38;
+  --access-no-bg: #efeeea;
+  --access-no-ink: #8a8a8a;
+  width: 100%;
+  margin: 0;
+  padding: clamp(1.15rem, 2.8vw, 1.65rem);
+  border-radius: clamp(12px, 1.4vw, 18px);
+  background: var(--access-bg);
+  color: var(--access-ink);
+  border: 1px solid color-mix(in srgb, #2d2d2d 8%, transparent);
+}
+
+.ad-portal-access__top {
+  margin-bottom: 1rem;
+}
+
+.ad-portal-access__eyebrow {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--access-muted);
+}
+
+.ad-portal-access__title {
+  margin: 0;
+  max-width: 24rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--access-ink);
+}
+
+.ad-portal-access__lead {
+  margin: 0.5rem 0 0;
+  max-width: 34rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--access-muted);
+}
+
+.ad-portal-access__table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--access-line);
+  border-radius: clamp(10px, 1.2vw, 14px);
+  background: var(--access-panel);
+  -webkit-overflow-scrolling: touch;
+}
+
+.ad-portal-access__table {
+  width: 100%;
+  min-width: 32rem;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.ad-portal-access__table th,
+.ad-portal-access__table td {
+  padding: 0.85rem 0.75rem;
+  border-bottom: 1px solid var(--access-line);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.ad-portal-access__table thead th {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--access-muted);
+  background: color-mix(in srgb, #2d2d2d 3%, var(--access-panel));
+}
+
+.ad-portal-access__corner {
+  width: 28%;
+  text-align: left !important;
+}
+
+.ad-portal-access__table tbody th {
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--access-ink);
+}
+
+.ad-portal-access__table tbody tr:last-child th,
+.ad-portal-access__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.ad-portal-access__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.ad-portal-access__mark--yes {
+  color: var(--access-yes-ink);
+  background: var(--access-yes-bg);
+}
+
+.ad-portal-access__mark--no {
+  color: var(--access-no-ink);
+  background: var(--access-no-bg);
+}
+
+.ad-portal-access__cards {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-portal-access__card {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--access-line);
+}
+
+.ad-portal-access__card:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.ad-portal-access__card-role {
+  margin: 0 0 0.55rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--access-ink);
+}
+
+.ad-portal-access__card-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ad-portal-access__card-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 0.55rem;
+  border: 1px solid var(--access-line);
+  background: #ffffff;
+  font-size: 0.74rem;
+  color: var(--access-muted);
+}
+
+@media (max-width: 767px) {
+  .ad-portal-access__table-wrap {
+    display: none;
+  }
+
+  .ad-portal-access__cards {
+    display: block;
+  }
+}
+
 /* Expedia Ad Portal — payment architecture graph (CSS org-chart connectors) */
 .ad-portal-arch {
   --arch-bg: #f5f4f0;
