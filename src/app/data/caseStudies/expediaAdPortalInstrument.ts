@@ -2,7 +2,7 @@ import type { CaseStudyInstrumentContent } from '../../components/case-study/typ
 import expediaAdPortalPaymentProfiles from '../../../assets/expedia-ad-portal-payment-profiles.png';
 import expediaAdPortalPaymentProfileForm from '../../../assets/expedia-ad-portal-payment-profile-form.png';
 import expediaAdPortalTaxProfile from '../../../assets/expedia-ad-portal-tax-profile.png';
-import expediaAdPortalAccessListPage from '../../../assets/expedia-ad-portal-partner-account.png';
+import expediaAdPortalPartnerAccount from '../../../assets/expedia-ad-portal-partner-account-overview.png';
 import expediaAdPortalAccessListCard from '../../../assets/expedia-ad-portal-access-list-card.png';
 import expediaAdPortalAddUsersStates from '../../../assets/expedia-ad-portal-add-users-states.png';
 import expediaAdPortalAddUsersSearch from '../../../assets/expedia-ad-portal-add-users-search.png';
@@ -43,7 +43,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Expedia ad portal gives advertising partners one place to manage campaigns, payments, and access with clarity across markets.',
+    'Expedia ad portal gives different partner types one place to manage campaigns, payments, and access across markets with clarity.',
   leadImages: [
     {
       src: expediaAdPortalPaymentProfileForm,
@@ -59,19 +59,13 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       beforeLeadBento: true,
       lead:
-        'Different user types need different access to campaigns, billing, and settings. A unified portal keeps those permissions clear so the right people see the right information and can take action with their campaigns.',
+        'Different partners need different levels of access to campaigns, billing, and payment settings. Separating those capabilities keeps sensitive billing data protected.',
       subsections: [],
       chapterVisual: 'ad-portal-payment-architecture',
     },
     {
-      title: 'Pain points identified',
-      scrollGradientStart: true,
-      lead:
-        'Partners were forced to stitch together multiple tools to understand spend, performance, and billing, each with its own patterns and mental model. Friction showed up in campaign review, payment setup, tax compliance, and shared access.',
-      subsections: [],
-    },
-    {
       title: 'Project complications',
+      scrollGradientStart: true,
       scrollGradientEnd: true,
       lead:
         'The main challenges and roadblocks the team faced, and how we tackled them with perseverance and flexibility.',
@@ -109,14 +103,14 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
         'We grounded every flow in partner workflows, from payment profiles and tax compliance to campaign review and shared access.',
       stackedImages: [
         {
-          src: expediaAdPortalPaymentProfiles,
-          alt: 'Payment profiles list with tax profile missing status and add another payment profile action',
+          src: expediaAdPortalPartnerAccount,
+          alt: 'Partner account page for Hilton NYC with account details, credit limit, properties, payment profile, and users',
           objectFit: 'contain',
           background: 'page',
         },
         {
-          src: expediaAdPortalPaymentProfileForm,
-          alt: 'Payment profile information form with billing address and primary billing contact fields',
+          src: expediaAdPortalPaymentProfiles,
+          alt: 'Payment profiles list with tax profile missing status and add another payment profile action',
           objectFit: 'contain',
           background: 'page',
         },
@@ -129,12 +123,6 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
         {
           src: expediaAdPortalReviewCampaigns,
           alt: 'Review campaigns step listing eligible and ineligible campaigns for a payment profile',
-          objectFit: 'contain',
-          background: 'page',
-        },
-        {
-          src: expediaAdPortalAccessListPage,
-          alt: 'Edit access list page for a payment profile with searchable users and remove actions',
           objectFit: 'contain',
           background: 'page',
         },

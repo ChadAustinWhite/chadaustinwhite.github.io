@@ -1233,26 +1233,22 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
-/* Expedia Ad Portal — access model (permission matrix) */
+/* Expedia Ad Portal — payment architecture graph (CSS org-chart connectors) */
 .ad-portal-arch {
   --arch-bg: #f5f4f0;
   --arch-ink: #2d2d2d;
   --arch-muted: #636363;
   --arch-line: color-mix(in srgb, #2d2d2d 10%, transparent);
+  --arch-connector: color-mix(in srgb, #2d2d2d 38%, transparent);
+  --arch-core-bg: #ecebe7;
+  --arch-core-ink: #2d2d2d;
+  --arch-new-bg: #e2dcf0;
+  --arch-new-ink: #2f2748;
   --arch-panel: #faf9f6;
-  --arch-full: #2f4a38;
-  --arch-full-bg: #dce8e0;
-  --arch-edit: #3b3658;
-  --arch-edit-bg: #e3e0ef;
-  --arch-act: #3d4a5c;
-  --arch-act-bg: #dde4ec;
-  --arch-view: #5a5248;
-  --arch-view-bg: #ebe6df;
-  --arch-none: #8a8a8a;
-  --arch-none-bg: #efeeea;
+  --arch-stem: 0.95rem;
   width: 100%;
   margin: 0;
-  padding: clamp(1.15rem, 2.8vw, 1.75rem);
+  padding: clamp(1.15rem, 2.8vw, 1.65rem);
   border-radius: clamp(12px, 1.4vw, 18px);
   background: var(--arch-bg);
   color: var(--arch-ink);
@@ -1260,7 +1256,7 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .ad-portal-arch__top {
-  margin-bottom: 1.15rem;
+  margin-bottom: 1rem;
 }
 
 .ad-portal-arch__eyebrow {
@@ -1274,8 +1270,8 @@ html.home-canvas-interactive .site-nav-surface {
 
 .ad-portal-arch__title {
   margin: 0;
-  max-width: 32rem;
-  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  max-width: 28rem;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.25;
@@ -1283,233 +1279,303 @@ html.home-canvas-interactive .site-nav-surface {
 }
 
 .ad-portal-arch__lead {
-  margin: 0.55rem 0 0;
-  max-width: 40rem;
+  margin: 0.5rem 0 0;
+  max-width: 36rem;
   font-size: 0.9rem;
   line-height: 1.45;
   color: var(--arch-muted);
 }
 
-.ad-portal-arch__matrix-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--arch-line);
+.ad-portal-arch__board {
+  padding: clamp(1.25rem, 3vw, 1.75rem) clamp(0.65rem, 2vw, 1.1rem);
   border-radius: clamp(10px, 1.2vw, 14px);
+  border: 1px solid var(--arch-line);
   background: var(--arch-panel);
-  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
 }
 
-.ad-portal-arch__matrix {
-  width: 100%;
-  min-width: 36rem;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-
-.ad-portal-arch__matrix th,
-.ad-portal-arch__matrix td {
-  padding: 0.85rem 0.9rem;
-  border-bottom: 1px solid var(--arch-line);
-  text-align: left;
-  vertical-align: middle;
-}
-
-.ad-portal-arch__matrix thead th {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--arch-muted);
-  background: color-mix(in srgb, #2d2d2d 3%, var(--arch-panel));
-}
-
-.ad-portal-arch__matrix-corner {
-  width: 30%;
-}
-
-.ad-portal-arch__matrix tbody th {
-  font-weight: 500;
-}
-
-.ad-portal-arch__matrix tbody tr:last-child th,
-.ad-portal-arch__matrix tbody tr:last-child td {
-  border-bottom: 0;
-}
-
-.ad-portal-arch__matrix td {
-  text-align: center;
-}
-
-.ad-portal-arch__role-name {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: var(--arch-ink);
-}
-
-.ad-portal-arch__role-summary {
-  display: block;
-  margin-top: 0.2rem;
-  font-size: 0.74rem;
-  font-weight: 400;
-  line-height: 1.4;
-  color: var(--arch-muted);
-}
-
-.ad-portal-arch__level {
-  display: inline-flex;
-  align-items: center;
+.ad-portal-arch__tree,
+.ad-portal-arch__branch {
+  display: flex;
   justify-content: center;
-  min-width: 3.25rem;
-  padding: 0.28rem 0.55rem;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1;
-}
-
-.ad-portal-arch__level--full {
-  color: var(--arch-full);
-  background: var(--arch-full-bg);
-}
-
-.ad-portal-arch__level--edit {
-  color: var(--arch-edit);
-  background: var(--arch-edit-bg);
-}
-
-.ad-portal-arch__level--act {
-  color: var(--arch-act);
-  background: var(--arch-act-bg);
-}
-
-.ad-portal-arch__level--view {
-  color: var(--arch-view);
-  background: var(--arch-view-bg);
-}
-
-.ad-portal-arch__level--none {
-  color: var(--arch-none);
-  background: var(--arch-none-bg);
-}
-
-.ad-portal-arch__mobile-roles {
-  display: none;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.ad-portal-arch__mobile-role {
-  padding: 0.95rem 0;
-  border-bottom: 1px solid var(--arch-line);
+.ad-portal-arch__tree {
+  width: 100%;
+  min-width: min(100%, 40rem);
 }
 
-.ad-portal-arch__mobile-role:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
-}
-
-.ad-portal-arch__mobile-role-head {
-  margin-bottom: 0.65rem;
-}
-
-.ad-portal-arch__chips {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.45rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ad-portal-arch__chip {
+.ad-portal-arch__tree-root,
+.ad-portal-arch__tree-node {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.55rem 0.65rem;
-  border-radius: 0.6rem;
-  border: 1px solid var(--arch-line);
-  background: #ffffff;
+  position: relative;
+  padding-inline: 0.5rem;
 }
 
-.ad-portal-arch__chip-label {
-  font-size: 0.72rem;
-  color: var(--arch-muted);
+/* Shared trunk into a branch */
+.ad-portal-arch__tree-root > .ad-portal-arch__branch,
+.ad-portal-arch__tree-node > .ad-portal-arch__branch {
+  position: relative;
+  width: 100%;
+  padding-top: var(--arch-stem);
 }
 
-.ad-portal-arch__strip {
-  margin-top: 1.15rem;
-  padding-top: 1.05rem;
-  border-top: 1px solid var(--arch-line);
+.ad-portal-arch__tree-root > .ad-portal-arch__branch::before,
+.ad-portal-arch__tree-node > .ad-portal-arch__branch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: var(--arch-stem);
+  background: var(--arch-connector);
+  transform: translateX(-50%);
 }
 
-.ad-portal-arch__strip-eyebrow {
-  margin: 0 0 0.55rem;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--arch-muted);
+/* Sibling bar + stem into each child card */
+.ad-portal-arch__branch > .ad-portal-arch__tree-node {
+  padding-top: var(--arch-stem);
 }
 
-.ad-portal-arch__strip-flow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.35rem 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.ad-portal-arch__branch > .ad-portal-arch__tree-node::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: var(--arch-stem);
+  background: var(--arch-connector);
+  transform: translateX(-50%);
 }
 
-.ad-portal-arch__strip-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.ad-portal-arch__strip-node {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 0.7rem;
-  border-radius: 999px;
-  border: 1px solid var(--arch-line);
-  background: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--arch-ink);
-}
-
-.ad-portal-arch__strip-arrow {
-  width: 0.85rem;
+.ad-portal-arch__branch > .ad-portal-arch__tree-node::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 1px;
-  background: color-mix(in srgb, #2d2d2d 28%, transparent);
+  background: var(--arch-connector);
+}
+
+.ad-portal-arch__branch > .ad-portal-arch__tree-node:first-child::after {
+  left: 50%;
+  width: 50%;
+}
+
+.ad-portal-arch__branch > .ad-portal-arch__tree-node:last-child::after {
+  width: 50%;
+}
+
+.ad-portal-arch__branch > .ad-portal-arch__tree-node:only-child::after {
+  display: none;
+}
+
+/* Campaign ↔ Partner account pair */
+.ad-portal-arch__parents {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 28rem;
   position: relative;
 }
 
-.ad-portal-arch__strip-arrow::after {
+.ad-portal-arch__parent {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 0;
+  padding-bottom: var(--arch-stem);
+}
+
+.ad-portal-arch__parent .ad-portal-arch__node {
+  position: relative;
+  z-index: 1;
+}
+
+/* Horizontal line between parent card centers */
+.ad-portal-arch__parents::before {
   content: '';
   position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0.3rem;
-  height: 0.3rem;
-  border-right: 1px solid color-mix(in srgb, #2d2d2d 28%, transparent);
-  border-top: 1px solid color-mix(in srgb, #2d2d2d 28%, transparent);
-  transform: translateY(-50%) rotate(45deg);
+  top: 1.275rem;
+  left: 25%;
+  right: 25%;
+  height: 1px;
+  background: var(--arch-connector);
+  z-index: 0;
+}
+
+/* Drop from each parent card bottom into merge bar */
+.ad-portal-arch__parent::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(100% - var(--arch-stem));
+  width: 1px;
+  height: var(--arch-stem);
+  background: var(--arch-connector);
+  transform: translateX(-50%);
+}
+
+/* Merge bar bridging the two parent drops */
+.ad-portal-arch__parents::after {
+  content: '';
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+  height: 1px;
+  background: var(--arch-connector);
+}
+
+/* Root branch trunk starts at merge bar (top of padding) */
+.ad-portal-arch__tree-root > .ad-portal-arch__branch {
+  margin-top: 0;
+}
+
+.ad-portal-arch__node {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2rem;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.5rem;
+  border: 1px solid color-mix(in srgb, #2d2d2d 10%, transparent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  background: var(--arch-core-bg);
+  color: var(--arch-core-ink);
+  box-sizing: border-box;
+}
+
+.ad-portal-arch__node--core {
+  color: var(--arch-core-ink);
+  background: var(--arch-core-bg);
+}
+
+.ad-portal-arch__node--hub {
+  min-width: 10.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+.ad-portal-arch__node--detail {
+  width: 100%;
+  max-width: 13.25rem;
+  min-height: 4.1rem;
+}
+
+.ad-portal-arch__node--new {
+  color: var(--arch-new-ink);
+  background: var(--arch-new-bg);
+  border-color: color-mix(in srgb, #2f2748 14%, transparent);
+}
+
+.ad-portal-arch__node-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ad-portal-arch__node-meta {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  line-height: 1.35;
+  color: color-mix(in srgb, var(--arch-core-ink) 72%, transparent);
+}
+
+.ad-portal-arch__node--new .ad-portal-arch__node-meta {
+  color: color-mix(in srgb, var(--arch-new-ink) 78%, transparent);
+}
+
+.ad-portal-arch__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.4rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--arch-new-ink);
+  background: color-mix(in srgb, #ffffff 55%, transparent);
+}
+
+.ad-portal-arch__branch--children {
+  width: max-content;
+  max-width: 100%;
 }
 
 @media (max-width: 767px) {
-  .ad-portal-arch__matrix-wrap {
+  .ad-portal-arch__tree {
+    min-width: 0;
+  }
+
+  .ad-portal-arch__parents {
+    flex-direction: column;
+    align-items: center;
+    max-width: none;
+    gap: 0;
+  }
+
+  .ad-portal-arch__parents::before,
+  .ad-portal-arch__parents::after,
+  .ad-portal-arch__parent::after {
     display: none;
   }
 
-  .ad-portal-arch__mobile-roles {
-    display: block;
+  .ad-portal-arch__parent {
+    padding-bottom: 0;
+    width: 100%;
+  }
+
+  .ad-portal-arch__parent + .ad-portal-arch__parent {
+    margin-top: var(--arch-stem);
+    position: relative;
+  }
+
+  .ad-portal-arch__parent + .ad-portal-arch__parent::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--arch-stem) * -1);
+    left: 50%;
+    width: 1px;
+    height: var(--arch-stem);
+    background: var(--arch-connector);
+    transform: translateX(-50%);
+  }
+
+  .ad-portal-arch__branch--children {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .ad-portal-arch__branch--children > .ad-portal-arch__tree-node {
+    width: min(100%, 16rem);
+    padding-inline: 0;
+  }
+
+  .ad-portal-arch__branch--children > .ad-portal-arch__tree-node::after {
+    display: none;
+  }
+
+  .ad-portal-arch__node--detail {
+    max-width: none;
   }
 }
 
