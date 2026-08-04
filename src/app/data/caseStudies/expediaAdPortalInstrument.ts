@@ -59,8 +59,9 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Why It Matters',
       beforeLeadBento: true,
       lead:
-        'Different users have different levels of access to campaigns, billing, and payment settings. Separate capabilities help protect sensitive information.',
+        'Different partners need different levels of access to campaigns, billing, and payment settings. Separating those capabilities keeps sensitive billing data protected.',
       subsections: [],
+      chapterVisual: 'ad-portal-payment-architecture',
     },
     {
       title: 'Project complications',
