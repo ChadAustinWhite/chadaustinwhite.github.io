@@ -6,6 +6,7 @@ import expediaAdPortalPartnerAccount from '../../../assets/expedia-ad-portal-par
 import expediaAdPortalAccessListCard from '../../../assets/expedia-ad-portal-access-list-card.png';
 import expediaAdPortalAddUsersStates from '../../../assets/expedia-ad-portal-add-users-states.png';
 import expediaAdPortalAddUsersSearch from '../../../assets/expedia-ad-portal-add-users-search.png';
+import expediaAdPortalAddUsersSelected from '../../../assets/expedia-ad-portal-add-users-selected.png';
 import expediaAdPortalReviewCampaigns from '../../../assets/expedia-ad-portal-review-campaigns.png';
 import expediaAdPortalWalkthrough from '../../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../../assets/expedia-ad-portal-walkthrough-poster.jpg';
@@ -101,6 +102,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       title: 'Evidence-led design',
       lead:
         'We grounded every flow in partner workflows, from payment profiles and tax compliance to campaign review and shared access.',
+      chapterVisual: 'ad-portal-access-paths',
       stackedImages: [
         {
           src: expediaAdPortalPartnerAccount,
@@ -146,6 +148,16 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
               padded: true,
             },
           ],
+        },
+        {
+          title: 'Add users selected',
+          image: {
+            src: expediaAdPortalAddUsersSelected,
+            alt: 'Add users modal with multi-selected people chips, clear all, and already invited result state',
+            objectFit: 'contain',
+            background: 'page',
+            padded: true,
+          },
         },
         {
           title: 'Add users flow',

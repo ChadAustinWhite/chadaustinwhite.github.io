@@ -179,7 +179,8 @@ export interface CaseStudyInstrumentChapter {
     | 'accelerator-search-visibility'
     | 'accelerator-partner-journey'
     | 'accelerator-hook-model'
-    | 'ad-portal-payment-architecture';
+    | 'ad-portal-payment-architecture'
+    | 'ad-portal-access-paths';
   /** Render this chapter after `leadImages` and before `leadBento` / hero images. */
   beforeLeadBento?: boolean;
   /** When set, scroll background stays at its start color until this chapter has scrolled past. */
