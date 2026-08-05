@@ -22,6 +22,7 @@ import {
 } from './CaseStudySectionBrandContext';
 
 const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
+  'case-study-lexus-driving-tour',
   'case-study-worldpay-disputes',
   'case-study-expedia-accelerator',
   'case-study-expedia-ad-portal',

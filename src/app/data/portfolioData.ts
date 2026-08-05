@@ -1,11 +1,11 @@
-import expediaAcceleratorWalkthrough from '../../assets/expedia-accelerator-walkthrough.mp4';
-import expediaAcceleratorWalkthroughPoster from '../../assets/expedia-accelerator-walkthrough-poster.jpg';
+import expediaAcceleratorCardImage from '../../assets/expedia-accelerator-card.png';
 import expediaAdPortalWalkthrough from '../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../assets/expedia-ad-portal-walkthrough-poster.jpg';
-import worldpayDisputesImage from '../../assets/worldpay-disputes-experience.png';
+import lexusDrivingTourImage from '../../assets/lexus-driving-tour-hero.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
 export type CaseStudyRoute =
+  | 'case-study-lexus-driving-tour'
   | 'case-study-worldpay-disputes'
   | 'case-study-expedia-accelerator'
   | 'case-study-expedia-ad-portal'
@@ -50,6 +50,11 @@ export interface ProjectItem {
   /** `contain` = full image visible in the tile; `cover` = fill 16:9 (default). */
   imageObjectFit?: 'cover' | 'contain';
   /**
+   * CSS `object-position` when the thumbnail is filled (`cover`) or letterboxed (`contain`).
+   * Defaults to top. Use bottom when important type/content sits low in the frame.
+   */
+  imageObjectPosition?: string;
+  /**
    * With `contain`, caps max CSS width to these pixel values (usually = source PNG dimensions).
    * Prevents upscale past the raster’s native resolution—keeps dense UI typography sharp on large viewports / HiDPI.
    */
@@ -61,6 +66,12 @@ export interface ProjectItem {
   imageMediaMatteTone?: 'default' | 'charcoal';
   /** Two headline stats shown on the project card (large value above label). Omit for non-metric work. */
   metrics?: [ProjectMetric, ProjectMetric];
+  /**
+   * `device`: media inside a simple device outline (no period, title, copy, metrics, or CTA).
+   * `image`: only the image fills the tile — no outer card chrome.
+   * Default is the full project card.
+   */
+  cardPresentation?: 'default' | 'device' | 'image';
 }
 
 export const projects: ProjectItem[] = [
@@ -69,18 +80,28 @@ export const projects: ProjectItem[] = [
     description:
       'I led the redesign of Expedia Group’s Accelerator so hotels could launch and optimize search visibility campaigns.',
     period: '2025–2026',
-    video: expediaAcceleratorWalkthrough,
-    videoPoster: expediaAcceleratorWalkthroughPoster,
-    videoAspectRatio: '1920 / 1182',
-    videoStartSeconds: 4.4,
-    imageAlt: 'Walkthrough of creating and managing an Accelerator in Expedia Group Partner Central',
+    image: expediaAcceleratorCardImage,
+    imageAlt:
+      'Expedia Group Partner Central Accelerator — create flow and performance analytics as layered product windows',
     imageObjectFit: 'contain',
+    imageIntrinsicWidthPx: 1024,
+    imageIntrinsicHeightPx: 638,
+    cardPresentation: 'device',
     caseStudyRoute: 'case-study-expedia-accelerator',
     hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
-    metrics: [
-      { label: 'gross revenue', value: '$300M' },
-      { label: 'active hotel partners', value: '72.4K' },
-    ],
+  },
+  {
+    title: 'Lexus Driving Tour',
+    description:
+      'An exclusive invitation to feel the road the way Lexus intended — event experience design for the Lexus Driving Tour.',
+    period: '2024',
+    image: lexusDrivingTourImage,
+    imageAlt:
+      'Lexus Driving Tour mobile site — experience amazing hero with blue LC sports car, register now and event details actions, and you’re invited section',
+    caseStudyRoute: 'case-study-lexus-driving-tour',
+    comingSoon: true,
+    cardPresentation: 'image',
+    hoverCanvas: { dark: '#1a2230', light: '#e6ebf0' },
   },
   {
     title: 'Expedia Group ad portal',
@@ -97,21 +118,6 @@ export const projects: ProjectItem[] = [
     metrics: [
       { label: 'partner markets', value: '12+' },
       { label: 'support escalations', value: '-28%' },
-    ],
-  },
-  {
-    title: 'Worldpay dispute defender',
-    description:
-      'I designed automated dispute resolution that protects merchant revenue and replaces manual triage with clarity operators can trust.',
-    period: '2026',
-    image: worldpayDisputesImage,
-    imageAlt:
-      'Worldpay Dispute Defender — performance summary with sales protected, time saved, and disputes handled',
-    caseStudyRoute: 'case-study-worldpay-disputes',
-    hoverCanvas: { dark: '#2b2928', light: '#efecf0' },
-    metrics: [
-      { label: 'protected annually', value: '$44.6M' },
-      { label: 'disputes automated', value: '147K/mo' },
     ],
   },
   {
