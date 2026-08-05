@@ -90,229 +90,6 @@ html.home-canvas-interactive .site-nav-surface {
   }
 }
 
-/* Splash entry (hold-to-enter, BASIC Moves–inspired) */
-html.splash-active,
-html.splash-active body {
-  overflow: hidden;
-}
-
-.splash-screen {
-  --splash-bg: #1c1c1a;
-  --splash-ink: #f5f4f0;
-  --splash-muted: color-mix(in srgb, #f5f4f0 58%, transparent);
-  position: fixed;
-  inset: 0;
-  z-index: 20000;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 4vw, 2.5rem)
-    clamp(1.75rem, 4vw, 2.75rem);
-  background: var(--splash-bg);
-  color: var(--splash-ink);
-  overflow: hidden;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: none;
-  transition:
-    opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.9s cubic-bezier(0.33, 0.1, 0.25, 1);
-}
-
-.splash-screen--exit {
-  opacity: 0;
-  transform: scale(1.04);
-  pointer-events: none;
-}
-
-.splash-screen__grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.18;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
-  mix-blend-mode: soft-light;
-}
-
-.splash-screen__vignette {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 42%, transparent 0%, rgb(0 0 0 / 0.35) 100%),
-    linear-gradient(180deg, rgb(0 0 0 / 0.12) 0%, transparent 28%, transparent 70%, rgb(0 0 0 / 0.28) 100%);
-}
-
-.splash-screen__top,
-.splash-screen__center,
-.splash-screen__bottom {
-  position: relative;
-  z-index: 1;
-}
-
-.splash-screen__top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--splash-muted);
-}
-
-.splash-screen__mark {
-  margin: 0;
-  color: var(--splash-ink);
-}
-
-.splash-screen__locale {
-  margin: 0;
-}
-
-.splash-screen__center {
-  max-width: 40rem;
-  margin-inline: auto;
-  text-align: center;
-  animation: splash-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.splash-screen__eyebrow {
-  margin: 0 0 1.25rem;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--splash-muted);
-}
-
-.splash-screen__title {
-  margin: 0;
-  font-size: clamp(2.4rem, 8vw, 4.75rem);
-  font-weight: 400;
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-  color: var(--splash-ink);
-}
-
-.splash-screen__title-line {
-  display: block;
-}
-
-.splash-screen__lede {
-  margin: 1.35rem auto 0;
-  max-width: 28rem;
-  font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-  line-height: 1.55;
-  color: var(--splash-muted);
-}
-
-.splash-screen__bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  animation: splash-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
-}
-
-.splash-screen__hold {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 7.5rem;
-  height: 7.5rem;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--splash-ink);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.splash-screen__hold:focus-visible {
-  outline: 2px solid var(--splash-ink);
-  outline-offset: 4px;
-  border-radius: 50%;
-}
-
-.splash-screen__hold-ring {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.splash-screen__hold.is-holding .splash-screen__hold-ring {
-  transform: scale(1.04);
-}
-
-.splash-screen__hold-core {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
-  width: calc(100% - 10px);
-  height: calc(100% - 10px);
-  border-radius: 50%;
-  background: var(--splash-bg);
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--splash-ink) 22%, transparent);
-}
-
-.splash-screen__hold-label {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.splash-screen__hold-sub {
-  font-size: 0.62rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--splash-muted);
-}
-
-.splash-screen__hint {
-  margin: 0;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--splash-muted);
-}
-
-@keyframes splash-rise {
-  from {
-    opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .splash-screen,
-  .splash-screen--exit,
-  .splash-screen__center,
-  .splash-screen__bottom,
-  .splash-screen__hold-ring {
-    transition: none;
-    animation: none;
-    transform: none;
-  }
-
-  .splash-screen--exit {
-    opacity: 0;
-  }
-}
-
 /* Soft wipe page transition */
 html.page-transition-active,
 html.page-transition-active body {
@@ -795,6 +572,141 @@ html.page-transition-active body {
 .project-card img {
   -webkit-user-drag: none;
   user-select: none;
+}
+
+/* Shared outer radius for media-only project tiles (device + image). */
+.project-card--image,
+.project-device {
+  --project-media-radius: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .project-card--image,
+  .project-device {
+    --project-media-radius: 1.15rem;
+  }
+}
+
+/* Image-only project tile: the asset is the entire card. */
+.project-card--image {
+  background: transparent;
+  border: none;
+  border-radius: var(--project-media-radius);
+  overflow: hidden;
+}
+
+.project-card--image__media {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: transparent;
+}
+
+.project-card--image__media--openable {
+  cursor: pointer;
+}
+
+.project-card--image__media--openable:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.project-card--image__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Device-only project tile: recording inside a simple browser outline. */
+.project-card--device {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.project-device {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--project-media-radius);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  background: color-mix(in srgb, var(--ink) 92%, var(--bg));
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 8%, transparent) inset,
+    0 18px 40px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+/* Still frames already include OS/browser chrome — keep only a soft outer outline. */
+.project-device--still {
+  border-radius: var(--project-media-radius);
+  background: transparent;
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.project-device--openable {
+  cursor: pointer;
+}
+
+.project-device--openable:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.project-device__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+  height: 1.85rem;
+  padding: 0 0.75rem;
+  background: color-mix(in srgb, var(--ink) 88%, var(--bg));
+  border-bottom: 1px solid color-mix(in srgb, #000 35%, transparent);
+}
+
+.project-device__dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 28%, transparent);
+}
+
+.project-device__screen {
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #111;
+  line-height: 0;
+}
+
+.project-device__screen video,
+.project-device__screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-device--still .project-device__screen {
+  background: #2a2a2a;
+}
+
+.project-device--still .project-device__screen img {
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .project-device__chrome {
+    height: 2rem;
+    padding: 0 0.9rem;
+  }
 }
 
 @media (min-width: 768px) {

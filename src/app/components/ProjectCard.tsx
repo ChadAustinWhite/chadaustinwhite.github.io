@@ -39,12 +39,15 @@ function ProjectCardVideo({
   label,
   aspectRatio,
   startSeconds = 0,
+  fill = false,
 }: {
   src: string;
   poster?: string;
   label?: string;
   aspectRatio?: string;
   startSeconds?: number;
+  /** When true, video fills its parent (used inside a device frame). */
+  fill?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const inView = useInView(videoRef, { amount: 0.4 });
@@ -88,6 +91,24 @@ function ProjectCardVideo({
     }
   }, [inView, reducedMotion, startSeconds]);
 
+  if (fill) {
+    return (
+      <video
+        ref={videoRef}
+        className="h-full w-full bg-transparent object-cover [transform:translateZ(0)]"
+        poster={poster}
+        preload="metadata"
+        muted
+        loop
+        playsInline
+        controls={reducedMotion}
+        aria-label={label}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+    );
+  }
+
   return (
     <div className="flex h-full min-h-0 w-full items-center justify-center">
       <video
@@ -117,12 +138,15 @@ export function ProjectCard({
   const hasVideo = Boolean(project.video);
   const hasMockup = hasVideo || Boolean(project.image);
   const fit = project.imageObjectFit ?? 'cover';
+  const objectPosition = project.imageObjectPosition ?? 'top';
   const mediaBg =
     project.imageMediaMatteTone === 'charcoal' ? 'bg-[#2d2d2d]' : 'bg-transparent';
   const intrinsicW = project.imageIntrinsicWidthPx;
   const intrinsicH = project.imageIntrinsicHeightPx;
   const cappedContain = hasMockup && !hasVideo && fit === 'contain' && intrinsicW != null;
   const canOpen = !project.comingSoon;
+  const isDevicePresentation = project.cardPresentation === 'device';
+  const isImagePresentation = project.cardPresentation === 'image';
 
   const openCaseStudy = () => {
     if (!canOpen) return;
@@ -130,10 +154,102 @@ export function ProjectCard({
   };
 
   const imgSizingClass = cappedContain
-    ? 'h-auto w-auto max-h-full bg-transparent object-contain object-top [image-rendering:auto]'
+    ? 'h-auto w-auto max-h-full bg-transparent object-contain [image-rendering:auto]'
     : `h-full w-full bg-transparent [transform:translateZ(0)] [image-rendering:auto] ${
-        fit === 'contain' ? 'object-contain object-top' : 'object-cover object-top'
+        fit === 'contain' ? 'object-contain' : 'object-cover'
       }`;
+
+  const mediaOpenProps = canOpen
+    ? {
+        role: 'link' as const,
+        tabIndex: 0,
+        'aria-label': `View case study: ${project.title}`,
+        onClick: openCaseStudy,
+        onKeyDown: (event: KeyboardEvent) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openCaseStudy();
+          }
+        },
+        onMouseEnter: onCtaHoverStart,
+        onMouseLeave: onCtaHoverEnd,
+      }
+    : {
+        'aria-label': project.title,
+        onMouseEnter: onCtaHoverStart,
+        onMouseLeave: onCtaHoverEnd,
+      };
+
+  if (isImagePresentation && project.image) {
+    return (
+      <article className="project-card project-card--image w-full">
+        <div
+          className={`project-card--image__media${canOpen ? ' project-card--image__media--openable' : ''}`}
+          {...mediaOpenProps}
+        >
+          <img
+            src={project.image}
+            alt={project.imageAlt ?? ''}
+            loading="lazy"
+            decoding="async"
+            draggable={false}
+            sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+          />
+        </div>
+      </article>
+    );
+  }
+
+  if (isDevicePresentation && hasMockup) {
+    // Screenshots already include browser chrome; stills use a thin outline only.
+    const showChromeBar = hasVideo && !project.image;
+    const screenAspect =
+      project.videoAspectRatio ??
+      (project.imageIntrinsicWidthPx && project.imageIntrinsicHeightPx
+        ? `${project.imageIntrinsicWidthPx} / ${project.imageIntrinsicHeightPx}`
+        : '16 / 10');
+    const stillFit = fit === 'contain' ? 'object-contain' : 'object-cover';
+
+    return (
+      <article className="project-card project-card--device w-full">
+        <div
+          className={`project-device${showChromeBar ? '' : ' project-device--still'}${
+            canOpen ? ' project-device--openable' : ''
+          }`}
+          {...mediaOpenProps}
+        >
+          {showChromeBar ? (
+            <div className="project-device__chrome" aria-hidden>
+              <span className="project-device__dot" />
+              <span className="project-device__dot" />
+              <span className="project-device__dot" />
+            </div>
+          ) : null}
+          <div className="project-device__screen" style={{ aspectRatio: screenAspect }}>
+            {hasVideo ? (
+              <ProjectCardVideo
+                src={project.video!}
+                poster={project.videoPoster}
+                label={project.imageAlt}
+                startSeconds={project.videoStartSeconds}
+                fill
+              />
+            ) : (
+              <img
+                src={project.image}
+                alt={project.imageAlt ?? ''}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+                className={`h-full w-full bg-transparent ${stillFit} object-center [transform:translateZ(0)]`}
+              />
+            )}
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className="project-card h-full overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]">
@@ -192,6 +308,7 @@ export function ProjectCard({
                 style={{
                   maxWidth: `min(100%, ${intrinsicW}px)`,
                   maxHeight: '100%',
+                  objectPosition,
                 }}
                 className={imgSizingClass}
               />
@@ -204,6 +321,7 @@ export function ProjectCard({
               decoding="async"
               draggable={false}
               sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+              style={{ objectPosition }}
               className={imgSizingClass}
             />
           )}
