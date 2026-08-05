@@ -1,6 +1,5 @@
 import expediaAcceleratorCardImage from '../../assets/expedia-accelerator-card.png';
-import expediaAdPortalWalkthrough from '../../assets/expedia-ad-portal-walkthrough.mp4';
-import expediaAdPortalWalkthroughPoster from '../../assets/expedia-ad-portal-walkthrough-poster.jpg';
+import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
 import lexusDrivingTourImage from '../../assets/lexus-driving-tour-hero.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -108,17 +107,12 @@ export const projects: ProjectItem[] = [
     description:
       'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence across markets.',
     period: '2025',
-    video: expediaAdPortalWalkthrough,
-    videoPoster: expediaAdPortalWalkthroughPoster,
-    videoAspectRatio: '1920 / 1128',
-    imageAlt: 'Walkthrough of creating a campaign in the Expedia Group Ad Portal',
-    imageObjectFit: 'contain',
+    image: expediaAdPortalCardImage,
+    imageAlt:
+      'Expedia Group advertising — Create a TravelAds campaign with property, goals, and campaign structure guidance',
     caseStudyRoute: 'case-study-expedia-ad-portal',
+    cardPresentation: 'image',
     hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
-    metrics: [
-      { label: 'partner markets', value: '12+' },
-      { label: 'support escalations', value: '-28%' },
-    ],
   },
   {
     title: 'Worldpay merchant onboarding',
