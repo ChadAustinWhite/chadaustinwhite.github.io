@@ -12,6 +12,7 @@ import {
 import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
+  lexusDrivingTourContent,
   worldpayDisputeDefenderContent,
   worldpayMerchantOnboardingContent,
 } from './data/caseStudies';
@@ -22,7 +23,6 @@ import { PasswordProtectedCaseStudy } from './components/PasswordProtectedCaseSt
 const COMING_SOON_ROUTES: CaseStudyRoute[] = [
   'case-study-worldpay-sso',
   'case-study-worldpay-merchant-onboarding',
-  'case-study-lexus-driving-tour',
 ];
 
 /** Case studies that open without a password gate. */
@@ -30,6 +30,7 @@ const PUBLIC_CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-accelerator',
   'case-study-expedia-ad-portal',
   'case-study-worldpay-disputes',
+  'case-study-lexus-driving-tour',
   'illustrations',
 ];
 
@@ -50,7 +51,7 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
     case 'case-study-worldpay-sso':
       return 'Worldpay SSO Management';
     case 'case-study-lexus-driving-tour':
-      return 'Lexus Driving Tour';
+      return lexusDrivingTourContent.title;
     case 'case-study-worldpay-disputes':
       return worldpayDisputeDefenderContent.title;
     case 'illustrations':
@@ -135,13 +136,14 @@ function AppRoutes() {
         );
       case 'case-study-lexus-driving-tour':
         return (
-          <CaseStudyPlaceholder
-            title="Lexus Driving Tour"
-            onBack={handleBackFromCaseStudy}
-            onNavigateHome={handleBackFromCaseStudy}
-            currentRoute={route}
-            onViewCaseStudy={handleViewCaseStudy}
-          />
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <CaseStudyPage
+              content={lexusDrivingTourContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
+          </CaseStudyLayout>
         );
       case 'case-study-worldpay-disputes':
         return (
