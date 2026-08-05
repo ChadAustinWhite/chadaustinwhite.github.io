@@ -1,6 +1,7 @@
 import expediaAcceleratorCardImage from '../../assets/expedia-accelerator-card.png';
 import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
 import lexusDrivingTourImage from '../../assets/lexus-driving-tour-hero.png';
+import twoHorseBrandCardImage from '../../assets/two-horse-brand-card.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
 export type CaseStudyRoute =
@@ -130,6 +131,18 @@ export const projects: ProjectItem[] = [
       { label: 'onboarding completion', value: '+32%' },
       { label: 'time to activate', value: '-40%' },
     ],
+  },
+  {
+    title: 'Two Horse Brand',
+    description: 'Vintage denim brand mark with an eagle crest and distressed craft lettering.',
+    period: 'Personal',
+    image: twoHorseBrandCardImage,
+    imageAlt:
+      'Two Horse Brand crest — gold eagle and arrow with Crafted with the finest denim lettering on a deep navy field',
+    caseStudyRoute: 'illustrations',
+    comingSoon: true,
+    cardPresentation: 'image',
+    hoverCanvas: { dark: '#15182a', light: '#e8eaf2' },
   },
 ];
 
