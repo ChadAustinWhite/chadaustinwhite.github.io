@@ -6,6 +6,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
   projectName: 'Lexus Driving Tour',
   breadcrumb: 'Lexus Driving Tour',
   tags: ['Automotive', 'Event', 'Brand'],
+  roundedMedia: true,
   overviewCategories: [
     {
       label: 'Role',
@@ -31,13 +32,13 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Lexus Driving Tour invites guests to experience Amazing — an exclusive, invitation-led journey that translates Lexus performance and hospitality into a digital path from first glance to RSVP.',
+    'Lexus Driving Tour invites guests to experience Amazing: an exclusive, invitation-led journey that translates Lexus performance and hospitality into a digital path from first glance to RSVP.',
   leadImages: [
     {
       src: lexusDrivingTourHero,
-      alt: 'Lexus Driving Tour mobile site — Experience Amazing hero with blue LC sports car, register now and event details, and You’re Invited section',
+      alt: 'Lexus Driving Tour mobile site: Experience Amazing hero with blue LC sports car, register now and event details, and You’re Invited section',
       padded: true,
-      background: 'charcoal',
+      background: 'page',
       objectFit: 'contain',
       parallaxSpeed: '0',
     },
@@ -46,14 +47,15 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
     {
       title: 'Why It Matters',
       lead: [
-        'Event attendance is won or lost in the first moments of the invitation. Guests need immediate clarity: what the experience is, why it feels exclusive, and what to do next — without wading through dealer form noise.',
+        'Event attendance is won or lost in the first moments of the invitation. Guests need immediate clarity: what the experience is, why it feels exclusive, and what to do next, without wading through dealer form noise.',
         'The Driving Tour website needed to carry the same craft as the cars themselves: cinematic presence, decisive hierarchy, and a registration path that feels personal rather than procedural.',
       ],
+      chapterVisual: 'lexus-driving-tour-phone',
       subsections: [
         {
           title: 'Brand as product',
           paragraphs: [
-            'Lexus already communicates “Experience Amazing” across markets. Our job was to make that line land on a small screen: car photography as the hero stage, type lockup as the brand voice, and two clear actions — Register now and Event details — so guests never had to parse a long page before committing interest.',
+            'Lexus already communicates “Experience Amazing” across markets. Our job was to make that line land on a small screen: car photography as the hero stage, type lockup as the brand voice, and two clear actions (Register now and Event details) so guests never had to parse a long page before committing interest.',
           ],
         },
       ],
@@ -61,7 +63,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
     {
       title: 'Project complications',
       lead:
-        'A focused look at the constraints that shaped the experience — and how we kept the invitation feeling exclusive without becoming opaque.',
+        'A focused look at the constraints that shaped the experience, and how we kept the invitation feeling exclusive without becoming opaque.',
       subsections: [],
       accordion: [
         {
@@ -78,7 +80,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
         },
         {
           title: 'Cross-channel continuity',
-          body: 'Landing art, event brief, and on-site hospitality needed a single visual system — color, type, and pacing — so the digital experience anticipated the track-day moment rather than competing with it.',
+          body: 'Landing art, event brief, and on-site hospitality needed a single visual system of color, type, and pacing so the digital experience anticipated the track-day moment rather than competing with it.',
         },
         {
           title: 'Performance on the road',
@@ -94,7 +96,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
         {
           title: 'Composition system',
           paragraphs: [
-            'The hero is a full-bleed visual plane — road, sky, and the LC line — with logo and menu held quiet at the top. The type lockup sits low in the composition so “LEXUS DRIVING TOUR” reads as part of the cinematic stage, not a floating marketing block.',
+            'The hero is a full-bleed visual plane of road, sky, and the LC line, with logo and menu held quiet at the top. The type lockup sits low in the composition so “LEXUS DRIVING TOUR” reads as part of the cinematic stage, not a floating marketing block.',
             'Register now uses solid high-contrast fill; Event details remains available as a secondary path for guests still building confidence. Below the fold, You’re Invited and Experience Amazing extend the same language without restaging the entire brand.',
           ],
         },
@@ -115,7 +117,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
           title: 'An invitation that feels like the event',
           paragraphs: [
             'The finished experience treats the Driving Tour as a brand product: immersive first screen, precise CTAs, and a calm scroll into hospitality detail. Guests can move from desire to registration without friction that would break the exclusive tone.',
-            'For stakeholders, the site became a reusable shell for future tour markets — same drama and structure, swappable photography and session details — while keeping registration operations straightforward.',
+            'For stakeholders, the site became a reusable shell for future tour markets with the same drama and structure, and swappable photography and session details, while keeping registration operations straightforward.',
           ],
         },
       ],
@@ -135,9 +137,9 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
     ],
     image: {
       src: lexusDrivingTourHero,
-      alt: 'Lexus Driving Tour — Experience Amazing invitation composition',
+      alt: 'Lexus Driving Tour: Experience Amazing invitation composition',
       objectFit: 'contain',
-      background: 'charcoal',
+      background: 'page',
       padded: true,
     },
   },

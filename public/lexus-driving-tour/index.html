@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexus Driving Tour | Register Your Experience</title>
+    <meta
+      name="description"
+      content="You're invited to the Lexus Driving Tour at MetLife Stadium. Experience amazing behind the wheel—register for March 22 – April 1."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="assets/lexus-logo.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header is-over-hero" data-header>
+      <div class="site-header__inner">
+        <a class="logo" href="#top" aria-label="Lexus home">
+          <span class="logo__emblem" aria-hidden="true">
+            <img
+              class="logo__img logo__img--dark"
+              src="assets/lexus-mark-dark.png"
+              alt=""
+              width="208"
+              height="150"
+            />
+            <img
+              class="logo__img logo__img--light"
+              src="assets/lexus-mark.png"
+              alt=""
+              width="208"
+              height="150"
+            />
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+          data-nav-toggle
+        >
+          <span class="visually-hidden">Menu</span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+
+        <nav class="primary-nav" id="primary-nav" data-nav aria-label="Primary">
+          <ul class="primary-nav__list">
+            <li><a href="#invite">Event</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#highlights">Highlights</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li>
+              <a class="btn btn--small btn--solid" href="#register">Register</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero: 2/3 viewport photo with overlaid brand lockup -->
+      <section class="hero" id="top" aria-label="Lexus Driving Tour">
+        <div class="hero__media" aria-hidden="true">
+          <img
+            class="hero__photo"
+            src="assets/hero.jpg"
+            alt=""
+            width="1024"
+            height="768"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero__content">
+          <div class="hero__lockup">
+            <p class="hero__eyebrow">Experience Amazing</p>
+            <h1 class="hero__title">Lexus Driving Tour</h1>
+            <p class="hero__lede">
+              An exclusive invitation to feel the road the way
+              Lexus&nbsp;intended.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--light" href="#register">Register Now</a>
+              <a class="btn btn--ghost" href="#invite">Event Details</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Invitation + key facts early for recognition -->
+      <section class="invite section" id="invite" aria-labelledby="invite-heading">
+        <div class="section__inner section__inner--narrow">
+          <p class="eyebrow">You're invited</p>
+          <h2 id="invite-heading" class="heading heading--lg">
+            Experience amazing
+          </h2>
+          <p class="lead">
+            Join Lexus for a remarkable Driving Tour—where precision engineering,
+            refined design, and exhilarating performance come together on and off
+            the course. Limited sessions. Complimentary hospitality. Unforgettable
+            time behind the wheel.
+          </p>
+
+          <dl class="key-facts" aria-label="Event essentials">
+            <div class="key-facts__item">
+              <dt>When</dt>
+              <dd>
+                <time datetime="2025-03-22">March 22</time>
+                –
+                <time datetime="2025-04-01">April 1</time>
+              </dd>
+            </div>
+            <div class="key-facts__item">
+              <dt>Where</dt>
+              <dd>MetLife Stadium<br /><span class="muted">East Rutherford, NJ</span></dd>
+            </div>
+            <div class="key-facts__item">
+              <dt>Duration</dt>
+              <dd>Half-day sessions<br /><span class="muted">Select your date</span></dd>
+            </div>
+          </dl>
+
+          <div class="invite__cta">
+            <a class="btn btn--outline" href="#highlights">See What’s Included</a>
+          </div>
+        </div>
+      </section>
+
+      <figure class="full-bleed animate-on-scroll reveal-scale" aria-hidden="true">
+        <img
+          src="assets/coastal.jpg"
+          alt=""
+          width="1024"
+          height="682"
+          loading="lazy"
+        />
+      </figure>
+
+      <!-- Experience — identical CT Gallery staggered layout -->
+      <section class="ct-gallery section" id="experience" aria-labelledby="experience-heading">
+        <div class="section__inner ct-gallery__inner">
+          <div class="ct-gallery__col ct-gallery__col--left">
+            <header class="ct-gallery__intro animate-on-scroll">
+              <span class="ct-gallery__rule" aria-hidden="true"></span>
+              <h2 id="experience-heading" class="ct-gallery__title">Experience</h2>
+              <p class="ct-gallery__copy">
+                Every picture tells a story. This is where your journey to explore
+                the breath-taking design and stunning craftsmanship of a Lexus
+                begins.
+              </p>
+              <a class="btn btn--outline ct-gallery__btn" href="#highlights">
+                View the Experience
+                <span class="ct-gallery__btn-dash" aria-hidden="true"></span>
+              </a>
+            </header>
+
+            <figure class="ct-gallery__figure animate-on-scroll">
+              <div
+                class="ct-gallery__image ct-gallery__image--landscape"
+                data-parallax
+                data-parallax-speed="0.42"
+              >
+                <img
+                  src="assets/interior.jpg"
+                  alt="Lexus cabin interior viewed toward the road ahead"
+                  width="1024"
+                  height="528"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption class="ct-gallery__caption">
+                <span class="ct-gallery__caption-icon" aria-hidden="true"></span>
+                <span>Discover your driver’s seat from every angle.</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="ct-gallery__col ct-gallery__col--right">
+            <figure class="ct-gallery__figure animate-on-scroll">
+              <div
+                class="ct-gallery__image ct-gallery__image--portrait"
+                data-parallax
+                data-parallax-speed="-0.55"
+              >
+                <img
+                  src="assets/racecar.jpg"
+                  alt="White Lexus LC 500 on a racetrack at golden hour"
+                  width="1024"
+                  height="697"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption class="ct-gallery__caption">
+                <span class="ct-gallery__caption-icon" aria-hidden="true"></span>
+                <span>A VIP experience like no other.</span>
+              </figcaption>
+            </figure>
+
+            <figure class="ct-gallery__figure animate-on-scroll">
+              <div
+                class="ct-gallery__image ct-gallery__image--landscape"
+                data-parallax
+                data-parallax-speed="0.32"
+              >
+                <img
+                  src="assets/gallery-3.jpg"
+                  alt="White perforated Lexus cabin seats"
+                  width="1024"
+                  height="682"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption class="ct-gallery__caption">
+                <span class="ct-gallery__caption-icon" aria-hidden="true"></span>
+                <span>Craftsmanship that invites you to drive.</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Highlights -->
+      <section class="highlights section section--tint" id="highlights" aria-labelledby="highlights-heading">
+        <div class="section__inner section__inner--narrow">
+          <p class="eyebrow animate-on-scroll">What to expect</p>
+          <h2 id="highlights-heading" class="heading heading--lg animate-on-scroll">
+            Event highlights
+          </h2>
+          <p class="lead animate-on-scroll">
+            Everything you need for an unforgettable day—clearly laid out so you
+            know exactly what registration includes.
+          </p>
+
+          <ul class="highlight-list animate-on-scroll">
+            <li>
+              <span class="highlight-list__index" aria-hidden="true">01</span>
+              <div>
+                <strong>Behind the wheel</strong>
+                <p>Drive the latest Lexus performance and luxury vehicles with guided coaching.</p>
+              </div>
+            </li>
+            <li>
+              <span class="highlight-list__index" aria-hidden="true">02</span>
+              <div>
+                <strong>Expert instruction</strong>
+                <p>Personalized feedback from professional driving instructors throughout your session.</p>
+              </div>
+            </li>
+            <li>
+              <span class="highlight-list__index" aria-hidden="true">03</span>
+              <div>
+                <strong>VIP hospitality</strong>
+                <p>Premium lounge access, complimentary refreshments, and concierge support on site.</p>
+              </div>
+            </li>
+            <li>
+              <span class="highlight-list__index" aria-hidden="true">04</span>
+              <div>
+                <strong>Dynamic course</strong>
+                <p>Structured exercises designed to showcase handling, power, and refined control.</p>
+              </div>
+            </li>
+            <li>
+              <span class="highlight-list__index" aria-hidden="true">05</span>
+              <div>
+                <strong>Exclusive gifts</strong>
+                <p>A Lexus Driving Tour keepsake and photo moments to take home.</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="highlights__cta animate-on-scroll">
+            <a class="btn btn--solid btn--wide" href="#register">Register for your session</a>
+            <p class="form-note">Sessions fill quickly. Confirmation sent by email.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="gallery" aria-hidden="true">
+        <figure class="gallery__item animate-on-scroll" style="--reveal-delay: 0s">
+          <img
+            src="assets/gallery-1.jpg"
+            alt=""
+            width="1024"
+            height="725"
+            loading="lazy"
+          />
+        </figure>
+        <figure class="gallery__item animate-on-scroll" style="--reveal-delay: 0.12s">
+          <img
+            src="assets/gallery-2.jpg"
+            alt=""
+            width="1024"
+            height="678"
+            loading="lazy"
+          />
+        </figure>
+        <figure class="gallery__item animate-on-scroll" style="--reveal-delay: 0.24s">
+          <img
+            src="assets/gallery-3.jpg"
+            alt=""
+            width="1024"
+            height="682"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+
+      <!-- Registration -->
+      <section class="register section" id="register" aria-labelledby="register-heading">
+        <div class="section__inner section__inner--form">
+          <header class="register__header animate-on-scroll">
+            <p class="eyebrow">Secure your place</p>
+            <h2 id="register-heading" class="heading heading--lg">Registration</h2>
+            <p class="lead">
+              Tell us a few details so we can confirm your invitation. Required
+              fields are marked. We’ll never share your information for unrelated
+              marketing.
+            </p>
+          </header>
+
+          <form class="reg-form animate-on-scroll" id="registration-form" novalidate>
+            <div class="form-status" role="status" aria-live="polite" data-form-status hidden></div>
+
+            <fieldset class="reg-form__fieldset">
+              <legend>Contact</legend>
+              <div class="reg-form__grid">
+                <div class="field">
+                  <label for="first-name">First name <span aria-hidden="true">*</span></label>
+                  <input
+                    id="first-name"
+                    name="firstName"
+                    type="text"
+                    autocomplete="given-name"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="first-name" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="last-name">Last name <span aria-hidden="true">*</span></label>
+                  <input
+                    id="last-name"
+                    name="lastName"
+                    type="text"
+                    autocomplete="family-name"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="last-name" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="email">Email <span aria-hidden="true">*</span></label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="email" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="phone">Phone <span aria-hidden="true">*</span></label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="phone" hidden></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="reg-form__fieldset">
+              <legend>Mailing address</legend>
+              <div class="reg-form__grid">
+                <div class="field field--full">
+                  <label for="address">Street address <span aria-hidden="true">*</span></label>
+                  <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    autocomplete="street-address"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="address" hidden></p>
+                </div>
+                <div class="field">
+                  <label for="city">City <span aria-hidden="true">*</span></label>
+                  <input
+                    id="city"
+                    name="city"
+                    type="text"
+                    autocomplete="address-level2"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="city" hidden></p>
+                </div>
+                <div class="field field--half">
+                  <label for="state">State <span aria-hidden="true">*</span></label>
+                  <input
+                    id="state"
+                    name="state"
+                    type="text"
+                    autocomplete="address-level1"
+                    maxlength="2"
+                    placeholder="NJ"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="state" hidden></p>
+                </div>
+                <div class="field field--half">
+                  <label for="zip">ZIP code <span aria-hidden="true">*</span></label>
+                  <input
+                    id="zip"
+                    name="zip"
+                    type="text"
+                    autocomplete="postal-code"
+                    inputmode="numeric"
+                    required
+                    aria-required="true"
+                  />
+                  <p class="field__error" data-error-for="zip" hidden></p>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="reg-form__fieldset">
+              <legend>Vehicle interest</legend>
+              <div class="reg-form__grid">
+                <div class="field">
+                  <label for="current-vehicle">Current vehicle</label>
+                  <input
+                    id="current-vehicle"
+                    name="currentVehicle"
+                    type="text"
+                    placeholder="e.g. 2022 Lexus RX"
+                  />
+                </div>
+                <div class="field">
+                  <label for="purchase-intent">Vehicle of interest</label>
+                  <select id="purchase-intent" name="purchaseIntent">
+                    <option value="">Select a model (optional)</option>
+                    <option>IS</option>
+                    <option>ES</option>
+                    <option>GS F</option>
+                    <option>RC F</option>
+                    <option>LC</option>
+                    <option>NX</option>
+                    <option>RX</option>
+                    <option>TX</option>
+                    <option>GX</option>
+                    <option>LX</option>
+                    <option>RZ</option>
+                    <option>Other / Exploring</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="reg-form__footer">
+              <label class="checkbox">
+                <input type="checkbox" name="consent" id="consent" required aria-required="true" />
+                <span>
+                  I confirm I am 21 or older with a valid driver’s license and
+                  agree to be contacted about this event.
+                  <span aria-hidden="true">*</span>
+                </span>
+              </label>
+              <p class="field__error" data-error-for="consent" hidden></p>
+
+              <button class="btn btn--solid btn--wide" type="submit" data-submit>
+                Submit registration
+              </button>
+              <p class="form-note">
+                Need help?
+                <a href="#faq">Browse FAQ</a>
+                or call the Event Concierge at
+                <a href="tel:+18002553987">1-800-255-3987</a>.
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- FAQ accordion -->
+      <section class="faq section section--tint" id="faq" aria-labelledby="faq-heading">
+        <div class="section__inner section__inner--narrow">
+          <p class="eyebrow animate-on-scroll">Answers</p>
+          <h2 id="faq-heading" class="heading heading--lg animate-on-scroll">FAQ</h2>
+          <p class="lead animate-on-scroll">
+            Find what you need quickly—expand a question below. Still stuck? Our
+            concierge is ready to help.
+          </p>
+
+          <div class="accordion animate-on-scroll" data-accordion>
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q1"
+                  aria-expanded="false"
+                  aria-controls="faq-a1"
+                >
+                  Who is eligible to participate?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a1" role="region" aria-labelledby="faq-q1">
+                <div class="accordion__panel-inner">
+                  <p>
+                  Guests must be at least 21 years of age with a valid, unrestricted
+                  driver’s license. A clean driving record is preferred. Spaces are
+                  limited and offered on a first-come, first-served basis.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q2"
+                  aria-expanded="false"
+                  aria-controls="faq-a2"
+                >
+                  What should I wear and bring?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a2" role="region" aria-labelledby="faq-q2">
+                <div class="accordion__panel-inner">
+                  <p>
+                  Wear closed-toe shoes and comfortable attire suitable for
+                  driving. Bring your valid driver’s license. Sunglasses and light
+                  outerwear are recommended. All driving equipment is provided on site.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q3"
+                  aria-expanded="false"
+                  aria-controls="faq-a3"
+                >
+                  How long is a session?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a3" role="region" aria-labelledby="faq-q3">
+                <div class="accordion__panel-inner">
+                  <p>
+                  Plan for approximately four hours including check-in, safety
+                  briefing, driving rotations, and hospitality. You’ll receive your
+                  exact arrival window in your confirmation email.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q4"
+                  aria-expanded="false"
+                  aria-controls="faq-a4"
+                >
+                  Is there a cost to attend?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a4" role="region" aria-labelledby="faq-q4">
+                <div class="accordion__panel-inner">
+                  <p>
+                  The Driving Tour experience is complimentary for invited guests.
+                  Registration is required. No payment is collected during sign-up.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q5"
+                  aria-expanded="false"
+                  aria-controls="faq-a5"
+                >
+                  Can I bring a guest?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a5" role="region" aria-labelledby="faq-q5">
+                <div class="accordion__panel-inner">
+                  <p>
+                  One guest may accompany you in the hospitality areas, pending
+                  availability. Only the registered participant may drive. Note your
+                  guest request in your confirmation reply, and we’ll do our best
+                  to accommodate.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q6"
+                  aria-expanded="false"
+                  aria-controls="faq-a6"
+                >
+                  What if I need to cancel or reschedule?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a6" role="region" aria-labelledby="faq-q6">
+                <div class="accordion__panel-inner">
+                  <p>
+                  Please notify the Event Concierge at least 48 hours before your
+                  session so we can offer your place to another guest. Reschedule
+                  options depend on remaining availability during the tour dates.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q7"
+                  aria-expanded="false"
+                  aria-controls="faq-a7"
+                >
+                  Will I need my own vehicle?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a7" role="region" aria-labelledby="faq-q7">
+                <div class="accordion__panel-inner">
+                  <p>
+                  No. You’ll drive Lexus vehicles prepared specifically for this
+                  event. Free parking is available for attendees arriving at MetLife
+                  Stadium.
+                </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion__item">
+              <h3>
+                <button
+                  class="accordion__trigger"
+                  type="button"
+                  id="faq-q8"
+                  aria-expanded="false"
+                  aria-controls="faq-a8"
+                >
+                  How will I receive confirmation?
+                  <span class="accordion__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion__panel" id="faq-a8" role="region" aria-labelledby="faq-q8">
+                <div class="accordion__panel-inner">
+                  <p>
+                  After you submit this form, you’ll see an on-page confirmation.
+                  A detailed email with session time, arrival instructions, and
+                  what to expect follows within two business days.
+                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__top">
+        <div class="site-footer__brand-block">
+          <img
+            class="site-footer__logo"
+            src="assets/lexus-mark.png"
+            alt="Lexus"
+            width="208"
+            height="150"
+          />
+          <p class="site-footer__tagline">Experience Amazing</p>
+        </div>
+        <div class="site-footer__cols">
+          <div>
+            <h2 class="site-footer__heading">Event</h2>
+            <ul>
+              <li><a href="#invite">Details</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#highlights">Highlights</a></li>
+              <li><a href="#register">Register</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="site-footer__heading">Support</h2>
+            <ul>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="tel:+18002553987">Event Concierge</a></li>
+              <li>
+                <a href="https://www.lexus.com/" target="_blank" rel="noopener noreferrer"
+                  >Lexus.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2 class="site-footer__heading">Legal</h2>
+            <ul>
+              <li>
+                <a href="https://www.lexus.com/legal/privacy" target="_blank" rel="noopener noreferrer"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="https://www.lexus.com/legal/terms" target="_blank" rel="noopener noreferrer"
+                  >Terms of Use</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.toyota.com/support/legal-terms/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Legal Notices</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="site-footer__copy">
+        © <span data-year></span> Lexus, a Division of Toyota Motor Sales, U.S.A., Inc. All rights
+        reserved. Lexus, the Lexus logo, Experience Amazing, and associated marks are trademarks of
+        Toyota Motor Corporation. Event details subject to change. This is a conceptual registration
+        experience inspired by Lexus Driving Tour communications.
+      </p>
+    </footer>
+
+    <a
+      href="#top"
+      class="back-to-top"
+      data-back-to-top
+      aria-label="Back to top"
+      hidden
+    >
+      <span class="back-to-top__icon" aria-hidden="true"></span>
+      <span class="back-to-top__label">Top</span>
+    </a>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

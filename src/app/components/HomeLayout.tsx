@@ -1,9 +1,7 @@
-import { useState } from 'react';
 import { SiteNav } from './SiteNav';
 import { HeroSection } from './HeroSection';
 import { WorkSection } from './WorkSection';
 import { Footer } from './Footer';
-import { useHomeScrollBackground } from '../hooks/useHomeScrollBackground';
 import type { CaseStudyRoute } from '../data/portfolioData';
 
 interface HomeLayoutProps {
@@ -11,10 +9,6 @@ interface HomeLayoutProps {
 }
 
 export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
-  const [hoveredProjectRoute, setHoveredProjectRoute] = useState<CaseStudyRoute | null>(null);
-
-  useHomeScrollBackground(hoveredProjectRoute !== null);
-
   return (
     <>
       <a href="#main-content" className="skip-link">
@@ -33,10 +27,7 @@ export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
         }}
       >
         <HeroSection />
-        <WorkSection
-          onViewCaseStudy={onViewCaseStudy}
-          onProjectHover={setHoveredProjectRoute}
-        />
+        <WorkSection onViewCaseStudy={onViewCaseStudy} />
         <Footer />
       </main>
     </>

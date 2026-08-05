@@ -5,12 +5,10 @@ import type { ProjectItem } from '../data/portfolioData';
 interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
-  onCtaHoverStart?: () => void;
-  onCtaHoverEnd?: () => void;
 }
 
 const projectCtaClass =
-  'project-cta inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--bg)] px-6 py-4 text-[16px] font-normal text-[var(--ink)] transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--ink)_6%,var(--bg))] whitespace-nowrap md:w-auto md:justify-start md:gap-2.5 md:px-6 md:py-3 md:text-[15px]';
+  'project-cta inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-[var(--bg)] px-6 py-4 text-[16px] font-normal text-[var(--ink)] whitespace-nowrap md:w-auto md:justify-start md:gap-2.5 md:px-6 md:py-3 md:text-[15px]';
 
 function ArrowIcon() {
   return (
@@ -132,8 +130,6 @@ function ProjectCardVideo({
 export function ProjectCard({
   project,
   onViewCaseStudy,
-  onCtaHoverStart,
-  onCtaHoverEnd,
 }: ProjectCardProps) {
   const hasVideo = Boolean(project.video);
   const hasMockup = hasVideo || Boolean(project.image);
@@ -171,30 +167,58 @@ export function ProjectCard({
             openCaseStudy();
           }
         },
-        onMouseEnter: onCtaHoverStart,
-        onMouseLeave: onCtaHoverEnd,
       }
     : {
         'aria-label': project.title,
-        onMouseEnter: onCtaHoverStart,
-        onMouseLeave: onCtaHoverEnd,
       };
 
   if (isImagePresentation && project.image) {
+    const secondaryImages = project.secondaryImages ?? [];
+    const isStacked = secondaryImages.length > 0;
+
+    const primaryImage = (
+      <img
+        src={project.image}
+        alt={project.imageAlt ?? ''}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+      />
+    );
+
+    if (!isStacked) {
+      return (
+        <article className="project-card project-card--image w-full">
+          <div
+            className={`project-card--image__media${canOpen ? ' project-card--image__media--openable' : ''}`}
+            {...mediaOpenProps}
+          >
+            {primaryImage}
+          </div>
+        </article>
+      );
+    }
+
     return (
-      <article className="project-card project-card--image w-full">
+      <article className="project-card project-card--image project-card--image-stack w-full">
         <div
-          className={`project-card--image__media${canOpen ? ' project-card--image__media--openable' : ''}`}
+          className={`project-card--image__stack${canOpen ? ' project-card--image__stack--openable' : ''}`}
           {...mediaOpenProps}
         >
-          <img
-            src={project.image}
-            alt={project.imageAlt ?? ''}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-            sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
-          />
+          <div className="project-card--image__media">{primaryImage}</div>
+          {secondaryImages.map((item) => (
+            <div key={item.src} className="project-card--image__media">
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+              />
+            </div>
+          ))}
         </div>
       </article>
     );
@@ -279,8 +303,6 @@ export function ProjectCard({
                     openCaseStudy();
                   }
                 },
-                onMouseEnter: onCtaHoverStart,
-                onMouseLeave: onCtaHoverEnd,
               }
             : {})}
         >
@@ -352,7 +374,7 @@ export function ProjectCard({
               <button
                 type="button"
                 disabled
-                className={`${projectCtaClass} cursor-default opacity-100 hover:bg-[var(--bg)] disabled:opacity-100`}
+                className={`${projectCtaClass} cursor-default opacity-100 disabled:opacity-100`}
               >
                 Coming soon
               </button>
@@ -360,8 +382,6 @@ export function ProjectCard({
               <button
                 type="button"
                 onClick={openCaseStudy}
-                onMouseEnter={onCtaHoverStart}
-                onMouseLeave={onCtaHoverEnd}
                 className={projectCtaClass}
               >
                 View case study

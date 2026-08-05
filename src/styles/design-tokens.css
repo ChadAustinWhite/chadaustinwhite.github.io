@@ -116,9 +116,19 @@ html.home-card-dark:has(.home-main-canvas) {
   --card-bg: #2a2926;
   --card-bg-hover: #353432;
   --nav-pill-bg: #353432;
+  --nav-pill-bg-hover: #454545;
+  --project-cta-bg: var(--nav-pill-bg);
+  --project-cta-bg-hover: var(--nav-pill-bg-hover);
   --accent: #f5f4f0;
   --logo-filter: invert(1);
   --nav-bg: #1c1c1a;
+  --home-canvas-base: #1c1c1a;
+  --experience-card-surface: #2a2926;
+  --experience-card-ink: #f5f4f0;
+  --experience-card-ink-muted: #b8b8b8;
+  --experience-card-border: #3a3936;
+  --experience-tag-bg: #3a3936;
+  --experience-section-label: #b8b8b8;
 }
 
 /* Typography scale (rem-based, WCAG AA–friendly) */
