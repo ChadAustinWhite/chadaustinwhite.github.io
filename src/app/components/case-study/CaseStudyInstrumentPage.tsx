@@ -24,6 +24,7 @@ import { AcceleratorPartnerJourneyMap } from './AcceleratorPartnerJourneyMap';
 import { AcceleratorHookModelFlow } from './AcceleratorHookModelFlow';
 import { AdPortalPaymentArchitecture } from './AdPortalPaymentArchitecture';
 import { AdPortalAccessPaths } from './AdPortalAccessPaths';
+import { LexusDrivingTourPhoneScroll } from './LexusDrivingTourPhoneScroll';
 import { CaseStudySonosSubpointAccordion } from './CaseStudySonosSubpointAccordion';
 
 const GUTTER = 'px-[var(--cs-page-gutter)]';
@@ -425,6 +426,12 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
       {chapter.chapterVisual === 'ad-portal-access-paths' ? (
         <div className="case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-10 md:mt-14 w-full max-w-[72rem]">
           <AdPortalAccessPaths />
+        </div>
+      ) : null}
+
+      {chapter.chapterVisual === 'lexus-driving-tour-phone' ? (
+        <div className="case-study-instrument__chapter-visual case-study-instrument__chapter-visual--start mt-10 md:mt-14 w-full max-w-[28rem]">
+          <LexusDrivingTourPhoneScroll />
         </div>
       ) : null}
 

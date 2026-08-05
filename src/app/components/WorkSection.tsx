@@ -7,10 +7,9 @@ import type { CaseStudyRoute } from '../data/portfolioData';
 
 interface WorkSectionProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
-  onProjectHover: (route: CaseStudyRoute | null) => void;
 }
 
-export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProps) {
+export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
   const [displayMode, setDisplayMode] = useState<'stack' | 'grid'>('stack');
 
   return (
@@ -30,8 +29,6 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
             key={project.title}
             project={project}
             onViewCaseStudy={onViewCaseStudy}
-            onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
-            onCtaHoverEnd={() => onProjectHover(null)}
           />
         ))}
       </div>
@@ -44,8 +41,6 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
                 key={project.title}
                 project={project}
                 onViewCaseStudy={onViewCaseStudy}
-                onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
-                onCtaHoverEnd={() => onProjectHover(null)}
               />
             ))}
           </div>
@@ -60,8 +55,6 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
                 <ProjectCard
                   project={project}
                   onViewCaseStudy={onViewCaseStudy}
-                  onCtaHoverStart={() => onProjectHover(project.caseStudyRoute)}
-                  onCtaHoverEnd={() => onProjectHover(null)}
                 />
               </div>
             ))}

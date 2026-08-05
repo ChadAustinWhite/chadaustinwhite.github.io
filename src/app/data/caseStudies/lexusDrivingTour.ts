@@ -11,13 +11,13 @@ export const lexusDrivingTourContent: CaseStudyContent = {
   meta: {
     organization: 'Lexus',
     organizationNote:
-      'An invitation-led digital experience for an exclusive Driving Tour — cinematic brand presence on mobile and a clear path from curiosity to registration.',
+      'An invitation-led digital experience for an exclusive Driving Tour: cinematic brand presence on mobile and a clear path from curiosity to registration.',
     role: 'Lead UX Designer',
     year: '2024',
     duration: '2024',
   },
   tagline:
-    'An exclusive invitation to feel the road the way Lexus intended — event experience design for the Lexus Driving Tour.',
+    'An exclusive invitation to feel the road the way Lexus intended: event experience design for the Lexus Driving Tour.',
   projectFocus: ['Automotive', 'Event', 'Brand'],
   images: lexusDrivingTourHero,
   instrument: lexusDrivingTourInstrument,

@@ -1,0 +1,1798 @@
+/* --------------------------------------------------------------------------
+   Lexus Driving Tour — styled to feel like lexus.com
+   Geometric Nobel-like type (Jost), cinematic hero, black/white CTAs
+   -------------------------------------------------------------------------- */
+
+:root {
+  --lexus-black: #000000;
+  --lexus-ink: #1a1a1a;
+  --lexus-charcoal: #333333;
+  --lexus-steel: #595959;
+  --lexus-silver: #8c8c8c;
+  --lexus-mist: #e5e5e5;
+  --lexus-cloud: #f5f5f5;
+  --lexus-white: #ffffff;
+  --lexus-gray: #9d8d85; /* Lexus gray warmth from brand heritage */
+  --error: #8a1f1f;
+  --success: #1c4a2e;
+
+  --font: "Jost", "Nobel", "Avenir Next", "Helvetica Neue", sans-serif;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --measure: 36rem;
+  --content: 80rem;
+  --form: 64rem;
+  --page-gutter: clamp(1.25rem, 3vw, 2.5rem);
+
+  --header-h: 4.5rem;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --radius: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  color: var(--lexus-charcoal);
+  background: var(--lexus-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--lexus-black);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100%;
+  z-index: 1000;
+  padding: var(--space-3) var(--space-4);
+  background: var(--lexus-black);
+  color: var(--lexus-white);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+.muted {
+  color: var(--lexus-steel);
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   Header — transparent over hero, solid on scroll (lexus.com pattern)
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-h);
+  color: var(--lexus-black);
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid transparent;
+  transition:
+    background 0.35s var(--ease),
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.site-header.is-over-hero {
+  background: transparent;
+  color: var(--lexus-white);
+  border-bottom-color: transparent;
+  box-shadow: none;
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--lexus-black);
+  border-bottom-color: var(--lexus-mist);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.site-header.is-over-hero.is-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  color: var(--lexus-black);
+}
+
+.site-header__inner {
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+
+.logo {
+  text-decoration: none;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo__emblem {
+  position: relative;
+  display: block;
+  width: 2.65rem;
+  height: 1.9rem;
+  flex-shrink: 0;
+}
+
+.logo__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.25s var(--ease);
+}
+
+/* White/light mark for over-hero; dark mark for solid header */
+.logo__img--dark {
+  opacity: 0;
+}
+
+.logo__img--light {
+  opacity: 1;
+}
+
+.site-header.is-scrolled .logo__img--dark,
+.site-header:not(.is-over-hero) .logo__img--dark {
+  opacity: 1;
+}
+
+.site-header.is-scrolled .logo__img--light,
+.site-header:not(.is-over-hero) .logo__img--light {
+  opacity: 0;
+}
+
+.site-footer__logo {
+  display: block;
+  width: 4.5rem;
+  height: auto;
+  margin: 0 0 var(--space-4);
+  object-fit: contain;
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  color: inherit;
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 1.35rem;
+  height: 1px;
+  background: currentColor;
+  transition: transform 0.3s var(--ease), opacity 0.2s ease;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:first-child {
+  transform: translateY(0.22rem) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:last-child {
+  transform: translateY(-0.22rem) rotate(-45deg);
+}
+
+.primary-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.primary-nav a {
+  text-decoration: none;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+  transition: opacity 0.2s ease;
+}
+
+.primary-nav a:not(.btn) {
+  color: inherit;
+}
+
+.primary-nav a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease);
+}
+
+.primary-nav a:not(.btn):hover::after {
+  transform: scaleX(1);
+}
+
+.primary-nav a:not(.btn):hover {
+  opacity: 0.85;
+}
+
+/* Keep Register label high-contrast on every header state */
+.primary-nav a.btn--solid {
+  background: var(--lexus-black);
+  color: var(--lexus-white);
+  border-color: var(--lexus-black);
+  opacity: 1;
+}
+
+.primary-nav a.btn--solid:hover {
+  background: var(--lexus-charcoal);
+  border-color: var(--lexus-charcoal);
+  color: var(--lexus-white);
+  opacity: 1;
+}
+
+.site-header.is-over-hero:not(.is-scrolled) .primary-nav a.btn--solid {
+  background: var(--lexus-white);
+  color: var(--lexus-black);
+  border-color: var(--lexus-white);
+}
+
+.site-header.is-over-hero:not(.is-scrolled) .primary-nav a.btn--solid:hover {
+  background: transparent;
+  color: var(--lexus-white);
+  border-color: var(--lexus-white);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & text links (lexus.com CTA language)
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.125rem;
+  padding: 0.9rem 1.85rem;
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.35s var(--ease),
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease),
+    transform 0.35s var(--ease),
+    box-shadow 0.35s var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--solid {
+  background: var(--lexus-black);
+  color: var(--lexus-white);
+  border-color: var(--lexus-black);
+}
+
+.btn--solid:hover {
+  background: var(--lexus-charcoal);
+  border-color: var(--lexus-charcoal);
+  color: var(--lexus-white);
+}
+
+.btn--light {
+  background: var(--lexus-white);
+  color: var(--lexus-black);
+  border-color: var(--lexus-white);
+}
+
+.btn--light:hover {
+  background: transparent;
+  color: var(--lexus-white);
+  border-color: var(--lexus-white);
+}
+
+.btn--outline {
+  border-color: var(--lexus-black);
+  color: var(--lexus-black);
+  background: transparent;
+}
+
+.btn--outline:hover {
+  background: var(--lexus-black);
+  color: var(--lexus-white);
+}
+
+.btn--ghost {
+  border-color: rgba(255, 255, 255, 0.85);
+  color: var(--lexus-white);
+  background: transparent;
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--lexus-white);
+  color: var(--lexus-white);
+}
+
+.btn--small {
+  min-height: 2.4rem;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.75rem;
+}
+
+.btn--wide {
+  min-width: min(100%, 18rem);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--lexus-black);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 0.15rem;
+  transition: opacity 0.2s ease;
+}
+
+.text-link:hover {
+  opacity: 0.7;
+}
+
+.text-link span {
+  font-size: 1.15em;
+  line-height: 1;
+  transform: translateY(-0.05em);
+}
+
+.text-link--on-dark {
+  color: var(--lexus-white);
+}
+
+/* --------------------------------------------------------------------------
+   Hero — 2/3 viewport photo with overlaid lockup
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  height: calc(100svh * 2 / 3);
+  min-height: 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  color: var(--lexus-white);
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Extended ground keeps asphalt under car clear of lockup */
+  object-position: center 42%;
+  display: block;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter) clamp(1.5rem, 3vw, 2.25rem);
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.hero__lockup {
+  position: relative;
+  width: 100%;
+  max-width: min(40rem, 100%);
+  margin: 0;
+  padding: clamp(2rem, 4vw, 3rem) 0 0;
+  background: none;
+}
+
+.hero__lockup::before,
+.hero__lockup::after {
+  display: none;
+}
+
+.hero-anim {
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.hero__eyebrow {
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-indent: 0;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.55);
+}
+
+.hero__title {
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  font-weight: 400;
+  font-size: clamp(2.75rem, 7.5vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: 0.04em;
+  text-indent: 0;
+  text-transform: uppercase;
+  color: var(--lexus-white);
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.5);
+}
+
+.hero__lede {
+  margin: 0 0 var(--space-6);
+  max-width: 26rem;
+  font-size: 1.0625rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.94);
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.5);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-3);
+}
+
+@media (max-width: 720px) {
+  .hero {
+    /* Slightly shorter than 2/3 so a bit more of the invite peeks in */
+    height: 60svh;
+  }
+
+  .hero__photo {
+    object-position: center 32%;
+    transform: scale(1.08);
+    transform-origin: center 28%;
+  }
+
+  .hero__content {
+    padding-bottom: clamp(1.25rem, 3.5vw, 1.75rem);
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 9.5vw, 3rem);
+  }
+
+  .hero__lede {
+    margin-bottom: var(--space-5);
+    font-size: 1rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__actions .btn {
+    width: 100%;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.5rem, 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 2.25rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes reveal-side {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--reveal-x, 2rem), 1rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateX(-0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sections / type
+   -------------------------------------------------------------------------- */
+
+.section {
+  padding: var(--space-9) 0;
+}
+
+/* Invite section spacing under the hero */
+.invite.section {
+  padding-top: clamp(3.5rem, 5.5vw, 4.75rem);
+  padding-bottom: var(--space-9);
+}
+
+.section--tint {
+  background: var(--lexus-cloud);
+}
+
+.section__inner {
+  max-width: var(--content);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
+.section__inner--narrow {
+  max-width: 46rem;
+  text-align: center;
+}
+
+.section__inner--form {
+  max-width: var(--form);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lexus-silver);
+}
+
+.heading {
+  margin: 0 0 var(--space-4);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lexus-black);
+}
+
+.heading--lg {
+  font-size: clamp(2.1rem, 4.2vw, 3rem);
+}
+
+.lead {
+  margin: 0 auto var(--space-7);
+  max-width: var(--measure);
+  color: var(--lexus-steel);
+  font-weight: 300;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.section__inner--form .lead,
+.section__inner--form .register__header {
+  text-align: center;
+}
+
+.section__inner p:not(.lead):not(.eyebrow):not(.form-note):not(.field__error) {
+  color: var(--lexus-charcoal);
+  font-weight: 300;
+}
+
+.key-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0 0 var(--space-7);
+  padding: var(--space-6) 0 0;
+  border-top: 1px solid var(--lexus-mist);
+  text-align: left;
+}
+
+.key-facts__item {
+  margin: 0;
+  padding: 0 var(--space-5);
+  border-left: 1px solid var(--lexus-mist);
+}
+
+.key-facts__item:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.key-facts dt {
+  margin: 0 0 var(--space-2);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lexus-silver);
+}
+
+.key-facts dd {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--lexus-black);
+}
+
+.invite__cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+.full-bleed {
+  margin: 0;
+  max-height: min(70vh, 36rem);
+  overflow: hidden;
+}
+
+.full-bleed img {
+  width: 100%;
+  height: min(70vh, 36rem);
+  object-fit: cover;
+  object-position: center;
+}
+
+/* --------------------------------------------------------------------------
+   CT Gallery layout — two columns, staggered media (matches Lexus CT Gallery)
+   -------------------------------------------------------------------------- */
+
+.ct-gallery {
+  background: var(--lexus-white);
+  padding-top: clamp(4.5rem, 9vw, 7.5rem);
+  padding-bottom: clamp(4.5rem, 9vw, 7.5rem);
+}
+
+.ct-gallery__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(1.5rem, 3.5vw, 3.25rem);
+  align-items: start;
+}
+
+.ct-gallery__col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ct-gallery__col--left {
+  gap: clamp(4rem, 10vw, 7.5rem);
+}
+
+.ct-gallery__col--right {
+  /* Drop the portrait so its top sits mid-text block, CT Gallery style */
+  padding-top: clamp(5.5rem, 12vw, 9.5rem);
+  gap: clamp(2.75rem, 5vw, 4rem);
+}
+
+.ct-gallery__intro {
+  width: 100%;
+  max-width: 17.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ct-gallery__rule {
+  display: block;
+  width: 1px;
+  height: 2.75rem;
+  margin: 0 auto 1.65rem;
+  background: var(--lexus-black);
+}
+
+.ct-gallery__title {
+  margin: 0 0 1.15rem;
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  line-height: 1.15;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lexus-black);
+}
+
+.ct-gallery__copy {
+  margin: 0 auto 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--lexus-charcoal);
+}
+
+.ct-gallery__btn {
+  gap: 0.7rem;
+}
+
+.ct-gallery__btn-dash {
+  display: block;
+  width: 0.9rem;
+  height: 1px;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.ct-gallery__figure {
+  margin: 0;
+  width: 100%;
+}
+
+.ct-gallery__image {
+  width: 100%;
+  overflow: hidden;
+  background: var(--lexus-cloud);
+  position: relative;
+}
+
+.ct-gallery__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.22) translate3d(0, 0, 0);
+  will-change: transform;
+  transition: none;
+}
+
+.ct-gallery__image--landscape {
+  aspect-ratio: 16 / 10;
+}
+
+.ct-gallery__image--landscape img {
+  object-position: center;
+}
+
+.ct-gallery__image--portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.ct-gallery__image--portrait img {
+  object-position: center 45%;
+}
+
+.ct-gallery__caption {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+  padding: 0 0.1rem;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--lexus-charcoal);
+  text-align: left;
+}
+
+.ct-gallery__caption-icon {
+  position: relative;
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-top: 0.12rem;
+  border: 1px solid var(--lexus-charcoal);
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.ct-gallery__caption-icon::after {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.2rem;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--lexus-charcoal);
+  background: var(--lexus-white);
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .ct-gallery__inner {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+  }
+
+  .ct-gallery__col--left {
+    gap: 3.5rem;
+  }
+
+  .ct-gallery__col--right {
+    padding-top: 0;
+    gap: 3rem;
+  }
+
+  .ct-gallery__intro {
+    max-width: 20rem;
+  }
+
+  .ct-gallery__image--portrait {
+    aspect-ratio: 4 / 5;
+    max-height: none;
+  }
+}
+
+
+.highlight-list {
+  list-style: none;
+  margin: 0 0 var(--space-7);
+  padding: 0;
+  text-align: left;
+}
+
+.highlight-list li {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr;
+  gap: var(--space-4);
+  padding: 1.35rem 0;
+  border-bottom: 1px solid var(--lexus-mist);
+  opacity: 0;
+  transform: translateY(0.85rem);
+  transition:
+    opacity 0.65s var(--ease),
+    transform 0.65s var(--ease),
+    border-color 0.3s ease;
+}
+
+.highlight-list.is-visible li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.highlight-list.is-visible li:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.highlight-list.is-visible li:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.highlight-list.is-visible li:nth-child(3) {
+  transition-delay: 0.19s;
+}
+.highlight-list.is-visible li:nth-child(4) {
+  transition-delay: 0.26s;
+}
+.highlight-list.is-visible li:nth-child(5) {
+  transition-delay: 0.33s;
+}
+
+.highlight-list li:first-child {
+  border-top: 1px solid var(--lexus-mist);
+}
+
+.highlight-list li:hover {
+  border-bottom-color: var(--lexus-black);
+}
+
+.highlight-list__index {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  color: var(--lexus-silver);
+  padding-top: 0.25rem;
+  transition: color 0.3s ease, transform 0.35s var(--ease);
+}
+
+.highlight-list li:hover .highlight-list__index {
+  color: var(--lexus-black);
+  transform: translateX(0.15rem);
+}
+
+.highlight-list strong {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lexus-black);
+}
+
+.highlight-list p {
+  margin: 0;
+  color: var(--lexus-steel);
+  font-weight: 300;
+  font-size: 0.98rem;
+}
+
+.highlights__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.15rem;
+}
+
+.gallery__item {
+  margin: 0;
+  overflow: hidden;
+  background: var(--lexus-cloud);
+}
+
+.gallery__item img {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease), filter 0.6s var(--ease);
+  filter: grayscale(0.15);
+}
+
+.gallery__item.is-visible img {
+  animation: reveal-scale 1.1s var(--ease) both;
+}
+
+.gallery__item:hover img {
+  transform: scale(1.06);
+  filter: grayscale(0);
+}
+
+/* key-facts are always visible (invite peeks into the fold on load) */
+
+/* --------------------------------------------------------------------------
+   Form
+   -------------------------------------------------------------------------- */
+
+.register__header {
+  margin-bottom: var(--space-7);
+}
+
+.reg-form {
+  background: var(--lexus-white);
+  border: 1px solid var(--lexus-mist);
+  padding: clamp(var(--space-5), 4vw, var(--space-7));
+}
+
+.reg-form__fieldset {
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  border: 0;
+}
+
+.reg-form__fieldset legend {
+  padding: 0;
+  margin: 0 0 var(--space-4);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lexus-black);
+  width: 100%;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--lexus-mist);
+}
+
+.reg-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5) var(--space-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lexus-steel);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 3.125rem;
+  padding: 0.7rem 0.9rem;
+  border: 0;
+  border-bottom: 1px solid var(--lexus-mist);
+  background: var(--lexus-cloud);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--lexus-black);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  appearance: none;
+  border-radius: 0;
+}
+
+.field select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--lexus-steel) 50%),
+    linear-gradient(135deg, var(--lexus-steel) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.1rem) calc(50% - 0.15rem),
+    calc(100% - 0.75rem) calc(50% - 0.15rem);
+  background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
+.field input:hover,
+.field select:hover {
+  border-bottom-color: var(--lexus-silver);
+}
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--lexus-black);
+  background: #fafafa;
+}
+
+.field input.is-invalid,
+.field select.is-invalid {
+  border-bottom-color: var(--error);
+  background: #fdf8f8;
+}
+
+.field__error {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--error);
+  line-height: 1.35;
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  text-align: left;
+  font-size: 0.9rem;
+  color: var(--lexus-charcoal);
+  font-weight: 300;
+  cursor: pointer;
+  margin-bottom: var(--space-5);
+}
+
+.checkbox input {
+  margin-top: 0.25rem;
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--lexus-black);
+}
+
+.reg-form__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+.reg-form__footer .btn {
+  align-self: center;
+  width: min(100%, 20rem);
+}
+
+.form-note {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--lexus-steel);
+  font-weight: 300;
+}
+
+.form-note a {
+  color: var(--lexus-black);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.form-status {
+  margin-bottom: var(--space-5);
+  padding: var(--space-4);
+  border: 1px solid var(--lexus-mist);
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.form-status.is-success {
+  border-color: #c5d9cc;
+  background: #f3f8f5;
+  color: var(--success);
+}
+
+.form-status.is-error {
+  border-color: #e8c5c5;
+  background: #fdf6f6;
+  color: var(--error);
+}
+
+/* --------------------------------------------------------------------------
+   FAQ
+   -------------------------------------------------------------------------- */
+
+.accordion {
+  text-align: left;
+  border-top: 1px solid var(--lexus-mist);
+}
+
+.accordion__item {
+  border-bottom: 1px solid var(--lexus-mist);
+}
+
+.accordion__item h3 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.accordion__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 1.35rem 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: var(--lexus-black);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.accordion__trigger:hover {
+  opacity: 0.72;
+}
+
+.accordion__icon {
+  flex-shrink: 0;
+  position: relative;
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.accordion__icon::before,
+.accordion__icon::after {
+  content: "";
+  position: absolute;
+  background: var(--lexus-black);
+  transition: transform 0.3s var(--ease), opacity 0.2s ease;
+}
+
+.accordion__icon::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: translateY(-50%);
+}
+
+.accordion__icon::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.accordion__trigger[aria-expanded="true"] .accordion__icon::after {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.accordion__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+
+.accordion__panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+.accordion__panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.accordion__panel p {
+  margin: 0;
+  padding: 0 0 1.35rem;
+  max-width: 40rem;
+  color: var(--lexus-steel);
+  font-weight: 300;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(-0.35rem);
+  transition:
+    opacity 0.35s var(--ease) 0.05s,
+    transform 0.45s var(--ease);
+}
+
+.accordion__panel.is-open p {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   Footer — multi-column lexus.com style
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  background: var(--lexus-black);
+  color: rgba(255, 255, 255, 0.72);
+  padding: var(--space-8) clamp(1.25rem, 3vw, 2.5rem) var(--space-6);
+}
+
+.site-footer__top {
+  max-width: var(--content);
+  margin: 0 auto var(--space-7);
+  display: grid;
+  grid-template-columns: minmax(10rem, 1fr) 2.2fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.site-footer__tagline {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.site-footer__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.site-footer__heading {
+  margin: 0 0 var(--space-4);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lexus-white);
+}
+
+.site-footer__cols ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.site-footer__cols a {
+  font-size: 0.875rem;
+  font-weight: 300;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.2s ease;
+}
+
+.site-footer__cols a:hover {
+  color: var(--lexus-white);
+}
+
+.site-footer__copy {
+  max-width: var(--content);
+  margin: 0 auto;
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 0.72rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.42);
+  font-weight: 300;
+}
+
+/* --------------------------------------------------------------------------
+   Back to top — appears once the page is scrolled (esp. late-page)
+   -------------------------------------------------------------------------- */
+
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.75rem);
+  bottom: clamp(1rem, 3vw, 1.75rem);
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem 0.65rem 0.85rem;
+  background: var(--lexus-black);
+  color: var(--lexus-white);
+  border: 1px solid var(--lexus-black);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.3s var(--ease),
+    visibility 0.3s var(--ease),
+    transform 0.3s var(--ease),
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--lexus-white);
+  color: var(--lexus-black);
+}
+
+.back-to-top__icon {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-left: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg) translateY(0.1rem);
+}
+
+.back-to-top__label {
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Motion: scroll reveals
+   -------------------------------------------------------------------------- */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 2rem, 0);
+  transition:
+    opacity 0.95s var(--ease),
+    transform 0.95s var(--ease);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.animate-on-scroll.reveal-scale {
+  transform: scale(1.04);
+}
+
+.animate-on-scroll.reveal-scale.is-visible {
+  transform: scale(1);
+}
+
+.split.animate-on-scroll .split__copy {
+  opacity: 0;
+  transform: translate3d(-1.5rem, 0.5rem, 0);
+  transition:
+    opacity 0.9s var(--ease) 0.08s,
+    transform 0.9s var(--ease) 0.08s;
+}
+
+.split.animate-on-scroll .split__media {
+  opacity: 0;
+  transform: translate3d(1.5rem, 0.5rem, 0);
+  transition:
+    opacity 1s var(--ease) 0.15s,
+    transform 1s var(--ease) 0.15s;
+}
+
+.split--reverse.animate-on-scroll .split__copy {
+  transform: translate3d(1.5rem, 0.5rem, 0);
+}
+
+.split--reverse.animate-on-scroll .split__media {
+  transform: translate3d(-1.5rem, 0.5rem, 0);
+}
+
+.split.animate-on-scroll.is-visible .split__copy,
+.split.animate-on-scroll.is-visible .split__media {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.full-bleed.animate-on-scroll {
+  transform: none;
+}
+
+.full-bleed.animate-on-scroll img {
+  transform: scale(1.08);
+  transition: transform 1.4s var(--ease), opacity 1s var(--ease);
+  opacity: 0.65;
+}
+
+.full-bleed.animate-on-scroll.is-visible img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.reg-form.animate-on-scroll.is-visible {
+  animation: reveal-up 0.9s var(--ease) both;
+}
+
+.site-header {
+  animation: header-in 0.8s var(--ease) 0.1s both;
+}
+
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-anim,
+  .site-header,
+  .gallery__item.is-visible img,
+  .reg-form.animate-on-scroll.is-visible {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .hero__media img,
+  .hero__photo {
+    animation: none !important;
+    transform: none !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  .ct-gallery__image img {
+    transform: none !important;
+  }
+
+  .animate-on-scroll,
+  .animate-on-scroll.is-visible,
+  .split.animate-on-scroll .split__copy,
+  .split.animate-on-scroll .split__media,
+  .split.animate-on-scroll.is-visible .split__copy,
+  .split.animate-on-scroll.is-visible .split__media,
+  .key-facts__item,
+  .key-facts.is-visible .key-facts__item,
+  .highlight-list li,
+  .highlight-list.is-visible li,
+  .full-bleed.animate-on-scroll img,
+  .full-bleed.animate-on-scroll.is-visible img {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+
+  .accordion__panel {
+    transition: none !important;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 960px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .primary-nav {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    background: var(--lexus-white);
+    color: var(--lexus-black);
+    border-bottom: 1px solid var(--lexus-mist);
+    padding: var(--space-5) clamp(1.25rem, 3vw, 2.5rem) var(--space-6);
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      transform 0.35s var(--ease),
+      opacity 0.25s ease;
+  }
+
+  .primary-nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .primary-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  .primary-nav a {
+    display: block;
+    padding: 0.85rem 0;
+  }
+
+  .primary-nav a:not(.btn)::after {
+    display: none;
+  }
+
+  .primary-nav a.btn {
+    margin-top: var(--space-3);
+    text-align: center;
+    padding: 0.65rem 1.15rem;
+  }
+
+  /* Mobile menu is always white — keep dark button + white label */
+  .site-header.is-over-hero:not(.is-scrolled) .primary-nav a.btn--solid {
+    background: var(--lexus-black);
+    color: var(--lexus-white);
+    border-color: var(--lexus-black);
+  }
+
+  .site-header.is-over-hero:not(.is-scrolled) .primary-nav a.btn--solid:hover {
+    background: var(--lexus-charcoal);
+    color: var(--lexus-white);
+    border-color: var(--lexus-charcoal);
+  }
+
+  .key-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .key-facts__item {
+    padding: var(--space-4) 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--lexus-mist);
+  }
+
+  .key-facts__item:last-child {
+    border-bottom: 0;
+  }
+
+  .split,
+  .split--reverse {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .split--reverse .split__copy,
+  .split--reverse .split__media {
+    order: initial;
+  }
+
+  .split__copy {
+    max-width: none;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery__item:nth-child(3) {
+    display: none;
+  }
+
+  .reg-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__top {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .site-footer__cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .full-bleed,
+  .full-bleed img {
+    max-height: 18rem;
+    height: 18rem;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__item:nth-child(3) {
+    display: block;
+  }
+
+  .gallery__item:nth-child(2) {
+    display: none;
+  }
+
+  .site-footer__cols {
+    grid-template-columns: 1fr;
+  }
+}

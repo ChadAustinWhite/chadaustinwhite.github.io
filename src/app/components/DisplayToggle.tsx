@@ -25,31 +25,19 @@ function GridIcon() {
   );
 }
 
-const buttonBase =
-  'display-toggle__btn inline-flex items-center gap-2.5 rounded-full border-2 px-6 py-3 text-[15px] font-normal transition-[background,color,border-color] duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ink)]';
-
-const buttonActive =
-  'border-[var(--ink)] bg-[var(--card-bg)] text-[var(--ink)]';
-
-const buttonInactive =
-  'border-[var(--border)] bg-transparent text-[var(--ink-muted)] hover:border-[color-mix(in_srgb,var(--ink)_20%,var(--border))] hover:bg-[var(--card-bg)] hover:text-[var(--ink)]';
-
 export function DisplayToggle({ value, onChange }: DisplayToggleProps) {
   return (
     <div className="display-toggle flex items-center gap-2.5">
-      <span
-        id="display-toggle-label"
-        className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]"
-      >
+      <span id="display-toggle-label" className="display-toggle__label">
         Display
       </span>
-      <div className="flex gap-1.5" role="group" aria-labelledby="display-toggle-label">
+      <div className="display-toggle__group" role="group" aria-labelledby="display-toggle-label">
         <button
           type="button"
           onClick={() => onChange('stack')}
           aria-label="Stack layout"
           aria-pressed={value === 'stack'}
-          className={`${buttonBase} ${value === 'stack' ? buttonActive : buttonInactive}`}
+          className={`display-toggle__btn${value === 'stack' ? ' is-active' : ''}`}
         >
           <StackIcon />
           Stack
@@ -59,7 +47,7 @@ export function DisplayToggle({ value, onChange }: DisplayToggleProps) {
           onClick={() => onChange('grid')}
           aria-label="Grid layout"
           aria-pressed={value === 'grid'}
-          className={`${buttonBase} ${value === 'grid' ? buttonActive : buttonInactive}`}
+          className={`display-toggle__btn${value === 'grid' ? ' is-active' : ''}`}
         >
           <GridIcon />
           Grid

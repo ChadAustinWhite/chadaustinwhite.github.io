@@ -180,7 +180,8 @@ export interface CaseStudyInstrumentChapter {
     | 'accelerator-partner-journey'
     | 'accelerator-hook-model'
     | 'ad-portal-payment-architecture'
-    | 'ad-portal-access-paths';
+    | 'ad-portal-access-paths'
+    | 'lexus-driving-tour-phone';
   /** Render this chapter after `leadImages` and before `leadBento` / hero images. */
   beforeLeadBento?: boolean;
   /** When set, scroll background stays at its start color until this chapter has scrolled past. */
