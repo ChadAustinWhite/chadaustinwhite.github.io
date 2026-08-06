@@ -9,14 +9,17 @@ interface WorkSectionProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
 }
 
-/** Light stagger so neighboring cards don’t read as one unit while scrolling. */
+/**
+ * Hoodzpah-style entrance choreography:
+ * direction alternates, stagger shifts when each card starts rising into view.
+ */
 const REVEAL = [
-  { anim: 'fadeInUp', delay: '0s' },
-  { anim: 'fadeInUp', delay: '0.06s' },
-  { anim: 'fadeInDown', delay: '0.04s' },
-  { anim: 'fadeInUp', delay: '0.08s' },
-  { anim: 'fadeInDown', delay: '0.05s' },
-  { anim: 'fadeInUp', delay: '0.07s' },
+  { anim: 'fadeInUp', stagger: '0' },
+  { anim: 'fadeInUp', stagger: '0.45' },
+  { anim: 'fadeInDown', stagger: '0.2' },
+  { anim: 'fadeInUp', stagger: '0.6' },
+  { anim: 'fadeInDown', stagger: '0.35' },
+  { anim: 'fadeInUp', stagger: '0.55' },
 ] as const;
 
 export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
@@ -44,8 +47,11 @@ export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
               key={project.title}
               role="listitem"
               className={`work-asymmetric__item work-asymmetric__item--${(index % 4) + 1} wow ${reveal.anim}`}
-              style={{ ['--wow-delay' as string]: reveal.delay }}
-              data-wow-delay={reveal.delay}
+              data-wow-stagger={reveal.stagger}
+              style={{
+                ['--wow-stagger' as string]: reveal.stagger,
+                ['--wow-travel' as string]: index % 2 === 0 ? '88px' : '72px',
+              }}
             >
               <ProjectCard
                 project={project}

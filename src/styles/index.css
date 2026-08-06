@@ -172,45 +172,76 @@ button:focus-visible {
   bottom: 0;
 }
 
-/* —— Smooth card motion tied to native vertical scroll (--reveal 0→1) —— */
+/* —— Hoodzpah-style scroll reveals (native scroll → --reveal 0→1) —— */
 .wow {
-  opacity: var(--reveal, 0);
+  --wow-travel: 88px;
   visibility: visible;
+  /* parent holds space; children do the motion so media leads caption */
+}
+
+.wow .project-card--editorial {
+  gap: 1.2rem;
+}
+
+/* Media rises + fades in first */
+.wow .project-card--image__media,
+.wow .project-device {
+  opacity: var(--reveal-media, var(--reveal, 0));
+  transform: translate3d(
+      0,
+      calc((1 - var(--reveal-media, var(--reveal, 0))) * var(--wow-travel)),
+      0
+    )
+    scale(calc(0.965 + (var(--reveal-media, var(--reveal, 0)) * 0.035)));
+  transform-origin: 50% 60%;
   will-change: opacity, transform;
-  /* Soft settle while scroll drives --reveal; no snap */
-  transition:
-    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: var(--wow-delay, 0s);
+  backface-visibility: hidden;
 }
 
-.wow.fadeInUp {
-  transform: translate3d(0, calc((1 - var(--reveal, 0)) * 48px), 0);
+.wow.fadeInDown .project-card--image__media,
+.wow.fadeInDown .project-device {
+  transform: translate3d(
+      0,
+      calc((var(--reveal-media, var(--reveal, 0)) - 1) * calc(var(--wow-travel) * 0.75)),
+      0
+    )
+    scale(calc(0.965 + (var(--reveal-media, var(--reveal, 0)) * 0.035)));
 }
 
-.wow.fadeInDown {
-  transform: translate3d(0, calc((var(--reveal, 0) - 1) * 36px), 0);
+/* Caption trails the media slightly (still driven by scroll) */
+.wow .project-card__caption {
+  opacity: var(--reveal-caption, var(--reveal, 0));
+  transform: translate3d(
+    0,
+    calc((1 - var(--reveal-caption, var(--reveal, 0))) * calc(var(--wow-travel) * 0.45)),
+    0
+  );
+  will-change: opacity, transform;
+  backface-visibility: hidden;
 }
 
-.wow.animated {
+.wow.fadeInDown .project-card__caption {
+  transform: translate3d(
+    0,
+    calc((var(--reveal-caption, var(--reveal, 0)) - 1) * calc(var(--wow-travel) * 0.35)),
+    0
+  );
+}
+
+.wow.is-revealed .project-card--image__media,
+.wow.is-revealed .project-device,
+.wow.is-revealed .project-card__caption {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
-}
-
-/* Keep classic fade keyframes available but unused once --reveal drives motion */
-.wow.fadeInUp.animated,
-.wow.fadeInDown.animated {
-  animation: none;
+  transform: none;
+  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wow,
-  .wow.fadeInUp,
-  .wow.fadeInDown,
-  .wow.animated {
+  .wow .project-card--image__media,
+  .wow .project-device,
+  .wow .project-card__caption {
     opacity: 1;
     transform: none;
-    transition: none;
     will-change: auto;
   }
 }
@@ -223,15 +254,16 @@ button:focus-visible {
 .work-asymmetric {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(2.75rem, 7vw, 4.5rem);
+  gap: clamp(3.25rem, 9vw, 5.5rem);
   width: 100%;
 }
 
 @media (min-width: 768px) {
   .work-asymmetric {
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    column-gap: clamp(1.25rem, 2.8vw, 2.25rem);
-    row-gap: clamp(3.5rem, 8vw, 6.5rem);
+    column-gap: clamp(1.5rem, 3.2vw, 2.75rem);
+    /* Generous vertical air so cards arrive in sequence while scrolling */
+    row-gap: clamp(5rem, 12vw, 10rem);
     align-items: start;
   }
 
@@ -243,19 +275,19 @@ button:focus-visible {
   /* 2: right, wide — offset down */
   .work-asymmetric__item--2 {
     grid-column: 7 / span 6;
-    margin-top: clamp(5rem, 14vw, 11rem);
+    margin-top: clamp(6rem, 16vw, 12rem);
   }
 
   /* 3: left, wide */
   .work-asymmetric__item--3 {
     grid-column: 1 / span 7;
-    margin-top: clamp(0.5rem, 2vw, 1.5rem);
+    margin-top: clamp(1rem, 3vw, 2.5rem);
   }
 
   /* 4: right, narrow — offset down */
   .work-asymmetric__item--4 {
     grid-column: 9 / span 4;
-    margin-top: clamp(4rem, 12vw, 9rem);
+    margin-top: clamp(5rem, 14vw, 10rem);
   }
 }
 
