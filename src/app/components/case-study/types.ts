@@ -210,6 +210,8 @@ export interface CaseStudyInstrumentContent {
    * screenshots that otherwise skip radius to avoid cropping baked-in chrome).
    */
   roundedMedia?: boolean;
+  /** Shrink lead image stack (print/campaign work that shouldn’t go full gutters width). */
+  compactLeadImages?: boolean;
   lead: string;
   /** ROLE / COMPANY / STAKEHOLDER / DEVICE-style columns under the headline. */
   overviewCategories?: CaseStudyInstrumentOverviewCategory[];

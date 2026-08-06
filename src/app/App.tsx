@@ -13,6 +13,7 @@ import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
   lexusDrivingTourContent,
+  quiksilverContent,
   worldpayDisputeDefenderContent,
   worldpayMerchantOnboardingContent,
 } from './data/caseStudies';
@@ -24,6 +25,7 @@ const COMING_SOON_ROUTES: CaseStudyRoute[] = [
   'case-study-worldpay-sso',
   'case-study-worldpay-merchant-onboarding',
   'case-study-first-american-playbook',
+  'case-study-mclaren-fwd',
 ];
 
 /** Case studies that open without a password gate. */
@@ -32,6 +34,7 @@ const PUBLIC_CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-ad-portal',
   'case-study-worldpay-disputes',
   'case-study-lexus-driving-tour',
+  'case-study-quiksilver',
   'illustrations',
 ];
 
@@ -53,6 +56,10 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
       return 'Worldpay SSO Management';
     case 'case-study-first-american-playbook':
       return 'First American Research and Design Playbook';
+    case 'case-study-quiksilver':
+      return quiksilverContent.title;
+    case 'case-study-mclaren-fwd':
+      return 'McLaren FWD';
     case 'case-study-lexus-driving-tour':
       return lexusDrivingTourContent.title;
     case 'case-study-worldpay-disputes':
@@ -153,6 +160,17 @@ function AppRoutes() {
           <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
             <CaseStudyPage
               content={worldpayDisputeDefenderContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
+          </CaseStudyLayout>
+        );
+      case 'case-study-quiksilver':
+        return (
+          <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
+            <CaseStudyPage
+              content={quiksilverContent}
               onBack={handleBackFromCaseStudy}
               currentRoute={route}
               onViewCaseStudy={handleViewCaseStudy}
