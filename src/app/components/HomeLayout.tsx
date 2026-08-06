@@ -2,6 +2,7 @@ import { SiteNav } from './SiteNav';
 import { HeroSection } from './HeroSection';
 import { WorkSection } from './WorkSection';
 import { Footer } from './Footer';
+import { HomeChrome } from './HomeChrome';
 import type { CaseStudyRoute } from '../data/portfolioData';
 
 interface HomeLayoutProps {
@@ -14,6 +15,7 @@ export function HomeLayout({ onViewCaseStudy }: HomeLayoutProps) {
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
+      <HomeChrome />
       <SiteNav isHome />
       <main
         id="main-content"

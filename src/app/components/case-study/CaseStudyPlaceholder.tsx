@@ -21,6 +21,7 @@ const CASE_STUDY_ROUTES: CaseStudyRoute[] = [
   'case-study-expedia-ad-portal',
   'case-study-worldpay-merchant-onboarding',
   'case-study-worldpay-sso',
+  'case-study-first-american-playbook',
 ];
 
 function getNextProject(currentRoute: CaseStudyRoute) {

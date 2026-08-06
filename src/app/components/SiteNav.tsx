@@ -36,22 +36,22 @@ export function SiteNav({ onNavigateHome, isHome = false }: SiteNavProps = {}) {
       <nav
       id="site-nav"
       aria-label="Primary"
-      className="site-nav-surface fixed left-0 right-0 top-0 z-[100] flex h-14 md:h-16 items-center justify-between border-b px-[var(--cs-page-gutter)] motion-reduce:transition-none"
+      className="site-nav-surface fixed left-0 right-0 top-0 z-[100] flex h-14 w-full max-w-[100vw] items-center justify-between gap-4 border-b motion-reduce:transition-none"
       style={{
         backgroundColor: 'var(--nav-bg, var(--bg))',
         borderBottomColor: scrolled ? 'var(--border)' : 'transparent',
       }}
     >
-      <div className="flex items-center gap-3.5">
+      <div className="flex min-w-0 shrink items-center gap-3.5">
         <a
           href={onNavigateHome ? '#work' : '#about'}
           onClick={handleNavClick}
-          className="site-nav-name whitespace-nowrap text-sm font-normal tracking-[0.03em] text-[var(--ink)] transition-colors duration-200 ease-out"
+          className="site-nav-name truncate whitespace-nowrap text-sm font-normal tracking-[0.03em] text-[var(--ink)] transition-colors duration-200 ease-out"
         >
           Chad Austin White
         </a>
       </div>
-      <div className="flex items-center gap-7 md:gap-6">
+      <div className="flex shrink-0 items-center gap-4 md:gap-6">
         <ul className="flex items-center gap-4 md:gap-6">
           <li>
             <a
