@@ -73,7 +73,7 @@ html:has(.home-main-canvas) body {
   background-color: var(--home-canvas, var(--home-canvas-base)) !important;
 }
 
-/* Homepage: temporary dark mode while hovering a project CTA button. */
+/* Homepage: temporary dark type while hovering a project with a dark brand wash. */
 html.home-card-dark:has(.home-main-canvas) {
   --bg: #1c1c1a;
   --ink: #f5f4f0;
@@ -88,7 +88,7 @@ html.home-card-dark:has(.home-main-canvas) {
   /* Pill on cards: use hover tone by default so fill stays visible on card-bg-hover (#353432). */
   --project-cta-bg: var(--nav-pill-bg-hover);
   --project-cta-bg-hover: #525250;
-  --nav-bg: #1c1c1a;
+  --nav-bg: var(--home-canvas, #1c1c1a);
   --home-canvas-base: #1c1c1a;
   --experience-card-surface: #2a2926;
   --experience-card-ink: #f5f4f0;
@@ -97,6 +97,12 @@ html.home-card-dark:has(.home-main-canvas) {
   --experience-tag-bg: #3a3936;
   --experience-section-label: #b8b8b8;
   color-scheme: dark;
+}
+
+/* Keep chrome surfaces tied to the live hover canvas color. */
+html.home-card-hover:has(.home-main-canvas) {
+  --nav-bg: var(--home-canvas, var(--home-canvas-base));
+  --bg: var(--home-canvas, var(--home-canvas-base));
 }
 
 @media (min-width: 768px) {

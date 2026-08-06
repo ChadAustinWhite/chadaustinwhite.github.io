@@ -92,7 +92,7 @@ export const projects: ProjectItem[] = [
     imageIntrinsicHeightPx: 638,
     cardPresentation: 'device',
     caseStudyRoute: 'case-study-expedia-accelerator',
-    hoverCanvas: { dark: '#2c2b28', light: '#eeece8' },
+    hoverCanvas: { dark: '#2c2a28', light: '#efeae4' },
   },
   {
     title: 'Expedia Group ad portal',
@@ -104,7 +104,7 @@ export const projects: ProjectItem[] = [
       'Expedia Group advertising — Create a TravelAds campaign with property, goals, and campaign structure guidance',
     caseStudyRoute: 'case-study-expedia-ad-portal',
     cardPresentation: 'image',
-    hoverCanvas: { dark: '#2d2b26', light: '#f2efe8' },
+    hoverCanvas: { dark: '#2f2922', light: '#f7ebe2' },
   },
   {
     title: 'Lexus Driving Tour',
@@ -116,7 +116,7 @@ export const projects: ProjectItem[] = [
       'Lexus Driving Tour site on desktop and mobile: Experience Amazing hero with blue LC sports car, register and event actions, and You’re Invited section',
     caseStudyRoute: 'case-study-lexus-driving-tour',
     cardPresentation: 'image',
-    hoverCanvas: { dark: '#1a2230', light: '#e6ebf0' },
+    hoverCanvas: { dark: '#2a2624', light: '#f0e6df' },
   },
   {
     title: 'Worldpay merchant onboarding',
@@ -129,7 +129,7 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-worldpay-merchant-onboarding',
     comingSoon: true,
     cardPresentation: 'image',
-    hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
+    hoverCanvas: { dark: '#242620', light: '#e8f1e8' },
   },
   {
     title: "Levi's",
@@ -142,7 +142,7 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'illustrations',
     comingSoon: true,
     cardPresentation: 'image',
-    hoverCanvas: { dark: '#141820', light: '#eceaef' },
+    hoverCanvas: { dark: '#1c1814', light: '#f5f0df' },
   },
   {
     title: 'First American Research and Design Playbook',
@@ -155,7 +155,7 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-first-american-playbook',
     comingSoon: true,
     cardPresentation: 'image',
-    hoverCanvas: { dark: '#1a1c28', light: '#eceef2' },
+    hoverCanvas: { dark: '#262422', light: '#f0ebe6' },
   },
 ];
 
