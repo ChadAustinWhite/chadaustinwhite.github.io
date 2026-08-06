@@ -565,6 +565,11 @@ export function CaseStudyInstrumentPage({
   const relatedProjects = projects
     .filter((p) => p.caseStudyRoute !== currentRoute && !p.comingSoon)
     .slice(0, 3);
+  const leadImages = instrument.leadImages?.length
+    ? instrument.leadImages
+    : instrument.leadImage
+      ? [instrument.leadImage]
+      : [];
 
   return (
     <article
@@ -656,14 +661,19 @@ export function CaseStudyInstrumentPage({
         ) : null}
       </header>
 
-      {(instrument.leadImages?.length
-        ? instrument.leadImages
-        : instrument.leadImage
-          ? [instrument.leadImage]
-          : []
-      ).map((image, i) => (
-        <InstrumentFigure key={`lead-hero-${i}`} image={image} variant="hero" />
-      ))}
+      {leadImages.length > 0 ? (
+        <div
+          className={
+            leadImages.length > 1
+              ? 'case-study-instrument__lead-image-stack'
+              : undefined
+          }
+        >
+          {leadImages.map((image, i) => (
+            <InstrumentFigure key={`lead-hero-${i}`} image={image} variant="hero" />
+          ))}
+        </div>
+      ) : null}
 
       {instrument.chapters
         .filter((chapter) => chapter.beforeLeadBento)
