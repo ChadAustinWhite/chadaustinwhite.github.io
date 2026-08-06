@@ -1,4 +1,5 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
+import lexusDrivingTourCaseLead from '../../../assets/lexus-driving-tour-case-lead.png';
 import lexusDrivingTourHero from '../../../assets/lexus-driving-tour-hero.png';
 
 /** Instrument-style narrative for the Lexus Driving Tour event experience. */
@@ -32,11 +33,11 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Lexus Driving Tour invites guests to experience Amazing: an exclusive, invitation-led journey that translates Lexus performance and hospitality into a digital path from first glance to RSVP.',
+    'An exclusive, invitation-led digital journey that takes guests from first glance to RSVP.',
   leadImages: [
     {
-      src: lexusDrivingTourHero,
-      alt: 'Lexus Driving Tour mobile site: Experience Amazing hero with blue LC sports car, register now and event details, and You’re Invited section',
+      src: lexusDrivingTourCaseLead,
+      alt: 'Lexus Driving Tour site on desktop and mobile: Experience Amazing hero with blue LC sports car, Register Now and Event Details, and You’re Invited section',
       padded: true,
       background: 'page',
       objectFit: 'contain',

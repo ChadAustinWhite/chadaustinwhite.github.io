@@ -202,13 +202,19 @@ export function ProjectCard({
 
     return (
       <article className="project-card project-card--image project-card--image-stack w-full">
-        <div
-          className={`project-card--image__stack${canOpen ? ' project-card--image__stack--openable' : ''}`}
-          {...mediaOpenProps}
-        >
-          <div className="project-card--image__media">{primaryImage}</div>
+        <div className="project-card--image__stack">
+          <div
+            className={`project-card--image__media${canOpen ? ' project-card--image__media--openable' : ''}`}
+            {...mediaOpenProps}
+          >
+            {primaryImage}
+          </div>
           {secondaryImages.map((item) => (
-            <div key={item.src} className="project-card--image__media">
+            <div
+              key={item.src}
+              className="project-card--image__media project-card--image__media--static"
+              aria-label={item.alt}
+            >
               <img
                 src={item.src}
                 alt={item.alt}
