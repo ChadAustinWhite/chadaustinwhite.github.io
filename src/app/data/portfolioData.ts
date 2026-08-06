@@ -1,7 +1,6 @@
 import expediaAcceleratorCardImage from '../../assets/expedia-accelerator-card.png';
 import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
-import lexusDrivingTourImage from '../../assets/lexus-driving-tour-hero.png';
-import lexusUxEventGalleryImage from '../../assets/lexus-ux-event-gallery.png';
+import lexusDrivingTourImage from '../../assets/lexus-driving-tour-card.png';
 import twoHorseBrandCardImage from '../../assets/two-horse-brand-card.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -112,13 +111,7 @@ export const projects: ProjectItem[] = [
     period: '2024',
     image: lexusDrivingTourImage,
     imageAlt:
-      'Lexus Driving Tour mobile site: experience amazing hero with blue LC sports car, register now and event details actions, and you’re invited section',
-    secondaryImages: [
-      {
-        src: lexusUxEventGalleryImage,
-        alt: 'Lexus UX Event mobile site: Experience Amazing hero with rear vehicle lighting, Register Now and Event Details actions, and Event Gallery carousel',
-      },
-    ],
+      'Lexus Driving Tour site on desktop and mobile: Experience Amazing hero with blue LC sports car, register and event actions, and You’re Invited section',
     caseStudyRoute: 'case-study-lexus-driving-tour',
     cardPresentation: 'image',
     hoverCanvas: { dark: '#1a2230', light: '#e6ebf0' },

@@ -645,6 +645,11 @@ html.page-transition-active body {
   outline-offset: 4px;
 }
 
+.project-card--image__media--static {
+  cursor: default;
+  pointer-events: none;
+}
+
 .project-card--image__media img {
   display: block;
   width: 100%;
