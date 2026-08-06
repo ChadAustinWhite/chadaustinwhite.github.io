@@ -5,6 +5,11 @@ import type { ProjectItem } from '../data/portfolioData';
 interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
+  /**
+   * `editorial`: media + caption (title, period, description) for the broken-grid work layout.
+   * Default keeps prior card-only presentations.
+   */
+  layout?: 'default' | 'editorial';
 }
 
 const projectCtaClass =
@@ -130,6 +135,7 @@ function ProjectCardVideo({
 export function ProjectCard({
   project,
   onViewCaseStudy,
+  layout = 'default',
 }: ProjectCardProps) {
   const hasVideo = Boolean(project.video);
   const hasMockup = hasVideo || Boolean(project.image);
@@ -143,6 +149,7 @@ export function ProjectCard({
   const canOpen = !project.comingSoon;
   const isDevicePresentation = project.cardPresentation === 'device';
   const isImagePresentation = project.cardPresentation === 'image';
+  const editorial = layout === 'editorial';
 
   const openCaseStudy = () => {
     if (!canOpen) return;
@@ -172,6 +179,31 @@ export function ProjectCard({
         'aria-label': project.title,
       };
 
+  const caption = editorial ? (
+    <div className="project-card__caption">
+      <div className="project-card__caption-main">
+        <h3 className="project-card__caption-title">{project.title}</h3>
+        <div className="project-card__caption-tags" aria-label="Project tags">
+          {project.period ? (
+            <span className="project-card__caption-tag">{project.period}</span>
+          ) : null}
+          {project.comingSoon ? (
+            <span className="project-card__caption-tag">Coming soon</span>
+          ) : (
+            <span className="project-card__caption-tag">Case study</span>
+          )}
+        </div>
+        {canOpen ? (
+          <button type="button" className="project-card__caption-cta" onClick={openCaseStudy}>
+            View case study
+            <ArrowIcon />
+          </button>
+        ) : null}
+      </div>
+      <p className="project-card__caption-body serif-headline">{project.description}</p>
+    </div>
+  ) : null;
+
   if (isImagePresentation && project.image) {
     const secondaryImages = project.secondaryImages ?? [];
     const isStacked = secondaryImages.length > 0;
@@ -189,19 +221,28 @@ export function ProjectCard({
 
     if (!isStacked) {
       return (
-        <article className="project-card project-card--image w-full">
+        <article
+          className={`project-card project-card--image w-full${
+            editorial ? ' project-card--editorial' : ''
+          }`}
+        >
           <div
             className={`project-card--image__media${canOpen ? ' project-card--image__media--openable' : ''}`}
             {...mediaOpenProps}
           >
             {primaryImage}
           </div>
+          {caption}
         </article>
       );
     }
 
     return (
-      <article className="project-card project-card--image project-card--image-stack w-full">
+      <article
+        className={`project-card project-card--image project-card--image-stack w-full${
+          editorial ? ' project-card--editorial' : ''
+        }`}
+      >
         <div className="project-card--image__stack">
           <div
             className={`project-card--image__media${canOpen ? ' project-card--image__media--openable' : ''}`}
@@ -226,6 +267,7 @@ export function ProjectCard({
             </div>
           ))}
         </div>
+        {caption}
       </article>
     );
   }
@@ -241,7 +283,11 @@ export function ProjectCard({
     const stillFit = fit === 'contain' ? 'object-contain' : 'object-cover';
 
     return (
-      <article className="project-card project-card--device w-full">
+      <article
+        className={`project-card project-card--device w-full${
+          editorial ? ' project-card--editorial' : ''
+        }`}
+      >
         <div
           className={`project-device${showChromeBar ? '' : ' project-device--still'}${
             canOpen ? ' project-device--openable' : ''
@@ -277,12 +323,17 @@ export function ProjectCard({
             )}
           </div>
         </div>
+        {caption}
       </article>
     );
   }
 
   return (
-    <article className="project-card h-full overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]">
+    <article
+      className={`project-card h-full overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--card-bg)] md:rounded-[2rem]${
+        editorial ? ' project-card--editorial project-card--editorial-panel' : ''
+      }`}
+    >
       <div className="flex h-full flex-col gap-6 p-6 md:gap-8 md:p-10 md:pb-9">
         <header className="flex flex-col items-start gap-4 md:gap-5">
           <span className="inline-flex rounded-full bg-[var(--bg)] px-5 py-3.5 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:px-5 md:py-2 md:text-[13px]">

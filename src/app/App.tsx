@@ -23,6 +23,7 @@ import { PasswordProtectedCaseStudy } from './components/PasswordProtectedCaseSt
 const COMING_SOON_ROUTES: CaseStudyRoute[] = [
   'case-study-worldpay-sso',
   'case-study-worldpay-merchant-onboarding',
+  'case-study-first-american-playbook',
 ];
 
 /** Case studies that open without a password gate. */
@@ -50,6 +51,8 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
       return worldpayMerchantOnboardingContent.title;
     case 'case-study-worldpay-sso':
       return 'Worldpay SSO Management';
+    case 'case-study-first-american-playbook':
+      return 'First American Research and Design Playbook';
     case 'case-study-lexus-driving-tour':
       return lexusDrivingTourContent.title;
     case 'case-study-worldpay-disputes':

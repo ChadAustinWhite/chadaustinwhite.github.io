@@ -1,7 +1,8 @@
 import expediaAcceleratorCardImage from '../../assets/expedia-accelerator-card.png';
 import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
+import firstAmericanResearchPlaybookCardImage from '../../assets/first-american-research-playbook-card.png';
+import levisCardImage from '../../assets/levis-card.png';
 import lexusDrivingTourImage from '../../assets/lexus-driving-tour-card.png';
-import twoHorseBrandCardImage from '../../assets/two-horse-brand-card.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
 export type CaseStudyRoute =
@@ -11,6 +12,7 @@ export type CaseStudyRoute =
   | 'case-study-expedia-ad-portal'
   | 'case-study-worldpay-merchant-onboarding'
   | 'case-study-worldpay-sso'
+  | 'case-study-first-american-playbook'
   | 'illustrations';
 
 export interface ProjectHoverCanvas {
@@ -95,7 +97,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'Expedia Group ad portal',
     description:
-      'I helped design a unified advertising portal for partners to manage campaigns and payments with confidence across markets.',
+      'A unified portal for partners to manage campaigns and payments across markets.',
     period: '2025',
     image: expediaAdPortalCardImage,
     imageAlt:
@@ -130,16 +132,30 @@ export const projects: ProjectItem[] = [
     hoverCanvas: { dark: '#2a2926', light: '#f0efea' },
   },
   {
-    title: 'Two Horse Brand',
-    description: 'Vintage denim brand mark with an eagle crest and distressed craft lettering.',
-    period: 'Personal',
-    image: twoHorseBrandCardImage,
+    title: "Levi's",
+    description:
+      'Heritage-led denim graphics and brand marks: Riveted and Denim Supply Co system work rooted in Levi’s visual craft.',
+    period: '',
+    image: levisCardImage,
     imageAlt:
-      'Two Horse Brand crest — gold eagle and arrow with Crafted with the finest denim lettering on a deep navy field',
+      'Two Horse Brand Crafted with the Finest Denim eagle graphic on a dark navy field',
     caseStudyRoute: 'illustrations',
     comingSoon: true,
     cardPresentation: 'image',
-    hoverCanvas: { dark: '#15182a', light: '#e8eaf2' },
+    hoverCanvas: { dark: '#141820', light: '#eceaef' },
+  },
+  {
+    title: 'First American Research and Design Playbook',
+    description:
+      'A shared playbook for research and design at First American: team synergy, method craft, and how product teams work together end to end.',
+    period: '2020–2022',
+    image: firstAmericanResearchPlaybookCardImage,
+    imageAlt:
+      'First American Research and Design Playbook covers arranged in a diagonal grid — navy books with white synergy team diagram',
+    caseStudyRoute: 'case-study-first-american-playbook',
+    comingSoon: true,
+    cardPresentation: 'image',
+    hoverCanvas: { dark: '#1a1c28', light: '#eceef2' },
   },
 ];
 
