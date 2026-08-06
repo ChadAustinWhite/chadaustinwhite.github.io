@@ -7,6 +7,8 @@ import { useWowReveal } from '../hooks/useWowReveal';
 
 interface WorkSectionProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
+  /** Brand canvas color for the hovered project, or null when none. */
+  onProjectHover?: (color: string | null) => void;
 }
 
 /**
@@ -22,7 +24,7 @@ const REVEAL = [
   { anim: 'fadeInUp', stagger: '0.55' },
 ] as const;
 
-export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
+export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   useWowReveal(gridRef);
 
@@ -42,6 +44,7 @@ export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
       >
         {projects.map((project, index) => {
           const reveal = REVEAL[index % REVEAL.length]!;
+          const canvas = project.hoverCanvas.light;
           return (
             <div
               key={project.title}
@@ -52,6 +55,8 @@ export function WorkSection({ onViewCaseStudy }: WorkSectionProps) {
                 ['--wow-stagger' as string]: reveal.stagger,
                 ['--wow-travel' as string]: index % 2 === 0 ? '88px' : '72px',
               }}
+              onPointerEnter={() => onProjectHover?.(canvas)}
+              onPointerLeave={() => onProjectHover?.(null)}
             >
               <ProjectCard
                 project={project}
