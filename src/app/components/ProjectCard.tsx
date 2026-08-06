@@ -193,14 +193,14 @@ export function ProjectCard({
             <span className="project-card__caption-tag">Case study</span>
           )}
         </div>
-        {canOpen ? (
-          <button type="button" className="project-card__caption-cta" onClick={openCaseStudy}>
-            View case study
-            <ArrowIcon />
-          </button>
-        ) : null}
       </div>
       <p className="project-card__caption-body serif-headline">{project.description}</p>
+      {canOpen ? (
+        <button type="button" className="project-card__caption-cta" onClick={openCaseStudy}>
+          View case study
+          <ArrowIcon />
+        </button>
+      ) : null}
     </div>
   ) : null;
 

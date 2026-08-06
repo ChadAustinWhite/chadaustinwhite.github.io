@@ -172,18 +172,23 @@ button:focus-visible {
   bottom: 0;
 }
 
-/* —— Hoodzpah-style scroll reveals (native scroll → --reveal 0→1) —— */
+/* —— Hoodzpah-style scroll reveals + multi-speed drift (native scroll) —— */
 .wow {
-  --wow-travel: 88px;
+  --wow-travel: 32px;
+  --drift-y: 0px;
   visibility: visible;
-  /* parent holds space; children do the motion so media leads caption */
+  /* Whole card drifts together so media never overlaps caption */
+  transform: translate3d(0, var(--drift-y), 0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .wow .project-card--editorial {
-  gap: 1.2rem;
+  /* Gap must stay ≥ max entrance travel so lift never covers the title */
+  gap: clamp(2rem, 3.2vw, 2.5rem);
 }
 
-/* Media rises + fades in first */
+/* Media rises + fades in first — no separate Y that can invade the caption */
 .wow .project-card--image__media,
 .wow .project-device {
   opacity: var(--reveal-media, var(--reveal, 0));
@@ -210,6 +215,8 @@ button:focus-visible {
 
 /* Caption trails the media slightly (still driven by scroll) */
 .wow .project-card__caption {
+  position: relative;
+  z-index: 1;
   opacity: var(--reveal-caption, var(--reveal, 0));
   transform: translate3d(
     0,
@@ -228,6 +235,7 @@ button:focus-visible {
   );
 }
 
+/* Entrance finished: lock media/caption together (card parent still drifts) */
 .wow.is-revealed .project-card--image__media,
 .wow.is-revealed .project-device,
 .wow.is-revealed .project-card__caption {
@@ -237,9 +245,17 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .wow {
+    transform: none;
+    will-change: auto;
+  }
+
   .wow .project-card--image__media,
   .wow .project-device,
-  .wow .project-card__caption {
+  .wow .project-card__caption,
+  .wow.is-revealed .project-card--image__media,
+  .wow.is-revealed .project-device,
+  .wow.is-revealed .project-card__caption {
     opacity: 1;
     transform: none;
     will-change: auto;
@@ -262,32 +278,32 @@ button:focus-visible {
   .work-asymmetric {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: clamp(1.5rem, 3.2vw, 2.75rem);
-    /* Generous vertical air so cards arrive in sequence while scrolling */
-    row-gap: clamp(5rem, 12vw, 10rem);
+    /* Generous vertical air so multi-speed layers read while scrolling */
+    row-gap: clamp(5.5rem, 13vw, 11rem);
     align-items: start;
   }
 
-  /* 1: left, medium — higher */
+  /* 1: left, medium — higher, faster track (low lag) */
   .work-asymmetric__item--1 {
     grid-column: 1 / span 5;
   }
 
-  /* 2: right, wide — offset down */
+  /* 2: right, wide — offset down, slower track */
   .work-asymmetric__item--2 {
     grid-column: 7 / span 6;
-    margin-top: clamp(6rem, 16vw, 12rem);
+    margin-top: clamp(7rem, 18vw, 14rem);
   }
 
   /* 3: left, wide */
   .work-asymmetric__item--3 {
     grid-column: 1 / span 7;
-    margin-top: clamp(1rem, 3vw, 2.5rem);
+    margin-top: clamp(1.25rem, 3.5vw, 3rem);
   }
 
-  /* 4: right, narrow — offset down */
+  /* 4: right, narrow — offset down, slowest track */
   .work-asymmetric__item--4 {
     grid-column: 9 / span 4;
-    margin-top: clamp(5rem, 14vw, 10rem);
+    margin-top: clamp(6rem, 15vw, 12rem);
   }
 }
 
@@ -934,7 +950,7 @@ html.page-transition-active body {
 .project-card--editorial {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: clamp(1.5rem, 2.5vw, 2rem);
   background: transparent;
   border: none;
   overflow: visible;
@@ -1009,7 +1025,7 @@ html.page-transition-active body {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  margin: 0.7rem 0 0;
+  margin: 0.15rem 0 0;
   padding: 0;
   border: 0;
   background: none;
@@ -1033,19 +1049,35 @@ html.page-transition-active body {
   outline-offset: 3px;
 }
 
-/* Wide tiles: title/tags/CTA left, serif body right (ILM / Extellis reference). */
+/* Wide tiles: title/tags left, body + CTA right. */
 @media (min-width: 900px) {
   .work-asymmetric__item--2 .project-card__caption,
   .work-asymmetric__item--3 .project-card__caption {
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
     align-items: start;
     column-gap: clamp(1.5rem, 3vw, 2.75rem);
+    row-gap: 0.75rem;
+  }
+
+  .work-asymmetric__item--2 .project-card__caption-main,
+  .work-asymmetric__item--3 .project-card__caption-main {
+    grid-column: 1;
+    grid-row: 1 / span 2;
   }
 
   .work-asymmetric__item--2 .project-card__caption-body,
   .work-asymmetric__item--3 .project-card__caption-body {
+    grid-column: 2;
+    grid-row: 1;
     max-width: none;
     text-align: left;
+  }
+
+  .work-asymmetric__item--2 .project-card__caption-cta,
+  .work-asymmetric__item--3 .project-card__caption-cta {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
   }
 }
 
