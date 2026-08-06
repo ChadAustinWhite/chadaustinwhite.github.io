@@ -3852,6 +3852,19 @@ html.page-transition-active body {
   box-sizing: border-box;
 }
 
+/* Match homepage image-stack gap (1.5rem) between consecutive lead media. */
+.case-study-instrument__lead-image-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-block: clamp(2.5rem, 7vw, 4.5rem);
+}
+
+.case-study-instrument__lead-image-stack .case-study-instrument__figure--padded,
+.case-study-instrument__lead-image-stack .case-study-instrument__figure--bleed {
+  margin-block: 0;
+}
+
 .case-study-instrument__figure--padded .case-study-instrument__figure-media {
   /* Screenshots already include rounded chrome; extra radius+clip crops the top bar. */
   border-radius: 0;
