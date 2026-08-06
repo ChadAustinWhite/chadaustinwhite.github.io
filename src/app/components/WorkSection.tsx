@@ -12,16 +12,21 @@ interface WorkSectionProps {
 }
 
 /**
- * Hoodzpah-style entrance choreography:
- * direction alternates, stagger shifts when each card starts rising into view.
+ * Entrance + multi-speed choreography per asymmetric slot.
+ * Higher `speed` = more lag vs document scroll (reads as a slower layer).
+ * Lexus (2) vs Worldpay (3): deliberately far apart so the pair reads as two tempos.
  */
 const REVEAL = [
-  { anim: 'fadeInUp', stagger: '0' },
-  { anim: 'fadeInUp', stagger: '0.45' },
-  { anim: 'fadeInDown', stagger: '0.2' },
-  { anim: 'fadeInUp', stagger: '0.6' },
-  { anim: 'fadeInDown', stagger: '0.35' },
-  { anim: 'fadeInUp', stagger: '0.55' },
+  { anim: 'fadeInUp', stagger: '0', speed: '0.05', max: '48' },
+  { anim: 'fadeInUp', stagger: '0.4', speed: '0.12', max: '88' },
+  // Lexus Driving Tour — stays closer to the scroll, rises faster
+  { anim: 'fadeInDown', stagger: '0.18', speed: '0.03', max: '36' },
+  // Worldpay — stronger lag, drifts behind the left card
+  { anim: 'fadeInUp', stagger: '0.5', speed: '0.28', max: '170' },
+  // Levi's (left) — slight lag so the right neighbor can lead
+  { anim: 'fadeInDown', stagger: '0.28', speed: '0.12', max: '88' },
+  // First American (right) — lower lag = rises slightly faster on scroll
+  { anim: 'fadeInUp', stagger: '0.45', speed: '0.04', max: '40' },
 ] as const;
 
 export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProps) {
@@ -51,9 +56,12 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
               role="listitem"
               className={`work-asymmetric__item work-asymmetric__item--${(index % 4) + 1} wow ${reveal.anim}`}
               data-wow-stagger={reveal.stagger}
+              data-scroll-speed={reveal.speed}
+              data-scroll-max={reveal.max}
               style={{
                 ['--wow-stagger' as string]: reveal.stagger,
-                ['--wow-travel' as string]: index % 2 === 0 ? '88px' : '72px',
+                ['--wow-travel' as string]: index % 2 === 0 ? '32px' : '26px',
+                ['--scroll-speed' as string]: reveal.speed,
               }}
               onPointerEnter={() => onProjectHover?.(canvas)}
               onPointerLeave={() => onProjectHover?.(null)}

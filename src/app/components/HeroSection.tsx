@@ -129,7 +129,7 @@ export function HeroSection() {
           />
           <CascadingWords
             className="block"
-            text="Product designer crafting intuitive experiences that solve user problems and drive business growth."
+            text="A product designer based in Southern California."
             delay={0.38}
             reduce={reduce}
             show={show}
