@@ -3,6 +3,8 @@ import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
 import firstAmericanResearchPlaybookCardImage from '../../assets/first-american-research-playbook-card.png';
 import levisCardImage from '../../assets/levis-card.png';
 import lexusDrivingTourImage from '../../assets/lexus-driving-tour-card.png';
+import mclarenFwdCardImage from '../../assets/mclaren-fwd-card.png';
+import quiksilverCardImage from '../../assets/quiksilver-card.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
 export type CaseStudyRoute =
@@ -13,6 +15,8 @@ export type CaseStudyRoute =
   | 'case-study-worldpay-merchant-onboarding'
   | 'case-study-worldpay-sso'
   | 'case-study-first-american-playbook'
+  | 'case-study-quiksilver'
+  | 'case-study-mclaren-fwd'
   | 'illustrations';
 
 export interface ProjectHoverCanvas {
@@ -74,6 +78,15 @@ export interface ProjectItem {
    * Default is the full project card.
    */
   cardPresentation?: 'default' | 'device' | 'image';
+  /**
+   * Homepage asymmetric grid span. `wide` overrides the default slot and uses a larger column span.
+   */
+  gridSize?: 'default' | 'wide';
+  /**
+   * Force a zipper slot (1–4). Defaults to `(index % 4) + 1`.
+   * 1 = small left, 2 = large right, 3 = large left, 4 = small right.
+   */
+  gridSlot?: 1 | 2 | 3 | 4;
   /** Extra images stacked below the primary `image` for `cardPresentation: 'image'`. */
   secondaryImages?: { src: string; alt: string }[];
 }
@@ -92,6 +105,8 @@ export const projects: ProjectItem[] = [
     imageIntrinsicHeightPx: 638,
     cardPresentation: 'device',
     caseStudyRoute: 'case-study-expedia-accelerator',
+    // Primary work: large left (~58%) so the hero engagement target is bigger
+    gridSlot: 3,
     hoverCanvas: { dark: '#1c2226', light: '#e6f1f4' },
   },
   {
@@ -104,6 +119,8 @@ export const projects: ProjectItem[] = [
       'Expedia Group advertising — Create a TravelAds campaign with property, goals, and campaign structure guidance',
     caseStudyRoute: 'case-study-expedia-ad-portal',
     cardPresentation: 'image',
+    // Pair with Accelerator as the smaller right tile
+    gridSlot: 4,
     hoverCanvas: { dark: '#26201e', light: '#f5ebe6' },
   },
   {
@@ -117,6 +134,19 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-lexus-driving-tour',
     cardPresentation: 'image',
     hoverCanvas: { dark: '#221e28', light: '#ebe6f2' },
+  },
+  {
+    title: 'McLaren FWD',
+    description:
+      'An exclusive digital invitation for McLaren’s FWD experience: dark, premium event storytelling from first look through registration.',
+    period: '',
+    image: mclarenFwdCardImage,
+    imageAlt:
+      'McLaren FWD website on desktop and mobile: black McLaren supercar hero, orange and white REGISTER NOW and EVENT GUIDE actions, and Overview content',
+    caseStudyRoute: 'case-study-mclaren-fwd',
+    comingSoon: true,
+    cardPresentation: 'image',
+    hoverCanvas: { dark: '#1a1410', light: '#f2ebe4' },
   },
   {
     title: 'Worldpay merchant onboarding',
@@ -156,6 +186,19 @@ export const projects: ProjectItem[] = [
     comingSoon: true,
     cardPresentation: 'image',
     hoverCanvas: { dark: '#202428', light: '#eef0f4' },
+  },
+  {
+    title: 'Quiksilver',
+    description:
+      'Campaign creative for Quiksilver: action and portrait storytelling that holds the brand’s ocean-rooted attitude.',
+    period: '',
+    image: quiksilverCardImage,
+    imageAlt:
+      'Quiksilver campaign: black-and-white Austyn Gillette skate stair-set photo beside a coastal color portrait with Quiksilver logo and blue wash',
+    caseStudyRoute: 'case-study-quiksilver',
+    cardPresentation: 'image',
+    gridSize: 'wide',
+    hoverCanvas: { dark: '#141c28', light: '#e4eef6' },
   },
 ];
 
