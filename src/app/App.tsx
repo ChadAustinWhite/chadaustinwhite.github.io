@@ -59,7 +59,7 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
     case 'case-study-quiksilver':
       return quiksilverContent.title;
     case 'case-study-mclaren-fwd':
-      return 'McLaren FWD';
+      return 'McLaren FWD Event';
     case 'case-study-lexus-driving-tour':
       return lexusDrivingTourContent.title;
     case 'case-study-worldpay-disputes':
