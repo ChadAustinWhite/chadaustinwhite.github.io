@@ -299,26 +299,35 @@ button:focus-visible {
   /* 2 — large right, stepped down */
   .work-asymmetric__item--2 {
     grid-column: 6 / span 7;
-    margin-top: clamp(4.5rem, 12vw, 10rem);
+    margin-top: clamp(6rem, 15vw, 12.5rem);
   }
 
   /* 3 — large left */
   .work-asymmetric__item--3 {
     grid-column: 1 / span 7;
-    margin-top: clamp(0.75rem, 2vw, 1.75rem);
+    margin-top: clamp(1.25rem, 3vw, 2.5rem);
   }
 
   /* 4 — medium-right */
   .work-asymmetric__item--4 {
     grid-column: 8 / span 5;
-    margin-top: clamp(4rem, 11vw, 9rem);
+    margin-top: clamp(5.5rem, 14vw, 11.5rem);
   }
 
   /* Featured campaign tile */
   .work-asymmetric__item--wide {
     grid-column: 1 / span 9;
-    margin-top: clamp(1rem, 3vw, 2.5rem);
+    margin-top: clamp(1.5rem, 4vw, 3.25rem);
     max-width: none;
+  }
+
+  /* Pull First American / Quiksilver up a little without shifting other slots */
+  .work-asymmetric__item--nudge-up {
+    margin-top: clamp(-1.25rem, -1.5vw, 0.35rem);
+  }
+
+  .work-asymmetric__item--nudge-up-wide {
+    margin-top: clamp(0, 1.25vw, 1rem);
   }
 }
 
@@ -947,6 +956,18 @@ html.page-transition-active body {
 .project-card--editorial .project-card--image__media,
 .project-card--editorial .project-device {
   border-radius: var(--project-media-radius);
+}
+
+/* Homepage editorial image frames match ~16:10 card art */
+.project-card--editorial .project-card--image__media {
+  aspect-ratio: 16 / 10;
+}
+
+.project-card--editorial .project-card--image__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .project-card__caption {
