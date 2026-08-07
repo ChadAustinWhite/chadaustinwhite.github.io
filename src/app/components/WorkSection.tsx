@@ -38,7 +38,7 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
   useWowReveal(gridRef);
 
   return (
-    <SectionWrap id="work" className="work-section-asymmetric !pt-8 !pb-16 !px-5 md:!pt-12 md:!pb-28 md:!px-8 lg:!px-10">
+    <SectionWrap id="work" className="work-section-asymmetric !pt-8 !pb-16 !px-4 md:!pt-12 md:!pb-28 md:!px-6 lg:!px-7">
       <div className="mb-10 md:mb-14">
         <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           Recent Projects ({projects.length})
