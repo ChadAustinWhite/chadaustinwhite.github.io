@@ -141,13 +141,13 @@ export const projects: ProjectItem[] = [
     hoverCanvas: { dark: '#221e28', light: '#ebe6f2' },
   },
   {
-    title: 'McLaren FWD',
+    title: 'McLaren FWD Event',
     description:
       'An exclusive digital invitation for McLaren’s FWD experience: dark, premium event storytelling from first look through registration.',
     period: '',
     image: mclarenFwdCardImage,
     imageAlt:
-      'McLaren FWD website on desktop and mobile: black McLaren supercar hero, orange and white REGISTER NOW and EVENT GUIDE actions, and Overview content',
+      'McLaren FWD Event website on desktop and mobile: black McLaren supercar hero, orange and white REGISTER NOW and EVENT GUIDE actions, and Overview content',
     caseStudyRoute: 'case-study-mclaren-fwd',
     comingSoon: true,
     cardPresentation: 'image',

@@ -358,50 +358,12 @@ html.home-card-hover .home-chrome__rail {
   background: color-mix(in srgb, var(--ink) 22%, transparent);
 }
 
-/* Media breathes slightly under pointer (reveal state still owns opacity). */
-@media (hover: hover) and (pointer: fine) {
-  .work-asymmetric__item .project-card--image__media,
-  .work-asymmetric__item .project-device {
-    overflow: hidden;
-  }
-
-  .work-asymmetric__item .project-card--image__media img,
-  .work-asymmetric__item .project-device__screen img,
-  .work-asymmetric__item .project-device__screen video {
-    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
-    transform: scale(1);
-    transform-origin: 50% 50%;
-  }
-
-  .work-asymmetric__item:hover .project-card--image__media img,
-  .work-asymmetric__item:hover .project-device__screen img,
-  .work-asymmetric__item:hover .project-device__screen video {
-    transform: scale(1.035);
-  }
-
-  .work-asymmetric__item .project-card__caption-title {
-    transition: color 0.35s ease;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html.home-canvas-interactive:has(.home-main-canvas),
   html.home-canvas-interactive:has(.home-main-canvas) body,
   html.home-canvas-interactive .home-main-canvas,
   html.home-canvas-interactive .site-nav-surface {
     transition: none;
-  }
-
-  .work-asymmetric__item .project-card--image__media img,
-  .work-asymmetric__item .project-device__screen img,
-  .work-asymmetric__item .project-device__screen video {
-    transition: none;
-  }
-
-  .work-asymmetric__item:hover .project-card--image__media img,
-  .work-asymmetric__item:hover .project-device__screen img,
-  .work-asymmetric__item:hover .project-device__screen video {
-    transform: none;
   }
 }
 
