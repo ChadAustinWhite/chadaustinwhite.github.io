@@ -265,8 +265,9 @@ button:focus-visible {
 /* —— Asymmetric work grid (zipper: small+large pairs, like reference) —— */
 .work-section-asymmetric {
   border-top-color: color-mix(in srgb, var(--border) 80%, transparent);
-  padding-left: clamp(1.25rem, 3.5vw, 2.5rem);
-  padding-right: clamp(1.25rem, 3.5vw, 2.5rem);
+  /* Slightly roomier content width so every card scales up together */
+  padding-left: clamp(1rem, 2.75vw, 1.85rem);
+  padding-right: clamp(1rem, 2.75vw, 1.85rem);
 }
 
 .work-asymmetric {
@@ -279,19 +280,20 @@ button:focus-visible {
 @media (min-width: 768px) {
   .work-asymmetric {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+    /* Keep gap scale — size comes from wider column spans + outer pad */
     column-gap: clamp(1.5rem, 3.5vw, 2.75rem);
     row-gap: clamp(4.5rem, 10vw, 8rem);
     align-items: start;
   }
 
   /*
-   * Zipper pairs (one open column between mates as gutter):
-   * A: small left (~33%) + large right (~58%, dropped)
-   * B: large left + medium-right partner (Ad Portal / McLaren scale)
+   * Zipper pairs (mates meet at a single column-gap, not a full empty track):
+   * A: small left (~42%) + large right (~58%, dropped)
+   * B: large left (~58%) + medium-right (~42%)
    */
   /* 1 — small left */
   .work-asymmetric__item--1 {
-    grid-column: 1 / span 4;
+    grid-column: 1 / span 5;
   }
 
   /* 2 — large right, stepped down */
@@ -300,13 +302,13 @@ button:focus-visible {
     margin-top: clamp(4.5rem, 12vw, 10rem);
   }
 
-  /* 3 — large left (~50%) */
+  /* 3 — large left */
   .work-asymmetric__item--3 {
-    grid-column: 1 / span 6;
+    grid-column: 1 / span 7;
     margin-top: clamp(0.75rem, 2vw, 1.75rem);
   }
 
-  /* 4 — medium-right (~42%): larger click target than the pure 1/3 small */
+  /* 4 — medium-right */
   .work-asymmetric__item--4 {
     grid-column: 8 / span 5;
     margin-top: clamp(4rem, 11vw, 9rem);
@@ -314,7 +316,7 @@ button:focus-visible {
 
   /* Featured campaign tile */
   .work-asymmetric__item--wide {
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 9;
     margin-top: clamp(1rem, 3vw, 2.5rem);
     max-width: none;
   }
