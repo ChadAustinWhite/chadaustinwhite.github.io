@@ -53,6 +53,8 @@ export interface ProjectItem {
   caseStudyRoute: CaseStudyRoute;
   /** When true, case study is not available; show "Coming soon" and do not link. */
   comingSoon?: boolean;
+  /** Optional tag under the title on homepage cards (defaults to “Case study”). */
+  cardTag?: string;
   /** `contain` = full image visible in the tile; `cover` = fill 16:9 (default). */
   imageObjectFit?: 'cover' | 'contain';
   /**
@@ -107,6 +109,7 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-expedia-accelerator',
     // Primary work: large left (~58%) so the hero engagement target is bigger
     gridSlot: 3,
+    cardTag: 'Product Design',
     hoverCanvas: { dark: '#1c2226', light: '#e6f1f4' },
   },
   {
@@ -121,6 +124,7 @@ export const projects: ProjectItem[] = [
     cardPresentation: 'image',
     // Pair with Accelerator as the smaller right tile
     gridSlot: 4,
+    cardTag: 'Product Design',
     hoverCanvas: { dark: '#26201e', light: '#f5ebe6' },
   },
   {
@@ -133,6 +137,7 @@ export const projects: ProjectItem[] = [
       'Lexus Driving Tour site on desktop and mobile: Experience Amazing hero with blue LC sports car, register and event actions, and You’re Invited section',
     caseStudyRoute: 'case-study-lexus-driving-tour',
     cardPresentation: 'image',
+    cardTag: 'Product Design',
     hoverCanvas: { dark: '#221e28', light: '#ebe6f2' },
   },
   {
@@ -177,7 +182,7 @@ export const projects: ProjectItem[] = [
   {
     title: 'First American Research and Design Playbook',
     description:
-      'A shared playbook for research and design at First American: team synergy, method craft, and how product teams work together end to end.',
+      'A shared playbook for how research and design teams work together at First American.',
     period: '2020–2022',
     image: firstAmericanResearchPlaybookCardImage,
     imageAlt:
@@ -185,6 +190,7 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-first-american-playbook',
     comingSoon: true,
     cardPresentation: 'image',
+    cardTag: 'Visual Design',
     hoverCanvas: { dark: '#202428', light: '#eef0f4' },
   },
   {
@@ -198,6 +204,7 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-quiksilver',
     cardPresentation: 'image',
     gridSize: 'wide',
+    cardTag: 'Campaign creative',
     hoverCanvas: { dark: '#141c28', light: '#e4eef6' },
   },
 ];

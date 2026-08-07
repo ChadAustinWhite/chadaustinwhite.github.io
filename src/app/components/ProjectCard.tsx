@@ -6,7 +6,7 @@ interface ProjectCardProps {
   project: ProjectItem;
   onViewCaseStudy: (route: ProjectItem['caseStudyRoute']) => void;
   /**
-   * `editorial`: media + caption (title, period, description) for the broken-grid work layout.
+   * `editorial`: media + caption (title, tags, description) for the broken-grid work layout.
    * Default keeps prior card-only presentations.
    */
   layout?: 'default' | 'editorial';
@@ -184,14 +184,9 @@ export function ProjectCard({
       <div className="project-card__caption-main">
         <h3 className="project-card__caption-title">{project.title}</h3>
         <div className="project-card__caption-tags" aria-label="Project tags">
-          {project.period ? (
-            <span className="project-card__caption-tag">{project.period}</span>
-          ) : null}
-          {project.comingSoon ? (
-            <span className="project-card__caption-tag">Coming soon</span>
-          ) : (
-            <span className="project-card__caption-tag">Case study</span>
-          )}
+            <span className="project-card__caption-tag">
+              {project.cardTag ?? (project.comingSoon ? 'Coming soon' : 'Case study')}
+            </span>
         </div>
       </div>
       <p className="project-card__caption-body serif-headline">{project.description}</p>
@@ -336,9 +331,6 @@ export function ProjectCard({
     >
       <div className="flex h-full flex-col gap-6 p-6 md:gap-8 md:p-10 md:pb-9">
         <header className="flex flex-col items-start gap-4 md:gap-5">
-          <span className="inline-flex rounded-full bg-[var(--bg)] px-5 py-3.5 text-xs font-medium leading-none tracking-[-0.01em] text-[var(--ink)] tabular-nums md:px-5 md:py-2 md:text-[13px]">
-            {project.period}
-          </span>
           <h3 className="serif-headline max-w-full font-normal text-[1.85rem] leading-[1.12] tracking-[-0.02em] text-[var(--ink)] [overflow-wrap:anywhere] md:text-[2.4rem]">
             {project.title}
           </h3>
