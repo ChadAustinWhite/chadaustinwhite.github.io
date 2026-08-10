@@ -29,12 +29,6 @@ const gallery: GalleryItem[] = [
     subtitle: "Levi’s",
   },
   {
-    src: levisRivetedImage,
-    alt: "Levi’s Original Riveted heritage badge on a mustard field",
-    title: 'Original riveted',
-    subtitle: "Levi’s",
-  },
-  {
     src: levisDenimSupplyImage,
     alt: 'Levi Strauss and Co Denim Supply Co quality goods stamp on a tan field',
     title: 'Denim supply co',
@@ -45,6 +39,12 @@ const gallery: GalleryItem[] = [
     alt: 'Distressed graphic of a rider leaning into a cafe racer motorcycle',
     title: 'Cafe racer rider',
     subtitle: 'Illustration',
+  },
+  {
+    src: levisRivetedImage,
+    alt: "Levi’s Original Riveted heritage badge on a mustard field",
+    title: 'Original riveted',
+    subtitle: "Levi’s",
   },
   {
     src: levisCafeRacerImage,
