@@ -40,14 +40,6 @@ export const levisInstrument: CaseStudyInstrumentContent = {
       parallaxSpeed: '0',
     },
     {
-      src: levisRivetedImage,
-      alt: "Levi’s Original Riveted heritage badge on a mustard field",
-      padded: true,
-      background: 'page',
-      objectFit: 'contain',
-      parallaxSpeed: '0',
-    },
-    {
       src: levisDenimSupplyImage,
       alt: 'Levi Strauss and Co Denim Supply Co quality goods stamp on a tan field',
       padded: true,
@@ -58,6 +50,14 @@ export const levisInstrument: CaseStudyInstrumentContent = {
     {
       src: levisRiderImage,
       alt: 'Distressed graphic of a rider leaning into a cafe racer motorcycle',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisRivetedImage,
+      alt: "Levi’s Original Riveted heritage badge on a mustard field",
       padded: true,
       background: 'page',
       objectFit: 'contain',
