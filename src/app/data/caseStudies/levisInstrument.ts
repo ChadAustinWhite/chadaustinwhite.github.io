@@ -16,7 +16,7 @@ export const levisInstrument: CaseStudyInstrumentContent = {
   overviewCategories: [
     {
       label: 'Role',
-      values: ['Print graphics'],
+      values: ['Brand Graphics'],
     },
     {
       label: 'Company',
