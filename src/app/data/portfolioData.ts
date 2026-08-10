@@ -173,7 +173,7 @@ export const projects: ProjectItem[] = [
   {
     title: "Levi's",
     description:
-      'Heritage-led denim graphics and brand marks: Riveted and Denim Supply Co system work rooted in Levi’s visual craft.',
+      'Brand graphics for Levi’s merchandise: marks, badges, and print-ready illustrations built for apparel and product.',
     period: '',
     image: levisCardImage,
     imageAlt:
