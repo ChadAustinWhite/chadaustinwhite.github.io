@@ -329,6 +329,18 @@ button:focus-visible {
   .work-asymmetric__item--nudge-up-wide {
     margin-top: clamp(0, 1.25vw, 1rem);
   }
+
+  /* Lexus: a hair wider than standard large-left */
+  .work-asymmetric__item--lexus {
+    grid-column: 1 / span 8;
+    margin-top: clamp(1rem, 2.5vw, 2rem);
+  }
+
+  /* McLaren: large right without the deep zipper drop */
+  .work-asymmetric__item--mclaren {
+    grid-column: 5 / span 8;
+    margin-top: clamp(0.5rem, 1.5vw, 1.25rem);
+  }
 }
 
 @media (max-width: 767px) {
