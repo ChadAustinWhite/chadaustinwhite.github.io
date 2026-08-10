@@ -346,8 +346,8 @@ export function SelectedVisualWorkPage({ onBack }: SelectedVisualWorkPageProps) 
           <div className="visual-jams__intro visual-jams__intro--grid">
             <h1 className="visual-jams__title serif-headline">Levi’s</h1>
             <p className="visual-jams__lede">
-              Heritage denim graphics and brand marks: riveted badges, Two Horse Brand craft, and
-              lifestyle illustration for Levi’s.
+              Brand graphics for Levi’s merchandise: marks, badges, and print-ready illustrations
+              built for apparel and product.
             </p>
           </div>
           <div className="visual-jams__gallery-inner">

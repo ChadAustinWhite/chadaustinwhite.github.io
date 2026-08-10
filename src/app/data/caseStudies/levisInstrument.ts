@@ -28,7 +28,7 @@ export const levisInstrument: CaseStudyInstrumentContent = {
     },
   ],
   lead:
-    'Heritage denim graphics and brand marks: riveted badges, Two Horse Brand craft, and lifestyle illustration for Levi’s.',
+    'Brand graphics for Levi’s merchandise: marks, badges, and print-ready illustrations built for apparel and product.',
   leadImages: [
     {
       src: levisTwoHorseImage,
