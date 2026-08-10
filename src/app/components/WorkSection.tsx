@@ -14,7 +14,7 @@ interface WorkSectionProps {
 /**
  * Entrance + multi-speed choreography per asymmetric slot.
  * Higher `speed` = more lag vs document scroll (reads as a slower layer).
- * Lexus (2) + McLaren (3) sit as a paired automotive row.
+ * Lexus keeps large-left; McLaren large-right (wraps under so both stay large).
  */
 const REVEAL = [
   { anim: 'fadeInUp', stagger: '0', speed: '0.05', max: '40' },
@@ -56,17 +56,21 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
           const canvas = project.hoverCanvas.light;
           const slot = project.gridSlot ?? (index % 4) + 1;
           const gridSize = project.gridSize === 'wide' ? ' work-asymmetric__item--wide' : '';
-          const nudgeUp =
-            project.caseStudyRoute === 'case-study-first-american-playbook'
-              ? ' work-asymmetric__item--nudge-up'
-              : project.caseStudyRoute === 'case-study-quiksilver'
-                ? ' work-asymmetric__item--nudge-up-wide'
-                : '';
+          const sizeMod =
+            project.caseStudyRoute === 'case-study-lexus-driving-tour'
+              ? ' work-asymmetric__item--lexus'
+              : project.caseStudyRoute === 'case-study-mclaren-fwd'
+                ? ' work-asymmetric__item--mclaren'
+                : project.caseStudyRoute === 'case-study-first-american-playbook'
+                  ? ' work-asymmetric__item--nudge-up'
+                  : project.caseStudyRoute === 'case-study-quiksilver'
+                    ? ' work-asymmetric__item--nudge-up-wide'
+                    : '';
           return (
             <div
               key={project.title}
               role="listitem"
-              className={`work-asymmetric__item work-asymmetric__item--${slot}${gridSize}${nudgeUp} wow ${reveal.anim}`}
+              className={`work-asymmetric__item work-asymmetric__item--${slot}${gridSize}${sizeMod} wow ${reveal.anim}`}
               data-wow-stagger={reveal.stagger}
               data-scroll-speed={reveal.speed}
               data-scroll-max={reveal.max}

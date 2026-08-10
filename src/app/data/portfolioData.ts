@@ -137,6 +137,8 @@ export const projects: ProjectItem[] = [
       'Lexus Driving Tour site on desktop and mobile: Experience Amazing hero with blue LC sports car, register and event actions, and You’re Invited section',
     caseStudyRoute: 'case-study-lexus-driving-tour',
     cardPresentation: 'image',
+    // Keep original large-left scale (~58%)
+    gridSlot: 3,
     cardTag: 'Product Design',
     hoverCanvas: { dark: '#221e28', light: '#ebe6f2' },
   },
@@ -151,6 +153,8 @@ export const projects: ProjectItem[] = [
     caseStudyRoute: 'case-study-mclaren-fwd',
     comingSoon: true,
     cardPresentation: 'image',
+    // Large right (~58%) — grid wraps under Lexus so both stay at full large size
+    gridSlot: 2,
     hoverCanvas: { dark: '#1a1410', light: '#f2ebe4' },
   },
   {
