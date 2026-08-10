@@ -179,8 +179,8 @@ export const projects: ProjectItem[] = [
     imageAlt:
       'Two Horse Brand Crafted with the Finest Denim eagle graphic on a dark navy field',
     caseStudyRoute: 'illustrations',
-    comingSoon: true,
     cardPresentation: 'image',
+    cardTag: 'Print graphics',
     hoverCanvas: { dark: '#1e1c26', light: '#ece8f4' },
   },
   {

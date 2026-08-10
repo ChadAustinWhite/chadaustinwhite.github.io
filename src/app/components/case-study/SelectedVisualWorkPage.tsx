@@ -6,12 +6,12 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from 'react';
 import { useReducedMotion } from 'motion/react';
-import stateDeerImage from '../../../assets/visual-work-state-deer.png';
-import levisRivetedImage from '../../../assets/visual-work-levis-riveted.png';
-import levisDenimSupplyImage from '../../../assets/visual-work-levis-denim-supply.png';
-import cafeRacerImage from '../../../assets/visual-work-cafe-racer.png';
-import twoHorseDenimImage from '../../../assets/visual-work-two-horse-denim.png';
-import birdStudiesImage from '../../../assets/visual-work-bird-studies.png';
+import levisTwoHorseImage from '../../../assets/levis-two-horse-brand.png';
+import levisRivetedImage from '../../../assets/levis-original-riveted.png';
+import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
+import levisRiderImage from '../../../assets/levis-rider-graphic.png';
+import levisCafeRacerImage from '../../../assets/levis-cafe-racer.png';
+import levisClassicCarImage from '../../../assets/levis-classic-car.png';
 
 type GalleryItem = {
   src: string;
@@ -22,40 +22,40 @@ type GalleryItem = {
 
 const gallery: GalleryItem[] = [
   {
-    src: cafeRacerImage,
-    alt: 'Line illustration of a rider leaning into a cafe racer motorcycle',
-    title: 'Cafe racer',
-    subtitle: 'Line study',
-  },
-  {
-    src: stateDeerImage,
-    alt: 'Blue typographic deer illustration on a mustard field',
-    title: 'State deer',
-    subtitle: 'Graphic',
+    src: levisTwoHorseImage,
+    alt: 'Two Horse Brand Crafted with the Finest Denim eagle graphic on a dark navy field',
+    title: 'Two horse brand',
+    subtitle: "Levi’s",
   },
   {
     src: levisRivetedImage,
-    alt: "Levi’s Original Riveted heritage badge illustration",
+    alt: "Levi’s Original Riveted heritage badge on a mustard field",
     title: 'Original riveted',
     subtitle: "Levi’s",
   },
   {
     src: levisDenimSupplyImage,
-    alt: 'Levi Strauss and Co Denim Supply Co diamond badge on a mustard field',
-    title: 'Denim supply',
+    alt: 'Levi Strauss and Co Denim Supply Co quality goods stamp on a tan field',
+    title: 'Denim supply co',
     subtitle: "Levi’s",
   },
   {
-    src: twoHorseDenimImage,
-    alt: 'Two Horse Brand Crafted with the Finest Denim eagle graphic',
-    title: 'Two horse brand',
-    subtitle: 'Denim',
+    src: levisRiderImage,
+    alt: 'Distressed graphic of a rider leaning into a cafe racer motorcycle',
+    title: 'Cafe racer rider',
+    subtitle: 'Illustration',
   },
   {
-    src: birdStudiesImage,
-    alt: 'Eight black bird icon studies exploring geometric forms',
-    title: 'Bird studies',
-    subtitle: 'Icon set',
+    src: levisCafeRacerImage,
+    alt: 'Low-contrast line illustration of a cafe racer motorcycle on a dark field',
+    title: 'Cafe racer',
+    subtitle: 'Line study',
+  },
+  {
+    src: levisClassicCarImage,
+    alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
+    title: 'Fastback',
+    subtitle: 'Line study',
   },
 ];
 
@@ -73,7 +73,7 @@ interface SelectedVisualWorkPageProps {
 }
 
 /**
- * Selected visual work — B/D JAMS “crate” card stack.
+ * Levi’s / selected visual work — B/D JAMS “crate” card stack.
  * Scroll / swipe / arrow keys advance one cover at a time.
  * https://jams.basicagency.com/
  */
@@ -229,7 +229,7 @@ export function SelectedVisualWorkPage({ onBack }: SelectedVisualWorkPageProps) 
         <section
           ref={crateRef}
           className="visual-crate"
-          aria-label="Stacked visual work. Scroll or swipe to browse."
+          aria-label="Levi’s visual work. Scroll or swipe to browse."
           aria-roledescription="carousel"
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -344,10 +344,10 @@ export function SelectedVisualWorkPage({ onBack }: SelectedVisualWorkPageProps) 
       ) : (
         <section className="visual-jams__gallery visual-jams__gallery--grid px-[var(--cs-page-gutter)] pb-20">
           <div className="visual-jams__intro visual-jams__intro--grid">
-            <h1 className="visual-jams__title serif-headline">Selected visual work</h1>
+            <h1 className="visual-jams__title serif-headline">Levi’s</h1>
             <p className="visual-jams__lede">
-              Visual work for brands and companies, spanning apparel graphics, campaign artwork, and
-              custom illustration.
+              Heritage denim graphics and brand marks: riveted badges, Two Horse Brand craft, and
+              lifestyle illustration for Levi’s.
             </p>
           </div>
           <div className="visual-jams__gallery-inner">
