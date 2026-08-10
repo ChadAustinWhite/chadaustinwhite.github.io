@@ -12,7 +12,7 @@ export const levisContent: CaseStudyContent = {
     organization: "Levi’s",
     organizationNote:
       'Heritage denim graphics and brand marks: riveted badges, Two Horse Brand craft, and lifestyle illustration rooted in Levi’s visual craft.',
-    role: 'Print graphics',
+    role: 'Brand Graphics',
     year: '',
     duration: '',
   },
