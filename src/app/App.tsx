@@ -3,7 +3,6 @@ import { HomeLayout } from './components/HomeLayout';
 import { CaseStudyLayout } from './components/case-study/CaseStudyLayout';
 import { CaseStudyPage } from './components/case-study/CaseStudyPage';
 import { CaseStudyPlaceholder } from './components/case-study/CaseStudyPlaceholder';
-import { SelectedVisualWorkPage } from './components/case-study/SelectedVisualWorkPage';
 import {
   PageTransitionOverlay,
   PageTransitionProvider,
@@ -12,6 +11,7 @@ import {
 import {
   expediaAcceleratorContent,
   expediaAdPortalContent,
+  levisContent,
   lexusDrivingTourContent,
   quiksilverContent,
   worldpayDisputeDefenderContent,
@@ -65,7 +65,7 @@ function getCaseStudyTitle(route: CaseStudyRoute): string {
     case 'case-study-worldpay-disputes':
       return worldpayDisputeDefenderContent.title;
     case 'illustrations':
-      return 'Selected visual work';
+      return levisContent.title;
     default:
       return 'Case study';
   }
@@ -180,7 +180,12 @@ function AppRoutes() {
       case 'illustrations':
         return (
           <CaseStudyLayout onNavigateHome={handleBackFromCaseStudy}>
-            <SelectedVisualWorkPage onBack={handleBackFromCaseStudy} />
+            <CaseStudyPage
+              content={levisContent}
+              onBack={handleBackFromCaseStudy}
+              currentRoute={route}
+              onViewCaseStudy={handleViewCaseStudy}
+            />
           </CaseStudyLayout>
         );
       default:

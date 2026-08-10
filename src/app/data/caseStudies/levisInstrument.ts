@@ -1,0 +1,83 @@
+import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
+import levisTwoHorseImage from '../../../assets/levis-two-horse-brand.png';
+import levisRivetedImage from '../../../assets/levis-original-riveted.png';
+import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
+import levisRiderImage from '../../../assets/levis-rider-graphic.png';
+import levisCafeRacerImage from '../../../assets/levis-cafe-racer.png';
+import levisClassicCarImage from '../../../assets/levis-classic-car.png';
+
+/** Instrument-style narrative for Levi’s visual work (same shell as Quiksilver). */
+export const levisInstrument: CaseStudyInstrumentContent = {
+  projectName: "Levi’s",
+  breadcrumb: "Levi’s",
+  tags: ['Brand', 'Campaign', 'Illustration'],
+  roundedMedia: true,
+  compactLeadImages: true,
+  overviewCategories: [
+    {
+      label: 'Role',
+      values: ['Print graphics'],
+    },
+    {
+      label: 'Company',
+      values: ["Levi’s"],
+    },
+    {
+      label: 'Stakeholder',
+      values: ['Brand marketing'],
+    },
+  ],
+  lead:
+    'Heritage denim graphics and brand marks: riveted badges, Two Horse Brand craft, and lifestyle illustration for Levi’s.',
+  leadImages: [
+    {
+      src: levisTwoHorseImage,
+      alt: 'Two Horse Brand Crafted with the Finest Denim eagle graphic on a dark navy field',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisRivetedImage,
+      alt: "Levi’s Original Riveted heritage badge on a mustard field",
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisDenimSupplyImage,
+      alt: 'Levi Strauss and Co Denim Supply Co quality goods stamp on a tan field',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisRiderImage,
+      alt: 'Distressed graphic of a rider leaning into a cafe racer motorcycle',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisCafeRacerImage,
+      alt: 'Low-contrast line illustration of a cafe racer motorcycle on a dark field',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisClassicCarImage,
+      alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+  ],
+  chapters: [],
+};
