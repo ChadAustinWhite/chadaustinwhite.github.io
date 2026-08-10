@@ -1,5 +1,6 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
 import levisTwoHorseImage from '../../../assets/levis-two-horse-brand.png';
+import levisEagleBoltImage from '../../../assets/levis-eagle-bolt.png';
 import levisRivetedImage from '../../../assets/levis-original-riveted.png';
 import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
 import levisRiderImage from '../../../assets/levis-rider-graphic.png';
@@ -65,6 +66,14 @@ export const levisInstrument: CaseStudyInstrumentContent = {
     {
       src: levisCafeRacerImage,
       alt: 'Low-contrast line illustration of a cafe racer motorcycle on a dark field',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisEagleBoltImage,
+      alt: 'Levi’s eagle illustration over a jagged bolt line with red batwing logo on a light field',
       padded: true,
       background: 'page',
       objectFit: 'contain',

@@ -7,6 +7,7 @@ import {
 } from 'react';
 import { useReducedMotion } from 'motion/react';
 import levisTwoHorseImage from '../../../assets/levis-two-horse-brand.png';
+import levisEagleBoltImage from '../../../assets/levis-eagle-bolt.png';
 import levisRivetedImage from '../../../assets/levis-original-riveted.png';
 import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
 import levisRiderImage from '../../../assets/levis-rider-graphic.png';
@@ -50,6 +51,12 @@ const gallery: GalleryItem[] = [
     alt: 'Low-contrast line illustration of a cafe racer motorcycle on a dark field',
     title: 'Cafe racer',
     subtitle: 'Line study',
+  },
+  {
+    src: levisEagleBoltImage,
+    alt: 'Levi’s eagle illustration over a jagged bolt line with red batwing logo on a light field',
+    title: 'Eagle mark',
+    subtitle: "Levi’s",
   },
   {
     src: levisClassicCarImage,
