@@ -5,10 +5,19 @@ const HOME_OVERVIEW = [
   {
     label: 'Expertise',
     values: [
-      'Product strategy',
+      'Complex systems',
+      '0→1 & optimization',
+      'AI prototyping',
       'Accessibility',
-      'Collaboration',
-      'Systems thinking',
+    ],
+  },
+  {
+    label: 'Impact',
+    values: [
+      'Revenue growth',
+      'Product adoption',
+      'Enterprise workflows',
+      'Design systems',
     ],
   },
   {
@@ -21,12 +30,12 @@ const HOME_OVERVIEW = [
     ],
   },
   {
-    label: 'Organization',
-    values: ['Expedia Group'],
-  },
-  {
-    label: 'Location',
-    values: ['Los Angeles, Ca.'],
+    label: 'Currently',
+    values: [
+      'Product Designer',
+      'Expedia Group',
+      'Los Angeles, CA',
+    ],
   },
 ] as const;
 
@@ -142,7 +151,6 @@ export function HeroSection() {
         >
           {HOME_OVERVIEW.map((category, index) => {
             const hideOnMobile =
-              category.label.toLowerCase() === 'location' ||
               category.label.toLowerCase() === 'industries';
             return (
               <OverviewItem
