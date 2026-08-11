@@ -25,7 +25,7 @@ export const levisContent: CaseStudyContent = {
     heading: 'Work',
     sectionLabel: 'Campaign',
     metrics: [
-      { value: '7', label: 'Pieces' },
+      { value: '8', label: 'Pieces' },
       { value: 'Print', label: 'Primary medium' },
       { value: 'Heritage', label: 'Brand system' },
     ],
@@ -33,7 +33,7 @@ export const levisContent: CaseStudyContent = {
   impact: {
     heading: 'Work',
     metrics: [
-      { value: '7', label: 'Pieces' },
+      { value: '8', label: 'Pieces' },
       { value: 'Print', label: 'Primary medium' },
       { value: 'Heritage', label: 'Brand system' },
     ],
