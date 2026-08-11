@@ -138,8 +138,15 @@ export function HeroSection() {
           />
           <CascadingWords
             className="block"
-            text="I turn complex products into experiences people understand, trust, and remember."
+            text="I turn complex problems"
             delay={0.38}
+            reduce={reduce}
+            show={show}
+          />
+          <CascadingWords
+            className="block"
+            text="into experiences people understand, trust, and remember."
+            delay={0.62}
             reduce={reduce}
             show={show}
           />
