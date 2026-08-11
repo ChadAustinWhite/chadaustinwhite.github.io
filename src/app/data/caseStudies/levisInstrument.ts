@@ -5,6 +5,7 @@ import levisEagleBoltImage from '../../../assets/levis-eagle-bolt.png';
 import levisRivetedImage from '../../../assets/levis-original-riveted.png';
 import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
 import levisRiderImage from '../../../assets/levis-rider-graphic.png';
+import levisStraussMotorcycleImage from '../../../assets/levis-strauss-motorcycle.png';
 import levisClassicCarImage from '../../../assets/levis-classic-car.png';
 
 /** Instrument-style narrative for Levi’s visual work (same shell as Quiksilver). */
@@ -64,6 +65,14 @@ export const levisInstrument: CaseStudyInstrumentContent = {
       parallaxSpeed: '0',
     },
     {
+      src: levisStraussMotorcycleImage,
+      alt: 'Levi Strauss and Co cafe racer motorcycle graphic with 1873 Quality Crafted mark on black',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
       src: levisRivetedImage,
       alt: "Levi’s Original Riveted heritage badge on a mustard field",
       padded: true,
@@ -72,16 +81,16 @@ export const levisInstrument: CaseStudyInstrumentContent = {
       parallaxSpeed: '0',
     },
     {
-      src: levisClassicCarImage,
-      alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
+      src: levisEagleBoltImage,
+      alt: 'Levi’s eagle illustration over a jagged bolt line with red batwing logo on a light field',
       padded: true,
       background: 'page',
       objectFit: 'contain',
       parallaxSpeed: '0',
     },
     {
-      src: levisEagleBoltImage,
-      alt: 'Levi’s eagle illustration over a jagged bolt line with red batwing logo on a light field',
+      src: levisClassicCarImage,
+      alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
       padded: true,
       background: 'page',
       objectFit: 'contain',
