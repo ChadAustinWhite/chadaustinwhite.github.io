@@ -12,7 +12,6 @@ import levisEagleBoltImage from '../../../assets/levis-eagle-bolt.png';
 import levisRivetedImage from '../../../assets/levis-original-riveted.png';
 import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
 import levisRiderImage from '../../../assets/levis-rider-graphic.png';
-import levisCafeRacerImage from '../../../assets/levis-cafe-racer.png';
 import levisClassicCarImage from '../../../assets/levis-classic-car.png';
 
 type GalleryItem = {
@@ -54,9 +53,9 @@ const gallery: GalleryItem[] = [
     subtitle: "Levi’s",
   },
   {
-    src: levisCafeRacerImage,
-    alt: 'Low-contrast line illustration of a cafe racer motorcycle on a dark field',
-    title: 'Cafe racer',
+    src: levisClassicCarImage,
+    alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
+    title: 'Fastback',
     subtitle: 'Line study',
   },
   {
@@ -64,12 +63,6 @@ const gallery: GalleryItem[] = [
     alt: 'Levi’s eagle illustration over a jagged bolt line with red batwing logo on a light field',
     title: 'Eagle mark',
     subtitle: "Levi’s",
-  },
-  {
-    src: levisClassicCarImage,
-    alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
-    title: 'Fastback',
-    subtitle: 'Line study',
   },
 ];
 

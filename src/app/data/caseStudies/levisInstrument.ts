@@ -5,7 +5,6 @@ import levisEagleBoltImage from '../../../assets/levis-eagle-bolt.png';
 import levisRivetedImage from '../../../assets/levis-original-riveted.png';
 import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
 import levisRiderImage from '../../../assets/levis-rider-graphic.png';
-import levisCafeRacerImage from '../../../assets/levis-cafe-racer.png';
 import levisClassicCarImage from '../../../assets/levis-classic-car.png';
 
 /** Instrument-style narrative for Levi’s visual work (same shell as Quiksilver). */
@@ -73,8 +72,8 @@ export const levisInstrument: CaseStudyInstrumentContent = {
       parallaxSpeed: '0',
     },
     {
-      src: levisCafeRacerImage,
-      alt: 'Low-contrast line illustration of a cafe racer motorcycle on a dark field',
+      src: levisClassicCarImage,
+      alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
       padded: true,
       background: 'page',
       objectFit: 'contain',
@@ -83,14 +82,6 @@ export const levisInstrument: CaseStudyInstrumentContent = {
     {
       src: levisEagleBoltImage,
       alt: 'Levi’s eagle illustration over a jagged bolt line with red batwing logo on a light field',
-      padded: true,
-      background: 'page',
-      objectFit: 'contain',
-      parallaxSpeed: '0',
-    },
-    {
-      src: levisClassicCarImage,
-      alt: 'Low-contrast illustration of a vintage fastback muscle car on a dark field',
       padded: true,
       background: 'page',
       objectFit: 'contain',
