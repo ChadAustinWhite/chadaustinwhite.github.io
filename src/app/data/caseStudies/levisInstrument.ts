@@ -1,5 +1,6 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
 import levisTwoHorseImage from '../../../assets/levis-two-horse-brand.png';
+import levisTwoHorseQualityImage from '../../../assets/levis-two-horse-quality-indigo.png';
 import levisEagleBoltImage from '../../../assets/levis-eagle-bolt.png';
 import levisRivetedImage from '../../../assets/levis-original-riveted.png';
 import levisDenimSupplyImage from '../../../assets/levis-denim-supply-co.png';
@@ -34,6 +35,14 @@ export const levisInstrument: CaseStudyInstrumentContent = {
     {
       src: levisTwoHorseImage,
       alt: 'Two Horse Brand Crafted with the Finest Denim eagle graphic on a dark navy field',
+      padded: true,
+      background: 'page',
+      objectFit: 'contain',
+      parallaxSpeed: '0',
+    },
+    {
+      src: levisTwoHorseQualityImage,
+      alt: 'Levi Strauss and Co Quality Indigo white two-horse brand mark with For Those Who Toil on black',
       padded: true,
       background: 'page',
       objectFit: 'contain',
