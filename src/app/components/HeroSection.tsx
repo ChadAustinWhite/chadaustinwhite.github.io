@@ -127,8 +127,8 @@ export function HeroSection() {
 
   return (
     <section id="about" className="pt-[108px] pb-14 md:pt-36 md:pb-[72px]">
-      <div className="max-w-[900px] px-5 md:px-10">
-        <h1 className="serif-headline max-w-full text-left font-normal text-[clamp(28px,7.2vw,64px)] leading-[1.12] text-[var(--ink)] [overflow-wrap:anywhere]">
+      <div className="w-full max-w-[72rem] px-5 md:px-10">
+        <h1 className="serif-headline max-w-none text-left font-normal text-[clamp(28px,7.2vw,64px)] leading-[1.12] text-[var(--ink)] [overflow-wrap:normal] [text-wrap:pretty]">
           <CascadingWords
             className="block"
             text="I'm Chad 👋"
@@ -138,15 +138,15 @@ export function HeroSection() {
           />
           <CascadingWords
             className="block"
-            text="I turn complex problems"
+            text="I turn complex problems into experiences people understand,"
             delay={0.38}
             reduce={reduce}
             show={show}
           />
           <CascadingWords
             className="block"
-            text="into experiences people understand, trust, and remember."
-            delay={0.62}
+            text="trust, and remember."
+            delay={0.72}
             reduce={reduce}
             show={show}
           />
