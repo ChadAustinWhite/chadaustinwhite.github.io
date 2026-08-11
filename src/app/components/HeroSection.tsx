@@ -119,7 +119,7 @@ export function HeroSection() {
   return (
     <section id="about" className="pt-[108px] pb-14 md:pt-36 md:pb-[72px]">
       <div className="max-w-[900px] px-5 md:px-10">
-        <h1 className="serif-headline max-w-full font-normal text-[clamp(28px,7.2vw,64px)] leading-[1.12] text-[var(--ink)] [overflow-wrap:anywhere]">
+        <h1 className="serif-headline max-w-full text-left font-normal text-[clamp(28px,7.2vw,64px)] leading-[1.12] text-[var(--ink)] [overflow-wrap:anywhere]">
           <CascadingWords
             className="block"
             text="I'm Chad 👋"
@@ -129,7 +129,7 @@ export function HeroSection() {
           />
           <CascadingWords
             className="block"
-            text="A product designer based in Southern California."
+            text="I turn complex products into experiences people understand, trust, and remember."
             delay={0.38}
             reduce={reduce}
             show={show}
