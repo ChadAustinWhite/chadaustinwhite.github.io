@@ -172,6 +172,58 @@ button:focus-visible {
   bottom: 0;
 }
 
+/* —— Back to top (above footer breakline) —— */
+.scroll-to-top-band {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0 0 1.15rem;
+}
+
+.scroll-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.55rem 0.75rem 0.55rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-radius: 0.55rem;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.scroll-to-top:hover {
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  border-color: color-mix(in srgb, var(--ink) 32%, transparent);
+}
+
+.scroll-to-top:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.scroll-to-top__icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top {
+    transition: none;
+  }
+}
+
 /* —— Hoodzpah-style scroll reveals + multi-speed drift (native scroll) —— */
 .wow {
   --wow-travel: 32px;
