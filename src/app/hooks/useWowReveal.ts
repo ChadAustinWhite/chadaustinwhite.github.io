@@ -172,7 +172,7 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
       // Layer drift:
       // • Scroll top→bottom: screens start low and move upward
       // • Scroll bottom→top: Lexus/McLaren park centered in the matte (no travel)
-      if (Math.abs(delta) > 0.5) {
+      if (Math.abs(delta) > 0.2) {
         layerScrollDir = delta < 0 ? 'up' : 'down';
       }
 
@@ -213,26 +213,29 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
         }
 
         let target = 0;
-        let scrub = 0.1;
         if (isDevices && layerScrollDir === 'up') {
-          // Park centered — no travel, settle quickly
+          // Park centered — no travel
           target = 0;
-          scrub = 0.06;
         } else if (layerScrollDir === 'down') {
-          // Card below mid → screens low; as it rises, screens move up
+          // Lead shifts the curve earlier so Lexus/McLaren start right away;
+          // softer speeds keep travel gradual. Front still outpaces back.
           const hostCenter = hostRect.top + hostRect.height * 0.5;
-          const fromMid = hostCenter - mid;
-          target = Math.max(-maxAbs, Math.min(maxAbs, fromMid * speed));
+          const lead = Number(el.dataset.layerLead ?? '0') || 0;
+          const fromMid = hostCenter - mid - lead;
+          const maxDown = isDevices ? Math.min(10, maxAbs * 0.15) : maxAbs;
+          target = Math.max(-maxAbs, Math.min(maxDown, fromMid * speed));
         } else if (!isDevices) {
           // Accelerator (and other windows): also rest at 0 while scrolling up
           target = 0;
-          scrub = 0.06;
         }
 
+        // Responsive but gradual: short scrub while scrolling, softer settle after
+        const scrolling = Math.abs(delta) > 0.2;
+        const scrub = isDevices ? (scrolling ? 0.05 : 0.14) : scrolling ? 0.02 : 0.08;
         const nextLayer = prevLayer + (target - prevLayer) * Math.min(1, damp(dt, scrub));
         layerDriftNow.set(el, nextLayer);
         el.style.setProperty('--layer-y', `${nextLayer.toFixed(2)}px`);
-        if (Math.abs(target - nextLayer) > 0.08) keepGoing = true;
+        if (Math.abs(target - nextLayer) > 0.08 || scrolling) keepGoing = true;
       }
 
       // Keep is-parked on any devices stage we touched this frame while scrolling up
