@@ -229,9 +229,9 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
           target = 0;
         }
 
-        // Responsive but gradual: short scrub while scrolling, softer settle after
+        // Slower catch-up so each screen eases through travel
         const scrolling = Math.abs(delta) > 0.2;
-        const scrub = isDevices ? (scrolling ? 0.05 : 0.14) : scrolling ? 0.02 : 0.08;
+        const scrub = isDevices ? (scrolling ? 0.12 : 0.22) : scrolling ? 0.06 : 0.14;
         const nextLayer = prevLayer + (target - prevLayer) * Math.min(1, damp(dt, scrub));
         layerDriftNow.set(el, nextLayer);
         el.style.setProperty('--layer-y', `${nextLayer.toFixed(2)}px`);
