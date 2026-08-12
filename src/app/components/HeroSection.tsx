@@ -5,7 +5,6 @@ const HOME_OVERVIEW = [
   {
     label: 'Expertise',
     values: [
-      'Complex systems',
       '0→1 & optimization',
       'AI prototyping',
       'Accessibility',
@@ -15,7 +14,6 @@ const HOME_OVERVIEW = [
     label: 'Impact',
     values: [
       '$300M gross revenue',
-      '-28% support escalations',
       '+30% search visibility',
       '72.4K active users',
     ],
