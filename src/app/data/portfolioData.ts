@@ -3,7 +3,8 @@ import expediaAcceleratorCardPerformanceImage from '../../assets/expedia-acceler
 import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
 import firstAmericanResearchPlaybookCardImage from '../../assets/first-american-research-playbook-card.png';
 import levisCardImage from '../../assets/levis-card.png';
-import lexusDrivingTourImage from '../../assets/lexus-driving-tour-card.png';
+import lexusDrivingTourCardMobileImage from '../../assets/lexus-driving-tour-card-mobile.png';
+import lexusDrivingTourCardDesktopImage from '../../assets/lexus-driving-tour-card-desktop.png';
 import mclarenFwdCardImage from '../../assets/mclaren-fwd-card.png';
 import quiksilverCardImage from '../../assets/quiksilver-card.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
@@ -85,6 +86,11 @@ export interface ProjectItem {
   /** Back / lower-right window for `cardPresentation: 'layered'`. */
   layeredBackImage?: { src: string; alt: string };
   /**
+   * `windows`: overlapping product screens (Accelerator).
+   * `devices`: mobile over desktop (Lexus-style).
+   */
+  layeredVariant?: 'windows' | 'devices';
+  /**
    * Homepage asymmetric grid span. `wide` overrides the default slot and uses a larger column span.
    */
   gridSize?: 'default' | 'wide';
@@ -140,11 +146,19 @@ export const projects: ProjectItem[] = [
     description:
       'An exclusive invitation to feel the road the way Lexus intended: event experience design for the Lexus Driving Tour.',
     period: '2024',
-    image: lexusDrivingTourImage,
+    image: lexusDrivingTourCardMobileImage,
     imageAlt:
-      'Lexus Driving Tour site on desktop and mobile: Experience Amazing hero with blue LC sports car, register and event actions, and You’re Invited section',
+      'Lexus Driving Tour mobile — Experience Amazing hero with blue LC sports car, register and event actions',
+    layeredBackImage: {
+      src: lexusDrivingTourCardDesktopImage,
+      alt: 'Lexus Driving Tour desktop — Experience Amazing hero, You’re Invited section, and event details',
+    },
+    layeredVariant: 'devices',
+    imageObjectFit: 'contain',
+    imageIntrinsicWidthPx: 1024,
+    imageIntrinsicHeightPx: 638,
+    cardPresentation: 'layered',
     caseStudyRoute: 'case-study-lexus-driving-tour',
-    cardPresentation: 'image',
     // Keep original large-left scale (~58%)
     gridSlot: 3,
     cardTag: 'Product Design',

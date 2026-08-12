@@ -1260,7 +1260,7 @@ html.page-transition-active body {
   position: absolute;
   width: 69.2%;
   overflow: hidden;
-  border-radius: clamp(0.65rem, 1.15vw, 0.95rem);
+  border-radius: 0;
   background: transparent;
   line-height: 0;
   transform: translate3d(0, var(--layer-y), 0);
@@ -1284,9 +1284,31 @@ html.page-transition-active body {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: inherit;
+  border-radius: 0;
   -webkit-user-drag: none;
   user-select: none;
+}
+
+/* Lexus mobile + desktop duo — match lexus-driving-tour-card.png rest pose */
+.project-layered--devices .project-layered__window {
+  overflow: hidden;
+  border-radius: 0.55rem;
+}
+
+.project-layered--devices .project-layered__window--back {
+  top: 18%;
+  left: 23.7%;
+  width: 68.5%;
+  z-index: 1;
+  border-radius: 0.65rem;
+}
+
+.project-layered--devices .project-layered__window--front {
+  top: 28%;
+  left: 6.7%;
+  width: 14.9%;
+  z-index: 2;
+  border-radius: 0.85rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
