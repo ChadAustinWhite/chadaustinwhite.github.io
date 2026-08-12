@@ -6,30 +6,22 @@ import { useEffect, type RefObject } from 'react';
  * 2. Drift: whole-card parallax with soft, scrub-style easing so motion
  *    coasts to rest on a ~0.45s pace (matches smooth trackpad fling settle)
  * 3. Layer drift: `[data-layer-drift]` product windows move independently
+ *
+ * Disabled below 768px and when `prefers-reduced-motion: reduce`.
  */
+/** Match site mobile breakpoint (`use-mobile` / Tailwind md). */
+const MOBILE_MQ = '(max-width: 767px)';
+
 export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobileMq = window.matchMedia(MOBILE_MQ);
     const targets = Array.from(root.querySelectorAll<HTMLElement>('.wow'));
     const layers = Array.from(root.querySelectorAll<HTMLElement>('[data-layer-drift]'));
     if (targets.length === 0) return;
-
-    if (reduce) {
-      targets.forEach((el) => {
-        el.classList.add('is-revealed');
-        el.style.setProperty('--reveal', '1');
-        el.style.setProperty('--reveal-media', '1');
-        el.style.setProperty('--reveal-caption', '1');
-        el.style.setProperty('--drift-y', '0px');
-      });
-      layers.forEach((el) => {
-        el.style.setProperty('--layer-y', '0px');
-      });
-      return;
-    }
 
     /** Seconds to approach target — lower = cards catch up faster after scroll. */
     const SCRUB_SEC = 0.18;
@@ -43,24 +35,32 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
     let lastTs = 0;
     let lastScrollY = window.scrollY;
     let scrollDelta = 0;
-
-    targets.forEach((el) => {
-      current.set(el, 0);
-      driftNow.set(el, 0);
-      el.style.setProperty('--reveal', '0');
-      el.style.setProperty('--reveal-media', '0');
-      el.style.setProperty('--reveal-caption', '0');
-      el.style.setProperty('--drift-y', '0px');
-      el.classList.remove('is-revealed', 'animated');
-    });
-    layers.forEach((el) => {
-      layerDriftNow.set(el, 0);
-      el.style.setProperty('--layer-y', '0px');
-    });
+    let active = false;
 
     const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
-
     const damp = (dt: number, scrub: number) => 1 - Math.exp(-dt / scrub);
+
+    const freezeStatic = () => {
+      targets.forEach((el) => {
+        el.classList.add('is-revealed');
+        el.style.setProperty('--reveal', '1');
+        el.style.setProperty('--reveal-media', '1');
+        el.style.setProperty('--reveal-caption', '1');
+        el.style.setProperty('--drift-y', '0px');
+      });
+      layers.forEach((el) => {
+        el.style.setProperty('--layer-y', '0px');
+        layerDriftNow.set(el, 0);
+      });
+      driftNow.clear();
+      current.clear();
+      settled.clear();
+      targets.forEach((el) => {
+        current.set(el, 1);
+        driftNow.set(el, 0);
+        settled.add(el);
+      });
+    };
 
     const writeReveal = (el: HTMLElement, value: number) => {
       const eased = easeOutCubic(value);
@@ -83,6 +83,8 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
 
     const measureTargets = (ts: number) => {
       frame = 0;
+      if (!active) return;
+
       const rawDt = lastTs ? (ts - lastTs) / 1000 : 1 / 60;
       lastTs = ts;
       const dt = Math.min(0.05, Math.max(0.001, rawDt));
@@ -207,6 +209,7 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
     };
 
     const kick = () => {
+      if (!active) return;
       const y = window.scrollY;
       scrollDelta += y - lastScrollY;
       lastScrollY = y;
@@ -215,14 +218,50 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
       frame = requestAnimationFrame(measureTargets);
     };
 
-    kick();
+    const syncMode = () => {
+      const disableMotion = reduceMq.matches || mobileMq.matches;
+      cancelAnimationFrame(frame);
+      frame = 0;
+      lastTs = 0;
+      scrollDelta = 0;
+      lastScrollY = window.scrollY;
+
+      if (disableMotion) {
+        active = false;
+        freezeStatic();
+        return;
+      }
+
+      active = true;
+      settled.clear();
+      targets.forEach((el) => {
+        current.set(el, 0);
+        driftNow.set(el, 0);
+        el.style.setProperty('--reveal', '0');
+        el.style.setProperty('--reveal-media', '0');
+        el.style.setProperty('--reveal-caption', '0');
+        el.style.setProperty('--drift-y', '0px');
+        el.classList.remove('is-revealed', 'animated');
+      });
+      layers.forEach((el) => {
+        layerDriftNow.set(el, 0);
+        el.style.setProperty('--layer-y', '0px');
+      });
+      kick();
+    };
+
+    syncMode();
     window.addEventListener('scroll', kick, { passive: true });
     window.addEventListener('resize', kick, { passive: true });
+    reduceMq.addEventListener('change', syncMode);
+    mobileMq.addEventListener('change', syncMode);
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('scroll', kick);
       window.removeEventListener('resize', kick);
+      reduceMq.removeEventListener('change', syncMode);
+      mobileMq.removeEventListener('change', syncMode);
     };
   }, [rootRef]);
 }
