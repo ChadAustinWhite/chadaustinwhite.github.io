@@ -149,6 +149,7 @@ export function ProjectCard({
   const canOpen = !project.comingSoon;
   const isDevicePresentation = project.cardPresentation === 'device';
   const isImagePresentation = project.cardPresentation === 'image';
+  const isLayeredPresentation = project.cardPresentation === 'layered';
   const editorial = layout === 'editorial';
 
   const openCaseStudy = () => {
@@ -198,6 +199,67 @@ export function ProjectCard({
       ) : null}
     </div>
   ) : null;
+
+  if (isLayeredPresentation && project.image && project.layeredBackImage) {
+    const screenAspect =
+      project.imageIntrinsicWidthPx && project.imageIntrinsicHeightPx
+        ? `${project.imageIntrinsicWidthPx} / ${project.imageIntrinsicHeightPx}`
+        : '16 / 10';
+
+    return (
+      <article
+        className={`project-card project-card--device w-full${
+          editorial ? ' project-card--editorial' : ''
+        }`}
+      >
+        <div
+          className={`project-device project-device--still${
+            canOpen ? ' project-device--openable' : ''
+          }`}
+          {...mediaOpenProps}
+        >
+          <div
+            className="project-device__screen project-device__screen--layered"
+            style={{ aspectRatio: screenAspect }}
+          >
+            <div className="project-layered__stage">
+              <div
+                className="project-layered__window project-layered__window--back"
+                data-layer-drift
+                data-layer-speed="0.52"
+                data-layer-max="68"
+              >
+                <img
+                  src={project.layeredBackImage.src}
+                  alt={project.layeredBackImage.alt}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+                />
+              </div>
+              <div
+                className="project-layered__window project-layered__window--front"
+                data-layer-drift
+                data-layer-speed="0.88"
+                data-layer-max="96"
+              >
+                <img
+                  src={project.image}
+                  alt={project.imageAlt ?? ''}
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                  sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {caption}
+      </article>
+    );
+  }
 
   if (isImagePresentation && project.image) {
     const secondaryImages = project.secondaryImages ?? [];

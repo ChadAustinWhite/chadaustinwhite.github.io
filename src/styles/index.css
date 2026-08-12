@@ -1234,6 +1234,68 @@ html.page-transition-active body {
   object-fit: contain;
 }
 
+/* Accelerator layered windows — placement matched to existing composite card.
+   Screens may drift past the matte; do not clip to the card background. */
+.project-card--device:has(.project-device__screen--layered),
+.project-device.project-device--still:has(.project-device__screen--layered),
+.project-device--still .project-device__screen--layered {
+  overflow: visible;
+}
+
+.project-device--still .project-device__screen--layered {
+  /* Match matte from expedia-accelerator-card.png (#444) */
+  background: #444;
+  border-radius: var(--project-media-radius);
+}
+
+.project-layered__stage {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  z-index: 1;
+}
+
+.project-layered__window {
+  --layer-y: 0px;
+  position: absolute;
+  width: 69.2%;
+  overflow: hidden;
+  border-radius: clamp(0.65rem, 1.15vw, 0.95rem);
+  background: transparent;
+  line-height: 0;
+  transform: translate3d(0, var(--layer-y), 0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.project-layered__window--back {
+  top: 22%;
+  left: 25%;
+  z-index: 1;
+}
+
+.project-layered__window--front {
+  top: 5%;
+  left: 5.2%;
+  z-index: 2;
+}
+
+.project-layered__window img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-layered__window {
+    transform: none;
+    will-change: auto;
+  }
+}
+
 @media (min-width: 768px) {
   .project-device__chrome {
     height: 2rem;
