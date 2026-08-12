@@ -1234,11 +1234,11 @@ html.page-transition-active body {
   object-fit: contain;
 }
 
-/* Layered product windows — keep drift inside the matte card */
+/* Layered product windows — allow a little drift past the matte edge */
 .project-card--device:has(.project-device__screen--layered),
 .project-device.project-device--still:has(.project-device__screen--layered),
 .project-device--still .project-device__screen--layered {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .project-device--still .project-device__screen--layered {
@@ -1250,7 +1250,7 @@ html.page-transition-active body {
 .project-layered__stage {
   position: absolute;
   inset: 0;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1;
 }
 
