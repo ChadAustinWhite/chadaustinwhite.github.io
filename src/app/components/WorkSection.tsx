@@ -39,7 +39,7 @@ export function WorkSection({ onViewCaseStudy, onProjectHover }: WorkSectionProp
 
   return (
     <SectionWrap id="work" className="work-section-asymmetric !pt-4 !pb-16 !px-4 md:!pt-6 md:!pb-28 md:!px-6 lg:!px-7">
-      <div className="mb-7 md:mb-10">
+      <div className="mb-3 md:mb-4">
         <h2 className="mb-0 text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--ink-muted)]">
           Recent Projects ({projects.length})
         </h2>
