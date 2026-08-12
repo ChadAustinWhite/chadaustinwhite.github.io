@@ -208,7 +208,8 @@ export function ProjectCard({
     const layeredVariant = project.layeredVariant ?? 'windows';
     const isDevices = layeredVariant === 'devices';
     // Lexus: desktop drifts faster; mobile clearly slower
-    const backSpeed = isDevices ? '0.7' : '0.52';
+    // Accelerator: back (bottom) screen drifts slower than the front window
+    const backSpeed = isDevices ? '0.7' : '0.32';
     const backMax = isDevices ? '520' : '68';
     const frontSpeed = isDevices ? '0.28' : '0.88';
     const frontMax = isDevices ? '200' : '96';
