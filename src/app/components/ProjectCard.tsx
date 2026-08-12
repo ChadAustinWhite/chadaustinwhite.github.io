@@ -208,11 +208,11 @@ export function ProjectCard({
     const layeredVariant = project.layeredVariant ?? 'windows';
     const isDevices = layeredVariant === 'devices';
     // Accelerator: front a bit faster than back
-    // Lexus / McLaren: start early (lead), gradual speeds; mobile still faster
-    const backSpeed = isDevices ? '0.14' : '0.18';
-    const backMax = isDevices ? '64' : '56';
-    const frontSpeed = isDevices ? '0.26' : '0.3';
-    const frontMax = isDevices ? '80' : '64';
+    // Lexus / McLaren: desktop leads travel; mobile drifts slower behind it
+    const backSpeed = isDevices ? '0.26' : '0.18';
+    const backMax = isDevices ? '80' : '56';
+    const frontSpeed = isDevices ? '0.12' : '0.3';
+    const frontMax = isDevices ? '48' : '64';
     const layerLead = isDevices ? '280' : '0';
 
     return (

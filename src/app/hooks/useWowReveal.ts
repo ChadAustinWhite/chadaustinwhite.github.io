@@ -218,7 +218,7 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
           target = 0;
         } else if (layerScrollDir === 'down') {
           // Lead shifts the curve earlier so Lexus/McLaren start right away;
-          // softer speeds keep travel gradual. Front still outpaces back.
+          // desktop outpaces mobile. Soft speeds keep travel gradual.
           const hostCenter = hostRect.top + hostRect.height * 0.5;
           const lead = Number(el.dataset.layerLead ?? '0') || 0;
           const fromMid = hostCenter - mid - lead;

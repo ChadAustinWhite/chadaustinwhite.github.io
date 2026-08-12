@@ -1301,7 +1301,7 @@ html.page-transition-active body {
 }
 
 .project-layered--devices .project-layered__window--back {
-  top: 8%;
+  top: 14%;
   left: 23.7%;
   width: 68.5%;
   z-index: 1;
@@ -1310,7 +1310,7 @@ html.page-transition-active body {
 }
 
 .project-layered--devices .project-layered__window--front {
-  top: 14%;
+  top: 20%;
   left: 6.7%;
   width: 14.9%;
   z-index: 2;
@@ -1320,11 +1320,11 @@ html.page-transition-active body {
 
 /* Scroll-up: park Lexus / McLaren screens centered in the matte */
 .project-layered--devices.is-parked .project-layered__window--back {
-  top: 10%;
+  top: 16%;
 }
 
 .project-layered--devices.is-parked .project-layered__window--front {
-  top: 16%;
+  top: 22%;
 }
 
 @media (prefers-reduced-motion: reduce) {
