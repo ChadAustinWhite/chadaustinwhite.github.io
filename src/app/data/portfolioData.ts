@@ -5,7 +5,8 @@ import firstAmericanResearchPlaybookCardImage from '../../assets/first-american-
 import levisCardImage from '../../assets/levis-card.png';
 import lexusDrivingTourCardMobileImage from '../../assets/lexus-driving-tour-card-mobile.png';
 import lexusDrivingTourCardDesktopImage from '../../assets/lexus-driving-tour-card-desktop.png';
-import mclarenFwdCardImage from '../../assets/mclaren-fwd-card.png';
+import mclarenFwdCardMobileImage from '../../assets/mclaren-fwd-card-mobile.png';
+import mclarenFwdCardDesktopImage from '../../assets/mclaren-fwd-card-desktop.png';
 import quiksilverCardImage from '../../assets/quiksilver-card.png';
 import worldpayMerchantOnboardingCardImage from '../../assets/worldpay-merchant-onboarding-card.png';
 
@@ -169,12 +170,20 @@ export const projects: ProjectItem[] = [
     description:
       'An exclusive digital invitation for McLaren’s FWD experience: dark, premium event storytelling from first look through registration.',
     period: '',
-    image: mclarenFwdCardImage,
+    image: mclarenFwdCardMobileImage,
     imageAlt:
-      'McLaren FWD Event website on desktop and mobile: black McLaren supercar hero, orange and white REGISTER NOW and EVENT GUIDE actions, and Overview content',
+      'McLaren FWD Event mobile — black supercar hero, McLaren FWD title, overview navigation, and Register Now',
+    layeredBackImage: {
+      src: mclarenFwdCardDesktopImage,
+      alt: 'McLaren FWD Event desktop — black supercar hero, overview navigation, Register Now and Event Guide',
+    },
+    layeredVariant: 'devices',
+    imageObjectFit: 'contain',
+    imageIntrinsicWidthPx: 1024,
+    imageIntrinsicHeightPx: 638,
+    cardPresentation: 'layered',
     caseStudyRoute: 'case-study-mclaren-fwd',
     comingSoon: true,
-    cardPresentation: 'image',
     // Large right (~58%) — grid wraps under Lexus so both stay at full large size
     gridSlot: 2,
     hoverCanvas: { dark: '#1a1410', light: '#f2ebe4' },

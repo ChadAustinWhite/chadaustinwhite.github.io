@@ -1234,12 +1234,11 @@ html.page-transition-active body {
   object-fit: contain;
 }
 
-/* Accelerator layered windows — placement matched to existing composite card.
-   Screens may drift past the matte; do not clip to the card background. */
+/* Layered product windows — keep drift inside the matte card */
 .project-card--device:has(.project-device__screen--layered),
 .project-device.project-device--still:has(.project-device__screen--layered),
 .project-device--still .project-device__screen--layered {
-  overflow: visible;
+  overflow: hidden;
 }
 
 .project-device--still .project-device__screen--layered {
@@ -1251,7 +1250,7 @@ html.page-transition-active body {
 .project-layered__stage {
   position: absolute;
   inset: 0;
-  overflow: visible;
+  overflow: hidden;
   z-index: 1;
 }
 
@@ -1289,10 +1288,16 @@ html.page-transition-active body {
   user-select: none;
 }
 
-/* Lexus mobile + desktop duo — match lexus-driving-tour-card.png rest pose */
+/* Mobile + desktop duo (Lexus / McLaren) — shared rest pose + layer drift */
 .project-layered--devices .project-layered__window {
   overflow: hidden;
   border-radius: 0.55rem;
+  /* Match dark UI chrome so radius AA never fringes white against the matte */
+  background: #121212;
+}
+
+.project-layered--devices .project-layered__window img {
+  border-radius: inherit;
 }
 
 .project-layered--devices .project-layered__window--back {
