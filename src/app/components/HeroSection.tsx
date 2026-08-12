@@ -21,15 +21,6 @@ const HOME_OVERVIEW = [
     ],
   },
   {
-    label: 'Industries',
-    values: [
-      'Travel',
-      'Payments',
-      'Automotive',
-      'Finance',
-    ],
-  },
-  {
     label: 'Currently',
     values: [
       'Product Designer',
@@ -153,17 +144,19 @@ export function HeroSection() {
         </h1>
 
         <dl
-          className="case-study-instrument__overview-categories mt-10 flex flex-col gap-y-8 md:mt-14 md:flex-row md:justify-between md:gap-x-10"
+          className="case-study-instrument__overview-categories mt-10 flex flex-col gap-y-8 md:mt-14 md:grid md:grid-cols-4 md:gap-x-10"
           aria-label="Profile overview"
         >
           {HOME_OVERVIEW.map((category, index) => {
-            const hideOnMobile =
-              category.label.toLowerCase() === 'industries';
+            // Expertise | Impact | Currently | (trailing gap)
+            const columnIndex = category.label === 'Currently' ? 2 : index;
             return (
               <OverviewItem
                 key={category.label}
-                className={`min-w-0 md:shrink-0${hideOnMobile ? ' max-md:hidden' : ''}`}
-                delay={1.2 + index * 0.1}
+                className={`min-w-0${
+                  category.label === 'Currently' ? ' md:col-start-3' : ''
+                }`}
+                delay={1.2 + columnIndex * 0.1}
                 reduce={reduce}
                 show={show}
               >

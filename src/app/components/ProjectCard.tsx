@@ -209,9 +209,9 @@ export function ProjectCard({
     const isDevices = layeredVariant === 'devices';
     // Accelerator: front a bit faster than back
     // Lexus / McLaren: start early (lead), gradual speeds; mobile still faster
-    const backSpeed = isDevices ? '0.22' : '0.28';
+    const backSpeed = isDevices ? '0.14' : '0.18';
     const backMax = isDevices ? '64' : '56';
-    const frontSpeed = isDevices ? '0.4' : '0.48';
+    const frontSpeed = isDevices ? '0.26' : '0.3';
     const frontMax = isDevices ? '80' : '64';
     const layerLead = isDevices ? '280' : '0';
 
