@@ -5,6 +5,7 @@ import { useEffect, type RefObject } from 'react';
  * 1. Entrance: each card fades/lifts into place as it enters the viewport
  * 2. Drift: whole-card parallax with soft, scrub-style easing so motion
  *    coasts to rest on a ~0.45s pace (matches smooth trackpad fling settle)
+ * 3. Layer drift: `[data-layer-drift]` product windows move independently
  */
 export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -13,6 +14,7 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const targets = Array.from(root.querySelectorAll<HTMLElement>('.wow'));
+    const layers = Array.from(root.querySelectorAll<HTMLElement>('[data-layer-drift]'));
     if (targets.length === 0) return;
 
     if (reduce) {
@@ -23,6 +25,9 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
         el.style.setProperty('--reveal-caption', '1');
         el.style.setProperty('--drift-y', '0px');
       });
+      layers.forEach((el) => {
+        el.style.setProperty('--layer-y', '0px');
+      });
       return;
     }
 
@@ -32,9 +37,12 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
 
     const current = new Map<HTMLElement, number>();
     const driftNow = new Map<HTMLElement, number>();
+    const layerDriftNow = new Map<HTMLElement, number>();
     const settled = new Set<HTMLElement>();
     let frame = 0;
     let lastTs = 0;
+    let lastScrollY = window.scrollY;
+    let scrollDelta = 0;
 
     targets.forEach((el) => {
       current.set(el, 0);
@@ -44,6 +52,10 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
       el.style.setProperty('--reveal-caption', '0');
       el.style.setProperty('--drift-y', '0px');
       el.classList.remove('is-revealed', 'animated');
+    });
+    layers.forEach((el) => {
+      layerDriftNow.set(el, 0);
+      el.style.setProperty('--layer-y', '0px');
     });
 
     const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
@@ -79,6 +91,8 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
 
       const vh = window.innerHeight;
       const mid = vh * 0.5;
+      const delta = scrollDelta;
+      scrollDelta = 0;
       let keepGoing = false;
 
       for (const el of targets) {
@@ -150,6 +164,41 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
         }
       }
 
+      // Independent product-window drift — tied to scroll delta so both
+      // layers respond as soon as the user scrolls (same direction, different speed).
+      for (const el of layers) {
+        const host = el.closest('.wow') as HTMLElement | null;
+        if (!host) continue;
+
+        const hostRect = host.getBoundingClientRect();
+        // Wide band: start moving whenever the card is near or in view
+        const hostInBand = hostRect.bottom > -vh * 0.15 && hostRect.top < vh * 1.05;
+        const prevLayer = layerDriftNow.get(el) ?? 0;
+        const speed = Number(el.dataset.layerSpeed ?? '0.35') || 0.35;
+        const maxAbs = Number(el.dataset.layerMax ?? '72') || 72;
+
+        if (!hostInBand) {
+          if (Math.abs(prevLayer) > 0.05) {
+            const nextLayer = prevLayer * (1 - driftDamp);
+            const settledLayer = Math.abs(nextLayer) < 0.05 ? 0 : nextLayer;
+            layerDriftNow.set(el, settledLayer);
+            el.style.setProperty('--layer-y', `${settledLayer.toFixed(2)}px`);
+            if (settledLayer !== 0) keepGoing = true;
+          } else if (prevLayer !== 0) {
+            layerDriftNow.set(el, 0);
+            el.style.setProperty('--layer-y', '0px');
+          }
+          continue;
+        }
+
+        // scroll down (delta > 0) → screens move up (negative y)
+        const target = Math.max(-maxAbs, Math.min(maxAbs, prevLayer - delta * speed));
+        const nextLayer = prevLayer + (target - prevLayer) * Math.min(1, damp(dt, 0.08));
+        layerDriftNow.set(el, nextLayer);
+        el.style.setProperty('--layer-y', `${nextLayer.toFixed(2)}px`);
+        if (Math.abs(delta) > 0.01 || Math.abs(target - nextLayer) > 0.08) keepGoing = true;
+      }
+
       if (keepGoing) {
         frame = requestAnimationFrame(measureTargets);
       } else {
@@ -158,6 +207,9 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
     };
 
     const kick = () => {
+      const y = window.scrollY;
+      scrollDelta += y - lastScrollY;
+      lastScrollY = y;
       if (frame) return;
       lastTs = 0;
       frame = requestAnimationFrame(measureTargets);

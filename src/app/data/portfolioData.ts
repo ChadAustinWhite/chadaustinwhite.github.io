@@ -1,4 +1,5 @@
-import expediaAcceleratorCardImage from '../../assets/expedia-accelerator-card.png';
+import expediaAcceleratorCardCreateImage from '../../assets/expedia-accelerator-card-create.png';
+import expediaAcceleratorCardPerformanceImage from '../../assets/expedia-accelerator-card-performance.png';
 import expediaAdPortalCardImage from '../../assets/expedia-ad-portal-card.png';
 import firstAmericanResearchPlaybookCardImage from '../../assets/first-american-research-playbook-card.png';
 import levisCardImage from '../../assets/levis-card.png';
@@ -77,9 +78,12 @@ export interface ProjectItem {
   /**
    * `device`: media inside a simple device outline (no period, title, copy, metrics, or CTA).
    * `image`: only the image fills the tile — no outer card chrome.
+   * `layered`: overlapping product windows (front over back) inside the device still frame.
    * Default is the full project card.
    */
-  cardPresentation?: 'default' | 'device' | 'image';
+  cardPresentation?: 'default' | 'device' | 'image' | 'layered';
+  /** Back / lower-right window for `cardPresentation: 'layered'`. */
+  layeredBackImage?: { src: string; alt: string };
   /**
    * Homepage asymmetric grid span. `wide` overrides the default slot and uses a larger column span.
    */
@@ -99,13 +103,17 @@ export const projects: ProjectItem[] = [
     description:
       'I led the redesign of Expedia Group’s Accelerator so hotels could launch and optimize search visibility campaigns.',
     period: '2025–2026',
-    image: expediaAcceleratorCardImage,
+    image: expediaAcceleratorCardCreateImage,
     imageAlt:
-      'Expedia Group Partner Central Accelerator — create flow and performance analytics as layered product windows',
+      'Expedia Group Partner Central — Create an Accelerator flow with stay dates, blockouts, and advanced visibility settings',
+    layeredBackImage: {
+      src: expediaAcceleratorCardPerformanceImage,
+      alt: 'Expedia Group Partner Central Accelerator — visibility over time performance dashboard with booking metrics',
+    },
     imageObjectFit: 'contain',
     imageIntrinsicWidthPx: 1024,
     imageIntrinsicHeightPx: 638,
-    cardPresentation: 'device',
+    cardPresentation: 'layered',
     caseStudyRoute: 'case-study-expedia-accelerator',
     // Primary work: large left (~58%) so the hero engagement target is bigger
     gridSlot: 3,
