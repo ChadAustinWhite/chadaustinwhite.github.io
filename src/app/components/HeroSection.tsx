@@ -14,10 +14,10 @@ const HOME_OVERVIEW = [
   {
     label: 'Impact',
     values: [
-      'Revenue growth',
-      'Product adoption',
-      'Enterprise workflows',
-      'Design systems',
+      '$300M gross revenue',
+      '-28% support escalations',
+      '+30% search visibility',
+      '72.4K active users',
     ],
   },
   {
