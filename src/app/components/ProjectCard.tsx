@@ -207,13 +207,13 @@ export function ProjectCard({
         : '16 / 10';
     const layeredVariant = project.layeredVariant ?? 'windows';
     const isDevices = layeredVariant === 'devices';
-    // Devices (Lexus / McLaren): desktop a bit faster than mobile
-    // Accelerator windows: back slower than front
-    // Speeds scale viewport offset → layer travel (readable in both scroll directions)
-    const backSpeed = isDevices ? '0.42' : '0.28';
-    const backMax = isDevices ? '72' : '56';
-    const frontSpeed = isDevices ? '0.22' : '0.48';
-    const frontMax = isDevices ? '48' : '64';
+    // Accelerator: front a bit faster than back
+    // Lexus / McLaren: start early (lead), gradual speeds; mobile still faster
+    const backSpeed = isDevices ? '0.22' : '0.28';
+    const backMax = isDevices ? '64' : '56';
+    const frontSpeed = isDevices ? '0.4' : '0.48';
+    const frontMax = isDevices ? '80' : '64';
+    const layerLead = isDevices ? '280' : '0';
 
     return (
       <article
@@ -237,6 +237,7 @@ export function ProjectCard({
                 data-layer-drift
                 data-layer-speed={backSpeed}
                 data-layer-max={backMax}
+                data-layer-lead={layerLead}
               >
                 <img
                   src={project.layeredBackImage.src}
@@ -252,6 +253,7 @@ export function ProjectCard({
                 data-layer-drift
                 data-layer-speed={frontSpeed}
                 data-layer-max={frontMax}
+                data-layer-lead={layerLead}
               >
                 <img
                   src={project.image}

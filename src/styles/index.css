@@ -1301,30 +1301,30 @@ html.page-transition-active body {
 }
 
 .project-layered--devices .project-layered__window--back {
-  top: 26%;
+  top: 8%;
   left: 23.7%;
   width: 68.5%;
   z-index: 1;
   border-radius: 0.65rem;
-  transition: top 320ms ease;
+  transition: top 140ms ease;
 }
 
 .project-layered--devices .project-layered__window--front {
-  top: 28%;
+  top: 14%;
   left: 6.7%;
   width: 14.9%;
   z-index: 2;
   border-radius: 0.85rem;
-  transition: top 320ms ease;
+  transition: top 140ms ease;
 }
 
 /* Scroll-up: park Lexus / McLaren screens centered in the matte */
 .project-layered--devices.is-parked .project-layered__window--back {
-  top: 12%;
+  top: 10%;
 }
 
 .project-layered--devices.is-parked .project-layered__window--front {
-  top: 22%;
+  top: 16%;
 }
 
 @media (prefers-reduced-motion: reduce) {
