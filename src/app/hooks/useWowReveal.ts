@@ -5,7 +5,8 @@ import { useEffect, type RefObject } from 'react';
  * 1. Entrance: each card fades/lifts into place as it enters the viewport
  * 2. Drift: whole-card parallax with soft, scrub-style easing so motion
  *    coasts to rest on a ~0.45s pace (matches smooth trackpad fling settle)
- * 3. Layer drift: `[data-layer-drift]` product windows move independently
+ * 3. Layer drift: `[data-layer-drift]` — scroll down moves screens upward
+ *    from the bottom; scroll up parks Lexus/McLaren centered in the matte
  *
  * Disabled below 768px and when `prefers-reduced-motion: reduce`.
  */
@@ -36,6 +37,8 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
     let lastScrollY = window.scrollY;
     let scrollDelta = 0;
     let active = false;
+    /** While scrolling up, layers stay centered; down uses travel-from-bottom. */
+    let layerScrollDir: 'up' | 'down' = 'down';
 
     const easeOutCubic = (t: number) => 1 - (1 - t) ** 3;
     const damp = (dt: number, scrub: number) => 1 - Math.exp(-dt / scrub);
@@ -166,18 +169,34 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
         }
       }
 
-      // Independent product-window drift — tied to scroll delta so both
-      // layers respond as soon as the user scrolls (same direction, different speed).
+      // Layer drift:
+      // • Scroll top→bottom: screens start low and move upward
+      // • Scroll bottom→top: Lexus/McLaren park centered in the matte (no travel)
+      if (Math.abs(delta) > 0.5) {
+        layerScrollDir = delta < 0 ? 'up' : 'down';
+      }
+
       for (const el of layers) {
         const host = el.closest('.wow') as HTMLElement | null;
         if (!host) continue;
 
+        const devicesRoot = el.closest('.project-layered--devices') as HTMLElement | null;
+        const isDevices = Boolean(devicesRoot);
         const hostRect = host.getBoundingClientRect();
-        // Wide band: start moving whenever the card is near or in view
-        const hostInBand = hostRect.bottom > -vh * 0.15 && hostRect.top < vh * 1.05;
+        // Wide band: keep driving while the card is near or in view (either direction)
+        const hostInBand = hostRect.bottom > -vh * 0.35 && hostRect.top < vh * 1.25;
         const prevLayer = layerDriftNow.get(el) ?? 0;
         const speed = Number(el.dataset.layerSpeed ?? '0.35') || 0.35;
         const maxAbs = Number(el.dataset.layerMax ?? '72') || 72;
+
+        // Lexus / McLaren: while scrolling up, keep screens centered in the matte
+        if (isDevices && devicesRoot) {
+          if (layerScrollDir === 'up') {
+            devicesRoot.classList.add('is-parked');
+          } else {
+            devicesRoot.classList.remove('is-parked');
+          }
+        }
 
         if (!hostInBand) {
           if (Math.abs(prevLayer) > 0.05) {
@@ -193,12 +212,34 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
           continue;
         }
 
-        // scroll down (delta > 0) → screens move up (negative y)
-        const target = Math.max(-maxAbs, Math.min(maxAbs, prevLayer - delta * speed));
-        const nextLayer = prevLayer + (target - prevLayer) * Math.min(1, damp(dt, 0.08));
+        let target = 0;
+        let scrub = 0.1;
+        if (isDevices && layerScrollDir === 'up') {
+          // Park centered — no travel, settle quickly
+          target = 0;
+          scrub = 0.06;
+        } else if (layerScrollDir === 'down') {
+          // Card below mid → screens low; as it rises, screens move up
+          const hostCenter = hostRect.top + hostRect.height * 0.5;
+          const fromMid = hostCenter - mid;
+          target = Math.max(-maxAbs, Math.min(maxAbs, fromMid * speed));
+        } else if (!isDevices) {
+          // Accelerator (and other windows): also rest at 0 while scrolling up
+          target = 0;
+          scrub = 0.06;
+        }
+
+        const nextLayer = prevLayer + (target - prevLayer) * Math.min(1, damp(dt, scrub));
         layerDriftNow.set(el, nextLayer);
         el.style.setProperty('--layer-y', `${nextLayer.toFixed(2)}px`);
-        if (Math.abs(delta) > 0.01 || Math.abs(target - nextLayer) > 0.08) keepGoing = true;
+        if (Math.abs(target - nextLayer) > 0.08) keepGoing = true;
+      }
+
+      // Keep is-parked on any devices stage we touched this frame while scrolling up
+      if (layerScrollDir === 'down') {
+        root.querySelectorAll('.project-layered--devices.is-parked').forEach((node) => {
+          node.classList.remove('is-parked');
+        });
       }
 
       if (keepGoing) {
@@ -225,6 +266,7 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
       lastTs = 0;
       scrollDelta = 0;
       lastScrollY = window.scrollY;
+      layerScrollDir = 'down';
 
       if (disableMotion) {
         active = false;
