@@ -205,6 +205,13 @@ export function ProjectCard({
       project.imageIntrinsicWidthPx && project.imageIntrinsicHeightPx
         ? `${project.imageIntrinsicWidthPx} / ${project.imageIntrinsicHeightPx}`
         : '16 / 10';
+    const layeredVariant = project.layeredVariant ?? 'windows';
+    const isDevices = layeredVariant === 'devices';
+    // Lexus: desktop drifts faster; mobile clearly slower
+    const backSpeed = isDevices ? '0.7' : '0.52';
+    const backMax = isDevices ? '520' : '68';
+    const frontSpeed = isDevices ? '0.28' : '0.88';
+    const frontMax = isDevices ? '200' : '96';
 
     return (
       <article
@@ -219,15 +226,15 @@ export function ProjectCard({
           {...mediaOpenProps}
         >
           <div
-            className="project-device__screen project-device__screen--layered"
+            className={`project-device__screen project-device__screen--layered project-layered--${layeredVariant}`}
             style={{ aspectRatio: screenAspect }}
           >
             <div className="project-layered__stage">
               <div
                 className="project-layered__window project-layered__window--back"
                 data-layer-drift
-                data-layer-speed="0.52"
-                data-layer-max="68"
+                data-layer-speed={backSpeed}
+                data-layer-max={backMax}
               >
                 <img
                   src={project.layeredBackImage.src}
@@ -241,8 +248,8 @@ export function ProjectCard({
               <div
                 className="project-layered__window project-layered__window--front"
                 data-layer-drift
-                data-layer-speed="0.88"
-                data-layer-max="96"
+                data-layer-speed={frontSpeed}
+                data-layer-max={frontMax}
               >
                 <img
                   src={project.image}
@@ -250,7 +257,7 @@ export function ProjectCard({
                   loading="lazy"
                   decoding="async"
                   draggable={false}
-                  sizes="(min-width: 768px) min(900px, 50vw), min(920px, 100vw)"
+                  sizes="(min-width: 768px) min(520px, 28vw), min(420px, 55vw)"
                 />
               </div>
             </div>
