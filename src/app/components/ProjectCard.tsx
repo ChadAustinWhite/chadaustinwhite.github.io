@@ -208,12 +208,13 @@ export function ProjectCard({
     const layeredVariant = project.layeredVariant ?? 'windows';
     const isDevices = layeredVariant === 'devices';
     // Accelerator: front a bit faster than back
-    // Lexus / McLaren: desktop leads travel; mobile drifts slower behind it
-    const backSpeed = isDevices ? '0.26' : '0.18';
-    const backMax = isDevices ? '80' : '56';
-    const frontSpeed = isDevices ? '0.12' : '0.3';
-    const frontMax = isDevices ? '48' : '64';
-    const layerLead = isDevices ? '280' : '0';
+    // Lexus / McLaren: desktop leads travel; mobile drifts clearly slower
+    const backSpeed = isDevices ? '0.34' : '0.18';
+    const backMax = isDevices ? '96' : '56';
+    const frontSpeed = isDevices ? '0.08' : '0.3';
+    const frontMax = isDevices ? '32' : '64';
+    const backLead = isDevices ? '320' : '0';
+    const frontLead = isDevices ? '180' : '0';
 
     return (
       <article
@@ -237,7 +238,8 @@ export function ProjectCard({
                 data-layer-drift
                 data-layer-speed={backSpeed}
                 data-layer-max={backMax}
-                data-layer-lead={layerLead}
+                data-layer-lead={backLead}
+                data-layer-scrub={isDevices ? '0.08' : undefined}
               >
                 <img
                   src={project.layeredBackImage.src}
@@ -253,7 +255,8 @@ export function ProjectCard({
                 data-layer-drift
                 data-layer-speed={frontSpeed}
                 data-layer-max={frontMax}
-                data-layer-lead={layerLead}
+                data-layer-lead={frontLead}
+                data-layer-scrub={isDevices ? '0.2' : undefined}
               >
                 <img
                   src={project.image}
