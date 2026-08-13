@@ -29,16 +29,20 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       ],
     },
     {
+      label: 'Impact',
+      values: [
+        '$300M gross revenue',
+        '5.4% average margin spend',
+        '72.4K active hotel partners',
+      ],
+    },
+    {
       label: 'Company',
       values: ['Expedia Group'],
     },
     {
       label: 'Stakeholder',
       values: ['Product leadership'],
-    },
-    {
-      label: 'Device',
-      values: ['Desktop'],
     },
   ],
   lead:
