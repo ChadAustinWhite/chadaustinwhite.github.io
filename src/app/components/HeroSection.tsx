@@ -152,7 +152,9 @@ export function HeroSection() {
               <OverviewItem
                 key={category.label}
                 className={`min-w-0${
-                  category.label === 'Currently' ? ' md:col-start-3' : ''
+                  category.label === 'Currently'
+                    ? ' pl-3 md:col-start-3 md:pl-4'
+                    : ''
                 }`}
                 delay={1.2 + columnIndex * 0.1}
                 reduce={reduce}
