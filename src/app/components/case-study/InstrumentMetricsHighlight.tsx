@@ -1,65 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { animate, motion, useInView } from 'motion/react';
 import type { CaseStudySonosMetric } from './types';
-
-function parseMetricValue(raw: string) {
-  const match = raw.trim().match(/^([^0-9.-]*)(-?\d+(?:\.\d+)?)(.*)$/);
-  if (!match) {
-    return { prefix: '', target: 0, suffix: raw, decimals: 0 };
-  }
-
-  const [, prefix, num, suffix] = match;
-  const decimals = num.includes('.') ? (num.split('.')[1]?.length ?? 0) : 0;
-
-  return {
-    prefix,
-    target: Number.parseFloat(num),
-    suffix,
-    decimals,
-  };
-}
-
-function AnimatedMetricValue({
-  value,
-  active,
-  reducedMotion,
-  delay,
-}: {
-  value: string;
-  active: boolean;
-  reducedMotion: boolean;
-  delay: number;
-}) {
-  const { prefix, target, suffix, decimals } = parseMetricValue(value);
-  const [display, setDisplay] = useState(reducedMotion ? target : 0);
-
-  useEffect(() => {
-    if (!active) return;
-
-    if (reducedMotion) {
-      setDisplay(target);
-      return;
-    }
-
-    setDisplay(0);
-    const controls = animate(0, target, {
-      duration: 1.65,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
-      onUpdate: (latest) => setDisplay(latest),
-    });
-
-    return () => controls.stop();
-  }, [active, delay, reducedMotion, target]);
-
-  return (
-    <>
-      {prefix}
-      {display.toFixed(decimals)}
-      {suffix}
-    </>
-  );
-}
 
 export function InstrumentMetricsHighlight({
   metrics,
@@ -68,50 +7,26 @@ export function InstrumentMetricsHighlight({
   metrics: CaseStudySonosMetric[];
   eyebrow?: string;
 }) {
-  const rootRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(rootRef, { amount: 0.45, once: true });
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
-
   return (
-    <div ref={rootRef} className="case-study-instrument__metrics-highlight">
+    <div className="case-study-instrument__metrics-highlight">
       {eyebrow ? (
         <p className="case-study-instrument__metrics-highlight-eyebrow">{eyebrow}</p>
       ) : null}
       <div role="list">
-        {metrics.map((metric, index) => (
-          <motion.article
+        {metrics.map((metric) => (
+          <article
             key={metric.label}
             className="case-study-instrument__metrics-highlight-row"
             role="listitem"
             aria-label={`${eyebrow ? `${eyebrow}: ` : ''}${metric.label} ${metric.value}`}
-            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={
-              reducedMotion
-                ? { duration: 0 }
-                : {
-                    duration: 0.7,
-                    delay: index * 0.12,
-                    ease: [0.22, 1, 0.36, 1],
-                  }
-            }
           >
             <p className="case-study-instrument__metrics-highlight-value serif-headline tabular-nums">
-              <AnimatedMetricValue
-                value={metric.value}
-                active={inView}
-                reducedMotion={reducedMotion}
-                delay={0.15 + index * 0.14}
-              />
+              {metric.value}
             </p>
             <p className="case-study-instrument__metrics-highlight-label serif-headline">
               {metric.label}
             </p>
-          </motion.article>
+          </article>
         ))}
       </div>
     </div>

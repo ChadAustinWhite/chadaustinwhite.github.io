@@ -11,6 +11,13 @@ import expediaAdPortalReviewCampaigns from '../../../assets/expedia-ad-portal-re
 import expediaAdPortalWalkthrough from '../../../assets/expedia-ad-portal-walkthrough.mp4';
 import expediaAdPortalWalkthroughPoster from '../../../assets/expedia-ad-portal-walkthrough-poster.jpg';
 
+/** Shared outcome metrics — overview Impact column and results section stay in sync. */
+export const expediaAdPortalImpactMetrics = [
+  { value: '12+', label: 'Partner Markets' },
+  { value: '-28%', label: 'Support Escalations' },
+  { value: '1', label: 'Unified Portal' },
+] as const;
+
 /** Instrument-style narrative for Expedia Group Ad Portal (mirrors Accelerator layout). */
 export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
   projectName: 'Ad Portal',
@@ -31,16 +38,18 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
       ],
     },
     {
+      label: 'Impact',
+      values: expediaAdPortalImpactMetrics.map(
+        (metric) => `${metric.value} ${metric.label.toLowerCase()}`,
+      ),
+    },
+    {
       label: 'Company',
       values: ['Expedia Group'],
     },
     {
       label: 'Stakeholder',
       values: ['Product leadership', 'Design', 'Engineering'],
-    },
-    {
-      label: 'Device',
-      values: ['Desktop'],
     },
   ],
   lead:
@@ -187,11 +196,7 @@ export const expediaAdPortalInstrument: CaseStudyInstrumentContent = {
           },
         },
       ],
-      metrics: [
-        { value: '12+', label: 'Partner Markets' },
-        { value: '-28%', label: 'Support Escalations' },
-        { value: '1', label: 'Unified Portal' },
-      ],
+      metrics: [...expediaAdPortalImpactMetrics],
       metricsVariant: 'highlight',
       metricsPosition: 'beforeVideo',
     },

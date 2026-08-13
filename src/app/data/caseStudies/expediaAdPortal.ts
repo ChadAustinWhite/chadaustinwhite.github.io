@@ -1,6 +1,9 @@
 import type { CaseStudyContent } from '../../components/case-study/types';
 import expediaAdPortalImage from '../../../assets/expedia-ad-portal-card.png';
-import { expediaAdPortalInstrument } from './expediaAdPortalInstrument';
+import {
+  expediaAdPortalImpactMetrics,
+  expediaAdPortalInstrument,
+} from './expediaAdPortalInstrument';
 
 export const expediaAdPortalContent: CaseStudyContent = {
   layout: 'instrument',
@@ -22,19 +25,11 @@ export const expediaAdPortalContent: CaseStudyContent = {
   heroResults: {
     heading: 'Impact and outcomes',
     sectionLabel: 'Impact',
-    metrics: [
-      { value: '12+', label: 'Partner Markets' },
-      { value: '-28%', label: 'Support Escalations' },
-      { value: '1', label: 'Unified Portal' },
-    ],
+    metrics: [...expediaAdPortalImpactMetrics],
   },
   impact: {
     heading: 'Impact and outcomes',
-    metrics: [
-      { value: '12+', label: 'Partner Markets' },
-      { value: '-28%', label: 'Support Escalations' },
-      { value: '1', label: 'Unified Portal' },
-    ],
+    metrics: [...expediaAdPortalImpactMetrics],
   },
   hidePagination: true,
   hideRelatedCaseStudies: true,

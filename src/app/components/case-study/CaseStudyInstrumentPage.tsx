@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { motion, useInView, useReducedMotion } from 'motion/react';
+import { useRef } from 'react';
 import { useCaseStudyParallax } from '../../hooks/useCaseStudyParallax';
 import { useCaseStudySectionBackground } from '../../hooks/useCaseStudySectionBackground';
 import type {
@@ -31,8 +30,6 @@ const GUTTER = 'px-[var(--cs-page-gutter)]';
 /** Left-aligned prose column (matches page lead; no horizontal centering). */
 const CONTENT = 'w-full max-w-[46rem]';
 
-const easeOut = [0.22, 1, 0.36, 1] as const;
-
 const ROLE_COLUMNS: {
   key: 'design' | 'content' | 'strategy' | 'development';
   label: string;
@@ -44,66 +41,6 @@ const ROLE_COLUMNS: {
 ];
 
 type InstrumentFigureVariant = 'hero' | 'content';
-
-/** Word-level cascade for instrument serif leads (respects reduced motion). */
-function CascadingLeadText({
-  text,
-  className,
-  delay = 0.06,
-  as: Tag = 'p',
-}: {
-  text: string;
-  className?: string;
-  delay?: number;
-  as?: 'p' | 'span';
-}) {
-  const ref = useRef<HTMLElement | null>(null);
-  const inView = useInView(ref, { once: true, amount: 0.35 });
-  const prefersReducedMotion = useReducedMotion();
-  const reduce = Boolean(prefersReducedMotion);
-  const [ready, setReady] = useState(false);
-  const words = text.split(' ');
-
-  useEffect(() => {
-    // One frame delay so the page-transition surface isn’t mid-fly-in.
-    const id = requestAnimationFrame(() => setReady(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  const show = reduce || (ready && inView);
-
-  return (
-    <Tag
-      ref={ref as never}
-      className={className}
-    >
-      {words.map((word, index) => (
-        <motion.span
-          key={`${word}-${index}`}
-          className="inline-block whitespace-pre"
-          initial={reduce ? false : { opacity: 0, y: 16, filter: 'blur(5px)' }}
-          animate={
-            show
-              ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-              : { opacity: 0, y: 16, filter: 'blur(5px)' }
-          }
-          transition={
-            reduce
-              ? { duration: 0 }
-              : {
-                  duration: 0.62,
-                  delay: delay + index * 0.042,
-                  ease: easeOut,
-                }
-          }
-        >
-          {word}
-          {index < words.length - 1 ? '\u00A0' : null}
-        </motion.span>
-      ))}
-    </Tag>
-  );
-}
 
 /** Renders `**bold**` markers in instrument copy strings. */
 function renderInstrumentInlineText(text: string) {
@@ -349,21 +286,10 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
         {(Array.isArray(chapter.lead) ? chapter.lead : chapter.lead ? [chapter.lead] : []).map(
           (text, i) => {
             const className = `case-study-instrument__chapter-lead serif-headline text-left${i > 0 ? ' mt-6' : ''}`;
-            // Cascading word reveal for plain serif leads; keep static render when bold markers exist.
-            if (/\*\*[^*]+\*\*/.test(text)) {
-              return (
-                <p key={`chapter-lead-${i}`} className={className}>
-                  {renderInstrumentInlineText(text)}
-                </p>
-              );
-            }
             return (
-              <CascadingLeadText
-                key={`chapter-lead-${i}`}
-                text={text}
-                className={className}
-                delay={0.05 + i * 0.08}
-              />
+              <p key={`chapter-lead-${i}`} className={className}>
+                {renderInstrumentInlineText(text)}
+              </p>
             );
           },
         )}
@@ -596,20 +522,18 @@ export function CaseStudyInstrumentPage({
         </button>
 
         {instrument.clientName ? (
-          <CascadingLeadText
-            text={instrument.clientName}
-            className="case-study-instrument__client serif-headline text-[var(--ink)]"
-            delay={0.04}
-          />
+          <p className="case-study-instrument__client serif-headline text-[var(--ink)]">
+            {instrument.clientName}
+          </p>
         ) : null}
 
-        <CascadingLeadText
-          text={instrument.lead}
+        <p
           className={`case-study-instrument__lead serif-headline max-w-[48rem] text-[var(--ink)]${
             instrument.clientName ? ' mt-6 md:mt-8' : ''
           }`}
-          delay={instrument.clientName ? 0.22 : 0.08}
-        />
+        >
+          {instrument.lead}
+        </p>
 
         {instrument.overviewCategories && instrument.overviewCategories.length > 0 ? (
           <dl
