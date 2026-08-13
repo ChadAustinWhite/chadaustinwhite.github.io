@@ -222,7 +222,10 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
           const hostCenter = hostRect.top + hostRect.height * 0.5;
           const lead = Number(el.dataset.layerLead ?? '0') || 0;
           const fromMid = hostCenter - mid - lead;
-          const maxDown = isDevices ? Math.min(10, maxAbs * 0.15) : maxAbs;
+          // Let each layer’s speed shape early travel instead of a shared 10px floor
+          const maxDown = isDevices
+            ? Math.min(6 + speed * 40, maxAbs * 0.2)
+            : maxAbs;
           target = Math.max(-maxAbs, Math.min(maxDown, fromMid * speed));
         } else if (!isDevices) {
           // Accelerator (and other windows): also rest at 0 while scrolling up
@@ -231,7 +234,16 @@ export function useWowReveal(rootRef: RefObject<HTMLElement | null>) {
 
         // Slower catch-up so each screen eases through travel
         const scrolling = Math.abs(delta) > 0.2;
-        const scrub = isDevices ? (scrolling ? 0.12 : 0.22) : scrolling ? 0.06 : 0.14;
+        const scrubAttr = Number(el.dataset.layerScrub ?? '');
+        const scrub = Number.isFinite(scrubAttr) && scrubAttr > 0
+          ? scrubAttr
+          : isDevices
+            ? scrolling
+              ? 0.12
+              : 0.22
+            : scrolling
+              ? 0.06
+              : 0.14;
         const nextLayer = prevLayer + (target - prevLayer) * Math.min(1, damp(dt, scrub));
         layerDriftNow.set(el, nextLayer);
         el.style.setProperty('--layer-y', `${nextLayer.toFixed(2)}px`);

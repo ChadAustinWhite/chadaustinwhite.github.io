@@ -384,7 +384,7 @@ button:focus-visible {
 
   /* Lexus: a hair wider than standard large-left */
   .work-asymmetric__item--lexus {
-    grid-column: 1 / span 8;
+    grid-column: 1 / span 9;
     margin-top: clamp(1rem, 2.5vw, 2rem);
   }
 
@@ -1325,6 +1325,22 @@ html.page-transition-active body {
 
 .project-layered--devices.is-parked .project-layered__window--front {
   top: 22%;
+}
+
+/* Lexus: fill the right matte; keep a clear gap between mobile and desktop */
+.work-asymmetric__item--lexus .project-layered--devices .project-layered__window--back {
+  left: 22.5%;
+  width: 72.5%;
+}
+
+.work-asymmetric__item--lexus .project-layered--devices .project-layered__window--front {
+  top: 24%;
+  left: 5.5%;
+  width: 14.5%;
+}
+
+.work-asymmetric__item--lexus .project-layered--devices.is-parked .project-layered__window--front {
+  top: 26%;
 }
 
 @media (prefers-reduced-motion: reduce) {
