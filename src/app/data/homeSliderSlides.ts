@@ -46,7 +46,6 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-denim-supply.png`, background: 'light' },
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg`, background: 'light' },
-  { name: 'First American Playbook', img: `${BASE}/first-american-process.jpg`, background: 'light' },
   { name: 'First American Playbook', img: `${BASE}/first-american-discovery.jpg`, background: 'light' },
   { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator.png`, background: 'light' },
   { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator-laptop.png`, background: 'light' },
