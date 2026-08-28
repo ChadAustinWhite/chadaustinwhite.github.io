@@ -40,7 +40,6 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver.png`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
-  { name: 'First American Playbook', img: `${BASE}/first-american.png`, background: 'dark' },
   { name: 'Akari', img: `${BASE}/akari.png`, background: 'dark' },
   // Light UI / paper / bright photography
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile.png`, background: 'light', car: true },
@@ -51,7 +50,6 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg`, background: 'light' },
   { name: 'Expedia Accelerator', img: HOME_SLIDER_HERO_IMG, background: 'light' },
-  { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator-laptop.png`, background: 'light' },
   { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign.png`, background: 'light' },
 ].map((slide) => ({
   ...slide,
