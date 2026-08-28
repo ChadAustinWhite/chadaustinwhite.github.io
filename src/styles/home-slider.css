@@ -19,7 +19,7 @@
   .home-slider dt,
   .home-slider dd,
   .home-slider__info {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
@@ -115,9 +115,15 @@
     max-width: min(18rem, 85vw);
   }
 
+  .home-slider p,
+  .home-slider dt,
+  .home-slider dd {
+    font-size: 14px;
+  }
+
   .home-slider__info {
     padding: 0 1.25rem;
-    font-size: 0.875rem;
+    font-size: 12px;
   }
 }
 
