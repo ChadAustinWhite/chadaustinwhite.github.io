@@ -45,6 +45,31 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const viewport = canvas.parentElement;
+    if (!viewport) return;
+
+    const getViewSize = () => {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        width: rect.width || window.innerWidth,
+        height: rect.height || window.innerHeight,
+      };
+    };
+
+    const pointerToNdc = (clientX: number, clientY: number) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    };
+
+    const resizeRenderer = () => {
+      const { width, height } = getViewSize();
+      if (!width || !height) return;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height, false);
+    };
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const slides = homeSliderSlides;
     const totalSlides = slides.length;
@@ -76,15 +101,16 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       antialias: true,
       preserveDrawingBuffer: true,
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(getViewSize().width, getViewSize().height, false);
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x141414);
 
+    const initialSize = getViewSize();
     const camera = new THREE.PerspectiveCamera(
       45,
-      window.innerWidth / window.innerHeight,
+      initialSize.width / initialSize.height,
       0.1,
       100,
     );
@@ -192,8 +218,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     };
 
     const navigateFromPointer = (clientX: number, clientY: number) => {
-      pointer.x = (clientX / window.innerWidth) * 2 - 1;
-      pointer.y = -(clientY / window.innerHeight) * 2 + 1;
+      pointerToNdc(clientX, clientY);
       raycaster.setFromCamera(pointer, camera);
       const hits = raycaster.intersectObjects(meshes);
       if (!hits.length) return;
@@ -292,10 +317,17 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     };
 
     const onResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      resizeRenderer();
     };
+
+    const resizeObserver =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(() => {
+            resizeRenderer();
+          })
+        : null;
+    resizeObserver?.observe(viewport);
+    requestAnimationFrame(resizeRenderer);
 
     const animate = (time: number) => {
       animationId = requestAnimationFrame(animate);
@@ -391,6 +423,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       canvas.removeEventListener('pointerdown', onPointerDown);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
+      resizeObserver?.disconnect();
       window.removeEventListener('resize', onResize);
 
       meshes.forEach((mesh) => {
@@ -408,7 +441,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       <div className="home-slider__about">
         <div className="home-slider__block home-slider__block--tl">
           <p>I&apos;m Chad 👋</p>
-          <p>
+          <p className="home-slider__lead">
             I turn complex problems into experiences
             <br />
             people understand, trust, and remember.
@@ -436,12 +469,14 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         </div>
       </div>
 
+      <div className="home-slider__viewport">
+        <canvas ref={canvasRef} className="home-slider__canvas" aria-hidden />
+      </div>
+
       <div className="home-slider__info" aria-live="polite">
         <p>{activeTitle}</p>
         <p>{activeCount}</p>
       </div>
-
-      <canvas ref={canvasRef} className="home-slider__canvas" aria-hidden />
     </section>
   );
 }
