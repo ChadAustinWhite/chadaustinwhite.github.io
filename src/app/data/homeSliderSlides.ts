@@ -29,9 +29,12 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'McLaren FWD', img: `${BASE}/mclaren-fwd.png`, car: true },
   { name: 'McLaren FWD', img: `${BASE}/mclaren-coastal.jpg`, car: true },
   { name: "Levi's", img: `${BASE}/levis.png` },
-  { name: "Levi's", img: `${BASE}/levis-classic.png`, car: true },
+  { name: "Levi's", img: `${BASE}/levis-quality-indigo.png` },
+  { name: "Levi's", img: `${BASE}/levis-denim-supply.png` },
   { name: "Levi's", img: `${BASE}/levis-motorcycle.png` },
   { name: "Levi's", img: `${BASE}/levis-rider.png` },
+  { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png` },
+  { name: "Levi's", img: `${BASE}/levis-classic.png` },
   { name: 'Quiksilver', img: `${BASE}/quiksilver.png` },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg` },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg` },
@@ -70,53 +73,27 @@ const deckIsValid = (deck: HomeSliderSlide[]): boolean => {
   return true;
 };
 
-const canPlaceBetween = (
-  item: HomeSliderSlide,
-  left: HomeSliderSlide,
-  right: HomeSliderSlide,
-): boolean => !areRelated(item, left) && !areRelated(item, right);
-
-const insertIntoGaps = (
-  base: HomeSliderSlide[],
-  extras: HomeSliderSlide[],
-  canPlace: (item: HomeSliderSlide, left: HomeSliderSlide, right: HomeSliderSlide) => boolean,
-): HomeSliderSlide[] | null => {
-  const count = base.length;
-  const gaps = shuffle([...Array(count).keys()]);
-  const placed: Array<HomeSliderSlide | null> = Array(count).fill(null);
-
-  for (const item of extras) {
-    const gap = gaps.find((index) => {
-      if (placed[index]) return false;
-      const left = base[index];
-      const right = base[(index + 1) % count];
-      return canPlace(item, left, right);
-    });
-    if (gap === undefined) return null;
-    placed[gap] = item;
-    gaps.splice(gaps.indexOf(gap), 1);
-  }
-
-  const mixed: HomeSliderSlide[] = [];
-  for (let i = 0; i < count; i++) {
-    mixed.push(base[i]);
-    if (placed[i]) mixed.push(placed[i]);
-  }
-  return mixed;
-};
-
+/** Interleave Levi's with everything else while respecting adjacency rules. */
 function buildSlidesOnce(): HomeSliderSlide[] | null {
-  const cars = shuffle(rawSlides.filter(isCar));
-  const nonCars = rawSlides.filter((slide) => !isCar(slide));
-  const nonCarLevis = shuffle(nonCars.filter(isLevis));
-  const nonCarRest = shuffle(nonCars.filter((slide) => !isLevis(slide)));
+  let levis = shuffle(rawSlides.filter(isLevis));
+  let others = shuffle(rawSlides.filter((slide) => !isLevis(slide)));
+  const deck: HomeSliderSlide[] = [];
 
-  const spacedNonCars = insertIntoGaps(nonCarRest, nonCarLevis, canPlaceBetween);
-  const mixed =
-    spacedNonCars && insertIntoGaps(spacedNonCars, cars, canPlaceBetween);
+  while (levis.length > 0 || others.length > 0) {
+    const last = deck.at(-1);
+    const canAddLevis = levis.length > 0 && (!last || !areRelated(last, levis[0]));
+    const canAddOther = others.length > 0 && (!last || !areRelated(last, others[0]));
 
-  if (!mixed || !deckIsValid(mixed)) return null;
-  return mixed;
+    if (!canAddLevis && !canAddOther) return null;
+
+    if (canAddLevis && (levis.length >= others.length || !canAddOther)) {
+      deck.push(levis.shift()!);
+    } else {
+      deck.push(others.shift()!);
+    }
+  }
+
+  return deckIsValid(deck) ? deck : null;
 }
 
 function buildSlides(): HomeSliderSlide[] {
