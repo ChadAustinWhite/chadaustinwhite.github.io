@@ -9,7 +9,7 @@ const CONFIG = {
   minHeight: 1.25,
   maxHeight: 1.25,
   aspectRatio: 1.5,
-  gap: 0,
+  gap: 0.03,
   smoothing: 0.05,
   distortionStrength: 2.5,
   distortionSmoothing: 0.1,
@@ -79,22 +79,33 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       () => CONFIG.minHeight + Math.random() * (CONFIG.maxHeight - CONFIG.minHeight),
     );
 
-    const slideOffsets: number[] = [];
-    let stackPosition = 0;
+    const slideOffsets: number[] = Array(totalSlides).fill(0);
+    let loopLength = 1;
+    let halfLoop = 0.5;
+    const meshes: THREE.Mesh[] = [];
 
-    for (let i = 0; i < totalSlides; i++) {
-      if (i === 0) {
-        slideOffsets.push(0);
-        stackPosition = slideHeights[0] / 2;
-      } else {
-        stackPosition += CONFIG.gap + slideHeights[i] / 2;
-        slideOffsets.push(stackPosition);
-        stackPosition += slideHeights[i] / 2;
+    const rebuildStack = () => {
+      let stackPosition = 0;
+      for (let i = 0; i < totalSlides; i++) {
+        const visualHeight = slideHeights[i] * (meshes[i]?.scale.y || 1);
+        if (i === 0) {
+          slideOffsets[i] = 0;
+          stackPosition = visualHeight / 2;
+        } else {
+          stackPosition += CONFIG.gap + visualHeight / 2;
+          slideOffsets[i] = stackPosition;
+          stackPosition += visualHeight / 2;
+        }
+        if (meshes[i]) {
+          meshes[i].userData.offset = slideOffsets[i];
+        }
       }
-    }
+      const firstHeight = slideHeights[0] * (meshes[0]?.scale.y || 1);
+      loopLength = stackPosition + CONFIG.gap + firstHeight / 2;
+      halfLoop = loopLength / 2;
+    };
 
-    const loopLength = stackPosition + CONFIG.gap + slideHeights[0] / 2;
-    const halfLoop = loopLength / 2;
+    rebuildStack();
 
     const renderer = new THREE.WebGLRenderer({
       canvas,
@@ -116,7 +127,6 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     );
     camera.position.z = 5;
 
-    const meshes: THREE.Mesh[] = [];
     const textureLoader = new THREE.TextureLoader();
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
@@ -154,11 +164,15 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
         if (ratio > 1) mesh.scale.y = 1 / ratio;
         else mesh.scale.x = ratio;
+
+        rebuildStack();
       });
 
       scene.add(mesh);
       meshes.push(mesh);
     }
+
+    rebuildStack();
 
     const applyDistortion = (mesh: THREE.Mesh, positionY: number, strength: number) => {
       const positions = mesh.geometry.attributes.position;

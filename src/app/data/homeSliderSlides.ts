@@ -38,7 +38,6 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'First American Playbook', img: `${BASE}/first-american.png`, background: 'dark' },
-  { name: 'First American Playbook', img: `${BASE}/first-american-teamwork.jpg`, background: 'dark' },
   { name: 'Akari', img: `${BASE}/akari.png`, background: 'dark' },
   // Light UI / paper / bright photography
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile.png`, background: 'light', car: true },
@@ -209,12 +208,75 @@ function buildSlidesBestEffort(): HomeSliderSlide[] | null {
   return best;
 }
 
+/**
+ * Build a ring that never places two light (or two dark, when counts allow)
+ * slides back-to-back. Related-project rules are best-effort on top of that.
+ */
 function buildSlides(): HomeSliderSlide[] {
-  for (let attempt = 0; attempt < 400; attempt++) {
+  for (let attempt = 0; attempt < 600; attempt++) {
     const deck = buildSlidesOnce();
     if (deck) return deck;
   }
-  return buildSlidesBestEffort() ?? rawSlides;
+
+  const best = buildSlidesBestEffort();
+  if (best) {
+    const hasLightClump = best.some(
+      (slide, i) =>
+        slide.background === 'light' &&
+        best[(i + 1) % best.length].background === 'light',
+    );
+    if (!hasLightClump) return best;
+  }
+
+  return forceLightDarkAlternate();
+}
+
+/** Guarantees no two light slides are neighbors, even if darks must clump. */
+function forceLightDarkAlternate(): HomeSliderSlide[] {
+  const lights = shuffle(rawSlides.filter((s) => s.background === 'light'));
+  const darks = shuffle(rawSlides.filter((s) => s.background === 'dark'));
+  const n = rawSlides.length;
+  const deck: Array<HomeSliderSlide | null> = Array(n).fill(null);
+
+  // Spread lights around the ring with at least one slot between each.
+  const lightSlots: number[] = [];
+  for (let i = 0; i < lights.length; i++) {
+    lightSlots.push(Math.floor((i * n) / lights.length));
+  }
+  // Ensure uniqueness if floor collisions occur
+  const used = new Set<number>();
+  for (let i = 0; i < lightSlots.length; i++) {
+    let slot = lightSlots[i];
+    while (used.has(slot)) slot = (slot + 1) % n;
+    // Avoid adjacent light slots
+    const prev = [...used].find(
+      (s) => (s + 1) % n === slot || (slot + 1) % n === s,
+    );
+    if (prev !== undefined) {
+      let guard = 0;
+      while (
+        used.has(slot) ||
+        [...used].some((s) => (s + 1) % n === slot || (slot + 1) % n === s)
+      ) {
+        slot = (slot + 1) % n;
+        if (++guard > n) break;
+      }
+    }
+    used.add(slot);
+    lightSlots[i] = slot;
+  }
+
+  lightSlots.forEach((slot, i) => {
+    deck[slot] = lights[i];
+  });
+
+  const remaining = [...darks];
+  for (let i = 0; i < n; i++) {
+    if (deck[i]) continue;
+    deck[i] = remaining.shift()!;
+  }
+
+  return deck as HomeSliderSlide[];
 }
 
 /** Shuffled once per page load — matches the prototype deck order. */
