@@ -140,8 +140,10 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
       textureLoader.load(slides[i].img, (texture) => {
         texture.colorSpace = THREE.SRGBColorSpace;
-        texture.minFilter = THREE.LinearFilter;
+        texture.generateMipmaps = true;
+        texture.minFilter = THREE.LinearMipmapLinearFilter;
         texture.magFilter = THREE.LinearFilter;
+        texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
         material.map = texture;
         material.color.set(0xffffff);
         material.needsUpdate = true;

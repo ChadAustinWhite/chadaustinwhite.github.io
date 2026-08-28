@@ -50,7 +50,6 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'First American Playbook', img: `${BASE}/first-american-discovery.jpg`, background: 'light' },
   { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator.png`, background: 'light' },
   { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator-laptop.png`, background: 'light' },
-  { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-access-list.png`, background: 'light' },
   { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign.png`, background: 'light' },
 ].map((slide) => ({
   ...slide,
