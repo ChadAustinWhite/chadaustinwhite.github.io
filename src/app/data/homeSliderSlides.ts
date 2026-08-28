@@ -55,6 +55,27 @@ const shuffle = <T,>(arr: T[]): T[] => {
 const isLevis = (slide: HomeSliderSlide) => slide.name === "Levi's";
 const isCar = (slide: HomeSliderSlide) => Boolean(slide.car);
 
+/** Slides that should never sit directly next to each other in the deck. */
+const areRelated = (a: HomeSliderSlide, b: HomeSliderSlide): boolean => {
+  if (isCar(a) && isCar(b)) return true;
+  if (isLevis(a) && isLevis(b)) return true;
+  if (a.name === b.name) return true;
+  return false;
+};
+
+const deckIsValid = (deck: HomeSliderSlide[]): boolean => {
+  for (let i = 0; i < deck.length; i++) {
+    if (areRelated(deck[i], deck[(i + 1) % deck.length])) return false;
+  }
+  return true;
+};
+
+const canPlaceBetween = (
+  item: HomeSliderSlide,
+  left: HomeSliderSlide,
+  right: HomeSliderSlide,
+): boolean => !areRelated(item, left) && !areRelated(item, right);
+
 const insertIntoGaps = (
   base: HomeSliderSlide[],
   extras: HomeSliderSlide[],
@@ -84,22 +105,26 @@ const insertIntoGaps = (
   return mixed;
 };
 
-function buildSlides(): HomeSliderSlide[] {
+function buildSlidesOnce(): HomeSliderSlide[] | null {
   const cars = shuffle(rawSlides.filter(isCar));
   const nonCars = rawSlides.filter((slide) => !isCar(slide));
   const nonCarLevis = shuffle(nonCars.filter(isLevis));
   const nonCarRest = shuffle(nonCars.filter((slide) => !isLevis(slide)));
 
-  const spacedNonCars = insertIntoGaps(nonCarRest, nonCarLevis, () => true);
+  const spacedNonCars = insertIntoGaps(nonCarRest, nonCarLevis, canPlaceBetween);
   const mixed =
-    spacedNonCars &&
-    insertIntoGaps(
-      spacedNonCars,
-      cars,
-      (item, left, right) => !(isLevis(item) && (isLevis(left) || isLevis(right))),
-    );
+    spacedNonCars && insertIntoGaps(spacedNonCars, cars, canPlaceBetween);
 
-  return mixed ?? rawSlides;
+  if (!mixed || !deckIsValid(mixed)) return null;
+  return mixed;
+}
+
+function buildSlides(): HomeSliderSlide[] {
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const deck = buildSlidesOnce();
+    if (deck) return deck;
+  }
+  return rawSlides;
 }
 
 /** Shuffled once per page load — matches the prototype deck order. */

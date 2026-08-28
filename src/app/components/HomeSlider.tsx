@@ -9,7 +9,7 @@ const CONFIG = {
   minHeight: 1.25,
   maxHeight: 1.25,
   aspectRatio: 1.5,
-  gap: -0.02,
+  gap: 0,
   smoothing: 0.05,
   distortionStrength: 2.5,
   distortionSmoothing: 0.1,
@@ -114,25 +114,18 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
       textureLoader.load(slides[i].img, (texture) => {
         texture.colorSpace = THREE.SRGBColorSpace;
-        texture.wrapS = THREE.ClampToEdgeWrapping;
-        texture.wrapT = THREE.ClampToEdgeWrapping;
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
         material.map = texture;
         material.color.set(0xffffff);
         material.needsUpdate = true;
 
         const imageAspect = texture.image.width / texture.image.height;
         const planeAspect = width / height;
+        const ratio = imageAspect / planeAspect;
 
-        // Cover-fit: fill the plane so stacked slides meet with no letterboxing gaps.
-        if (imageAspect > planeAspect) {
-          const repeatX = planeAspect / imageAspect;
-          texture.repeat.set(repeatX, 1);
-          texture.offset.set((1 - repeatX) / 2, 0);
-        } else {
-          const repeatY = imageAspect / planeAspect;
-          texture.repeat.set(1, repeatY);
-          texture.offset.set(0, (1 - repeatY) / 2);
-        }
+        if (ratio > 1) mesh.scale.y = 1 / ratio;
+        else mesh.scale.x = ratio;
       });
 
       scene.add(mesh);
@@ -359,6 +352,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         let y = -(offset - wrap(scrollPosition, loopLength));
         y = wrap(y + halfLoop, loopLength) - halfLoop;
         mesh.position.y = y;
+        mesh.renderOrder = 1000 - Math.round(Math.abs(y) * 100);
 
         if (Math.abs(y) < closestDistance) {
           closestDistance = Math.abs(y);
@@ -429,9 +423,9 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         <div className="home-slider__block home-slider__block--tr">
           <dl>
             <dt>Expertise</dt>
-            <dd>0→1 &amp; optimization</dd>
-            <dd>AI prototyping</dd>
-            <dd>Accessibility</dd>
+            <dd>0→1 product development</dd>
+            <dd>Human-centered design</dd>
+            <dd>Cross-functional leadership</dd>
           </dl>
           <dl>
             <dt>Impact</dt>
