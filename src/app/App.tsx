@@ -18,15 +18,8 @@ import {
   worldpayMerchantOnboardingContent,
 } from './data/caseStudies';
 import type { CaseStudyRoute } from './data/portfolioData';
-import { projects } from './data/portfolioData';
+import { canNavigateToCaseStudyRoute } from './lib/caseStudyNavigation';
 import { PasswordProtectedCaseStudy } from './components/PasswordProtectedCaseStudy';
-
-const COMING_SOON_ROUTES: CaseStudyRoute[] = [
-  'case-study-worldpay-sso',
-  'case-study-worldpay-merchant-onboarding',
-  'case-study-first-american-playbook',
-  'case-study-mclaren-fwd',
-];
 
 /** Case studies that open without a password gate. */
 const PUBLIC_CASE_STUDY_ROUTES: CaseStudyRoute[] = [
@@ -77,9 +70,7 @@ function AppRoutes() {
 
   const handleViewCaseStudy = useCallback(
     (route: CaseStudyRoute) => {
-      if (COMING_SOON_ROUTES.includes(route)) return;
-      const project = projects.find((item) => item.caseStudyRoute === route);
-      if (project?.comingSoon) return;
+      if (!canNavigateToCaseStudyRoute(route)) return;
       if (currentPage === route) {
         window.scrollTo(0, 0);
         return;
