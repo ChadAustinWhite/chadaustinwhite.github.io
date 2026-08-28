@@ -39,7 +39,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'First American Playbook', img: `${BASE}/first-american.png`, background: 'dark' },
   { name: 'First American Playbook', img: `${BASE}/first-american-teamwork.jpg`, background: 'dark' },
-  { name: 'First American Playbook', img: `${BASE}/first-american-learn-build.jpg`, background: 'dark' },
+  { name: 'Akari', img: `${BASE}/akari.png`, background: 'dark' },
   // Light UI / paper / bright photography
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile.png`, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, background: 'light', car: true },
