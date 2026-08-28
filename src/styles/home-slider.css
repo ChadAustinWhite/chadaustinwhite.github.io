@@ -14,6 +14,15 @@
   font-weight: 500;
 }
 
+@media (min-width: 768px) {
+  .home-slider p,
+  .home-slider dt,
+  .home-slider dd,
+  .home-slider__info {
+    font-size: 18px;
+  }
+}
+
 .home-slider__about {
   position: absolute;
   inset: 2rem;
