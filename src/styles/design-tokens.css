@@ -37,8 +37,24 @@
   --experience-card-border: #e8e7e3;
   --experience-tag-bg: #e8e7e3;
   --experience-section-label: #636363;
-  /** Horizontal page gutter (home + default); case studies override below. */
-  --cs-page-gutter: 1.25rem;
+  /**
+   * Shared left/right page edge — matches SiteNav “Chad Austin White” inset.
+   * Case study gutters and nav both use this so breadcrumb/header align with the name.
+   */
+  --page-edge-inset: 1.5rem;
+  --cs-page-gutter: var(--page-edge-inset);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-edge-inset: 2.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --page-edge-inset: max(3rem, calc(var(--home-chrome-inset, 2.35rem) + 1.5rem));
+  }
 }
 
 /* Homepage: always use warm editorial palette (matches reference), even in dark mode. */
@@ -105,11 +121,6 @@ html.home-card-hover:has(.home-main-canvas) {
   --bg: var(--home-canvas, var(--home-canvas-base));
 }
 
-@media (min-width: 768px) {
-  :root {
-    --cs-page-gutter: 2.5rem;
-  }
-}
 
 [data-theme="dark"] {
   --bg: #1c1c1a;
@@ -172,7 +183,7 @@ section[id] {
   --nav-pill-bg-hover: #fdfdfc;
   --nav-bg: #f5f4f0;
   --home-canvas-base: #f5f4f0;
-  --cs-page-gutter: 1.25rem;
+  --cs-page-gutter: var(--page-edge-inset);
   --cs-carousel-gap: clamp(2.5rem, 5vw, 5.5rem);
   color-scheme: light;
   font-family: var(--font-sans);
@@ -280,11 +291,6 @@ html:has([data-case-study][data-scroll-gradient='to-light']) body {
   }
 }
 
-@media (min-width: 768px) {
-  [data-case-study] {
-    --cs-page-gutter: 2.5rem;
-  }
-}
 
 /* Instrument case study — ServiceNow work page (instrument.com/work/servicenow-rebrand) */
 [data-case-study] .case-study-instrument__client {

@@ -14,6 +14,7 @@ const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
   Quiksilver: 'case-study-quiksilver',
   'First American Playbook': 'case-study-first-american-playbook',
   'Expedia Accelerator': 'case-study-expedia-accelerator',
+  'Expedia Ad Portal': 'case-study-expedia-ad-portal',
 };
 
 const BASE = '/home-slider';
@@ -26,8 +27,8 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile.png`, car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, car: true },
+  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-invited.png` },
   { name: 'McLaren FWD', img: `${BASE}/mclaren-fwd.png`, car: true },
-  { name: 'McLaren FWD', img: `${BASE}/mclaren-coastal.jpg`, car: true },
   { name: "Levi's", img: `${BASE}/levis.png` },
   { name: "Levi's", img: `${BASE}/levis-quality-indigo.png` },
   { name: "Levi's", img: `${BASE}/levis-denim-supply.png` },
@@ -40,7 +41,12 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg` },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg` },
   { name: 'First American Playbook', img: `${BASE}/first-american.png` },
+  { name: 'First American Playbook', img: `${BASE}/first-american-process.jpg` },
+  { name: 'First American Playbook', img: `${BASE}/first-american-discovery.jpg` },
   { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator.png` },
+  { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator-laptop.png` },
+  { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-access-list.png` },
+  { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign.png` },
 ].map((slide) => ({
   ...slide,
   route: SLIDE_ROUTES[slide.name],
@@ -57,11 +63,13 @@ const shuffle = <T,>(arr: T[]): T[] => {
 
 const isLevis = (slide: HomeSliderSlide) => slide.name === "Levi's";
 const isCar = (slide: HomeSliderSlide) => Boolean(slide.car);
+const isExpedia = (slide: HomeSliderSlide) => slide.name.startsWith('Expedia');
 
 /** Slides that should never sit directly next to each other in the deck. */
 const areRelated = (a: HomeSliderSlide, b: HomeSliderSlide): boolean => {
   if (isCar(a) && isCar(b)) return true;
   if (isLevis(a) && isLevis(b)) return true;
+  if (isExpedia(a) && isExpedia(b)) return true;
   if (a.name === b.name) return true;
   return false;
 };
@@ -73,31 +81,52 @@ const deckIsValid = (deck: HomeSliderSlide[]): boolean => {
   return true;
 };
 
-/** Interleave Levi's with everything else while respecting adjacency rules. */
+/**
+ * Pin Expedia slides at evenly spaced ring positions first, then fill the
+ * remaining slots so related work never sits side by side.
+ */
 function buildSlidesOnce(): HomeSliderSlide[] | null {
-  let levis = shuffle(rawSlides.filter(isLevis));
-  let others = shuffle(rawSlides.filter((slide) => !isLevis(slide)));
-  const deck: HomeSliderSlide[] = [];
+  const expedia = shuffle(rawSlides.filter(isExpedia));
+  const rest = shuffle(rawSlides.filter((slide) => !isExpedia(slide)));
+  const n = rawSlides.length;
+  const k = expedia.length;
+  if (k === 0) return null;
 
-  while (levis.length > 0 || others.length > 0) {
-    const last = deck.at(-1);
-    const canAddLevis = levis.length > 0 && (!last || !areRelated(last, levis[0]));
-    const canAddOther = others.length > 0 && (!last || !areRelated(last, others[0]));
+  const deck: Array<HomeSliderSlide | null> = Array(n).fill(null);
+  const step = Math.floor(n / k);
+  const start = Math.floor(Math.random() * n);
 
-    if (!canAddLevis && !canAddOther) return null;
-
-    if (canAddLevis && (levis.length >= others.length || !canAddOther)) {
-      deck.push(levis.shift()!);
-    } else {
-      deck.push(others.shift()!);
-    }
+  for (let i = 0; i < k; i++) {
+    deck[(start + i * step) % n] = expedia[i];
   }
 
-  return deckIsValid(deck) ? deck : null;
+  const empties = deck
+    .map((slide, index) => (slide ? -1 : index))
+    .filter((index) => index >= 0);
+
+  if (empties.length !== rest.length) return null;
+
+  const remaining = [...rest];
+
+  for (const index of empties) {
+    const left = deck[(index - 1 + n) % n];
+    const right = deck[(index + 1) % n];
+    const fit = remaining.findIndex((item) => {
+      if (left && areRelated(left, item)) return false;
+      if (right && areRelated(item, right)) return false;
+      return true;
+    });
+    if (fit === -1) return null;
+    deck[index] = remaining.splice(fit, 1)[0];
+  }
+
+  if (deck.some((slide) => !slide)) return null;
+  const filled = deck as HomeSliderSlide[];
+  return deckIsValid(filled) ? filled : null;
 }
 
 function buildSlides(): HomeSliderSlide[] {
-  for (let attempt = 0; attempt < 200; attempt++) {
+  for (let attempt = 0; attempt < 400; attempt++) {
     const deck = buildSlidesOnce();
     if (deck) return deck;
   }

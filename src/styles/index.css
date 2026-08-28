@@ -49,14 +49,15 @@ button:focus-visible {
   scroll-margin-top: 4.5rem;
 }
 
-/* Always keep name + CV inset from the viewport (and notched devices). */
+/* Always keep name + CV inset from the viewport (and notched devices).
+   Uses --page-edge-inset so case study content aligns with “Chad Austin White”. */
 #site-nav.site-nav-surface {
   background-color: var(--nav-bg, var(--bg));
   box-sizing: border-box;
   width: 100%;
   max-width: 100vw;
-  padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
-  padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  padding-left: max(var(--page-edge-inset), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--page-edge-inset), env(safe-area-inset-right, 0px));
   transition-property: border-bottom-color;
   transition-duration: 220ms;
   transition-timing-function: ease-out;
@@ -65,16 +66,6 @@ button:focus-visible {
 @media (min-width: 768px) {
   #site-nav.site-nav-surface {
     height: 4rem;
-    padding-left: max(2.5rem, env(safe-area-inset-left, 0px));
-    padding-right: max(2.5rem, env(safe-area-inset-right, 0px));
-  }
-}
-
-@media (min-width: 900px) {
-  #site-nav.site-nav-surface {
-    /* Clear fixed side rails + room past the viewport edge */
-    padding-left: max(3rem, calc(var(--home-chrome-inset, 2.35rem) + 1.5rem), env(safe-area-inset-left, 0px));
-    padding-right: max(3rem, calc(var(--home-chrome-inset, 2.35rem) + 1.5rem), env(safe-area-inset-right, 0px));
   }
 }
 
