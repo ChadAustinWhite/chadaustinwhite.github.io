@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { homeSliderSlides, type HomeSliderSlide } from '../data/homeSliderSlides';
+import { homeSliderSlides, HOME_SLIDER_HERO_IMG, type HomeSliderSlide } from '../data/homeSliderSlides';
 import type { CaseStudyRoute } from '../data/portfolioData';
 import { canNavigateToCaseStudyRoute } from '../lib/caseStudyNavigation';
 import '../../styles/home-slider.css';
@@ -27,6 +27,9 @@ const zeroPad = (n: number) => String(n).padStart(2, '0');
 
 const wrap = (value: number, range: number) => ((value % range) + range) % range;
 
+const heroSlideIndex = homeSliderSlides.findIndex((slide) => slide.img === HOME_SLIDER_HERO_IMG);
+const initialSlideIndex = heroSlideIndex >= 0 ? heroSlideIndex : 0;
+
 interface HomeSliderProps {
   onViewCaseStudy: (route: CaseStudyRoute) => void;
 }
@@ -34,9 +37,13 @@ interface HomeSliderProps {
 export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const onViewCaseStudyRef = useRef(onViewCaseStudy);
-  const [activeTitle, setActiveTitle] = useState(homeSliderSlides[0]?.name ?? '');
+  const [activeTitle, setActiveTitle] = useState(
+    homeSliderSlides[initialSlideIndex]?.name ?? '',
+  );
   const [activeCount, setActiveCount] = useState(
-    homeSliderSlides.length ? `01 / ${zeroPad(homeSliderSlides.length)}` : '',
+    homeSliderSlides.length
+      ? `${zeroPad(initialSlideIndex + 1)} / ${zeroPad(homeSliderSlides.length)}`
+      : '',
   );
 
   onViewCaseStudyRef.current = onViewCaseStudy;
@@ -83,6 +90,28 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     let loopLength = 1;
     let halfLoop = 0.5;
     const meshes: THREE.Mesh[] = [];
+    let hasUserScrolled = false;
+    let scrollPosition = 0;
+    let scrollTarget = 0;
+    let activeSlideIndex = -1;
+
+    const updateActiveSlide = (index: number) => {
+      if (index === activeSlideIndex) return;
+      activeSlideIndex = index;
+      const slide = slides[index];
+      setActiveTitle(slide.name);
+      setActiveCount(`${zeroPad(index + 1)} / ${zeroPad(totalSlides)}`);
+
+      const route = slide.route;
+      canvas.classList.toggle('home-slider__canvas--clickable', canNavigateToCaseStudyRoute(route));
+    };
+
+    const applyHeroScroll = () => {
+      if (hasUserScrolled || heroSlideIndex < 0) return;
+      scrollPosition = slideOffsets[heroSlideIndex];
+      scrollTarget = slideOffsets[heroSlideIndex];
+      updateActiveSlide(heroSlideIndex);
+    };
 
     const rebuildStack = () => {
       let stackPosition = 0;
@@ -103,6 +132,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       const firstHeight = slideHeights[0] * (meshes[0]?.scale.y || 1);
       loopLength = stackPosition + CONFIG.gap + firstHeight / 2;
       halfLoop = loopLength / 2;
+      applyHeroScroll();
     };
 
     rebuildStack();
@@ -191,8 +221,6 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       mesh.geometry.computeVertexNormals();
     };
 
-    let scrollPosition = 0;
-    let scrollTarget = 0;
     let scrollMomentum = 0;
     let isScrolling = false;
     let lastFrameTime = 0;
@@ -214,23 +242,11 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     let touchStartY = 0;
     let touchLastY = 0;
 
-    let activeSlideIndex = -1;
     let scrollTimeout: ReturnType<typeof setTimeout> | undefined;
     let momentumTimeout: ReturnType<typeof setTimeout> | undefined;
 
     const addDistortionBurst = (amount: number) => {
       distortionTarget = Math.min(1, distortionTarget + amount);
-    };
-
-    const updateActiveSlide = (index: number) => {
-      if (index === activeSlideIndex) return;
-      activeSlideIndex = index;
-      const slide = slides[index];
-      setActiveTitle(slide.name);
-      setActiveCount(`${zeroPad(index + 1)} / ${zeroPad(totalSlides)}`);
-
-      const route = slide.route;
-      canvas.classList.toggle('home-slider__canvas--clickable', canNavigateToCaseStudyRoute(route));
     };
 
     const navigateFromPointer = (clientX: number, clientY: number) => {
@@ -247,6 +263,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
+      hasUserScrolled = true;
       const clampedDelta =
         Math.sign(e.deltaY) * Math.min(Math.abs(e.deltaY), CONFIG.wheelMax);
       addDistortionBurst(Math.abs(clampedDelta) * 0.001);
@@ -260,6 +277,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     };
 
     const onTouchStart = (e: TouchEvent) => {
+      hasUserScrolled = true;
       touchStartY = touchLastY = e.touches[0].clientY;
       isScrolling = false;
       scrollMomentum = 0;
@@ -288,6 +306,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     };
 
     const onPointerDown = (e: PointerEvent) => {
+      hasUserScrolled = true;
       isDragging = true;
       dragStartY = e.clientY;
       pointerDownY = e.clientY;

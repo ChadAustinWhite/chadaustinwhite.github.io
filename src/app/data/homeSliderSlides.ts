@@ -23,6 +23,9 @@ const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
 
 const BASE = '/home-slider';
 
+/** First slide centered when the homepage loads. */
+export const HOME_SLIDER_HERO_IMG = `${BASE}/expedia-accelerator.png`;
+
 const rawSlides: HomeSliderSlide[] = [
   // Dark photography / charcoal mats
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-driving-tour.png`, background: 'dark', car: true },
@@ -47,7 +50,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-denim-supply.png`, background: 'light' },
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg`, background: 'light' },
-  { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator.png`, background: 'light' },
+  { name: 'Expedia Accelerator', img: HOME_SLIDER_HERO_IMG, background: 'light' },
   { name: 'Expedia Accelerator', img: `${BASE}/expedia-accelerator-laptop.png`, background: 'light' },
   { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign.png`, background: 'light' },
 ].map((slide) => ({
