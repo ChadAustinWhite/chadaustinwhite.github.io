@@ -71,11 +71,20 @@ const isExpedia = (slide: HomeSliderSlide) => slide.name.startsWith('Expedia');
 const sameBackground = (a: HomeSliderSlide, b: HomeSliderSlide) =>
   a.background === b.background;
 
+/** Product UI frames that should not form a consecutive stack. */
+const SEPARATE_UI_IMGS = new Set([
+  `${BASE}/expedia-ad-portal-campaign.png`,
+  `${BASE}/mclaren-fwd.png`,
+  `${BASE}/lexus-invited.png`,
+]);
+const isSeparateUi = (slide: HomeSliderSlide) => SEPARATE_UI_IMGS.has(slide.img);
+
 /** Project / family clashes — never adjacent. */
 const areRelated = (a: HomeSliderSlide, b: HomeSliderSlide): boolean => {
   if (isCar(a) && isCar(b)) return true;
   if (isLevis(a) && isLevis(b)) return true;
   if (isExpedia(a) && isExpedia(b)) return true;
+  if (isSeparateUi(a) && isSeparateUi(b)) return true;
   if (a.name === b.name) return true;
   return false;
 };
