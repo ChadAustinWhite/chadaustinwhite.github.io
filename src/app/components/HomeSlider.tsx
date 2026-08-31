@@ -9,7 +9,7 @@ const CONFIG = {
   minHeight: 1.25,
   maxHeight: 1.25,
   aspectRatio: 1.5,
-  gap: 0.03,
+  gap: 0.14,
   smoothing: 0.05,
   distortionStrength: 2.5,
   distortionSmoothing: 0.1,
