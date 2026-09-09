@@ -163,6 +163,11 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
               padded: true,
             },
           ],
+          video: {
+            src: expediaAcceleratorWalkthrough,
+            poster: expediaAcceleratorWalkthroughPoster,
+            title: 'Accelerator product walkthrough',
+          },
         },
       ],
     },
@@ -175,11 +180,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
             'Within three months of launch, partner visibility in search results rose roughly 30%. Campaign setup success reached 80% versus 54% with the previous solution. CSAT for the ads experience climbed 20 points; partner opt-in doubled in six months, contributing to a 15% lift in quarterly revenue from long-tail partners.',
             'CEO Ariane Gorin highlighted Accelerator as one of the company’s top-performing partner products at the company all-hands. The work was presented at an internal design summit and global partner forum, cited in QBR as a model for trust-first monetization, and reused as a template for next-gen partner tools.',
           ],
-          video: {
-            src: expediaAcceleratorWalkthrough,
-            poster: expediaAcceleratorWalkthroughPoster,
-            title: 'Accelerator product walkthrough',
-          },
         },
       ],
       metrics: [
@@ -188,7 +188,7 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
         { value: '72.4K', label: 'Active Hotel Partners' },
       ],
       metricsVariant: 'highlight',
-      metricsPosition: 'beforeVideo',
+      metricsPosition: 'afterLead',
       testimonial: {
         quote:
           'Transparency mattered more than granular control for most partners. When design and data moved together, partners finally trusted what they saw in Accelerator.',
