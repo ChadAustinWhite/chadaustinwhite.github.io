@@ -420,7 +420,6 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
               />
             </div>
           ) : null}
-          {sub.video ? <InstrumentVideo video={sub.video} /> : null}
           {sub.bentoGrid ? <CaseStudyInstrumentBentoGrid grid={sub.bentoGrid} /> : null}
           {sub.bentoGrids?.map((grid, i) => (
             <CaseStudyInstrumentBentoGrid key={`${sub.title}-bento-${i}`} grid={grid} />
@@ -433,6 +432,7 @@ function InstrumentChapter({ chapter }: { chapter: CaseStudyInstrumentChapter })
               ))}
             </div>
           ) : null}
+          {sub.video ? <InstrumentVideo video={sub.video} /> : null}
         </div>
         );
       })}
