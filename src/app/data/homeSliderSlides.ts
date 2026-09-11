@@ -28,7 +28,6 @@ export const HOME_SLIDER_HERO_IMG = `${BASE}/expedia-accelerator.png`;
 
 const rawSlides: HomeSliderSlide[] = [
   // Dark photography / charcoal mats
-  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-driving-tour.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-coastal.jpg`, background: 'dark' },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-racecar.jpg`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-interior.jpg`, background: 'dark', car: true },
@@ -42,7 +41,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'Brand Marks', img: `${BASE}/akari.png`, background: 'dark' },
   // Light UI / paper / bright photography
-  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile.png`, background: 'light', car: true },
+  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-invited.png`, background: 'light' },
