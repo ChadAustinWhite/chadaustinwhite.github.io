@@ -23,8 +23,20 @@ const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
 
 const BASE = '/home-slider';
 
+const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
+
+/**
+ * Opening stack when the homepage loads (top → bottom).
+ * Hero is the middle frame so all three sit in the first viewport.
+ */
+export const HOME_SLIDER_OPENING_IMGS = [
+  `${BASE}/expedia-ad-portal-campaign-v3.png`,
+  `${BASE}/lexus-mobile-hero.png`,
+  `${BASE}/levis-motorcycle.png`,
+] as const;
+
 /** First slide centered when the homepage loads. */
-export const HOME_SLIDER_HERO_IMG = `${BASE}/expedia-accelerator.png`;
+export const HOME_SLIDER_HERO_IMG = HOME_SLIDER_OPENING_IMGS[1];
 
 const rawSlides: HomeSliderSlide[] = [
   // Dark photography / charcoal mats
@@ -48,8 +60,8 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-denim-supply.png`, background: 'light' },
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg`, background: 'light' },
-  { name: 'Expedia Accelerator', img: HOME_SLIDER_HERO_IMG, background: 'light' },
-  { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign.png`, background: 'light' },
+  { name: 'Expedia Accelerator', img: EXPEDIA_ACCELERATOR_IMG, background: 'light' },
+  { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign-v3.png`, background: 'light' },
 ].map((slide) => ({
   ...slide,
   route: SLIDE_ROUTES[slide.name],
@@ -72,7 +84,7 @@ const sameBackground = (a: HomeSliderSlide, b: HomeSliderSlide) =>
 
 /** Product UI frames that should not form a consecutive stack. */
 const SEPARATE_UI_IMGS = new Set([
-  `${BASE}/expedia-ad-portal-campaign.png`,
+  `${BASE}/expedia-ad-portal-campaign-v3.png`,
   `${BASE}/mclaren-fwd.png`,
   `${BASE}/lexus-invited.png`,
 ]);
@@ -288,5 +300,20 @@ function forceLightDarkAlternate(): HomeSliderSlide[] {
   return deck as HomeSliderSlide[];
 }
 
+/**
+ * Keep the opening trio consecutive (campaign → Lexus phone → motorcycle)
+ * so the first viewport shows that stack with the phone centered.
+ */
+function pinOpeningTrio(deck: HomeSliderSlide[]): HomeSliderSlide[] {
+  const openingSet = new Set<string>(HOME_SLIDER_OPENING_IMGS);
+  const trio = HOME_SLIDER_OPENING_IMGS.map(
+    (img) => deck.find((slide) => slide.img === img)!,
+  );
+  if (trio.some((slide) => !slide)) return deck;
+
+  const rest = deck.filter((slide) => !openingSet.has(slide.img));
+  return [...trio, ...rest];
+}
+
 /** Shuffled once per page load — matches the prototype deck order. */
-export const homeSliderSlides = buildSlides();
+export const homeSliderSlides = pinOpeningTrio(buildSlides());
