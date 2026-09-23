@@ -9,6 +9,8 @@ export interface HomeSliderSlide {
   background: HomeSliderBackground;
   car?: boolean;
   route?: CaseStudyRoute;
+  /** Optional looping MP4 shown in place of the still while this frame is in view. */
+  video?: string;
 }
 
 const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
@@ -51,12 +53,10 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver.png`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
-  { name: 'Brand Marks', img: `${BASE}/akari.png`, background: 'dark' },
   // Light UI / paper / bright photography
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, background: 'light', car: true },
-  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-invited.png`, background: 'light' },
   { name: "Levi's", img: `${BASE}/levis-denim-supply.png`, background: 'light' },
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg`, background: 'light' },
@@ -86,7 +86,6 @@ const sameBackground = (a: HomeSliderSlide, b: HomeSliderSlide) =>
 const SEPARATE_UI_IMGS = new Set([
   `${BASE}/expedia-ad-portal-campaign-v3.png`,
   `${BASE}/mclaren-fwd.png`,
-  `${BASE}/lexus-invited.png`,
 ]);
 const isSeparateUi = (slide: HomeSliderSlide) => SEPARATE_UI_IMGS.has(slide.img);
 

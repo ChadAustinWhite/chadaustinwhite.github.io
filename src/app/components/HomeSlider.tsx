@@ -160,6 +160,12 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     const textureLoader = new THREE.TextureLoader();
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
+    const videoEntries: {
+      mesh: THREE.Mesh;
+      video: HTMLVideoElement;
+      texture: THREE.VideoTexture;
+      ready: boolean;
+    }[] = [];
 
     for (let i = 0; i < totalSlides; i++) {
       const height = slideHeights[i];
@@ -170,33 +176,85 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         color: 0x999999,
       });
       const mesh = new THREE.Mesh(geometry, material);
+      const slide = slides[i] as HomeSliderSlide;
 
       mesh.userData = {
         originalVertices: [...geometry.attributes.position.array],
         offset: slideOffsets[i],
-        slide: slides[i] as HomeSliderSlide,
+        slide,
         index: i,
       };
 
-      textureLoader.load(slides[i].img, (texture) => {
+      const applyTextureAspect = (imageWidth: number, imageHeight: number) => {
+        const imageAspect = imageWidth / imageHeight;
+        const planeAspect = width / height;
+        const ratio = imageAspect / planeAspect;
+        if (ratio > 1) mesh.scale.y = 1 / ratio;
+        else mesh.scale.x = ratio;
+        rebuildStack();
+      };
+
+      textureLoader.load(slide.img, (texture) => {
         texture.colorSpace = THREE.SRGBColorSpace;
         texture.generateMipmaps = true;
         texture.minFilter = THREE.LinearMipmapLinearFilter;
         texture.magFilter = THREE.LinearFilter;
         texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
-        material.map = texture;
-        material.color.set(0xffffff);
-        material.needsUpdate = true;
-
-        const imageAspect = texture.image.width / texture.image.height;
-        const planeAspect = width / height;
-        const ratio = imageAspect / planeAspect;
-
-        if (ratio > 1) mesh.scale.y = 1 / ratio;
-        else mesh.scale.x = ratio;
-
-        rebuildStack();
+        // Keep the still as the map until the optional video is ready.
+        if (!material.map || !(material.map instanceof THREE.VideoTexture)) {
+          material.map = texture;
+          material.color.set(0xffffff);
+          material.needsUpdate = true;
+          applyTextureAspect(texture.image.width, texture.image.height);
+        }
       });
+
+      if (slide.video && !reduceMotion) {
+        const video = document.createElement('video');
+        video.src = slide.video;
+        video.muted = true;
+        video.defaultMuted = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.loop = true;
+        video.preload = 'auto';
+        video.setAttribute('aria-hidden', 'true');
+        Object.assign(video.style, {
+          position: 'fixed',
+          width: '1px',
+          height: '1px',
+          opacity: '0',
+          pointerEvents: 'none',
+          left: '0',
+          top: '0',
+        });
+        document.body.appendChild(video);
+
+        const videoTexture = new THREE.VideoTexture(video);
+        videoTexture.colorSpace = THREE.SRGBColorSpace;
+        videoTexture.minFilter = THREE.LinearFilter;
+        videoTexture.magFilter = THREE.LinearFilter;
+        videoTexture.generateMipmaps = false;
+
+        const entry = { mesh, video, texture: videoTexture, ready: false };
+        videoEntries.push(entry);
+
+        const promoteVideo = () => {
+          if (entry.ready || !video.videoWidth) return;
+          entry.ready = true;
+          material.map = videoTexture;
+          material.color.set(0xffffff);
+          material.needsUpdate = true;
+          applyTextureAspect(video.videoWidth, video.videoHeight);
+          void video.play().catch(() => undefined);
+        };
+
+        video.addEventListener('loadedmetadata', promoteVideo);
+        video.addEventListener('loadeddata', promoteVideo);
+        video.addEventListener('canplay', promoteVideo);
+        video.load();
+      }
 
       scene.add(mesh);
       meshes.push(mesh);
@@ -432,6 +490,35 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       });
 
       updateActiveSlide(closestIndex);
+
+      for (const entry of videoEntries) {
+        const { offset } = entry.mesh.userData as { offset: number };
+        let y = -(offset - wrap(scrollPosition, loopLength));
+        y = wrap(y + halfLoop, loopLength) - halfLoop;
+        const inView =
+          Math.abs(y) < CONFIG.maxHeight * 1.35 ||
+          entry.mesh === meshes[closestIndex];
+        if (!entry.ready && entry.video.videoWidth) {
+          const material = entry.mesh.material as THREE.MeshBasicMaterial;
+          entry.ready = true;
+          material.map = entry.texture;
+          material.color.set(0xffffff);
+          material.needsUpdate = true;
+          const imageAspect = entry.video.videoWidth / entry.video.videoHeight;
+          const planeAspect = CONFIG.aspectRatio;
+          const ratio = imageAspect / planeAspect;
+          if (ratio > 1) entry.mesh.scale.y = 1 / ratio;
+          else entry.mesh.scale.x = ratio;
+          rebuildStack();
+        }
+        if (inView) {
+          if (entry.video.paused) void entry.video.play().catch(() => undefined);
+          if (entry.ready) entry.texture.needsUpdate = true;
+        } else if (!entry.video.paused) {
+          entry.video.pause();
+        }
+      }
+
       renderer.render(scene, camera);
     };
 
@@ -466,6 +553,13 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         const material = mesh.material as THREE.MeshBasicMaterial;
         material.map?.dispose();
         material.dispose();
+      });
+      videoEntries.forEach(({ video, texture }) => {
+        video.pause();
+        video.removeAttribute('src');
+        video.load();
+        video.remove();
+        texture.dispose();
       });
       renderer.dispose();
     };
