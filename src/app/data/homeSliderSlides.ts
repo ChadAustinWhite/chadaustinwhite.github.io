@@ -32,7 +32,7 @@ const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
  * Hero is the middle frame so all three sit in the first viewport.
  */
 export const HOME_SLIDER_OPENING_IMGS = [
-  `${BASE}/expedia-ad-portal-campaign-v3.png`,
+  `${BASE}/spork-v2.png`,
   `${BASE}/lexus-mobile-hero.png`,
   `${BASE}/levis-motorcycle.png`,
 ] as const;
@@ -54,6 +54,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   // Light UI / paper / bright photography
+  { name: 'Spork', img: `${BASE}/spork-v2.png`, background: 'light', video: `${BASE}/spork-v2.mp4` },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, background: 'light', car: true },
@@ -85,6 +86,7 @@ const sameBackground = (a: HomeSliderSlide, b: HomeSliderSlide) =>
 /** Product UI frames that should not form a consecutive stack. */
 const SEPARATE_UI_IMGS = new Set([
   `${BASE}/expedia-ad-portal-campaign-v3.png`,
+  EXPEDIA_ACCELERATOR_IMG,
   `${BASE}/mclaren-fwd.png`,
 ]);
 const isSeparateUi = (slide: HomeSliderSlide) => SEPARATE_UI_IMGS.has(slide.img);
@@ -96,6 +98,14 @@ const areRelated = (a: HomeSliderSlide, b: HomeSliderSlide): boolean => {
   if (isExpedia(a) && isExpedia(b)) return true;
   if (isSeparateUi(a) && isSeparateUi(b)) return true;
   if (a.name === b.name) return true;
+  return false;
+};
+
+const deckHasRelatedNeighbors = (deck: HomeSliderSlide[]): boolean => {
+  const n = deck.length;
+  for (let i = 0; i < n; i++) {
+    if (areRelated(deck[i], deck[(i + 1) % n])) return true;
+  }
   return false;
 };
 
@@ -300,7 +310,44 @@ function forceLightDarkAlternate(): HomeSliderSlide[] {
 }
 
 /**
- * Keep the opening trio consecutive (campaign → Lexus phone → motorcycle)
+ * Place the remaining slides after the opening trio without related neighbors —
+ * including the ring seam where the last slide meets the pinned Ad Portal frame
+ * (so Accelerator / Ad Portal never sit next to each other).
+ */
+function arrangeRestAfterOpening(
+  trio: HomeSliderSlide[],
+  rest: HomeSliderSlide[],
+): HomeSliderSlide[] {
+  if (rest.length === 0) return rest;
+
+  for (let attempt = 0; attempt < 500; attempt++) {
+    const remaining = shuffle([...rest]);
+    const placed: HomeSliderSlide[] = [];
+    let ok = true;
+
+    while (remaining.length > 0) {
+      const isLast = remaining.length === 1;
+      const left = placed.length === 0 ? trio[trio.length - 1] : placed[placed.length - 1];
+      const idx = remaining.findIndex((item) => {
+        if (areRelated(left, item)) return false;
+        if (isLast && areRelated(item, trio[0])) return false;
+        return true;
+      });
+      if (idx === -1) {
+        ok = false;
+        break;
+      }
+      placed.push(remaining.splice(idx, 1)[0]);
+    }
+
+    if (ok && !deckHasRelatedNeighbors([...trio, ...placed])) return placed;
+  }
+
+  return rest;
+}
+
+/**
+ * Keep the opening trio consecutive (Spork → Lexus phone → motorcycle)
  * so the first viewport shows that stack with the phone centered.
  */
 function pinOpeningTrio(deck: HomeSliderSlide[]): HomeSliderSlide[] {
@@ -310,7 +357,10 @@ function pinOpeningTrio(deck: HomeSliderSlide[]): HomeSliderSlide[] {
   );
   if (trio.some((slide) => !slide)) return deck;
 
-  const rest = deck.filter((slide) => !openingSet.has(slide.img));
+  const rest = arrangeRestAfterOpening(
+    trio,
+    deck.filter((slide) => !openingSet.has(slide.img)),
+  );
   return [...trio, ...rest];
 }
 
