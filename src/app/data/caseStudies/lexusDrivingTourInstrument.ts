@@ -55,7 +55,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
     },
     {
       src: lexusDrivingTourCaseInvited,
-      alt: 'Lexus Driving Tour You’re Invited section with event details and aerial track photography',
+      alt: 'Lexus Driving Tour You’re Invited section with event details and See What’s Included',
       padded: true,
       background: 'page',
       objectFit: 'contain',
