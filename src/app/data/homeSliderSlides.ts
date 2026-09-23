@@ -42,19 +42,16 @@ export const HOME_SLIDER_HERO_IMG = HOME_SLIDER_OPENING_IMGS[1];
 
 const rawSlides: HomeSliderSlide[] = [
   // Dark photography / charcoal mats
-  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-coastal.jpg`, background: 'dark' },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-racecar.jpg`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-interior.jpg`, background: 'dark', car: true },
   { name: 'McLaren FWD', img: `${BASE}/mclaren-fwd.png`, background: 'dark', car: true },
   { name: "Levi's", img: `${BASE}/levis.png`, background: 'dark' },
-  { name: "Levi's", img: `${BASE}/levis-quality-indigo.png`, background: 'dark' },
   { name: "Levi's", img: `${BASE}/levis-motorcycle.png`, background: 'dark' },
   { name: "Levi's", img: `${BASE}/levis-rider.png`, background: 'dark' },
-  { name: 'Quiksilver', img: `${BASE}/quiksilver.png`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   // Light UI / paper / bright photography
-  { name: 'Spork', img: `${BASE}/spork-v2.png`, background: 'light', video: `${BASE}/spork-v2.mp4` },
+  { name: 'Progressive Controls', img: `${BASE}/spork-v2.png`, background: 'light', video: `${BASE}/spork-v2.mp4` },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, background: 'light', car: true },
@@ -347,7 +344,7 @@ function arrangeRestAfterOpening(
 }
 
 /**
- * Keep the opening trio consecutive (Spork → Lexus phone → motorcycle)
+ * Keep the opening trio consecutive (Progressive Controls → Lexus phone → motorcycle)
  * so the first viewport shows that stack with the phone centered.
  */
 function pinOpeningTrio(deck: HomeSliderSlide[]): HomeSliderSlide[] {
