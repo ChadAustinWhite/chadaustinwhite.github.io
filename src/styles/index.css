@@ -1504,14 +1504,15 @@ html.page-transition-active body {
 }
 
 .sonos-subpoint-accordion {
-  --sonos-accordion-ease: cubic-bezier(0.65, 0, 0.35, 1);
-  --sonos-accordion-duration: 620ms;
+  /* Longer ease-out settle — less of a hard “snap” when rows open/close. */
+  --sonos-accordion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --sonos-accordion-duration: 820ms;
 }
 
 .sonos-subpoint-accordion__item {
   transition:
     border-radius var(--sonos-accordion-duration) var(--sonos-accordion-ease),
-    background-color 280ms ease-out;
+    background-color 320ms ease-out;
 }
 
 .sonos-subpoint-accordion__panel {
@@ -1522,12 +1523,18 @@ html.page-transition-active body {
 
 .sonos-subpoint-accordion__panel-body {
   opacity: 0;
-  transition: opacity 200ms ease-out;
+  transform: translateY(-0.35rem);
+  transition:
+    opacity 280ms var(--sonos-accordion-ease),
+    transform 280ms var(--sonos-accordion-ease);
 }
 
 .sonos-subpoint-accordion__item.is-open .sonos-subpoint-accordion__panel-body {
   opacity: 1;
-  transition: opacity 460ms ease-out 80ms;
+  transform: translateY(0);
+  transition:
+    opacity 520ms var(--sonos-accordion-ease) 120ms,
+    transform 620ms var(--sonos-accordion-ease) 80ms;
 }
 
 .sonos-subpoint-accordion__icon-vertical {
@@ -1552,6 +1559,7 @@ html.page-transition-active body {
   .sonos-subpoint-accordion__panel-body {
     transition: none !important;
     opacity: 1;
+    transform: none;
   }
 
   .sonos-subpoint-accordion__item.is-open .sonos-subpoint-accordion__panel-body {
