@@ -152,7 +152,7 @@ export const projects: ProjectItem[] = [
       'Lexus Driving Tour mobile — Experience Amazing hero with blue LC sports car, register and event actions',
     layeredBackImage: {
       src: lexusDrivingTourCardDesktopImage,
-      alt: 'Lexus Driving Tour desktop — Experience Amazing hero, You’re Invited section, and event details',
+      alt: 'Lexus Driving Tour desktop — Experience Amazing hero with register and event actions',
     },
     layeredVariant: 'devices',
     imageObjectFit: 'contain',

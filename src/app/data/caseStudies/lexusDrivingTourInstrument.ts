@@ -1,6 +1,5 @@
 import type { CaseStudyInstrumentContent } from '../../components/case-study/types';
 import lexusDrivingTourCaseExperience from '../../../assets/lexus-driving-tour-case-experience.png';
-import lexusDrivingTourCaseInvited from '../../../assets/lexus-driving-tour-case-invited.png';
 import lexusDrivingTourCaseLead from '../../../assets/lexus-driving-tour-case-lead.png';
 import lexusDrivingTourCaseMobileScreens from '../../../assets/lexus-driving-tour-case-mobile-screens.png';
 
@@ -39,7 +38,7 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
   leadImages: [
     {
       src: lexusDrivingTourCaseLead,
-      alt: 'Lexus Driving Tour desktop site: full-width Experience Amazing hero with blue LC sports car, navigation, Register Now and Event Details, and You’re Invited event details',
+      alt: 'Lexus Driving Tour desktop site: full-width Experience Amazing hero with blue LC sports car, navigation, Register Now and Event Details',
       padded: true,
       background: 'page',
       objectFit: 'contain',
@@ -54,16 +53,8 @@ export const lexusDrivingTourInstrument: CaseStudyInstrumentContent = {
       parallaxSpeed: '0',
     },
     {
-      src: lexusDrivingTourCaseInvited,
-      alt: 'Lexus Driving Tour You’re Invited section with event details and See What’s Included',
-      padded: true,
-      background: 'page',
-      objectFit: 'contain',
-      parallaxSpeed: '0',
-    },
-    {
       src: lexusDrivingTourCaseMobileScreens,
-      alt: 'Lexus Driving Tour mobile screens: hero invitation, You’re Invited details, Experience gallery, and Event Highlights with registration',
+      alt: 'Lexus Driving Tour mobile screens: hero, You’re Invited details, Experience gallery, and Event Highlights with registration',
       padded: true,
       background: 'page',
       objectFit: 'contain',
