@@ -32,9 +32,9 @@ const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
  * Hero is the middle frame so all three sit in the first viewport.
  */
 export const HOME_SLIDER_OPENING_IMGS = [
-  `${BASE}/spork-v2.png`,
   `${BASE}/lexus-mobile-hero.png`,
-  `${BASE}/levis-motorcycle.png`,
+  `${BASE}/spork-v2.png`,
+  EXPEDIA_ACCELERATOR_IMG,
 ] as const;
 
 /** First slide centered when the homepage loads. */
@@ -344,8 +344,8 @@ function arrangeRestAfterOpening(
 }
 
 /**
- * Keep the opening trio consecutive (Progressive Controls → Lexus phone → motorcycle)
- * so the first viewport shows that stack with the phone centered.
+ * Keep the opening trio consecutive (Lexus phone → Progressive Controls → Accelerator)
+ * so the first viewport shows that stack with Progressive Controls centered.
  */
 function pinOpeningTrio(deck: HomeSliderSlide[]): HomeSliderSlide[] {
   const openingSet = new Set<string>(HOME_SLIDER_OPENING_IMGS);
