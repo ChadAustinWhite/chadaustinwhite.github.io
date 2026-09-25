@@ -26,15 +26,17 @@ const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
 const BASE = '/home-slider';
 
 const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
+const ACTIONS_IMG = `${BASE}/actions.png`;
 
 /**
  * Opening stack when the homepage loads (top → bottom).
- * Hero is the middle frame so all three sit in the first viewport.
+ * Hero is the second frame so it loads centered in the first viewport.
  */
 export const HOME_SLIDER_OPENING_IMGS = [
   `${BASE}/lexus-mobile-hero.png`,
   `${BASE}/spork-v2.png`,
   EXPEDIA_ACCELERATOR_IMG,
+  ACTIONS_IMG,
 ] as const;
 
 /** First slide centered when the homepage loads. */
@@ -48,8 +50,8 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis.png`, background: 'dark' },
   { name: "Levi's", img: `${BASE}/levis-motorcycle.png`, background: 'dark' },
   { name: "Levi's", img: `${BASE}/levis-rider.png`, background: 'dark' },
-  { name: 'Quiksilver', img: `${BASE}/quiksilver-riley.jpg`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
+  { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions.mp4` },
   // Light UI / paper / bright photography
   { name: 'Progressive Controls', img: `${BASE}/spork-v2.png`, background: 'light', video: `${BASE}/spork-v2.mp4` },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
@@ -307,12 +309,12 @@ function forceLightDarkAlternate(): HomeSliderSlide[] {
 }
 
 /**
- * Place the remaining slides after the opening trio without related neighbors —
+ * Place the remaining slides after the opening stack without related neighbors —
  * including the ring seam where the last slide meets the pinned Ad Portal frame
  * (so Accelerator / Ad Portal never sit next to each other).
  */
 function arrangeRestAfterOpening(
-  trio: HomeSliderSlide[],
+  opening: HomeSliderSlide[],
   rest: HomeSliderSlide[],
 ): HomeSliderSlide[] {
   if (rest.length === 0) return rest;
@@ -324,10 +326,10 @@ function arrangeRestAfterOpening(
 
     while (remaining.length > 0) {
       const isLast = remaining.length === 1;
-      const left = placed.length === 0 ? trio[trio.length - 1] : placed[placed.length - 1];
+      const left = placed.length === 0 ? opening[opening.length - 1] : placed[placed.length - 1];
       const idx = remaining.findIndex((item) => {
         if (areRelated(left, item)) return false;
-        if (isLast && areRelated(item, trio[0])) return false;
+        if (isLast && areRelated(item, opening[0])) return false;
         return true;
       });
       if (idx === -1) {
@@ -337,29 +339,30 @@ function arrangeRestAfterOpening(
       placed.push(remaining.splice(idx, 1)[0]);
     }
 
-    if (ok && !deckHasRelatedNeighbors([...trio, ...placed])) return placed;
+    if (ok && !deckHasRelatedNeighbors([...opening, ...placed])) return placed;
   }
 
   return rest;
 }
 
 /**
- * Keep the opening trio consecutive (Lexus phone → Progressive Controls → Accelerator)
- * so the first viewport shows that stack with Progressive Controls centered.
+ * Keep the opening stack consecutive (Lexus phone → Progressive Controls →
+ * Accelerator → Action States) so the first viewport shows that run with
+ * Progressive Controls centered.
  */
-function pinOpeningTrio(deck: HomeSliderSlide[]): HomeSliderSlide[] {
+function pinOpeningStack(deck: HomeSliderSlide[]): HomeSliderSlide[] {
   const openingSet = new Set<string>(HOME_SLIDER_OPENING_IMGS);
-  const trio = HOME_SLIDER_OPENING_IMGS.map(
+  const opening = HOME_SLIDER_OPENING_IMGS.map(
     (img) => deck.find((slide) => slide.img === img)!,
   );
-  if (trio.some((slide) => !slide)) return deck;
+  if (opening.some((slide) => !slide)) return deck;
 
   const rest = arrangeRestAfterOpening(
-    trio,
+    opening,
     deck.filter((slide) => !openingSet.has(slide.img)),
   );
-  return [...trio, ...rest];
+  return [...opening, ...rest];
 }
 
 /** Shuffled once per page load — matches the prototype deck order. */
-export const homeSliderSlides = pinOpeningTrio(buildSlides());
+export const homeSliderSlides = pinOpeningStack(buildSlides());
