@@ -28,6 +28,7 @@ const BASE = '/home-slider';
 const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
 const ACTIONS_IMG = `${BASE}/actions.png`;
 const BOOKMARKS_IMG = `${BASE}/bookmarks.png`;
+const LEXUS_DESKTOP_IMG = `${BASE}/lexus-desktop.png`;
 
 /**
  * Opening stack when the homepage loads (top → bottom).
@@ -39,6 +40,7 @@ export const HOME_SLIDER_OPENING_IMGS = [
   EXPEDIA_ACCELERATOR_IMG,
   ACTIONS_IMG,
   BOOKMARKS_IMG,
+  LEXUS_DESKTOP_IMG,
 ] as const;
 
 /** First slide centered when the homepage loads. */
@@ -58,7 +60,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Progressive Controls', img: `${BASE}/spork-v2.png`, background: 'light', video: `${BASE}/spork-v2.mp4` },
   { name: 'Bookmarks', img: BOOKMARKS_IMG, background: 'light', video: `${BASE}/bookmarks.mp4` },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
-  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-desktop.png`, background: 'light', car: true },
+  { name: 'Lexus Driving Tour', img: LEXUS_DESKTOP_IMG, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, background: 'light', car: true },
   { name: "Levi's", img: `${BASE}/levis-denim-supply.png`, background: 'light' },
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
@@ -350,8 +352,8 @@ function arrangeRestAfterOpening(
 
 /**
  * Keep the opening stack consecutive (Lexus phone → Progressive Controls →
- * Accelerator → Action States → Bookmarks) so the first viewport shows that run
- * with Progressive Controls centered.
+ * Accelerator → Action States → Bookmarks → Lexus desktop) so the first viewport
+ * shows that run with Progressive Controls centered.
  */
 function pinOpeningStack(deck: HomeSliderSlide[]): HomeSliderSlide[] {
   const openingSet = new Set<string>(HOME_SLIDER_OPENING_IMGS);
