@@ -6,10 +6,13 @@ import { canNavigateToCaseStudyRoute } from '../lib/caseStudyNavigation';
 import '../../styles/home-slider.css';
 
 const CONFIG = {
-  minHeight: 1.25,
-  maxHeight: 1.25,
+  minHeight: 1.4,
+  maxHeight: 1.4,
   aspectRatio: 1.5,
-  gap: 0.14,
+  gap: 0.157,
+  cameraZ: 5,
+  /** Widest a frame may sit across the viewport before the camera eases back. */
+  maxWidthFraction: 0.94,
   smoothing: 0.05,
   distortionStrength: 2.5,
   distortionSmoothing: 0.1,
@@ -26,6 +29,19 @@ const CONFIG = {
 const zeroPad = (n: number) => String(n).padStart(2, '0');
 
 const wrap = (value: number, range: number) => ((value % range) + range) % range;
+
+const CAMERA_FOV = 45;
+
+/**
+ * Frames are sized in world units, so a tall narrow viewport can crop them at the
+ * sides. Ease the camera back just enough to keep a full frame in view.
+ */
+const fitCameraDistance = (aspect: number) => {
+  const frameWidth = CONFIG.maxHeight * CONFIG.aspectRatio;
+  const halfFovTan = Math.tan((CAMERA_FOV * Math.PI) / 360);
+  const required = frameWidth / (2 * halfFovTan * aspect * CONFIG.maxWidthFraction);
+  return Math.max(CONFIG.cameraZ, required);
+};
 
 const heroSlideIndex = homeSliderSlides.findIndex((slide) => slide.img === HOME_SLIDER_HERO_IMG);
 const initialSlideIndex = heroSlideIndex >= 0 ? heroSlideIndex : 0;
@@ -73,6 +89,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       const { width, height } = getViewSize();
       if (!width || !height) return;
       camera.aspect = width / height;
+      camera.position.z = fitCameraDistance(camera.aspect);
       camera.updateProjectionMatrix();
       renderer.setSize(width, height, false);
     };
@@ -150,12 +167,12 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
     const initialSize = getViewSize();
     const camera = new THREE.PerspectiveCamera(
-      45,
+      CAMERA_FOV,
       initialSize.width / initialSize.height,
       0.1,
       100,
     );
-    camera.position.z = 5;
+    camera.position.z = fitCameraDistance(camera.aspect);
 
     const textureLoader = new THREE.TextureLoader();
     const raycaster = new THREE.Raycaster();
