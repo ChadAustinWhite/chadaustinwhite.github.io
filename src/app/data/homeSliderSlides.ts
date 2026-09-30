@@ -26,6 +26,7 @@ const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
 const BASE = '/home-slider';
 
 const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
+const PROGRESSIVE_CONTROLS_IMG = `${BASE}/progressive-controls.png`;
 const ACTIONS_IMG = `${BASE}/actions.png`;
 const BOOKMARKS_IMG = `${BASE}/bookmarks.png`;
 const LEXUS_DESKTOP_IMG = `${BASE}/lexus-desktop.png`;
@@ -36,7 +37,7 @@ const LEXUS_DESKTOP_IMG = `${BASE}/lexus-desktop.png`;
  */
 export const HOME_SLIDER_OPENING_IMGS = [
   `${BASE}/lexus-mobile-hero.png`,
-  `${BASE}/spork-v2.png`,
+  PROGRESSIVE_CONTROLS_IMG,
   EXPEDIA_ACCELERATOR_IMG,
   ACTIONS_IMG,
   BOOKMARKS_IMG,
@@ -57,7 +58,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions.mp4` },
   // Light UI / paper / bright photography
-  { name: 'Progressive Controls', img: `${BASE}/spork-v2.png`, background: 'light', video: `${BASE}/spork-v2.mp4` },
+  { name: 'Progressive Controls', img: PROGRESSIVE_CONTROLS_IMG, background: 'light', video: `${BASE}/progressive-controls.mp4` },
   { name: 'Bookmarks', img: BOOKMARKS_IMG, background: 'light', video: `${BASE}/bookmarks.mp4` },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: LEXUS_DESKTOP_IMG, background: 'light', car: true },
