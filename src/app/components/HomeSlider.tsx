@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { homeSliderSlides, HOME_SLIDER_HERO_IMG, type HomeSliderSlide } from '../data/homeSliderSlides';
 import type { CaseStudyRoute } from '../data/portfolioData';
 import { canNavigateToCaseStudyRoute } from '../lib/caseStudyNavigation';
+import { HomeSliderCursor } from './HomeSliderCursor';
 import '../../styles/home-slider.css';
 
 const CONFIG = {
@@ -61,6 +62,8 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       ? `${zeroPad(initialSlideIndex + 1)} / ${zeroPad(homeSliderSlides.length)}`
       : '',
   );
+
+  const [cursorOverCaseStudy, setCursorOverCaseStudy] = useState(false);
 
   onViewCaseStudyRef.current = onViewCaseStudy;
 
@@ -317,6 +320,12 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     let touchStartY = 0;
     let touchLastY = 0;
 
+    /** Last pointer position over the canvas, so the badge can re-test as slides scroll by. */
+    let hoverX = -1;
+    let hoverY = -1;
+    let hoverScroll = 0;
+    let cursorOpen = false;
+
     let scrollTimeout: ReturnType<typeof setTimeout> | undefined;
     let momentumTimeout: ReturnType<typeof setTimeout> | undefined;
 
@@ -324,16 +333,39 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       distortionTarget = Math.min(1, distortionTarget + amount);
     };
 
-    const navigateFromPointer = (clientX: number, clientY: number) => {
+    const slideAtPointer = (clientX: number, clientY: number) => {
       pointerToNdc(clientX, clientY);
       raycaster.setFromCamera(pointer, camera);
       const hits = raycaster.intersectObjects(meshes);
-      if (!hits.length) return;
+      return hits.length
+        ? (hits[0].object.userData.slide as HomeSliderSlide | undefined)
+        : undefined;
+    };
 
-      const slide = hits[0].object.userData.slide as HomeSliderSlide | undefined;
+    const navigateFromPointer = (clientX: number, clientY: number) => {
+      const slide = slideAtPointer(clientX, clientY);
       if (canNavigateToCaseStudyRoute(slide?.route)) {
         onViewCaseStudyRef.current(slide.route);
       }
+    };
+
+    const publishCursor = (open: boolean) => {
+      if (open === cursorOpen) return;
+      cursorOpen = open;
+      setCursorOverCaseStudy(open);
+    };
+
+    const refreshCursorHover = () => {
+      if (hoverX < 0) return;
+      hoverScroll = scrollPosition;
+      const slide = slideAtPointer(hoverX, hoverY);
+      publishCursor(canNavigateToCaseStudyRoute(slide?.route));
+    };
+
+    const clearCursorHover = () => {
+      hoverX = -1;
+      hoverY = -1;
+      publishCursor(false);
     };
 
     const onWheel = (e: WheelEvent) => {
@@ -393,6 +425,14 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     };
 
     const onPointerMove = (e: PointerEvent) => {
+      if (e.target === canvas) {
+        hoverX = e.clientX;
+        hoverY = e.clientY;
+        refreshCursorHover();
+      } else if (!isDragging) {
+        clearCursorHover();
+      }
+
       if (!isDragging) return;
       if (Math.abs(e.clientY - pointerDownY) > 4) pointerMoved = true;
 
@@ -508,6 +548,10 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
       updateActiveSlide(closestIndex);
 
+      if (Math.abs(scrollPosition - hoverScroll) > 0.002) {
+        refreshCursorHover();
+      }
+
       for (const entry of videoEntries) {
         const { offset } = entry.mesh.userData as { offset: number };
         let y = -(offset - wrap(scrollPosition, loopLength));
@@ -545,6 +589,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
     window.addEventListener('touchmove', onTouchMove, { passive: false });
     window.addEventListener('touchend', onTouchEnd);
     canvas.addEventListener('pointerdown', onPointerDown);
+    canvas.addEventListener('pointerleave', clearCursorHover);
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('pointerup', onPointerUp);
     window.addEventListener('resize', onResize);
@@ -560,6 +605,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
       canvas.removeEventListener('pointerdown', onPointerDown);
+      canvas.removeEventListener('pointerleave', clearCursorHover);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
       resizeObserver?.disconnect();
@@ -618,6 +664,8 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       <div className="home-slider__viewport">
         <canvas ref={canvasRef} className="home-slider__canvas" aria-hidden />
       </div>
+
+      <HomeSliderCursor open={cursorOverCaseStudy} />
 
       <div className="home-slider__info" aria-live="polite">
         <p>{activeTitle}</p>
