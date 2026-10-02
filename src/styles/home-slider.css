@@ -102,12 +102,15 @@
   width: 11px;
   height: 11px;
   border-radius: 999px;
+  /* Belt and braces: the label can never spill past the circle's edge. */
+  overflow: hidden;
   background: #dadada;
   color: #181818;
   opacity: 0;
   pointer-events: none;
-  transition: width 240ms ease, height 240ms ease, background-color 240ms ease,
-    opacity 160ms ease;
+  /* Collapsing: wait for the label to clear before closing in on it. */
+  transition: width 240ms ease 70ms, height 240ms ease 70ms,
+    background-color 240ms ease 70ms, opacity 160ms ease;
 }
 
 .home-slider__cursor--visible {
@@ -119,6 +122,9 @@
   width: 76px;
   height: 76px;
   background: #efcfcf;
+  /* Opening: no such wait, the circle leads. */
+  transition: width 240ms ease, height 240ms ease, background-color 240ms ease,
+    opacity 160ms ease;
 }
 
 .home-slider__cursor span {
@@ -128,11 +134,14 @@
   text-transform: uppercase;
   white-space: nowrap;
   opacity: 0;
-  transition: opacity 120ms ease;
+  /* Collapsing: clear the label first, then let the circle shrink under it. */
+  transition: opacity 60ms ease;
 }
 
+/* Opening: hold the label back until the circle is wide enough to contain it. */
 .home-slider__cursor--open span {
   opacity: 1;
+  transition: opacity 130ms ease 210ms;
 }
 
 /* The badge only renders where it can track a pointer, so only hide the real one there. */
@@ -226,7 +235,8 @@
   }
 
   .home-slider__cursor,
-  .home-slider__cursor span {
+  .home-slider__cursor span,
+  .home-slider__cursor--open span {
     transition: none;
   }
 }
