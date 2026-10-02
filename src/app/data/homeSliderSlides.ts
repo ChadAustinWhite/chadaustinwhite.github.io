@@ -50,7 +50,6 @@ export const HOME_SLIDER_HERO_IMG = HOME_SLIDER_OPENING_IMGS[1];
 const rawSlides: HomeSliderSlide[] = [
   // Dark photography / charcoal mats
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-racecar.jpg`, background: 'dark', car: true },
-  { name: 'Lexus Driving Tour', img: `${BASE}/lexus-interior.jpg`, background: 'dark', car: true },
   { name: 'McLaren FWD', img: `${BASE}/mclaren-fwd.png`, background: 'dark', car: true },
   { name: "Levi's", img: `${BASE}/levis.png`, background: 'dark' },
   { name: "Levi's", img: `${BASE}/levis-motorcycle.png`, background: 'dark' },
