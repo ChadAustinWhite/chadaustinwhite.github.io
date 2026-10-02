@@ -91,6 +91,60 @@
   cursor: grab;
 }
 
+/* Resting state: a plain dot over frames that go nowhere. */
+.home-slider__cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: #dadada;
+  color: #181818;
+  opacity: 0;
+  pointer-events: none;
+  transition: width 240ms ease, height 240ms ease, background-color 240ms ease,
+    opacity 160ms ease;
+}
+
+.home-slider__cursor--visible {
+  opacity: 1;
+}
+
+/* Swollen prompt over a frame that opens a case study. */
+.home-slider__cursor--open {
+  width: 84px;
+  height: 84px;
+  background: #efcfcf;
+}
+
+.home-slider__cursor span {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.home-slider__cursor--open span {
+  opacity: 1;
+}
+
+/* The badge only renders where it can track a pointer, so only hide the real one there. */
+@media (hover: hover) and (pointer: fine) {
+  .home-slider__canvas,
+  .home-slider__canvas--clickable,
+  .home-slider__canvas--grabbing,
+  .home-slider__canvas--grab {
+    cursor: none;
+  }
+}
+
 .home-slider__info {
   position: absolute;
   top: 50%;
@@ -169,5 +223,10 @@
 @media (prefers-reduced-motion: reduce) {
   .home-slider__canvas {
     touch-action: pan-y;
+  }
+
+  .home-slider__cursor,
+  .home-slider__cursor span {
+    transition: none;
   }
 }
