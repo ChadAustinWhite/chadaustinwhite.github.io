@@ -116,13 +116,13 @@
 
 /* Swollen prompt over a frame that opens a case study. */
 .home-slider__cursor--open {
-  width: 84px;
-  height: 84px;
+  width: 76px;
+  height: 76px;
   background: #efcfcf;
 }
 
 .home-slider__cursor span {
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
