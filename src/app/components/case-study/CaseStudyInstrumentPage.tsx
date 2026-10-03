@@ -87,7 +87,9 @@ function InstrumentFigure({
         image.padded
           ? 'case-study-instrument__figure--padded'
           : 'case-study-instrument__figure--bleed'
-      } case-study-instrument__figure--${variant}`}
+      } case-study-instrument__figure--${variant}${
+        image.fullRow ? ' case-study-instrument__figure--full-row' : ''
+      }`}
     >
       <div
         className={`case-study-instrument__figure-media ${instrumentMediaBackground(image)}`}

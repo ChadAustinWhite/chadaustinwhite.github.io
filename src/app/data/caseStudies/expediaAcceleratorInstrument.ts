@@ -4,6 +4,7 @@ import expediaAcceleratorObservationsCreateFlow from '../../../assets/expedia-ac
 import expediaAcceleratorObservationsImpactPhases from '../../../assets/expedia-accelerator-observations-impact-phases.png';
 import expediaAcceleratorUiRatePlanMarketplace from '../../../assets/expedia-accelerator-ui-rate-plan-marketplace.png';
 import expediaAcceleratorUiMetricCardsLift from '../../../assets/expedia-accelerator-ui-metric-cards-lift.png';
+import expediaAcceleratorUiPerformanceBreakdown from '../../../assets/expedia-accelerator-ui-performance-breakdown.png';
 import expediaAcceleratorProductUiCreate from '../../../assets/expedia-accelerator-product-ui-create.png';
 import expediaAcceleratorProductUiPerformance from '../../../assets/expedia-accelerator-product-ui-performance.png';
 import expediaAcceleratorUiCreateStayDatesRedesign from '../../../assets/expedia-accelerator-ui-create-stay-dates-redesign.png';
@@ -111,7 +112,6 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
       title: 'Evidence-led design',
       lead:
         'We combined partner feedback, heuristics, and behavioral data to guide every design decision.',
-      chapterVisual: 'accelerator-hook-model',
       stackedImages: [
         {
           src: expediaAcceleratorProductUiCreate,
@@ -161,6 +161,14 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
               objectFit: 'contain',
               background: 'page',
               padded: true,
+            },
+            {
+              src: expediaAcceleratorUiPerformanceBreakdown,
+              alt: 'Accelerator performance page showing stay dates, blockout dates, rate plan types, and the performance breakdown cards',
+              objectFit: 'contain',
+              background: 'page',
+              padded: true,
+              fullRow: true,
             },
           ],
           video: {
