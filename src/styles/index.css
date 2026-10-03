@@ -4444,6 +4444,11 @@ html.page-transition-active body {
   padding-inline: 0;
 }
 
+/* Full-width member of a row — matches the stacked figures above it. */
+.case-study-instrument__figure-row .case-study-instrument__figure--full-row {
+  grid-column: 1 / -1;
+}
+
 .case-study-instrument__figure-row .case-study-instrument__figure-media {
   height: 100%;
 }
@@ -5006,6 +5011,21 @@ html.page-transition-active body {
   width: 100%;
   max-width: 90rem;
   margin-inline: auto;
+}
+
+/*
+ * A video closing a run of figures joins their rhythm. The wider default gap is
+ * meant for a video that follows copy, where it reads as a new beat.
+ */
+.case-study-instrument__chapter-wrap
+  .case-study-instrument__subsection-block
+  > .case-study-instrument__figure-row
+  + .case-study-instrument__video,
+.case-study-instrument__chapter-wrap
+  .case-study-instrument__subsection-block
+  > .case-study-instrument__figure
+  + .case-study-instrument__video {
+  margin-top: clamp(0.5rem, 1.2vw, 0.75rem);
 }
 
 .case-study-instrument__video-player {

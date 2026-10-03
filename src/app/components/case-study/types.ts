@@ -105,6 +105,8 @@ export interface CaseStudyInstrumentImage {
   background?: 'page' | 'card' | 'charcoal';
   /** Keep image within page gutters instead of full-bleed breakout. */
   padded?: boolean;
+  /** In a figure row, span every column instead of sitting in one. */
+  fullRow?: boolean;
   /** Scroll-linked parallax (`data-parallax-speed`). */
   parallaxSpeed?: string;
   parallaxMode?: 'scroll-lag' | 'viewport';
