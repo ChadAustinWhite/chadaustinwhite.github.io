@@ -28,8 +28,10 @@ const BASE = '/home-slider';
 const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
 const PROGRESSIVE_CONTROLS_IMG = `${BASE}/progressive-controls.png`;
 const ACTIONS_IMG = `${BASE}/actions.png`;
+const IMAGE_SELECTION_IMG = `${BASE}/image-selection.png`;
 const BOOKMARKS_IMG = `${BASE}/bookmarks.png`;
 const LEXUS_DESKTOP_IMG = `${BASE}/lexus-desktop.png`;
+const AD_PORTAL_IMG = `${BASE}/expedia-ad-portal-campaign-v3.png`;
 
 /**
  * Opening stack when the homepage loads (top → bottom).
@@ -39,9 +41,11 @@ export const HOME_SLIDER_OPENING_IMGS = [
   `${BASE}/lexus-mobile-hero.png`,
   PROGRESSIVE_CONTROLS_IMG,
   EXPEDIA_ACCELERATOR_IMG,
+  IMAGE_SELECTION_IMG,
   ACTIONS_IMG,
   BOOKMARKS_IMG,
   LEXUS_DESKTOP_IMG,
+  AD_PORTAL_IMG,
 ] as const;
 
 /** First slide centered when the homepage loads. */
@@ -56,6 +60,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-rider.png`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions.mp4` },
+  { name: 'Image Selection', img: IMAGE_SELECTION_IMG, background: 'light', video: `${BASE}/image-selection.mp4` },
   // Light UI / paper / bright photography
   { name: 'Progressive Controls', img: PROGRESSIVE_CONTROLS_IMG, background: 'light', video: `${BASE}/progressive-controls.mp4` },
   { name: 'Bookmarks', img: BOOKMARKS_IMG, background: 'light', video: `${BASE}/bookmarks.mp4` },
@@ -66,7 +71,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-eagle-bolt.png`, background: 'light' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-tony.jpg`, background: 'light' },
   { name: 'Expedia Accelerator', img: EXPEDIA_ACCELERATOR_IMG, background: 'light' },
-  { name: 'Expedia Ad Portal', img: `${BASE}/expedia-ad-portal-campaign-v3.png`, background: 'light' },
+  { name: 'Expedia Ad Portal', img: AD_PORTAL_IMG, background: 'light' },
 ].map((slide) => ({
   ...slide,
   route: SLIDE_ROUTES[slide.name],
@@ -89,7 +94,7 @@ const sameBackground = (a: HomeSliderSlide, b: HomeSliderSlide) =>
 
 /** Product UI frames that should not form a consecutive stack. */
 const SEPARATE_UI_IMGS = new Set([
-  `${BASE}/expedia-ad-portal-campaign-v3.png`,
+  AD_PORTAL_IMG,
   EXPEDIA_ACCELERATOR_IMG,
   `${BASE}/mclaren-fwd.png`,
 ]);
@@ -300,17 +305,23 @@ function forceLightDarkAlternate(): HomeSliderSlide[] {
     lightSlots[i] = slot;
   }
 
+  const placedLights = new Set<HomeSliderSlide>();
   lightSlots.forEach((slot, i) => {
+    if (deck[slot]) return;
     deck[slot] = lights[i];
+    placedLights.add(lights[i]);
   });
 
-  const remaining = [...darks];
+  const remaining = [
+    ...darks,
+    ...lights.filter((slide) => !placedLights.has(slide)),
+  ];
   for (let i = 0; i < n; i++) {
     if (deck[i]) continue;
     deck[i] = remaining.shift()!;
   }
 
-  return deck as HomeSliderSlide[];
+  return deck.filter((slide): slide is HomeSliderSlide => Boolean(slide));
 }
 
 /**
@@ -352,8 +363,8 @@ function arrangeRestAfterOpening(
 
 /**
  * Keep the opening stack consecutive (Lexus phone → Progressive Controls →
- * Accelerator → Action States → Bookmarks → Lexus desktop) so the first viewport
- * shows that run with Progressive Controls centered.
+ * Accelerator → Image Selection → Action States → Bookmarks → Lexus desktop →
+ * Ad Portal) so the first viewport shows that run with Progressive Controls centered.
  */
 function pinOpeningStack(deck: HomeSliderSlide[]): HomeSliderSlide[] {
   const openingSet = new Set<string>(HOME_SLIDER_OPENING_IMGS);
