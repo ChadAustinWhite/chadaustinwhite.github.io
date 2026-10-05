@@ -60,10 +60,10 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-rider.png`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions.mp4` },
-  { name: 'Image Selection', img: IMAGE_SELECTION_IMG, background: 'light', video: `${BASE}/image-selection.mp4` },
+  { name: 'Direct Manipulation', img: IMAGE_SELECTION_IMG, background: 'light', video: `${BASE}/image-selection.mp4` },
   // Light UI / paper / bright photography
   { name: 'Progressive Controls', img: PROGRESSIVE_CONTROLS_IMG, background: 'light', video: `${BASE}/progressive-controls.mp4` },
-  { name: 'Bookmarks', img: BOOKMARKS_IMG, background: 'light', video: `${BASE}/bookmarks.mp4` },
+  { name: 'Bookmarks Preview', img: BOOKMARKS_IMG, background: 'light', video: `${BASE}/bookmarks.mp4` },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-mobile-hero.png`, background: 'dark', car: true },
   { name: 'Lexus Driving Tour', img: LEXUS_DESKTOP_IMG, background: 'light', car: true },
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-experience.png`, background: 'light', car: true },
@@ -363,7 +363,7 @@ function arrangeRestAfterOpening(
 
 /**
  * Keep the opening stack consecutive (Lexus phone → Progressive Controls →
- * Accelerator → Image Selection → Action States → Bookmarks → Lexus desktop →
+ * Accelerator → Direct Manipulation → Action States → Bookmarks Preview → Lexus desktop →
  * Ad Portal) so the first viewport shows that run with Progressive Controls centered.
  */
 function pinOpeningStack(deck: HomeSliderSlide[]): HomeSliderSlide[] {
