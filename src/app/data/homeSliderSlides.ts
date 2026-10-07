@@ -29,6 +29,7 @@ const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
 const PROGRESSIVE_CONTROLS_IMG = `${BASE}/progressive-controls.png`;
 const ACTIONS_IMG = `${BASE}/actions.png`;
 const IMAGE_SELECTION_IMG = `${BASE}/image-selection.png`;
+const MIXED_INITIATIVE_IMG = `${BASE}/mixed-initiative-interaction.png`;
 const BOOKMARKS_IMG = `${BASE}/bookmarks.png`;
 const LEXUS_DESKTOP_IMG = `${BASE}/lexus-desktop.png`;
 const AD_PORTAL_IMG = `${BASE}/expedia-ad-portal-campaign-v3.png`;
@@ -43,6 +44,7 @@ export const HOME_SLIDER_OPENING_IMGS = [
   EXPEDIA_ACCELERATOR_IMG,
   IMAGE_SELECTION_IMG,
   ACTIONS_IMG,
+  MIXED_INITIATIVE_IMG,
   BOOKMARKS_IMG,
   LEXUS_DESKTOP_IMG,
   AD_PORTAL_IMG,
@@ -61,6 +63,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions.mp4` },
   { name: 'Direct Manipulation', img: IMAGE_SELECTION_IMG, background: 'light', video: `${BASE}/image-selection.mp4` },
+  { name: 'Mixed Initiative Interaction', img: MIXED_INITIATIVE_IMG, background: 'light', video: `${BASE}/mixed-initiative-interaction.mp4` },
   // Light UI / paper / bright photography
   { name: 'Progressive Controls', img: PROGRESSIVE_CONTROLS_IMG, background: 'light', video: `${BASE}/progressive-controls.mp4` },
   { name: 'Bookmarks Preview', img: BOOKMARKS_IMG, background: 'light', video: `${BASE}/bookmarks.mp4` },
@@ -363,7 +366,8 @@ function arrangeRestAfterOpening(
 
 /**
  * Keep the opening stack consecutive (Lexus phone → Progressive Controls →
- * Accelerator → Direct Manipulation → Action States → Bookmarks Preview → Lexus desktop →
+ * Accelerator → Direct Manipulation → Action States → Mixed Initiative Interaction →
+ * Bookmarks Preview → Lexus desktop →
  * Ad Portal) so the first viewport shows that run with Progressive Controls centered.
  */
 function pinOpeningStack(deck: HomeSliderSlide[]): HomeSliderSlide[] {
