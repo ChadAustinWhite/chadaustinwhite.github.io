@@ -43,8 +43,8 @@ export const HOME_SLIDER_OPENING_IMGS = [
   PROGRESSIVE_CONTROLS_IMG,
   EXPEDIA_ACCELERATOR_IMG,
   IMAGE_SELECTION_IMG,
-  ACTIONS_IMG,
   MIXED_INITIATIVE_IMG,
+  ACTIONS_IMG,
   BOOKMARKS_IMG,
   LEXUS_DESKTOP_IMG,
   AD_PORTAL_IMG,
@@ -366,7 +366,7 @@ function arrangeRestAfterOpening(
 
 /**
  * Keep the opening stack consecutive (Lexus phone → Progressive Controls →
- * Accelerator → Direct Manipulation → Action States → Mixed Initiative Interaction →
+ * Accelerator → Direct Manipulation → Mixed Initiative Interaction → Action States →
  * Bookmarks Preview → Lexus desktop →
  * Ad Portal) so the first viewport shows that run with Progressive Controls centered.
  */
