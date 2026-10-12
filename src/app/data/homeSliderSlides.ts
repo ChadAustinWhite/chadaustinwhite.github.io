@@ -27,7 +27,7 @@ const BASE = '/home-slider';
 
 const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
 const PROGRESSIVE_CONTROLS_IMG = `${BASE}/progressive-controls.png`;
-const ACTIONS_IMG = `${BASE}/actions.png`;
+const ACTIONS_IMG = `${BASE}/actions-v2.png`;
 const IMAGE_SELECTION_IMG = `${BASE}/image-selection.png`;
 const MIXED_INITIATIVE_IMG = `${BASE}/mixed-initiative-interaction-v2.png`;
 const BOOKMARKS_IMG = `${BASE}/bookmarks.png`;
@@ -61,7 +61,7 @@ const rawSlides: HomeSliderSlide[] = [
   { name: "Levi's", img: `${BASE}/levis-motorcycle.png`, background: 'dark' },
   { name: "Levi's", img: `${BASE}/levis-rider.png`, background: 'dark' },
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
-  { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions.mp4` },
+  { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions-v2.mp4` },
   { name: 'Direct Manipulation', img: IMAGE_SELECTION_IMG, background: 'light', video: `${BASE}/image-selection.mp4` },
   { name: 'Mixed Initiative Interaction', img: MIXED_INITIATIVE_IMG, background: 'light', video: `${BASE}/mixed-initiative-interaction-v2.mp4` },
   // Light UI / paper / bright photography
