@@ -57,6 +57,9 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
   const [activeTitle, setActiveTitle] = useState(
     homeSliderSlides[initialSlideIndex]?.name ?? '',
   );
+  const [activeContext, setActiveContext] = useState(
+    homeSliderSlides[initialSlideIndex]?.context ?? '',
+  );
   const [activeCount, setActiveCount] = useState(
     homeSliderSlides.length
       ? `${zeroPad(initialSlideIndex + 1)} / ${zeroPad(homeSliderSlides.length)}`
@@ -120,6 +123,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       activeSlideIndex = index;
       const slide = slides[index];
       setActiveTitle(slide.name);
+      setActiveContext(slide.context);
       setActiveCount(`${zeroPad(index + 1)} / ${zeroPad(totalSlides)}`);
 
       const route = slide.route;
@@ -647,16 +651,10 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         </div>
         <div className="home-slider__block home-slider__block--tr">
           <dl>
-            <dt>Expertise</dt>
-            <dd>0→1 product development</dd>
-            <dd>Human-centered design</dd>
-            <dd>Cross-functional leadership</dd>
-          </dl>
-          <dl>
-            <dt>Impact</dt>
-            <dd>$300M gross revenue</dd>
-            <dd>+30% search visibility</dd>
-            <dd>72.4K active users</dd>
+            <dt>Currently</dt>
+            <dd>Product Designer</dd>
+            <dd>Expedia Group</dd>
+            <dd>Los Angeles, CA</dd>
           </dl>
         </div>
       </div>
@@ -668,7 +666,10 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       <HomeSliderCursor open={cursorOverCaseStudy} />
 
       <div className="home-slider__info" aria-live="polite">
-        <p>{activeTitle}</p>
+        <div className="home-slider__caption">
+          <p>{activeTitle}</p>
+          {activeContext ? <p className="home-slider__context">{activeContext}</p> : null}
+        </div>
         <p>{activeCount}</p>
       </div>
     </section>
