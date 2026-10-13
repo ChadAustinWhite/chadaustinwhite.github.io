@@ -7,8 +7,8 @@ import { HomeSliderCursor } from './HomeSliderCursor';
 import '../../styles/home-slider.css';
 
 const CONFIG = {
-  minHeight: 1.55,
-  maxHeight: 1.55,
+  minHeight: 1.7,
+  maxHeight: 1.7,
   aspectRatio: 1.5,
   gap: 0.157,
   cameraZ: 5,
