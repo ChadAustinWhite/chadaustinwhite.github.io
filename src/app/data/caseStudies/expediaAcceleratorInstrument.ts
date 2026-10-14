@@ -70,41 +70,30 @@ export const expediaAcceleratorInstrument: CaseStudyInstrumentContent = {
     {
       title: 'Pain points identified',
       scrollGradientStart: true,
-      lead:
-        'Twelve friction points emerged across discovery, setup, launch, and ongoing management, moments where partners stalled, guessed, or lost trust in Accelerator.',
-      subsections: [],
-      chapterVisual: 'accelerator-partner-journey',
-    },
-    {
-      title: 'Project complications',
       scrollGradientEnd: true,
       lead:
-        'The main challenges and roadblocks the team faced, and how we tackled them with perseverance and flexibility.',
+        'Five friction points stood out across discovery, setup, launch, and ongoing management, moments where partners stalled, guessed, or lost trust in Accelerator.',
       subsections: [],
       accordion: [
         {
-          title: 'Product comprehension',
-          body: 'Hotel partners were uncertain about whether Accelerator directly contributed to booking last-minute rooms or if it was the primary factor behind their success.',
+          title: 'Discover Accelerator',
+          body: 'Partners dig through left nav to find Accelerator. The product stays hard to locate without clearer entry points.',
         },
         {
-          title: 'Interdependencies',
-          body: 'Collaborating cross-functionally to identify offerings in other partner tools, their timing, and how Accelerator adds value at key moments of the partner journey.',
+          title: 'Select margin',
+          body: 'Partners doubt margin recommendations and cannot see total spend. Missing cost projections make this the highest friction moment.',
         },
         {
-          title: 'Multi-stakeholder alignment',
-          body: 'Balancing the needs of hotel partners, product, customer success, and design, while maintaining design system consistency and platform scalability.',
+          title: 'Preview performance',
+          body: 'Forecast chart labels stay easy for partners to miss. Trust drops when the preview and margin stories disagree.',
         },
         {
-          title: 'Legacy design system',
-          body: 'When I joined, the project used an outdated design system, and with feature parity, some approaches needed rethinking.',
+          title: 'Create / publish',
+          body: 'After submit, what happens next still goes unanswered. Partners stay unsure when Accelerator will appear in search results.',
         },
         {
-          title: 'Technical limitations',
-          body: 'Multi-property selection, date selection, forecast prediction, and performance data updates were key pain points for partners that required attention.',
-        },
-        {
-          title: 'Time zone',
-          body: 'Time zone differences between colleagues in Southern California, Chicago, New York, Seattle, and India encouraged early and late syncs, improving collaboration and delivering value to hotel partners at velocity.',
+          title: 'Manage accelerators',
+          body: 'Editing live campaigns needs clearer confidence and stronger control. Pause and edit states feel riskier without impact previews.',
         },
       ],
     },
