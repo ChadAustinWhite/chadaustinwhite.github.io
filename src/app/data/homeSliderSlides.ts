@@ -65,9 +65,9 @@ const AD_PORTAL_IMG = `${BASE}/expedia-ad-portal-campaign-v3.png`;
  */
 export const HOME_SLIDER_OPENING_IMGS = [
   `${BASE}/lexus-mobile-hero.png`,
+  MIXED_INITIATIVE_IMG,
   PROGRESSIVE_CONTROLS_IMG,
   EXPEDIA_ACCELERATOR_IMG,
-  MIXED_INITIATIVE_IMG,
   IMAGE_SELECTION_IMG,
   ACTIONS_IMG,
   BOOKMARKS_IMG,
