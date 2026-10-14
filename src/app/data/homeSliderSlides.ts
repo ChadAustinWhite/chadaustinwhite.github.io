@@ -36,7 +36,7 @@ const AD_PORTAL_IMG = `${BASE}/expedia-ad-portal-campaign-v3.png`;
 
 /**
  * Opening stack when the homepage loads (top → bottom).
- * Hero is the second frame so it loads centered in the first viewport.
+ * Progressive Controls is centered on first paint via HOME_SLIDER_HERO_IMG.
  */
 export const HOME_SLIDER_OPENING_IMGS = [
   `${BASE}/lexus-mobile-hero.png`,
@@ -51,7 +51,7 @@ export const HOME_SLIDER_OPENING_IMGS = [
 ] as const;
 
 /** First slide centered when the homepage loads. */
-export const HOME_SLIDER_HERO_IMG = HOME_SLIDER_OPENING_IMGS[1];
+export const HOME_SLIDER_HERO_IMG = PROGRESSIVE_CONTROLS_IMG;
 
 const rawSlides: Array<Omit<HomeSliderSlide, 'route'>> = [
   // Dark photography / charcoal mats
