@@ -5,8 +5,6 @@ export type HomeSliderBackground = 'light' | 'dark';
 export interface HomeSliderSlide {
   name: string;
   img: string;
-  /** One-line context shown under the project label. */
-  context: string;
   /** Dominant field behind the subject — prefer alternating adjacent slides. */
   background: HomeSliderBackground;
   car?: boolean;
@@ -23,29 +21,6 @@ const SLIDE_ROUTES: Record<string, CaseStudyRoute> = {
   'First American Playbook': 'case-study-first-american-playbook',
   'Expedia Accelerator': 'case-study-expedia-accelerator',
   'Expedia Ad Portal': 'case-study-expedia-ad-portal',
-};
-
-const SLIDE_CONTEXT: Record<string, string> = {
-  'Lexus Driving Tour':
-    'Takes invited guests from first glance to RSVP for a track-day experience.',
-  'McLaren FWD':
-    'A premium digital invitation from first look through registration.',
-  "Levi's": 'Marks, badges, and illustrations built for apparel and product.',
-  Quiksilver: 'Campaign creative that holds the brand’s ocean-rooted attitude.',
-  'Expedia Accelerator':
-    'Helps hotels appear higher in search so they can grow bookings.',
-  'Expedia Ad Portal':
-    'Gives partners one place to run campaigns, payments, and access across markets.',
-  'Progressive Controls':
-    'Shows only the controls people need, as they need them.',
-  'Action States':
-    'Makes long-running actions feel present instead of like a black box.',
-  'Direct Manipulation':
-    'Lets people select and arrange images by working on the objects themselves.',
-  'Mixed Initiative Interaction':
-    'A conversation that can take action in the product, not just talk about it.',
-  'Bookmarks Preview':
-    'Makes saved work recognizable at a glance, before you open it.',
 };
 
 const BASE = '/home-slider';
@@ -78,7 +53,7 @@ export const HOME_SLIDER_OPENING_IMGS = [
 /** First slide centered when the homepage loads. */
 export const HOME_SLIDER_HERO_IMG = HOME_SLIDER_OPENING_IMGS[1];
 
-const rawSlides: Array<Omit<HomeSliderSlide, 'context' | 'route'>> = [
+const rawSlides: Array<Omit<HomeSliderSlide, 'route'>> = [
   // Dark photography / charcoal mats
   { name: 'Lexus Driving Tour', img: `${BASE}/lexus-racecar.jpg`, background: 'dark', car: true },
   { name: 'McLaren FWD', img: `${BASE}/mclaren-fwd.png`, background: 'dark', car: true },
@@ -103,7 +78,6 @@ const rawSlides: Array<Omit<HomeSliderSlide, 'context' | 'route'>> = [
 ].map((slide) => ({
   ...slide,
   route: SLIDE_ROUTES[slide.name],
-  context: SLIDE_CONTEXT[slide.name] ?? '',
 }));
 
 const shuffle = <T,>(arr: T[]): T[] => {
