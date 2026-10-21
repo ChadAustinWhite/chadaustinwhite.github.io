@@ -41,9 +41,9 @@ const AD_PORTAL_IMG = `${BASE}/expedia-ad-portal-campaign-v3.png`;
  */
 export const HOME_SLIDER_OPENING_IMGS = [
   `${BASE}/lexus-mobile-hero.png`,
-  A24_IMG,
   MIXED_INITIATIVE_IMG,
   PROGRESSIVE_CONTROLS_IMG,
+  A24_IMG,
   EXPEDIA_ACCELERATOR_IMG,
   IMAGE_SELECTION_IMG,
   ACTIONS_IMG,
@@ -368,8 +368,8 @@ function arrangeRestAfterOpening(
 }
 
 /**
- * Keep the opening stack consecutive (Lexus phone → A24 → Mixed Initiative Interaction →
- * Progressive Controls → Accelerator → Direct Manipulation → Action States →
+ * Keep the opening stack consecutive (Lexus phone → Mixed Initiative Interaction →
+ * Progressive Controls → A24 → Accelerator → Direct Manipulation → Action States →
  * Bookmarks Preview → Lexus desktop →
  * Ad Portal) so the first viewport shows that run with Progressive Controls centered.
  */
