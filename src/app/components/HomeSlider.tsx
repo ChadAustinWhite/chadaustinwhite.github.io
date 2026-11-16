@@ -67,6 +67,12 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
   onViewCaseStudyRef.current = onViewCaseStudy;
 
+  // Remount the WebGL scene when slide media paths change (Vite HMR of
+  // homeSliderSlides would otherwise leave stale videos/textures mounted).
+  const slideMediaKey = homeSliderSlides
+    .map((slide) => `${slide.img}|${slide.video ?? ''}`)
+    .join(';');
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -231,15 +237,19 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
 
       if (slide.video && !reduceMotion) {
         const video = document.createElement('video');
-        video.src = slide.video;
         video.muted = true;
         video.defaultMuted = true;
+        video.volume = 0;
         video.playsInline = true;
-        video.setAttribute('playsinline', '');
-        video.setAttribute('webkit-playsinline', '');
+        video.autoplay = true;
         video.loop = true;
         video.preload = 'auto';
+        video.setAttribute('muted', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('autoplay', '');
         video.setAttribute('aria-hidden', 'true');
+        video.src = slide.video;
         Object.assign(video.style, {
           position: 'fixed',
           width: '1px',
@@ -273,6 +283,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         video.addEventListener('loadedmetadata', promoteVideo);
         video.addEventListener('loadeddata', promoteVideo);
         video.addEventListener('canplay', promoteVideo);
+        video.addEventListener('canplaythrough', promoteVideo);
         video.load();
       }
 
@@ -626,7 +637,7 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
       });
       renderer.dispose();
     };
-  }, []);
+  }, [slideMediaKey]);
 
   return (
     <section className="home-slider" aria-label="Work">
