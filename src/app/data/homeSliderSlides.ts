@@ -29,7 +29,7 @@ const EXPEDIA_ACCELERATOR_IMG = `${BASE}/expedia-accelerator.png`;
 const PROGRESSIVE_CONTROLS_IMG = `${BASE}/progressive-controls.png`;
 const ACTIONS_IMG = `${BASE}/actions-v6.png`;
 const A24_IMG = `${BASE}/a24-v2.png`;
-const CORDIAL_IMG = `${BASE}/cordial-v9.png`;
+const CORDIAL_IMG = `${BASE}/cordial-v10.png`;
 const IMAGE_SELECTION_IMG = `${BASE}/image-selection.png`;
 const MIXED_INITIATIVE_IMG = `${BASE}/mixed-initiative-interaction-v3.png`;
 const BOOKMARKS_IMG = `${BASE}/bookmarks.png`;
@@ -67,7 +67,7 @@ const rawSlides: Array<Omit<HomeSliderSlide, 'route'>> = [
   { name: 'Quiksilver', img: `${BASE}/quiksilver-kelly.jpg`, background: 'dark' },
   { name: 'Action States', img: ACTIONS_IMG, background: 'dark', video: `${BASE}/actions-v6.mp4` },
   { name: 'A24', img: A24_IMG, background: 'light', video: `${BASE}/a24-v2.mp4` },
-  { name: 'Cordial™', img: CORDIAL_IMG, background: 'light', video: `${BASE}/cordial-v9.mp4` },
+  { name: 'Cordial™', img: CORDIAL_IMG, background: 'light', video: `${BASE}/cordial-v10.mp4` },
   { name: 'Direct Manipulation', img: IMAGE_SELECTION_IMG, background: 'light', video: `${BASE}/image-selection.mp4` },
   { name: 'Mixed Initiative Interaction', img: MIXED_INITIATIVE_IMG, background: 'light', video: `${BASE}/mixed-initiative-interaction-v3.mp4` },
   // Light UI / paper / bright photography
