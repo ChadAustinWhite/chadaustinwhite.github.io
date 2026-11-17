@@ -284,6 +284,16 @@ export function HomeSlider({ onViewCaseStudy }: HomeSliderProps) {
         video.addEventListener('loadeddata', promoteVideo);
         video.addEventListener('canplay', promoteVideo);
         video.addEventListener('canplaythrough', promoteVideo);
+        // Retry if the file was still being written when first requested.
+        let loadAttempts = 0;
+        video.addEventListener('error', () => {
+          if (entry.ready || loadAttempts >= 3) return;
+          loadAttempts += 1;
+          window.setTimeout(() => {
+            video.src = `${slide.video}?retry=${loadAttempts}`;
+            video.load();
+          }, 250 * loadAttempts);
+        });
         video.load();
       }
 
